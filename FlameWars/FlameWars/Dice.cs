@@ -5,19 +5,27 @@ using System.Text;
 
 namespace FlameWars
 {
-    class Dice
+    public static class Dice
     {
-        public int Roll(int dNum)
+		// Create a static random generator object
+        public static Random rgen = new Random();
+
+		// Rolls dice
+		// The paramater determines the number of times that you roll a d6
+        public static int Roll(int dNum)
         {
             int val = 0;
             int dice = 0;
-            Random rgen = new Random();
+
+			// Roll dice until we have rolled the given amount of times
+			// Rolls at least once
             do
             {
                 val += rgen.Next(1, 7);
                 dice++;
             } while (dice < dNum);
 
+			// Returns the total dice value
             return val;
         }
     }
