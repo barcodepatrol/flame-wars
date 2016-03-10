@@ -5,7 +5,7 @@ using System.Text;
 
 namespace FlameWars
 {
-    class Global
+    class World
     {
         SoundManager sm = new SoundManager(0,0);
         OptionsManager om = new OptionsManager();
