@@ -10,13 +10,16 @@ namespace FlameWars
 {
 	public class Path
 	{
-			//* Instance variables *//
+		#region Instance Variables
+		//* Instance variables *//
 		private Vector2 pos; // Position. X and Y Co-ordinates.
 		private Rectangle boundaries; // Bounds. X and Y are arbitrary. Width and Height.
 		private Color tint; // DrawColor. Not everything will be drawn in white.
 		private Board.SpaceType space; // The "type" of square the path will be.
+		#endregion
 
-			//* Properties *//
+		#region Properties
+		//* Properties *//
 		// Stores the "Type" of square the path object is.
 		public Board.SpaceType Space
 		{
@@ -33,29 +36,41 @@ namespace FlameWars
 
 		// Stores the Width and Height of the path object.
 		public Rectangle Bounds
-		{ get; set; }
+		{
+			get { return this.boundaries; }
+			set { this.boundaries = value; }
+		}
 
+		// Stores the X position.
 		public int X
 		{
 			get { return (int) this.pos.X; }
-			set { this.Position.X = new Vector2(value, Position.Y); }
+			set { this.pos.X = value; }
 		}
 
+		// Stores the Y position.
 		public int Y
-		{ get; set; }
+		{
+			get { return (int)this.pos.Y; }
+			set { this.pos.Y = value; }
+		}
 
 		// Gets the current draw color for the path object.
 		public Color DrawColor {
-			get;
-			set;
+			get { return this.tint; }
+			set { this.tint = value; }
 		}
+		#endregion
 
+		#region Constructors
 		// Constructor
 		public Path()
 		{
 
 		}
+		#endregion
 
+		#region Service Methods
 		// Service Methods
 
 		/*
@@ -79,5 +94,6 @@ namespace FlameWars
 					break;
 			}
 		}
+		#endregion
 	}
 }
