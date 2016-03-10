@@ -30,7 +30,8 @@ namespace FlameWars
         // Method
         public void Trigger()
         {
-            Switch(space) {
+            Switch(space) 
+            {
             Resource:
                 break;
             Empty:
