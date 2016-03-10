@@ -67,11 +67,11 @@ namespace FlameWars_DeckLoading
 		// It has an xmlnode parameter and saves the card in the list
 		public void CreateCard(XmlNode xn)
 		{
-			Card c = new Card(xn.SelectSingleNode("./main/name").FirstChild.Value,
-							  xn.SelectSingleNode("./main/description").FirstChild.Value,
-							  xn.SelectSingleNode("./main/target").FirstChild.Value,
-							  xn.SelectSingleNode("./main/attribute").FirstChild.Value,
-							  xn.SelectSingleNode("./main/amount").FirstChild.Value);
+			Card c = new Card(xn.SelectSingleNode("./name").FirstChild.Value,
+							  xn.SelectSingleNode("./description").FirstChild.Value,
+							  xn.SelectSingleNode("./target").FirstChild.Value,
+							  xn.SelectSingleNode("./attribute").FirstChild.Value,
+							  xn.SelectSingleNode("./amount").FirstChild.Value);
 
 			cards.Add(c);
 		}
