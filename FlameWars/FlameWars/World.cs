@@ -7,10 +7,10 @@ namespace FlameWars
 {
     class World
     {
-        SoundManager sm = new SoundManager(0,0);
+        SoundManager sm   = new SoundManager(0,0);
         OptionsManager om = new OptionsManager();
-        StateManager stm = new StateManager();
-        ArtManager am = new ArtManager();
-        GameManager gm = new GameManager();
+        StateManager stm  = new StateManager();
+        ArtManager am     = new ArtManager();
+        GameManager gm    = new GameManager();
     }
 }
