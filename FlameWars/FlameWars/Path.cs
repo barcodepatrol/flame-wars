@@ -94,6 +94,49 @@ namespace FlameWars
 					break;
 			}
 		}
+
+
+		// Card Trigger
+		/*
+			Play a sound effect.
+			Display a message to the user.
+			Use the GameManager's static class to trigger the card drawing mechanism.
+			Query player as to whether or not they will pay the "processing fee."
+			Free but Random / Pay but Decline Options Pile
+		*/
+
+		// Resource Trigger
+		/*
+			Play a sound effect.
+			Display a message to the user.
+		*/
+
+
+		// Bonus Trigger
+		/*
+			Play a sound effect.
+			Display a message to the user.
+		*/
+
+
+		// Stock Trigger
+		/*
+			Play a sound effect.
+			Display a message to the user.
+		*/
+
+		// Random Trigger
+		/*
+			This will randomly choose among different triggers to call a different one. 
+			Picks from: Card, Resource, Bonus, Stock.
+		*/
+
+		// Empty
+		/*
+			Play a sound effect.
+			Display a message to the user.
+		*/
+
 		#endregion
 	}
 }
