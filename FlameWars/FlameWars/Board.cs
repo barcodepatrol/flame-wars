@@ -24,8 +24,15 @@ namespace FlameWars
 
         public enum SpaceType { Resource, Card, Bonus, Stock, Random, Empty };
 
-            // Constructor
+		Path[] track;
+		Texture2D image;
 
+            // Constructor
+		public Board()
+		{
+			track = new Path[35];
+
+		}
 
             // Method
         public void Initialize()
@@ -40,6 +47,7 @@ namespace FlameWars
 
         public void Draw(SpriteBatch spriteBatch)
         {
+			//spriteBatch.Draw(image);
 
         }
 
