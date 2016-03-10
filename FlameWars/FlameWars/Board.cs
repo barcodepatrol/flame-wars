@@ -10,6 +10,17 @@ namespace FlameWars
 {
     public class Board
     {
+		/*
+			enum SpaceType - Indicators for path type.
+
+			Resource - This path provides resources (users, memes, bandwitdh, or money).
+			Card - This path triggers a card drawing.
+			Bonus - This path triggers a bonus for the player.
+			Stock - This path triggers a stock market mechanic.
+			Random - This path triggers the stock 
+
+			*/
+
         public enum SpaceType { Resource, Card, Bonus, Stock, Random, Empty };
 
             // Constructor
