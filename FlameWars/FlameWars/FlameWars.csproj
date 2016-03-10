@@ -41,6 +41,7 @@
     <Compile Include="ArtManager.cs" />
     <Compile Include="Board.cs" />
     <Compile Include="Card.cs" />
+    <Compile Include="Deck.cs" />
     <Compile Include="Dice.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="GameManager.cs" />
