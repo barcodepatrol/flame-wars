@@ -8,8 +8,12 @@ using Microsoft.Xna.Framework.Input;
 
 namespace FlameWars
 {
-    public class Board
-    {
+	public class Board
+	{
+		// ============================================================================
+		// ================================ Variables =================================
+		// ============================================================================
+
 		/****
 			enum SpaceType - Indicators for path type.
 
@@ -22,72 +26,88 @@ namespace FlameWars
 
 			****/
 
-        public enum SpaceType { Resource, Card, Bonus, Stock, Random, Empty };
+		public enum SpaceType { Resource, Card, Bonus, Stock, Random, Empty };
 
 		Path[] track;
 		Texture2D image;
 		const int SQUARE_WIDTH = 50;
 		const int SQUARE_HEIGHT = 50;
-		int boardHeight;// height of board
-		int boardWidth;// width of board
+		int boardHeight;
+		int boardWidth;
 		Color[] tints = new Color[3];
 		Vector2 boardBounds = new Vector2();
-		int vertLength = 7;// number of vertical squares
-		int horiLength = 12;// number of horizontal squares
 
-            // Constructor
+		// Number of vertical squares
+		// Number of horizontal squares
+		int vertLength = 7;	
+		int horiLength = 12;
+
+		// ============================================================================
+		// ================================= Methods ==================================
+		// ============================================================================
+
+		// Constructor
 		public Board()
 		{
 			track = new Path[34];
 
 		}
 
-            // Method
-        public void Initialize()
-        {
+		public void Initialize()
+		{
 
-        }
+		}
 
-        public void Update(GameTime gameTime)
-        {
+		public void Update(GameTime gameTime)
+		{
 
-        }
+		}
 
-        public void Draw(SpriteBatch spriteBatch)
-        {
+		public void Draw(SpriteBatch spriteBatch)
+		{
 			//spriteBatch.Draw(image);
 
-        }
+		}
 
-        public void CreateBoard()
+		public void CreateBoard()
 		{
-			// create random object
+			// Create random object
 			Random rng = new Random();
 
 			for (int i = 0; i < track.Length; i++)
 			{
-				// create position
-				// if intervals set to handle each side of board
+				// Create position
+				// If intervals set to handle each side of board
+
+				#region CreatePosition
+				// Bottom of the board
 				if(i >=0 && i < 12)
 				{
-					Vector2 vec = new Vector2(i * SQUARE_WIDTH, (boardHeight / vertLength));// equations being worked out
+					// equations being worked out
+					Vector2 vec = new Vector2(i * SQUARE_WIDTH, (boardHeight / vertLength));
 				}
+				// Right column of the board
 				if(i >= 12 && i < 18)
 				{
-					Vector2 vec = new Vector2((boardWidth / horiLength), i * SQUARE_HEIGHT);// see above comment
+					// see above comment
+					Vector2 vec = new Vector2((boardWidth / horiLength), i * SQUARE_HEIGHT);
 				}
+				// Top row of the board
 				if(i >= 18 && i < 29)
 				{
 					Vector2 vec = new Vector2();
 				}
+				// Left column of the board
 				if(i >= 29 && i < 34)
 				{
 					Vector2 vec = new Vector2();
 				}
-				// create rectangle
-				// select tint
-				// select space type
+				#endregion CreatePosition
+
+				// Create rectangle
+				// Select tint
+				// Select space type
 			}
 		}
-    }
+	}
 }
