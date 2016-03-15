@@ -14,6 +14,7 @@ namespace FlameWars
 		// ================================ Variables =================================
 		// ============================================================================
 
+		#region Variables
 		/****
 			enum SpaceType - Indicators for path type.
 
@@ -42,6 +43,8 @@ namespace FlameWars
 		// Number of horizontal squares
 		int vertLength = 5;	
 		int horiLength = 12;
+
+		#endregion Variables
 
 		// ============================================================================
 		// ================================= Methods ==================================

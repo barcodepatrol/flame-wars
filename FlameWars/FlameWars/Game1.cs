@@ -18,6 +18,9 @@ namespace FlameWars
         Texture2D board;
         Vector2 vec;
 
+		// Game Classes
+		GameManager game;
+
         private int SCREEN_WIDTH;
         private int SCREEN_HEIGHT;
 
@@ -29,6 +32,9 @@ namespace FlameWars
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+
+			// Create Game Class
+			game = new GameManager();
 
             SCREEN_WIDTH = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
             SCREEN_HEIGHT = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
