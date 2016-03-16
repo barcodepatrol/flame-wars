@@ -16,11 +16,22 @@ namespace FlameWars
 
 		#region Variables
 
+		public enum Role
+		{
+			TopHat,
+			Plastic,
+			Narcissist,
+			Befriender,
+			Dankest,
+			Sprinter
+		}
+
 		private Texture2D playerIcon;
 		private Texture2D playerPiece;
 		private Rectangle playerPos;
 		private Random rng;
 
+		private Role role;
 		private int boardPos   = 0;
 		private int money      = 0;
 		private int users      = 0;
@@ -51,6 +62,12 @@ namespace FlameWars
 		{
 			get { return this.playerPos; }
 			set { this.playerPos = value; }
+		}
+		// Stores the int value that evaluates to board position
+		public Role pRole
+		{
+			get { return this.role; }
+			set { this.role = value; }
 		}
 		// Stores the int value that evaluates to board position
 		public int bPos
@@ -113,10 +130,8 @@ namespace FlameWars
 		// Constructor
 		public Player()
 		{
-			//playerIcon  = new Texture2D();
-			//playerPiece = new Texture2D();
-			playerPos     = new Rectangle();
-			rng           = new Random();
+			playerPos = new Rectangle();
+			rng       = new Random();
 		}
 
 		// Determines how many users the player gets
@@ -129,7 +144,7 @@ namespace FlameWars
 			int memeAddicts = (memes^2)/20;
 
 			// The left bound is determined by how far below 100 your bandwidth is
-			// The right bound is positive as long as the bandwidth is above 60
+			// The right bound is positive as long as the bandwidth is above 60%
 			int left  =  5 + users * (100-bandwidthP);
 			int right = 10 + users * (bandwidthP-60);
 

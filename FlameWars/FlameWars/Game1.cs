@@ -19,7 +19,7 @@ namespace FlameWars
         Vector2 vec;
 
 		// Game Classes
-		GameManager game;
+		World world;
 
         private int SCREEN_WIDTH;
         private int SCREEN_HEIGHT;
@@ -33,10 +33,10 @@ namespace FlameWars
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
-			// Create Game Class
-			game = new GameManager();
+			// Create Game Object
+			world = new World(4);
 
-            SCREEN_WIDTH = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+            SCREEN_WIDTH  = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
             SCREEN_HEIGHT = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
 
             //graphics.PreferredBackBufferWidth = 1400;  // set this value to the desired width of your window
