@@ -19,6 +19,7 @@ namespace FlameWars
 		KeyboardState newKState;
 		MouseState oldMState;
 		MouseState newMState;
+		SpriteFont mainFont;
         Texture2D board;
         Vector2 vec;
 
@@ -50,12 +51,6 @@ namespace FlameWars
             graphics.PreferredBackBufferHeight = SCREEN_HEIGHT;
             graphics.IsFullScreen              = false;	// Make this true for the real game, false for testing
             graphics.ApplyChanges();
-			
-			// Create Game Objects
-			world = new World(4);
-			menu  = new Menu(SCREEN_WIDTH, SCREEN_HEIGHT);
-			howto = new HowTo(SCREEN_WIDTH, SCREEN_HEIGHT);
-			pause = new Pause(SCREEN_WIDTH, SCREEN_HEIGHT);
         }
 
         /// <summary>
@@ -78,6 +73,12 @@ namespace FlameWars
 			// Keyboard and mouse initialization
 			newKState  = Keyboard.GetState();
 			newMState = Mouse.GetState();
+			
+			// Create Game Objects
+			world = new World(4);
+			menu  = new Menu(SCREEN_WIDTH, SCREEN_HEIGHT);
+			howto = new HowTo(SCREEN_WIDTH, SCREEN_HEIGHT);
+			pause = new Pause(SCREEN_WIDTH, SCREEN_HEIGHT);
 
             base.Initialize();
         }
@@ -98,6 +99,9 @@ namespace FlameWars
 
             // TODO: use this.Content to load your game content here
             //board = Content.Load<Texture2D>("Board");
+
+			// Load fonts
+			mainFont = Content.Load<SpriteFont>("BROWNIEregular_14.xnb");
 
 			// Load Menu Content
 			menu.LoadContent(Content.Load<Texture2D>("PlayButton.png"), 
