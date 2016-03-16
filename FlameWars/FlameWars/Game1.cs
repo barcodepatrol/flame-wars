@@ -15,11 +15,16 @@ namespace FlameWars
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+		KeyboardState oldKState;
+		KeyboardState newKState;
+		MouseState oldmState;
+		MouseState newmState;
         Texture2D board;
         Vector2 vec;
 
 		// Game Classes
 		World world;
+		Menu menu;
 
         private int SCREEN_WIDTH;
         private int SCREEN_HEIGHT;
@@ -33,19 +38,20 @@ namespace FlameWars
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
-			// Create Game Object
-			world = new World(4);
-
             SCREEN_WIDTH  = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
             SCREEN_HEIGHT = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
 
             //graphics.PreferredBackBufferWidth = 1400;  // set this value to the desired width of your window
             //graphics.PreferredBackBufferHeight = 900;   // set this value to the desired height of your window
             //graphics.ApplyChanges();
-            graphics.PreferredBackBufferWidth = SCREEN_WIDTH;
+            graphics.PreferredBackBufferWidth  = SCREEN_WIDTH;
             graphics.PreferredBackBufferHeight = SCREEN_HEIGHT;
-            graphics.IsFullScreen = true;
+            graphics.IsFullScreen              = true;
             graphics.ApplyChanges();
+			
+			// Create Game Objects
+			world = new World(4);
+			menu  = new Menu(SCREEN_WIDTH, SCREEN_HEIGHT);
         }
 
         /// <summary>
@@ -58,10 +64,16 @@ namespace FlameWars
         {
             // TODO: Add your initialization logic here
             vec = new Vector2(0, 0);
+
+			// Window Initialization
             this.Window.Position = new Point(0, 0);
             this.IsMouseVisible = true;
             this.Window.AllowUserResizing = true;
             this.Window.ClientSizeChanged += new System.EventHandler<System.EventArgs>(Window_ClientSizeChanged);
+
+			// Keyboard and mouse initialization
+			newKState  = Keyboard.GetState();
+			newmState = Mouse.GetState();
 
             base.Initialize();
         }
@@ -105,6 +117,33 @@ namespace FlameWars
 
             // TODO: Add your update logic here
 
+			// Get keyboard states
+			oldKState = newKState;
+			newKState = Keyboard.GetState();
+
+			// Get mouse states
+			oldmState = newmState;
+			newmState = Mouse.GetState();
+
+			// Switch statements is used to determine our current game state
+			switch (StateManager.gameState)
+			{
+				case StateManager.GameState.Menu:
+					
+					menu.Update(newmState.X, newmState.Y);
+					menu.Hover();
+					if (Released()) menu.Press();
+					break;
+
+				case StateManager.GameState.HowTo:
+					break;
+				case StateManager.GameState.Pause:
+					break;
+				case StateManager.GameState.Game:
+					// Do stuff with World class
+					break;
+			}
+
             base.Update(gameTime);
         }
 
@@ -120,16 +159,35 @@ namespace FlameWars
             spriteBatch.Begin();
 
             Vector2 scrVec = new Vector2(GraphicsDevice.Viewport.Bounds.Width / 2, GraphicsDevice.Viewport.Bounds.Height / 2);
-
             Vector2 origin = new Vector2(board.Width / 2, board.Height / 2);
 
             //Rectangle rec = new Rectangle(0,0,board.Width,board.Height);
-
             spriteBatch.Draw(board, scrVec, null, Color.White, 0, origin, 1f, SpriteEffects.None, 0);
 
             spriteBatch.End();
 
             base.Draw(gameTime);
         }
+
+		// This method determines if a key was just released
+		private bool Released(Keys k)
+		{
+			if (oldKState.IsKeyDown(k) && !newKState.IsKeyDown(k))
+			{
+				return true;
+			}
+			else return false;
+		}
+
+		// This method determines if the left mouse button was just released
+		private bool Released()
+		{
+			if (oldmState.LeftButton == ButtonState.Pressed && 
+				newmState.LeftButton == ButtonState.Released)
+			{
+				return true;
+			}
+			else return false;
+		}
     }
 }
