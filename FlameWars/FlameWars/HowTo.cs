@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace FlameWars
 {
-	class Menu
+	class HowTo
 	{
 		// ============================================================================
 		// ================================ Variables =================================
@@ -16,10 +16,9 @@ namespace FlameWars
 
 		#region Variables
 
-		const int NUMBER_OF_BUTTONS = 3;
-		const int PLAY_INDEX        = 0;
-		const int HOW_TO_INDEX      = 1;
-		const int EXIT_INDEX        = 2;
+		const int NUMBER_OF_BUTTONS = 2;
+		const int RETURN_INDEX      = 0;
+		const int EXIT_INDEX        = 1;
 		const int BUTTON_HEIGHT     = 100;
 		const int BUTTON_WIDTH      = 150;
 		
@@ -27,8 +26,6 @@ namespace FlameWars
 		Texture2D[] bTexs;
 		Rectangle[] bRects;
 
-		bool mPress; // mouse press
-		bool pPress; // previous pressed
 		int mx;		 // mouse x
 		int my;		 // mouse y
 
@@ -40,7 +37,7 @@ namespace FlameWars
 
 		// Constructor
 		// Parameters: width and height of the window
-		public Menu(int w, int h)
+		public HowTo(int w, int h)
 		{
 			// Initialize data
 			bColors = new Color[NUMBER_OF_BUTTONS];
@@ -57,7 +54,7 @@ namespace FlameWars
 		{
 			// Create the Origin Coordinates for the buttons
 			int xOrigin = winW/2 - BUTTON_WIDTH/2;
-			int yOrigin = winH/2 - BUTTON_HEIGHT/2;
+			int yOrigin = winH/2 - BUTTON_HEIGHT/2 + 200;
 
 			// Create all of the buttons
 			for (int i = 0; i < NUMBER_OF_BUTTONS; i++)
@@ -73,11 +70,10 @@ namespace FlameWars
 
 		// This method sets the texture values
 		// Parmaters: the textures to save
-		public void LoadContent(Texture2D tex1, Texture2D tex2, Texture2D tex3)
+		public void LoadContent(Texture2D tex1, Texture2D tex2)
 		{
 			bTexs[0] = tex1;
 			bTexs[1] = tex2;
-			bTexs[2] = tex3;
 		}
 
 		// Passes in a few variables to save for update functions
@@ -142,12 +138,8 @@ namespace FlameWars
 					// Check each case to determine which button is being pressed to change state
 					switch (i)
 					{
-						case PLAY_INDEX:
-							StateManager.gameState = StateManager.GameState.Game;
-							break;
-						case HOW_TO_INDEX:
-							StateManager.lastState = StateManager.gameState;
-							StateManager.gameState = StateManager.GameState.HowTo;
+						case RETURN_INDEX:
+							StateManager.gameState = StateManager.lastState;
 							break;
 						case EXIT_INDEX:
 							StateManager.gameState = StateManager.GameState.Exit;

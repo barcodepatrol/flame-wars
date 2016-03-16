@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace FlameWars
 {
-	class Menu
+	class Pause
 	{
 		// ============================================================================
 		// ================================ Variables =================================
@@ -16,10 +16,11 @@ namespace FlameWars
 
 		#region Variables
 
-		const int NUMBER_OF_BUTTONS = 3;
-		const int PLAY_INDEX        = 0;
+		const int NUMBER_OF_BUTTONS = 4;
+		const int RESUME_INDEX      = 0;
 		const int HOW_TO_INDEX      = 1;
-		const int EXIT_INDEX        = 2;
+		const int MENU_INDEX        = 2;
+		const int EXIT_INDEX        = 3;
 		const int BUTTON_HEIGHT     = 100;
 		const int BUTTON_WIDTH      = 150;
 		
@@ -27,8 +28,6 @@ namespace FlameWars
 		Texture2D[] bTexs;
 		Rectangle[] bRects;
 
-		bool mPress; // mouse press
-		bool pPress; // previous pressed
 		int mx;		 // mouse x
 		int my;		 // mouse y
 
@@ -40,7 +39,7 @@ namespace FlameWars
 
 		// Constructor
 		// Parameters: width and height of the window
-		public Menu(int w, int h)
+		public Pause(int w, int h)
 		{
 			// Initialize data
 			bColors = new Color[NUMBER_OF_BUTTONS];
@@ -73,11 +72,12 @@ namespace FlameWars
 
 		// This method sets the texture values
 		// Parmaters: the textures to save
-		public void LoadContent(Texture2D tex1, Texture2D tex2, Texture2D tex3)
+		public void LoadContent(Texture2D tex1, Texture2D tex2, Texture2D tex3, Texture2D tex4)
 		{
 			bTexs[0] = tex1;
 			bTexs[1] = tex2;
 			bTexs[2] = tex3;
+			bTexs[3] = tex4;
 		}
 
 		// Passes in a few variables to save for update functions
@@ -142,12 +142,15 @@ namespace FlameWars
 					// Check each case to determine which button is being pressed to change state
 					switch (i)
 					{
-						case PLAY_INDEX:
+						case RESUME_INDEX:
 							StateManager.gameState = StateManager.GameState.Game;
 							break;
 						case HOW_TO_INDEX:
 							StateManager.lastState = StateManager.gameState;
 							StateManager.gameState = StateManager.GameState.HowTo;
+							break;
+						case MENU_INDEX:
+							StateManager.gameState = StateManager.GameState.Menu;
 							break;
 						case EXIT_INDEX:
 							StateManager.gameState = StateManager.GameState.Exit;

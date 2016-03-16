@@ -17,14 +17,16 @@ namespace FlameWars
         SpriteBatch spriteBatch;
 		KeyboardState oldKState;
 		KeyboardState newKState;
-		MouseState oldmState;
-		MouseState newmState;
+		MouseState oldMState;
+		MouseState newMState;
         Texture2D board;
         Vector2 vec;
 
 		// Game Classes
 		World world;
 		Menu menu;
+		HowTo howto;
+		Pause pause;
 
         private int SCREEN_WIDTH;
         private int SCREEN_HEIGHT;
@@ -46,12 +48,14 @@ namespace FlameWars
             //graphics.ApplyChanges();
             graphics.PreferredBackBufferWidth  = SCREEN_WIDTH;
             graphics.PreferredBackBufferHeight = SCREEN_HEIGHT;
-            graphics.IsFullScreen              = true;
+            graphics.IsFullScreen              = false;	// Make this true for the real game, false for testing
             graphics.ApplyChanges();
 			
 			// Create Game Objects
 			world = new World(4);
 			menu  = new Menu(SCREEN_WIDTH, SCREEN_HEIGHT);
+			howto = new HowTo(SCREEN_WIDTH, SCREEN_HEIGHT);
+			pause = new Pause(SCREEN_WIDTH, SCREEN_HEIGHT);
         }
 
         /// <summary>
@@ -73,7 +77,7 @@ namespace FlameWars
 
 			// Keyboard and mouse initialization
 			newKState  = Keyboard.GetState();
-			newmState = Mouse.GetState();
+			newMState = Mouse.GetState();
 
             base.Initialize();
         }
@@ -93,7 +97,22 @@ namespace FlameWars
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            board = Content.Load<Texture2D>("Board");
+            //board = Content.Load<Texture2D>("Board");
+
+			// Load Menu Content
+			menu.LoadContent(Content.Load<Texture2D>("PlayButton.png"), 
+							 Content.Load<Texture2D>("HowToButton.png"), 
+							 Content.Load<Texture2D>("ExitButton.png"));
+
+			// Load HowTo Content
+			howto.LoadContent(Content.Load<Texture2D>("ReturnButton.png"), 
+							  Content.Load<Texture2D>("ExitButton.png"));
+
+			// Load Pause Content
+			pause.LoadContent(Content.Load<Texture2D>("ResumeButton.png"),
+							 Content.Load<Texture2D>("HowToButton.png"), 
+							 Content.Load<Texture2D>("MenuButton.png"), 
+							 Content.Load<Texture2D>("ExitButton.png"));
         }
 
         /// <summary>
@@ -122,25 +141,62 @@ namespace FlameWars
 			newKState = Keyboard.GetState();
 
 			// Get mouse states
-			oldmState = newmState;
-			newmState = Mouse.GetState();
+			oldMState = newMState;
+			newMState = Mouse.GetState();
 
 			// Switch statements is used to determine our current game state
 			switch (StateManager.gameState)
 			{
 				case StateManager.GameState.Menu:
+					// Update the menu object
+					menu.Update(newMState.X, newMState.Y);
 					
-					menu.Update(newmState.X, newmState.Y);
+					// If the lmb was just released, call menu.released
+					// Call the hover method to determine if mouse is hovering
+					// If the lmb is being pressed, call menu.pressed
+					if (Released()) menu.Released();
 					menu.Hover();
-					if (Released()) menu.Press();
+					if (Pressed())  menu.Pressed();
 					break;
 
 				case StateManager.GameState.HowTo:
+					// Update the howto object
+					howto.Update(newMState.X, newMState.Y);
+					
+					// If the lmb was just released, call menu.released
+					// Call the hover method to determine if mouse is hovering
+					// If the lmb is being pressed, call menu.pressed
+					if (Released()) howto.Released();
+					howto.Hover();
+					if (Pressed())  howto.Pressed();
 					break;
+
 				case StateManager.GameState.Pause:
+					// Update the pause object
+					pause.Update(newMState.X, newMState.Y);
+					
+					// If the lmb was just released, call menu.released
+					// Call the hover method to determine if mouse is hovering
+					// If the lmb is being pressed, call menu.pressed
+					if (Released()) pause.Released();
+					pause.Hover();
+					if (Pressed())  pause.Pressed();
 					break;
+
 				case StateManager.GameState.Game:
+
 					// Do stuff with World class
+
+					// Game is paused
+					if (newKState.IsKeyDown(Keys.P))
+					{
+						StateManager.gameState = StateManager.GameState.Pause;
+						break;
+					}
+					break;
+
+				case StateManager.GameState.Exit:
+					Exit();
 					break;
 			}
 
@@ -158,11 +214,38 @@ namespace FlameWars
             // TODO: Add your drawing code here
             spriteBatch.Begin();
 
-            Vector2 scrVec = new Vector2(GraphicsDevice.Viewport.Bounds.Width / 2, GraphicsDevice.Viewport.Bounds.Height / 2);
-            Vector2 origin = new Vector2(board.Width / 2, board.Height / 2);
+            //Vector2 scrVec = new Vector2(GraphicsDevice.Viewport.Bounds.Width / 2, GraphicsDevice.Viewport.Bounds.Height / 2);
+            //Vector2 origin = new Vector2(board.Width / 2, board.Height / 2);
 
             //Rectangle rec = new Rectangle(0,0,board.Width,board.Height);
-            spriteBatch.Draw(board, scrVec, null, Color.White, 0, origin, 1f, SpriteEffects.None, 0);
+            //spriteBatch.Draw(board, scrVec, null, Color.White, 0, origin, 1f, SpriteEffects.None, 0);
+
+			// Switch statements is used to determine our current game state
+			switch (StateManager.gameState)
+			{
+				case StateManager.GameState.Menu:
+					
+					menu.Draw(spriteBatch);
+					break;
+
+				case StateManager.GameState.HowTo:
+
+					howto.Draw(spriteBatch);
+					break;
+
+				case StateManager.GameState.Pause:
+
+					pause.Draw(spriteBatch);
+					break;
+
+				case StateManager.GameState.Game:
+					// Do stuff with World class
+					break;
+
+				case StateManager.GameState.Exit:
+					Exit();
+					break;
+			}
 
             spriteBatch.End();
 
@@ -182,8 +265,18 @@ namespace FlameWars
 		// This method determines if the left mouse button was just released
 		private bool Released()
 		{
-			if (oldmState.LeftButton == ButtonState.Pressed && 
-				newmState.LeftButton == ButtonState.Released)
+			if (oldMState.LeftButton == ButtonState.Pressed && 
+				newMState.LeftButton == ButtonState.Released)
+			{
+				return true;
+			}
+			else return false;
+		}
+
+		// This method determines if the left mouse button is being pressed
+		private bool Pressed()
+		{
+			if (newMState.LeftButton == ButtonState.Pressed)
 			{
 				return true;
 			}

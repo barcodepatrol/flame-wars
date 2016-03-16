@@ -12,9 +12,11 @@
 			HowTo,
 			Pause,
 			Game,
-			GameOver
+			GameOver,
+			Exit
 		}
 		public static GameState gameState = GameState.Menu;
+		public static GameState lastState;
 
 		// ============================================================================
 		// ================================= Methods ==================================
