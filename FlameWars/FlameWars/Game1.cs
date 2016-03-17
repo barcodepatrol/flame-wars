@@ -22,6 +22,7 @@ namespace FlameWars
 		SpriteFont mainFont;
         Texture2D board;
 		Texture2D background;
+		Texture2D playerTexture;
         Vector2 vec;
 
 		// Game Classes
@@ -124,6 +125,9 @@ namespace FlameWars
 
 			// load background texture
 			background = Content.Load<Texture2D>("board_final");
+
+			// load player texture
+			playerTexture = Content.Load<Texture2D>("token_placeholder");
 
 			world.InitializeBoard(board, background);
 		}
