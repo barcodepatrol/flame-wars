@@ -28,9 +28,10 @@ namespace FlameWars
 		}
 
 		// Textures.
-		private Texture2D playerIcon; // UI Icon for the player.
-		private Texture2D playerTexture; // Actual texture for the player's token.
-		private Rectangle playerBounds; // Display position for the player's token.
+		private Texture2D iconTexture;  // UI Icon for the player.
+		private Rectangle iconBounds;   // Display position for the player's UI icon.
+		private Texture2D tokenTexture; // Actual texture for the player's token.
+		private Rectangle tokenBounds;  // Display position for the player's token.
 		private Random random;
 
 		private Role role; // The role of the player.
@@ -50,22 +51,22 @@ namespace FlameWars
 		// Stores the 2D texture for the player's icon
 		public Texture2D Icon
 		{
-			get { return this.playerIcon; }
-			set { this.playerIcon = value; }
+			get { return this.iconTexture; }
+			set { this.iconTexture = value; }
 		}
 
 		// Stores the 2D texture for the player's board piece
 		public Texture2D Token
 		{
-			get { return this.playerTexture; }
-			set { this.playerTexture = value; }
+			get { return this.tokenTexture; }
+			set { this.tokenTexture = value; }
 		}
 
 		// Stores the rectangle of the player's position on the screen
 		public Rectangle Bounds
 		{
-			get { return this.playerBounds; }
-			set { this.playerBounds = value; }
+			get { return this.tokenBounds; }
+			set { this.tokenBounds = value; }
 		}
 
 		// Stores the int value that evaluates to board position
@@ -144,7 +145,7 @@ namespace FlameWars
 		// Constructor
 		public Player()
 		{
-			playerBounds = new Rectangle();
+			tokenBounds = new Rectangle();
 			random       = new Random();
 		}
 
@@ -165,6 +166,28 @@ namespace FlameWars
 			// Select the user's new user amount to add
 			// Add the new users to the player's users
 			users += random.Next(left, right);
+		}
+
+		// Draws the player token on the board
+		public void DrawToken(SpriteBatch sb)
+		{
+
+		}
+
+		// Draws the UI portion for the player
+		// Parameter: The initial x and y position to start from
+		public void DrawUI(int ix, int iy, SpriteBatch sb)
+		{
+			// Draw the icon
+			sb.Draw(iconTexture, new Rectangle(0, 0, Icon.Width, Icon.Height), Color.White);
+
+			// Draw the stats below
+			sb.DrawString(ArtManager.BrownieFont, "Money: " + money, new Vector2(ix, iy+Icon.Height+10), Color.Black);
+			sb.DrawString(ArtManager.BrownieFont, "Users: " + users, new Vector2(ix, iy+Icon.Height+30), Color.Black);
+			sb.DrawString(ArtManager.BrownieFont, "Memes: " + memes, new Vector2(ix, iy+Icon.Height+50), Color.Black);
+			sb.DrawString(ArtManager.BrownieFont, "Bandwidth: " + bandwidthAmount, new Vector2(ix, iy+Icon.Height+70), Color.Black);
+			sb.DrawString(ArtManager.BrownieFont, "Malice: " + Malice, new Vector2(ix, iy+Icon.Height+90), Color.Black);
+			sb.DrawString(ArtManager.BrownieFont, "Charity: " + Charity, new Vector2(ix, iy+Icon.Height+110), Color.Black);
 		}
 	}
 }

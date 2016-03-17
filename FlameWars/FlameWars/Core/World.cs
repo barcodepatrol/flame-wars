@@ -15,6 +15,10 @@ namespace FlameWars
 		// ============================================================================
 
 		#region Variables
+
+		const int PLAYER_UI_WIDTH = 200;
+		const int PLAYER_UI_HEIGHT = 200;
+
 		SoundManager sm;
         OptionsManager om;
 
@@ -89,29 +93,59 @@ namespace FlameWars
 			player1      = new Player();
 			player2      = new Player();
 
-			// Add players to list
-			this.players.Add(player1);
-			this.players.Add(player2);
-
 			// Four players
 			if (players > 3)
 			{
 				player3 = new Player();
 				player4 = new Player();
-				this.players.Add(player3);
-				this.players.Add(player4);
 			}
 			// Three Players
 			else if (players > 2)
 			{
 				player3 = new Player();
-				this.players.Add(player3);
 			}
 		}
 
-		public void Draw(SpriteBatch spriteBatch)
+		// Loads texture content
+		public void LoadContent()
 		{
-			board.Draw(spriteBatch);
+			// Load player texture data
+			if (player1 != null) player1.Icon = ArtManager.PlayerIcon1; this.players.Add(player1);
+			if (player2 != null) player2.Icon = ArtManager.PlayerIcon2; this.players.Add(player2);
+			if (player3 != null) player3.Icon = ArtManager.PlayerIcon3; this.players.Add(player3);
+			if (player4 != null) player4.Icon = ArtManager.PlayerIcon4; this.players.Add(player4);
+		}
+
+		public void Draw(SpriteBatch sb)
+		{
+			// Draw the board
+			board.Draw(sb);
+
+			// Draw the player UI and Token
+			int index = 0;
+			foreach (Player p in players)
+			{
+				// Draw the player token
+				p.DrawToken(sb);
+
+				switch(index)
+				{
+					case 0:
+						p.DrawUI(0, 0, sb);
+						break;
+					case 1:
+						p.DrawUI(GameManager.winW-PLAYER_UI_WIDTH, 0, sb);
+						break;
+					case 3:
+						p.DrawUI(0, GameManager.winH-PLAYER_UI_HEIGHT, sb);
+						break;
+					case 4:
+						p.DrawUI(GameManager.winW-PLAYER_UI_WIDTH, GameManager.winH-PLAYER_UI_HEIGHT, sb);
+						break;
+				}
+
+				index++;
+			}
 		}
     }
 }

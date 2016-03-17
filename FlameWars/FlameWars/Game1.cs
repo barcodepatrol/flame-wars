@@ -92,15 +92,15 @@ namespace FlameWars
 			// Keyboard and mouse initialization
 			currentKeyboardState  = Keyboard.GetState();
 			currentMouseState = Mouse.GetState();
+
+			// Initialize Management Classes.
+			ArtManager.Initialize(this.Content, debug);
 			
 			// Create Game Objects
 			world = new World(4);
 			menuState  = new Menu();
 			howToState = new HowTo();
 			pauseState = new Pause();
-
-			// Initialize Management Classes.
-			ArtManager.Initialize(this.Content, debug);
 
             base.Initialize();
         }
@@ -122,6 +122,9 @@ namespace FlameWars
 			// TODO: use this.Content to load your game content here
 			// Load artwork into the manager.
 			ArtManager.Load();
+
+			// Load World Content
+			world.LoadContent();
 		
 			// Load fonts
 			mainFont = Content.Load<SpriteFont>("BROWNIEregular_14");
@@ -263,7 +266,7 @@ namespace FlameWars
 					break;
 
 				case StateManager.GameState.Game:
-					// Do stuff with World class
+
 					world.Draw(spriteBatch);
 					break;
 
