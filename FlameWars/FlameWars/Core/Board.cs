@@ -95,22 +95,26 @@ namespace FlameWars
 				// Bottom of the board
 				if(i > 0 && i <= 12)
 				{
-					vec = new Vector2(i * SQUARE_WIDTH, (BOARD_HEIGHT - (BOARD_HEIGHT / vertLength)));
+					vec = new Vector2(i * SQUARE_WIDTH, 
+									 (BOARD_HEIGHT - (BOARD_HEIGHT / vertLength)));
 				}
 				// Right column of the board
 				if(i > 12 && i <= 17)
 				{
-					vec = new Vector2((BOARD_WIDTH - (BOARD_WIDTH / horiLength)), (SQUARE_HEIGHT - (i * SQUARE_HEIGHT)));
+					vec = new Vector2((BOARD_WIDTH - (BOARD_WIDTH / horiLength)), 
+									 (BOARD_HEIGHT - (i * SQUARE_HEIGHT) + SQUARE_HEIGHT));
 				}
 				// Top row of the board
 				if(i > 17 && i <= 29)
 				{
-					vec = new Vector2(((12 * SQUARE_WIDTH) - (i-17)*SQUARE_WIDTH), (BOARD_HEIGHT / vertLength));
+					vec = new Vector2(((12 * SQUARE_WIDTH) - (i-17)*SQUARE_WIDTH), 
+									 (BOARD_HEIGHT / vertLength));
 				}
 				// Left column of the board
 				if(i > 29 && i <= 34)
 				{
-					vec = new Vector2((BOARD_WIDTH / horiLength), i * SQUARE_HEIGHT);
+					vec = new Vector2((BOARD_WIDTH / horiLength), 
+									   i * SQUARE_HEIGHT + SQUARE_HEIGHT);
 				}
 				#endregion CreatePosition
 
