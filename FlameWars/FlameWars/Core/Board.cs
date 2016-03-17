@@ -51,13 +51,18 @@ namespace FlameWars
 		// ============================================================================
 
 		// Constructor
-		public Board()
+		public Board(Texture2D image)
 		{
 			track       = new Path[34];
 			tints       = new Color[3];
 			// 200, 200 are just starter values, this must be determined some other time
 			boardPos	= new Rectangle(200, 200, BOARD_WIDTH, BOARD_HEIGHT);
 			rng         = new Random();
+
+			// Load the texture for all path objects
+			this.image = image;
+
+			// Generate the board
 			CreateBoard();
 		}
 
@@ -70,15 +75,18 @@ namespace FlameWars
 		// This method draws all of the path objects to the screen
 		public void Draw(SpriteBatch spriteBatch)
 		{
-			//spriteBatch.Draw(image);
-
+			// Iterate through all path objects
+			for (int i = 0; i < track.Length; i++)
+			{
+				spriteBatch.Draw(image, track[i].Bounds, track[i].DrawColor);
+			}
 		}
 
 		// This method generates Path objects to fill the Track Array
 		public void CreateBoard()
 		{
 			// Fill the entire track array
-			for (int i = 1; i <= track.Length; i++)
+			for (int i = 0; i < track.Length; i++)
 			{
 				// Create position
 				// If intervals set to handle each side of board
@@ -93,25 +101,25 @@ namespace FlameWars
 				Vector2 vec = new Vector2();
 
 				// Bottom of the board
-				if(i > 0 && i <= 12)
+				if(i >= 0 && i < 12)
 				{
 					vec = new Vector2(i * SQUARE_WIDTH, 
 									 (BOARD_HEIGHT - (BOARD_HEIGHT / vertLength)));
 				}
 				// Right column of the board
-				if(i > 12 && i <= 17)
+				if(i >= 12 && i < 17)
 				{
 					vec = new Vector2((BOARD_WIDTH - (BOARD_WIDTH / horiLength)), 
 									 (BOARD_HEIGHT - (i * SQUARE_HEIGHT) + SQUARE_HEIGHT));
 				}
 				// Top row of the board
-				if(i > 17 && i <= 29)
+				if(i >= 17 && i < 29)
 				{
 					vec = new Vector2(((12 * SQUARE_WIDTH) - (i-17)*SQUARE_WIDTH), 
 									 (BOARD_HEIGHT / vertLength));
 				}
 				// Left column of the board
-				if(i > 29 && i <= 34)
+				if(i >= 29 && i < 34)
 				{
 					vec = new Vector2((BOARD_WIDTH / horiLength), 
 									   i * SQUARE_HEIGHT + SQUARE_HEIGHT);
