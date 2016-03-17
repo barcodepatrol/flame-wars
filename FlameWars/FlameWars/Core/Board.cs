@@ -31,8 +31,8 @@ namespace FlameWars
 
 		Path[] track;
 		Texture2D image;
-		const int SQUARE_WIDTH  = 50;
-		const int SQUARE_HEIGHT = 50;
+		const int SQUARE_WIDTH  = 100;
+		const int SQUARE_HEIGHT = 100;
 		const int BOARD_HEIGHT  = 700;
 		const int BOARD_WIDTH   = 1200;
 		Color[] tints;
@@ -113,19 +113,18 @@ namespace FlameWars
 				if(i >= 12 && i < 17)
 				{
 					vec = new Vector2((BOARD_WIDTH - SQUARE_WIDTH), 
-									 (BOARD_HEIGHT - (i * SQUARE_HEIGHT) + SQUARE_HEIGHT));
+									 (BOARD_HEIGHT - ((i-10) * SQUARE_HEIGHT)));
 				}
 				// Top row of the board
 				if(i >= 17 && i < 29)
 				{
-					vec = new Vector2(((12 * SQUARE_WIDTH) - (i-17)*SQUARE_WIDTH), 
-									 (BOARD_HEIGHT / vertLength));
+					vec = new Vector2(((12 * SQUARE_WIDTH) - (i-16)*SQUARE_WIDTH), 
+									 (BOARD_HEIGHT / vertLength) - SQUARE_HEIGHT);
 				}
 				// Left column of the board
 				if(i >= 29 && i < 34)
 				{
-					vec = new Vector2((BOARD_WIDTH / horiLength), 
-									   i * SQUARE_HEIGHT + SQUARE_HEIGHT);
+					vec = new Vector2(0, (i-29) * SQUARE_HEIGHT + SQUARE_HEIGHT);
 				}
 				#endregion CreatePosition
 
