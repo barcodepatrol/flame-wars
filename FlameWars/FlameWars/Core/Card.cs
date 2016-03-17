@@ -15,11 +15,11 @@ namespace FlameWars_DeckLoading
 		// ============================================================================
 		// ================================ Variables =================================
 		// ============================================================================
-		string name = "Default";
-		string desc = "Default";
-		string targ = "No Target";
-		string atrb = "Users";
-		int amount  = 0;
+		string name = "Default"; // Name.
+		string desc = "Default"; // Description.
+		string targ = "No Target"; // Target.
+		string atrb = "Users"; // Users.
+		int amount  = 0; // Value to change the attribute by.
 
 		// ============================================================================
 		// ================================= Methods ==================================

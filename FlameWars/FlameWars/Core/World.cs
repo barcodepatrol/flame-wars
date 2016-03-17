@@ -24,7 +24,8 @@ namespace FlameWars
 		Player player3;
 		Player player4;
 		List<Player> players;
-		Board brd;
+		Board board;
+
 		#endregion Variables
 
 		#region Properties
@@ -71,9 +72,12 @@ namespace FlameWars
 		}
 
 		// passes texture to board object
-		public void InitializeBoard(Texture2D bImg, Texture2D backimg)
+		public void Initialize()
 		{
-			brd = new Board(bImg, backimg);
+			Texture2D[] pathImages = ArtManager.Paths;
+			Texture2D boardImage = ArtManager.Board;
+
+			board = new Board(pathImages, boardImage);
 		}
 
 		// This method initializes the players
@@ -107,7 +111,7 @@ namespace FlameWars
 
 		public void Draw(SpriteBatch spriteBatch)
 		{
-			brd.Draw(spriteBatch);
+			board.Draw(spriteBatch);
 		}
     }
 }

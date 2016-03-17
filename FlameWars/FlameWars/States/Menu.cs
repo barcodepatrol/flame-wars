@@ -23,14 +23,14 @@ namespace FlameWars
 		const int BUTTON_HEIGHT     = 100;
 		const int BUTTON_WIDTH      = 150;
 		
-		Color[] bColors;
-		Texture2D[] bTexs;
-		Rectangle[] bRects;
+		Color[] buttonColors;
+		Texture2D[] buttonTextures;
+		Rectangle[] buttonBounds;
 
-		bool mPress; // mouse press
-		bool pPress; // previous pressed
-		int mx;		 // mouse x
-		int my;		 // mouse y
+		bool mousePress; // mouse press
+		bool prevPress; // previous pressed
+		int mX;		 // mouse x
+		int mY;		 // mouse y
 
 		#endregion Variables
 
@@ -43,9 +43,9 @@ namespace FlameWars
 		public Menu(int w, int h)
 		{
 			// Initialize data
-			bColors = new Color[NUMBER_OF_BUTTONS];
-			bTexs   = new Texture2D[NUMBER_OF_BUTTONS];
-			bRects  = new Rectangle[NUMBER_OF_BUTTONS];
+			buttonColors = new Color[NUMBER_OF_BUTTONS];
+			buttonTextures   = new Texture2D[NUMBER_OF_BUTTONS];
+			buttonBounds  = new Rectangle[NUMBER_OF_BUTTONS];
 
 			// Create the button data for our game
 			MakeButtons(w, h);
@@ -63,8 +63,8 @@ namespace FlameWars
 			for (int i = 0; i < NUMBER_OF_BUTTONS; i++)
 			{
 				// Set state, color, and rectangle
-				bColors[i] = Color.White;
-				bRects[i] = new Rectangle(xOrigin, yOrigin, BUTTON_WIDTH, BUTTON_HEIGHT);
+				buttonColors[i] = Color.White;
+				buttonBounds[i] = new Rectangle(xOrigin, yOrigin, BUTTON_WIDTH, BUTTON_HEIGHT);
 
 				// Increment y position
 				yOrigin += BUTTON_HEIGHT + 25;
@@ -75,24 +75,24 @@ namespace FlameWars
 		// Parameters: the textures to save
 		public void LoadContent(Texture2D tex1, Texture2D tex2, Texture2D tex3)
 		{
-			bTexs[0] = tex1;
-			bTexs[1] = tex2;
-			bTexs[2] = tex3;
+			buttonTextures[0] = tex1;
+			buttonTextures[1] = tex2;
+			buttonTextures[2] = tex3;
 		}
 
 		// This method sets the texture values to the default for the state.
 		public void LoadContent()
 		{
-			bTexs[0] = ArtManager.PlayButton;
-			bTexs[1] = ArtManager.HowToButton;
-			bTexs[2] = ArtManager.ExitButton;
+			buttonTextures[0] = ArtManager.PlayButton;
+			buttonTextures[1] = ArtManager.HowToButton;
+			buttonTextures[2] = ArtManager.ExitButton;
 		}
 
 		// Passes in a few variables to save for update functions
 		public void Update(int mx, int my)
 		{
-			this.mx = mx;
-			this.my = my;
+			this.mX = mx;
+			this.mY = my;
 		}
 
 		// This method determines if the mouse is hovering over any buttons
@@ -102,15 +102,15 @@ namespace FlameWars
 			for (int i = 0; i < NUMBER_OF_BUTTONS; i++)
 			{
 				// If the mouse x and mouse y values are within the rectangle
-				if (bRects[i].X <= mx && mx <= bRects[i].X+BUTTON_WIDTH &&
-					bRects[i].Y <= my && my <= bRects[i].Y+BUTTON_HEIGHT)
+				if (buttonBounds[i].X <= mX && mX <= buttonBounds[i].X+BUTTON_WIDTH &&
+					buttonBounds[i].Y <= mY && mY <= buttonBounds[i].Y+BUTTON_HEIGHT)
 				{
-					bColors[i] = Color.DarkGray;
+					buttonColors[i] = Color.DarkGray;
 				}
 				// Otherwise, reset the color
 				else
 				{
-					bColors[i] = Color.White;
+					buttonColors[i] = Color.White;
 				}
 			}
 		}
@@ -122,15 +122,15 @@ namespace FlameWars
 			for (int i = 0; i < NUMBER_OF_BUTTONS; i++)
 			{
 				// If the mouse x and mouse y values are within the rectangle
-				if (bRects[i].X <= mx && mx <= bRects[i].X+BUTTON_WIDTH &&
-					bRects[i].Y <= my && my <= bRects[i].Y+BUTTON_HEIGHT)
+				if (buttonBounds[i].X <= mX && mX <= buttonBounds[i].X+BUTTON_WIDTH &&
+					buttonBounds[i].Y <= mY && mY <= buttonBounds[i].Y+BUTTON_HEIGHT)
 				{
-					bColors[i] = Color.Gray;
+					buttonColors[i] = Color.Gray;
 				}
 				// Otherwise, reset the color
 				else
 				{
-					bColors[i] = Color.White;
+					buttonColors[i] = Color.White;
 				}
 			}
 		}
@@ -143,9 +143,9 @@ namespace FlameWars
 			{
 				// If the mouse x and mouse y values are within the rectangle
 				// If the button has already been pressed
-				if (bRects[i].X <= mx && mx <= bRects[i].X+BUTTON_WIDTH &&
-					bRects[i].Y <= my && my <= bRects[i].Y+BUTTON_HEIGHT &&
-					bColors[i] == Color.Gray)
+				if (buttonBounds[i].X <= mX && mX <= buttonBounds[i].X+BUTTON_WIDTH &&
+					buttonBounds[i].Y <= mY && mY <= buttonBounds[i].Y+BUTTON_HEIGHT &&
+					buttonColors[i] == Color.Gray)
 				{
 					// Check each case to determine which button is being pressed to change state
 					switch (i)
@@ -165,18 +165,18 @@ namespace FlameWars
 				// Otherwise, reset the color
 				else
 				{
-					bColors[i] = Color.White;
+					buttonColors[i] = Color.White;
 				}
 			}
 		}
 
 		// This draws all of the buttons
-		public void Draw(SpriteBatch sb)
+		public void Draw(SpriteBatch spriteBatch)
 		{
 			// Iterate through all buttons
 			for (int i = 0; i < NUMBER_OF_BUTTONS; i++)
 			{
-				sb.Draw(bTexs[i], bRects[i], bColors[i]);
+				spriteBatch.Draw(buttonTextures[i], buttonBounds[i], buttonColors[i]);
 			}
 		}
 	}

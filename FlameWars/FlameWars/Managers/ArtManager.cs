@@ -82,6 +82,7 @@ namespace FlameWars
 		private static Texture2D pathTexture2; // Path Texture type 2.
 		private static Texture2D pathTexture3; // Path Texture type 3.
 		private static Texture2D pathTexture4; // Path Texture type 4.
+		private static Texture2D[] paths; // Path array.
 
 		// ============================================================================
 		// =============================== Properties =================================
@@ -121,6 +122,7 @@ namespace FlameWars
 		public static Texture2D PathTexture2 { get { return pathTexture2; } set { pathTexture2 = value; } }
 		public static Texture2D PathTexture3 { get { return pathTexture3; } set { pathTexture3 = value; } }
 		public static Texture2D PathTexture4 { get { return pathTexture4; } set { pathTexture4 = value; } }
+		public static Texture2D[] Paths { get { return paths; } set { paths = value; } }
 
 		// ============================================================================
 		// ================================= Methods ==================================
@@ -175,7 +177,7 @@ namespace FlameWars
 				PathTexture2 = Content.Load<Texture2D>(PATH_TEXTURE_02);
 				PathTexture3 = Content.Load<Texture2D>(PATH_TEXTURE_03);
 				PathTexture4 = Content.Load<Texture2D>(PATH_TEXTURE_04);
-
+				Paths = new Texture2D[] { pathTexture1, pathTexture2, pathTexture3, pathTexture4 };
 			}
 			else
 			{
@@ -217,6 +219,7 @@ namespace FlameWars
 			PathTexture2 = Content.Load<Texture2D>(PATH_TEXTURE_PLACEHOLDER);
 			PathTexture3 = Content.Load<Texture2D>(PATH_TEXTURE_PLACEHOLDER);
 			PathTexture4 = Content.Load<Texture2D>(PATH_TEXTURE_PLACEHOLDER);
+			Paths = new Texture2D[] { pathTexture1, pathTexture2, pathTexture3, pathTexture4 };
 		}
 				
 	}

@@ -14,16 +14,17 @@ namespace FlameWars
 		// ================================ Variables =================================
 		// ============================================================================
 
-		#region Instance Variables
-		//* Instance variables *//
-		private Vector2 pos; // Position. X and Y Co-ordinates.
+		#region Variables
+
+		private Vector2 position; // Position. X and Y Co-ordinates.
 		private Rectangle boundaries; // Bounds. X and Y are arbitrary. Width and Height.
 		private Color tint; // DrawColor. Not everything will be drawn in white.
 		private Board.SpaceType space; // The "type" of square the path will be.
+		private int textureID; // The ID for the type of texture the path will receive. Zero-based!
+
 		#endregion
 
 		#region Properties
-		//* Properties *//
 		// Stores the "Type" of square the path object is.
 		public Board.SpaceType Space
 		{
@@ -34,8 +35,8 @@ namespace FlameWars
 		// Stores the X, Y position of the path object display, as float vectors.
 		public Vector2 Position
 		{
-			get { return this.pos; }
-			set { this.pos = value; }
+			get { return this.position; }
+			set { this.position = value; }
 		}
 
 		// Stores the Width and Height of the path object.
@@ -48,15 +49,15 @@ namespace FlameWars
 		// Stores the X position.
 		public int X
 		{
-			get { return (int) this.pos.X; }
-			set { this.pos.X = value; }
+			get { return (int) this.position.X; }
+			set { this.position.X = value; }
 		}
 
 		// Stores the Y position.
 		public int Y
 		{
-			get { return (int)this.pos.Y; }
-			set { this.pos.Y = value; }
+			get { return (int)this.position.Y; }
+			set { this.position.Y = value; }
 		}
 
 		// Gets the current draw color for the path object.
@@ -64,6 +65,14 @@ namespace FlameWars
 			get { return this.tint; }
 			set { this.tint = value; }
 		}
+
+		// Gets the current texture ID.
+		public int TextureID
+		{
+			get { return this.textureID; }
+			set { this.textureID = value; }
+		}
+
 		#endregion
 
 		// ============================================================================
@@ -71,15 +80,19 @@ namespace FlameWars
 		// ============================================================================
 
 		#region Constructors
-		// Constructor
-		public Path()
-		{
 
+		public Path(Vector2 pos, Rectangle bounds, int id, Color tint, Board.SpaceType type)
+		{
+			TextureID = id;
+			DrawColor = tint;
+			Position = pos;
+			Bounds = bounds;
+			Space = type;
 		}
+
 		#endregion
 
 		#region Service Methods
-		// Service Methods
 
 		/*
 			The Trigger() method is called by a Path whenever a player lands on it.

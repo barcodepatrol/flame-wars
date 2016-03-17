@@ -29,11 +29,6 @@ namespace FlameWars
 		private MouseState previousMouseState;
 		private MouseState currentMouseState;
 		
-		// Initial objects that need to be loaded and passed on.
-		private Texture2D board;
-		private Texture2D background;
-		private Texture2D playerTexture;
-
 		// Vector for passing along position information.
         private Vector2 vec;
 
@@ -136,17 +131,9 @@ namespace FlameWars
 
 			// Load Pause Content
 			pauseState.LoadContent();
-
-			// Load path textures
-			board = Content.Load<Texture2D>("path_texture_01");
-
-			// load background texture
-			background = Content.Load<Texture2D>("board_final");
-
-			// load player texture
-			playerTexture = Content.Load<Texture2D>("token_placeholder");
-
-			world.InitializeBoard(board, background);
+			
+			// Initialize world. (Must take place after content is loaded.)
+			world.Initialize();
 		}
 
         /// <summary>
