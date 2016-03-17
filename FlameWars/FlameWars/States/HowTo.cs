@@ -37,24 +37,24 @@ namespace FlameWars
 
 		// Constructor
 		// Parameters: width and height of the window
-		public HowTo(int w, int h)
+		public HowTo()
 		{
 			// Initialize data
-			buttonColors = new Color[NUMBER_OF_BUTTONS];
-			buttonTextures   = new Texture2D[NUMBER_OF_BUTTONS];
-			buttonBounds  = new Rectangle[NUMBER_OF_BUTTONS];
+			buttonColors   = new Color[NUMBER_OF_BUTTONS];
+			buttonTextures = new Texture2D[NUMBER_OF_BUTTONS];
+			buttonBounds   = new Rectangle[NUMBER_OF_BUTTONS];
 
 			// Create the button data for our game
-			MakeButtons(w, h);
+			MakeButtons();
 		}
 
 		// This method constructs the buttons
 		// Parameters: width and height of the window
-		public void MakeButtons(int winW, int winH)
+		public void MakeButtons()
 		{
 			// Create the Origin Coordinates for the buttons
-			int xOrigin = winW/2 - BUTTON_WIDTH/2;
-			int yOrigin = winH/2 - BUTTON_HEIGHT/2 + 200;
+			int xOrigin = GameManager.winW/2 - BUTTON_WIDTH/2;
+			int yOrigin = GameManager.winH/2 - BUTTON_HEIGHT/2 + 200;
 
 			// Create all of the buttons
 			for (int i = 0; i < NUMBER_OF_BUTTONS; i++)
