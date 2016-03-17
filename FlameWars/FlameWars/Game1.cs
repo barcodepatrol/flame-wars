@@ -117,6 +117,10 @@ namespace FlameWars
 							  Content.Load<Texture2D>("HowToButton.png"), 
 							  Content.Load<Texture2D>("MenuButton.png"), 
 							  Content.Load<Texture2D>("ExitButton.png"));
+
+			// Load path textures
+			board = Content.Load<Texture2D>("path_placeholder");
+			world.InitializeBoard(board);
         }
 
         /// <summary>
@@ -244,6 +248,7 @@ namespace FlameWars
 
 				case StateManager.GameState.Game:
 					// Do stuff with World class
+					world.Draw(spriteBatch);
 					break;
 
 				case StateManager.GameState.Exit:

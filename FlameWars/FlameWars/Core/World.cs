@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace FlameWars
 {
@@ -22,6 +25,7 @@ namespace FlameWars
 		Player player3;
 		Player player4;
 		List<Player> players;
+		Board brd;
 		#endregion Variables
 
 		#region Properties
@@ -68,6 +72,12 @@ namespace FlameWars
 			InitializePlayers(players);
 		}
 
+		// passes texture to board object
+		public void InitializeBoard(Texture2D bImg)
+		{
+			brd = new Board(bImg);
+		}
+
 		// This method initializes the players
 		public void InitializePlayers(int players)
 		{
@@ -95,6 +105,11 @@ namespace FlameWars
 				player3 = new Player();
 				this.players.Add(player3);
 			}
+		}
+
+		public void Draw(SpriteBatch spriteBatch)
+		{
+			brd.Draw(spriteBatch);
 		}
     }
 }

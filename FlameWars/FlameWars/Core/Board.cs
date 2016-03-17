@@ -33,15 +33,15 @@ namespace FlameWars
 		Texture2D image;
 		const int SQUARE_WIDTH  = 50;
 		const int SQUARE_HEIGHT = 50;
-		const int BOARD_HEIGHT  = 250;
-		const int BOARD_WIDTH   = 600;
+		const int BOARD_HEIGHT  = 700;
+		const int BOARD_WIDTH   = 1200;
 		Color[] tints;
 		Rectangle boardPos;
 		Random rng;
 
 		// Number of vertical squares
 		// Number of horizontal squares
-		int vertLength = 5;	
+		int vertLength = 7;	
 		int horiLength = 12;
 
 		#endregion Variables
@@ -54,13 +54,16 @@ namespace FlameWars
 		public Board(Texture2D image)
 		{
 			track       = new Path[34];
-			tints       = new Color[3];
+			tints       = new Color[6];
 			// 200, 200 are just starter values, this must be determined some other time
 			boardPos	= new Rectangle(200, 200, BOARD_WIDTH, BOARD_HEIGHT);
 			rng         = new Random();
 
 			// Load the texture for all path objects
 			this.image = image;
+
+			// create the tints
+			CreateTints();
 
 			// Generate the board
 			CreateBoard();
@@ -104,12 +107,12 @@ namespace FlameWars
 				if(i >= 0 && i < 12)
 				{
 					vec = new Vector2(i * SQUARE_WIDTH, 
-									 (BOARD_HEIGHT - (BOARD_HEIGHT / vertLength)));
+									 (BOARD_HEIGHT - SQUARE_HEIGHT));
 				}
 				// Right column of the board
 				if(i >= 12 && i < 17)
 				{
-					vec = new Vector2((BOARD_WIDTH - (BOARD_WIDTH / horiLength)), 
+					vec = new Vector2((BOARD_WIDTH - SQUARE_WIDTH), 
 									 (BOARD_HEIGHT - (i * SQUARE_HEIGHT) + SQUARE_HEIGHT));
 				}
 				// Top row of the board
@@ -144,14 +147,25 @@ namespace FlameWars
 
 				// Create the Path Object
 				// Save the data into the Path object
-				Path p     = new Path();
-				p.Position = vec;
-				p.Bounds   = boardPos;
-				p.Space    = type;
+				Path p      = new Path();
+				p.DrawColor = tint;
+				p.Position  = vec;
+				p.Bounds    = boardPos;
+				p.Space     = type;
 
 				// Add the Path Object to our current path array
-				track[i-1] = p;
+				track[i] = p;
 			}
+		}
+
+		public void CreateTints()
+		{
+			tints[0] = Color.Green;// resource
+			tints[1] = Color.Red;// card
+			tints[2] = Color.Blue;// bonus
+			tints[3] = Color.Orange;// stock
+			tints[4] = Color.Yellow;// Random
+			tints[5] = Color.White;// empty
 		}
 	}
 }
