@@ -123,7 +123,7 @@ namespace FlameWars
 			board = Content.Load<Texture2D>("path_texture_01");
 
 			// load background texture
-			background = Content.Load<Texture2D>("board_placeholder");
+			background = Content.Load<Texture2D>("board_final");
 
 			world.InitializeBoard(board, background);
 		}
