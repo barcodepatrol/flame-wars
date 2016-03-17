@@ -143,9 +143,9 @@ namespace FlameWars
 			// Memes increase your users by an exponential addition
 			int memeAddicts = (memes^2)/20;
 
-			// The left bound is determined by how far below 100 your bandwidth is
+			// The left bound is positive as long as the bandwidth is above 80%
 			// The right bound is positive as long as the bandwidth is above 60%
-			int left  =  5 + users * (100-bandwidthP);
+			int left  =  5 + users * (bandwidthP-80);
 			int right = 10 + users * (bandwidthP-60);
 
 			// Select the user's new user amount to add
