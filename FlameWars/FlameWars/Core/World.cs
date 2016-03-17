@@ -18,6 +18,8 @@ namespace FlameWars
 
 		const int PLAYER_UI_WIDTH = 200;
 		const int PLAYER_UI_HEIGHT = 200;
+		const int px = 15;
+		const int py = 15;
 
 		SoundManager sm;
         OptionsManager om;
@@ -128,19 +130,20 @@ namespace FlameWars
 				// Draw the player token
 				p.DrawToken(sb);
 
+				// Switch to draw in each corner
 				switch(index)
 				{
 					case 0:
-						p.DrawUI(0, 0, sb);
+						p.DrawUI(px, py, sb);
 						break;
 					case 1:
-						p.DrawUI(GameManager.winW-PLAYER_UI_WIDTH, 0, sb);
+						p.DrawUI(GameManager.winW-PLAYER_UI_WIDTH-px, py, sb);
+						break;
+					case 2:
+						p.DrawUI(px, GameManager.winH-PLAYER_UI_HEIGHT-py, sb);
 						break;
 					case 3:
-						p.DrawUI(0, GameManager.winH-PLAYER_UI_HEIGHT, sb);
-						break;
-					case 4:
-						p.DrawUI(GameManager.winW-PLAYER_UI_WIDTH, GameManager.winH-PLAYER_UI_HEIGHT, sb);
+						p.DrawUI(GameManager.winW-PLAYER_UI_WIDTH-px, GameManager.winH-PLAYER_UI_HEIGHT-py, sb);
 						break;
 				}
 

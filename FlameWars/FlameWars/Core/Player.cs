@@ -179,7 +179,7 @@ namespace FlameWars
 		public void DrawUI(int ix, int iy, SpriteBatch sb)
 		{
 			// Draw the icon
-			sb.Draw(iconTexture, new Rectangle(0, 0, Icon.Width, Icon.Height), Color.White);
+			sb.Draw(iconTexture, new Rectangle(ix, iy, Icon.Width, Icon.Height), Color.White);
 
 			// Draw the stats below
 			sb.DrawString(ArtManager.BrownieFont, "Money: " + money, new Vector2(ix, iy+Icon.Height+10), Color.Black);
