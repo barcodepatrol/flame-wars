@@ -21,6 +21,7 @@ namespace FlameWars
 		MouseState newMState;
 		SpriteFont mainFont;
         Texture2D board;
+		Texture2D background;
         Vector2 vec;
 
 		// Game Classes
@@ -119,9 +120,13 @@ namespace FlameWars
 							  Content.Load<Texture2D>("ExitButton.png"));
 
 			// Load path textures
-			board = Content.Load<Texture2D>("path_placeholder");
-			world.InitializeBoard(board);
-        }
+			board = Content.Load<Texture2D>("path_texture_01");
+
+			// load background texture
+			background = Content.Load<Texture2D>("board_placeholder");
+
+			world.InitializeBoard(board, background);
+		}
 
         /// <summary>
         /// UnloadContent will be called once per game and is the place to unload

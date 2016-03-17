@@ -73,9 +73,9 @@ namespace FlameWars
 		}
 
 		// passes texture to board object
-		public void InitializeBoard(Texture2D bImg)
+		public void InitializeBoard(Texture2D bImg, Texture2D backimg)
 		{
-			brd = new Board(bImg);
+			brd = new Board(bImg, backimg);
 		}
 
 		// This method initializes the players

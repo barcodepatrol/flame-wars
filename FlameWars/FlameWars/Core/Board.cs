@@ -31,6 +31,7 @@ namespace FlameWars
 
 		Path[] track;
 		Texture2D image;
+		Texture2D back;
 		const int SQUARE_WIDTH  = 100;
 		const int SQUARE_HEIGHT = 100;
 		const int BOARD_HEIGHT  = 700;
@@ -51,7 +52,7 @@ namespace FlameWars
 		// ============================================================================
 
 		// Constructor
-		public Board(Texture2D image)
+		public Board(Texture2D pimage, Texture2D bimage)
 		{
 			track       = new Path[34];
 			tints       = new Color[6];
@@ -60,7 +61,8 @@ namespace FlameWars
 			rng         = new Random();
 
 			// Load the texture for all path objects
-			this.image = image;
+			this.image = pimage;
+			back = bimage;
 
 			// create the tints
 			CreateTints();
@@ -78,6 +80,7 @@ namespace FlameWars
 		// This method draws all of the path objects to the screen
 		public void Draw(SpriteBatch spriteBatch)
 		{
+			spriteBatch.Draw(back, new Rectangle(0, 0, back.Width, back.Height), Color.White);
 			// Iterate through all path objects
 			for (int i = 0; i < track.Length; i++)
 			{
