@@ -72,12 +72,20 @@ namespace FlameWars
 		}
 
 		// This method sets the texture values
-		// Parmaters: the textures to save
+		// Parameters: the textures to save
 		public void LoadContent(Texture2D tex1, Texture2D tex2, Texture2D tex3)
 		{
 			bTexs[0] = tex1;
 			bTexs[1] = tex2;
 			bTexs[2] = tex3;
+		}
+
+		// This method sets the texture values to the default for the state.
+		public void LoadContent()
+		{
+			bTexs[0] = ArtManager.PlayButton;
+			bTexs[1] = ArtManager.HowToButton;
+			bTexs[2] = ArtManager.ExitButton;
 		}
 
 		// Passes in a few variables to save for update functions

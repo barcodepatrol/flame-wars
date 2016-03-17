@@ -17,7 +17,6 @@ namespace FlameWars
 		#region Variables
 		SoundManager sm;
         OptionsManager om;
-        ArtManager am;
         GameManager gm;
 
 		Player player1;
@@ -66,7 +65,6 @@ namespace FlameWars
 			// Initialize the managers
 			sm = new SoundManager(0,0);
 			om = new OptionsManager();
-			am = new ArtManager();
 			gm = new GameManager();
 
 			InitializePlayers(players);

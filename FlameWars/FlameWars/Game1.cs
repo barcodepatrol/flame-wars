@@ -1,4 +1,7 @@
-﻿using Microsoft.Xna.Framework;
+﻿#define DEBUG
+// #undef DEBUG
+
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -34,14 +37,16 @@ namespace FlameWars
 		// Vector for passing along position information.
         private Vector2 vec;
 
-		// Game Classes
+		// Game and State Classes
 		private World world;
-		private Menu menu;
-		private HowTo howto;
-		private Pause pause;
+		private Menu menuState;
+		private HowTo howToState;
+		private Pause pauseState;
 
+		// Measurements and boolean variables.
         private int SCREEN_WIDTH;
         private int SCREEN_HEIGHT;
+		private bool debug;
 
 		// ============================================================================
 		// ================================= Methods ==================================
@@ -49,7 +54,12 @@ namespace FlameWars
 
         public Game1()
         {
-            graphics = new GraphicsDeviceManager(this);
+#if DEBUG
+			debug = true;
+#else
+			debug = false;
+#endif
+			graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
             SCREEN_WIDTH  = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
@@ -87,9 +97,12 @@ namespace FlameWars
 			
 			// Create Game Objects
 			world = new World(4);
-			menu  = new Menu(SCREEN_WIDTH, SCREEN_HEIGHT);
-			howto = new HowTo(SCREEN_WIDTH, SCREEN_HEIGHT);
-			pause = new Pause(SCREEN_WIDTH, SCREEN_HEIGHT);
+			menuState  = new Menu(SCREEN_WIDTH, SCREEN_HEIGHT);
+			howToState = new HowTo(SCREEN_WIDTH, SCREEN_HEIGHT);
+			pauseState = new Pause(SCREEN_WIDTH, SCREEN_HEIGHT);
+
+			// Initialize Management Classes.
+			ArtManager.Initialize(this.Content, debug);
 
             base.Initialize();
         }
@@ -108,26 +121,21 @@ namespace FlameWars
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
-            //board = Content.Load<Texture2D>("Board");
-
+			// TODO: use this.Content to load your game content here
+			// Load artwork into the manager.
+			ArtManager.Load();
+		
 			// Load fonts
 			mainFont = Content.Load<SpriteFont>("BROWNIEregular_14");
 
 			// Load Menu Content
-			menu.LoadContent(Content.Load<Texture2D>("PlayButton.png"), 
-							 Content.Load<Texture2D>("HowToButton.png"), 
-							 Content.Load<Texture2D>("ExitButton.png"));
+			menuState.LoadContent();
 
 			// Load HowTo Content
-			howto.LoadContent(Content.Load<Texture2D>("ReturnButton.png"), 
-							  Content.Load<Texture2D>("ExitButton.png"));
+			howToState.LoadContent();
 
 			// Load Pause Content
-			pause.LoadContent(Content.Load<Texture2D>("ResumeButton.png"),
-							  Content.Load<Texture2D>("HowToButton.png"), 
-							  Content.Load<Texture2D>("MenuButton.png"), 
-							  Content.Load<Texture2D>("ExitButton.png"));
+			pauseState.LoadContent();
 
 			// Load path textures
 			board = Content.Load<Texture2D>("path_texture_01");
@@ -175,38 +183,38 @@ namespace FlameWars
 			{
 				case StateManager.GameState.Menu:
 					// Update the menu object
-					menu.Update(currentMouseState.X, currentMouseState.Y);
+					menuState.Update(currentMouseState.X, currentMouseState.Y);
 					
-					// If the lmb was just released, call menu.released
+					// If the lmb was just released, call menuState.released
 					// Call the hover method to determine if mouse is hovering
-					// If the lmb is being pressed, call menu.pressed
-					if (Released()) menu.Released();
-					menu.Hover();
-					if (Pressed())  menu.Pressed();
+					// If the lmb is being pressed, call menuState.pressed
+					if (Released()) menuState.Released();
+					menuState.Hover();
+					if (Pressed())  menuState.Pressed();
 					break;
 
 				case StateManager.GameState.HowTo:
 					// Update the howto object
-					howto.Update(currentMouseState.X, currentMouseState.Y);
+					howToState.Update(currentMouseState.X, currentMouseState.Y);
 					
-					// If the lmb was just released, call menu.released
+					// If the lmb was just released, call menuState.released
 					// Call the hover method to determine if mouse is hovering
-					// If the lmb is being pressed, call menu.pressed
-					if (Released()) howto.Released();
-					howto.Hover();
-					if (Pressed())  howto.Pressed();
+					// If the lmb is being pressed, call menuState.pressed
+					if (Released()) howToState.Released();
+					howToState.Hover();
+					if (Pressed())  howToState.Pressed();
 					break;
 
 				case StateManager.GameState.Pause:
 					// Update the pause object
-					pause.Update(currentMouseState.X, currentMouseState.Y);
+					pauseState.Update(currentMouseState.X, currentMouseState.Y);
 					
-					// If the lmb was just released, call menu.released
+					// If the lmb was just released, call menuState.released
 					// Call the hover method to determine if mouse is hovering
-					// If the lmb is being pressed, call menu.pressed
-					if (Released()) pause.Released();
-					pause.Hover();
-					if (Pressed())  pause.Pressed();
+					// If the lmb is being pressed, call menuState.pressed
+					if (Released()) pauseState.Released();
+					pauseState.Hover();
+					if (Pressed())  pauseState.Pressed();
 					break;
 
 				case StateManager.GameState.Game:
@@ -251,17 +259,17 @@ namespace FlameWars
 			{
 				case StateManager.GameState.Menu:
 					
-					menu.Draw(spriteBatch);
+					menuState.Draw(spriteBatch);
 					break;
 
 				case StateManager.GameState.HowTo:
 
-					howto.Draw(spriteBatch);
+					howToState.Draw(spriteBatch);
 					break;
 
 				case StateManager.GameState.Pause:
 
-					pause.Draw(spriteBatch);
+					pauseState.Draw(spriteBatch);
 					break;
 
 				case StateManager.GameState.Game:

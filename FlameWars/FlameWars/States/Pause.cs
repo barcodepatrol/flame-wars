@@ -80,6 +80,16 @@ namespace FlameWars
 			bTexs[3] = tex4;
 		}
 
+		// This method sets the texture values to the default for the state.
+		public void LoadContent()
+		{
+			bTexs[0] = ArtManager.ResumeButton;
+			bTexs[1] = ArtManager.HowToButton;
+			bTexs[2] = ArtManager.MenuButton;
+			bTexs[3] = ArtManager.ExitButton;
+		}
+
+
 		// Passes in a few variables to save for update functions
 		public void Update(int mx, int my)
 		{
