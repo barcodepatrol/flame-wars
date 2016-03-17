@@ -17,7 +17,6 @@ namespace FlameWars
 		#region Variables
 		SoundManager sm;
         OptionsManager om;
-        GameManager gm;
 
 		Player player1;
 		Player player2;
@@ -25,6 +24,8 @@ namespace FlameWars
 		Player player4;
 		List<Player> players;
 		Board board;
+
+		int winW, winH;
 
 		#endregion Variables
 
@@ -66,7 +67,6 @@ namespace FlameWars
 			// Initialize the managers
 			sm = new SoundManager(0,0);
 			om = new OptionsManager();
-			gm = new GameManager();
 
 			InitializePlayers(players);
 		}
@@ -75,7 +75,7 @@ namespace FlameWars
 		public void Initialize()
 		{
 			Texture2D[] pathImages = ArtManager.Paths;
-			Texture2D boardImage = ArtManager.Board;
+			Texture2D boardImage   = ArtManager.Board;
 
 			board = new Board(pathImages, boardImage);
 		}

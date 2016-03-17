@@ -22,17 +22,17 @@ namespace FlameWars
 		// ========================== Constants / Readonly ============================
 		// ============================================================================
 
-		private const int SQUARE_WIDTH = 100;
+		private const int SQUARE_WIDTH  = 100;
 		private const int SQUARE_HEIGHT = 100;
-		private const int BOARD_HEIGHT = 700;
-		private const int BOARD_WIDTH = 1200;
+		private const int BOARD_HEIGHT  = 700;
+		private const int BOARD_WIDTH   = 1200;
 
-		private readonly Color RESOURCE_COLOR = Color.Green;
-		private readonly Color CARD_COLOR = Color.Red;
-		private readonly Color BONUS_COLOR = Color.Blue;
-		private readonly Color STOCK_COLOR = Color.Orange;
-		private readonly Color RANDOM_COLOR = Color.Yellow;
-		private readonly Color EMPTY_COLOR = Color.White;
+		private readonly Color RESOURCE_COLOR = Color.LightGreen;
+		private readonly Color CARD_COLOR     = Color.Green;
+		private readonly Color BONUS_COLOR    = Color.DarkGreen;
+		private readonly Color STOCK_COLOR    = Color.LightBlue;
+		private readonly Color RANDOM_COLOR   = Color.Blue;
+		private readonly Color EMPTY_COLOR    = Color.DarkBlue;
 
 		// ============================================================================
 		// ================================ Variables =================================
@@ -83,34 +83,35 @@ namespace FlameWars
 		// Constructor
 		public Board(Texture2D[] pathImage, Texture2D boardImage)
 		{
+
 			track          = new Path[34];
 			tints          = new Color[6];
 			// 200, 200 are just starter values, this must be determined some other time
-			boardBounds	   = new Rectangle(200, 200, BOARD_WIDTH, BOARD_HEIGHT);
-			pathBounds     = new Rectangle(0, 0, SQUARE_WIDTH, SQUARE_HEIGHT);
+			boardBounds	   = new Rectangle((GameManager.winW/2)-(BOARD_WIDTH/2), 
+										   (GameManager.winH/2)-(BOARD_HEIGHT/2), 
+											BOARD_WIDTH, BOARD_HEIGHT);
+			pathBounds     = new Rectangle((GameManager.winW/2)-(BOARD_WIDTH/2), 
+										   (GameManager.winH/2)-(BOARD_HEIGHT/2), 
+											SQUARE_WIDTH, SQUARE_HEIGHT);
 			random         = new Random();
 
 			// Load the texture for all path objects
 			this.pathTextures = pathImage;
 			this.boardTexture = boardImage;
 
-			// create the tints
+			// Create the tints
 			CreateTints();
 			
 			// Generate the board
 			CreateBoard();
 		}
 
-		// EDIT: Do we even need an update function here?
-		public void Update(GameTime gameTime)
-		{
-
-		}
-
 		// This method draws all of the path objects to the screen
 		public void Draw(SpriteBatch spriteBatch)
 		{
-			spriteBatch.Draw(boardTexture, new Rectangle(0, 0, boardTexture.Width, boardTexture.Height), Color.White);
+			// Draw the Board background
+			spriteBatch.Draw(boardTexture, boardBounds, Color.White);
+			
 			// Iterate through all path objects
 			for (int i = 0; i < track.Length; i++)
 			{
@@ -161,13 +162,12 @@ namespace FlameWars
 				}
 				#endregion CreatePosition
 
-				#region CreateRec,Tint,Type
+				#region CreateRec,Type,Tint
 
 				// Create the position Rectangle
-				pathBounds = new Rectangle((int)positionVector.X, (int)positionVector.Y, SQUARE_WIDTH, SQUARE_HEIGHT);
-
-				// Select the tint randomly
-				Color tint = tints[random.Next(0, tints.Length)];
+				pathBounds = new Rectangle((int)positionVector.X + (GameManager.winW/2)-(BOARD_WIDTH/2), 
+										   (int)positionVector.Y + (GameManager.winH/2)-(BOARD_HEIGHT/2), 
+										   SQUARE_WIDTH, SQUARE_HEIGHT);
 
 				// Select the path texture randomly
 				int id = random.Next(0, pathTextures.Length);
@@ -178,7 +178,32 @@ namespace FlameWars
 				Array values   = Enum.GetValues(typeof(SpaceType));
 				SpaceType spaceType = (SpaceType)values.GetValue(random.Next(values.Length));
 
-				#endregion CreateRec,Tint,Type
+				// Select the color tint
+				// Color tint determined by SpaceType of path object
+				Color tint = new Color();
+				switch (spaceType)
+				{
+					case SpaceType.Resource:
+						tint = tints[0];
+						break;
+					case SpaceType.Card:
+						tint = tints[1];
+						break;
+					case SpaceType.Bonus:
+						tint = tints[2];
+						break;
+					case SpaceType.Stock:
+						tint = tints[3];
+						break;
+					case SpaceType.Random:
+						tint = tints[4];
+						break;
+					case SpaceType.Empty:
+						tint = tints[5];
+						break;
+				}
+
+				#endregion CreateRec,Type,Tint
 
 				// Create the Path Object
 				// Save the data into the Path object
@@ -193,6 +218,7 @@ namespace FlameWars
 			}
 		}
 
+		// Initializes the color tints array
 		public void CreateTints()
 		{
 			tints[0] = RESOURCE_COLOR;	// resource

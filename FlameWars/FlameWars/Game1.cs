@@ -86,6 +86,9 @@ namespace FlameWars
             this.Window.AllowUserResizing = true;
             this.Window.ClientSizeChanged += new System.EventHandler<System.EventArgs>(Window_ClientSizeChanged);
 
+			// Initialize GameManager
+			GameManager.Init(SCREEN_WIDTH, SCREEN_HEIGHT);
+
 			// Keyboard and mouse initialization
 			currentKeyboardState  = Keyboard.GetState();
 			currentMouseState = Mouse.GetState();

@@ -18,12 +18,12 @@ namespace FlameWars
 		public const string FOREGROUND_TEXTURE = ""; // For the foregroundTexture.
 
 		// Core texture filenames.
-		public const string BOARD_TEXTURE = "board_final"; // For boardTexture.
-		public const string BOARD_TEXTURE_PLACEHOLDER = "board_placeholder"; // For boardTexture.
-		public const string PLAYER_TEXTURE_01 = "player_texture_01"; // For playerTexture1.
-		public const string PLAYER_TEXTURE_02 = "player_texture_02"; // For playerTexture2.
-		public const string PLAYER_TEXTURE_03 = "player_texture_03"; // For playerTexture3.
-		public const string PLAYER_TEXTURE_04 = "player_texture_04"; // For playerTexture4.
+		public const string BOARD_TEXTURE              = "board_final"; // For boardTexture.
+		public const string BOARD_TEXTURE_PLACEHOLDER  = "board_placeholder"; // For boardTexture.
+		public const string PLAYER_TEXTURE_01          = "player_texture_01"; // For playerTexture1.
+		public const string PLAYER_TEXTURE_02          = "player_texture_02"; // For playerTexture2.
+		public const string PLAYER_TEXTURE_03          = "player_texture_03"; // For playerTexture3.
+		public const string PLAYER_TEXTURE_04          = "player_texture_04"; // For playerTexture4.
 		public const string PLAYER_TEXTURE_PLACEHOLDER = "token_placeholder"; // For playerTexture1, playerTexture2, playerTexture3, playerTexture4.
 
 		// UI texture filenames.
@@ -34,10 +34,10 @@ namespace FlameWars
 		public const string PLAYER_ICON_PLACEHOLDER = "token"; // For playerIcon1, playerIcon2, playerIcon3, playerIcon4.
 
 		// Button texture filenames.
-		public const string BUTTON_EXIT = "ExitButton"; // For exitButton.
+		public const string BUTTON_EXIT   = "ExitButton"; // For exitButton.
 		public const string BUTTON_HOW_TO = "HowToButton"; // For howToButton.
-		public const string BUTTON_MENU = "MenuButton"; // For menuButton.
-		public const string BUTTON_PLAY = "PlayButton"; // For playButton.
+		public const string BUTTON_MENU   = "MenuButton"; // For menuButton.
+		public const string BUTTON_PLAY   = "PlayButton"; // For playButton.
 		public const string BUTTON_RESUME = "ResumeButton"; // For resumeButton.
 		public const string BUTTON_RETURN = "ReturnButton"; // For returnButton.
 
