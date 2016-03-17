@@ -101,7 +101,7 @@ namespace FlameWars
             //board = Content.Load<Texture2D>("Board");
 
 			// Load fonts
-			mainFont = Content.Load<SpriteFont>("BROWNIEregular_14.xnb");
+			mainFont = Content.Load<SpriteFont>("BROWNIEregular_14");
 
 			// Load Menu Content
 			menu.LoadContent(Content.Load<Texture2D>("PlayButton.png"), 
@@ -114,9 +114,9 @@ namespace FlameWars
 
 			// Load Pause Content
 			pause.LoadContent(Content.Load<Texture2D>("ResumeButton.png"),
-							 Content.Load<Texture2D>("HowToButton.png"), 
-							 Content.Load<Texture2D>("MenuButton.png"), 
-							 Content.Load<Texture2D>("ExitButton.png"));
+							  Content.Load<Texture2D>("HowToButton.png"), 
+							  Content.Load<Texture2D>("MenuButton.png"), 
+							  Content.Load<Texture2D>("ExitButton.png"));
         }
 
         /// <summary>
