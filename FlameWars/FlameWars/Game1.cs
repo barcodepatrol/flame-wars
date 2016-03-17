@@ -10,26 +10,35 @@ namespace FlameWars
     public class Game1 : Game
     {
 		// ============================================================================
-		// ================================ Variables =================================
+		// ======================= Instance Variables =================================
 		// ============================================================================
 
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
-		KeyboardState oldKState;
-		KeyboardState newKState;
-		MouseState oldMState;
-		MouseState newMState;
-		SpriteFont mainFont;
-        Texture2D board;
-		Texture2D background;
-		Texture2D playerTexture;
-        Vector2 vec;
+		// Graphics variables.
+		private GraphicsDeviceManager graphics;
+        private SpriteBatch spriteBatch;
+		private SpriteFont mainFont;
+
+		// Keyboard input states.
+		private KeyboardState previousKeyboardState;
+		private KeyboardState currentKeyboardState;
+
+		// Mouse input states.
+		private MouseState previousMouseState;
+		private MouseState currentMouseState;
+		
+		// Initial objects that need to be loaded and passed on.
+		private Texture2D board;
+		private Texture2D background;
+		private Texture2D playerTexture;
+
+		// Vector for passing along position information.
+        private Vector2 vec;
 
 		// Game Classes
-		World world;
-		Menu menu;
-		HowTo howto;
-		Pause pause;
+		private World world;
+		private Menu menu;
+		private HowTo howto;
+		private Pause pause;
 
         private int SCREEN_WIDTH;
         private int SCREEN_HEIGHT;
@@ -73,8 +82,8 @@ namespace FlameWars
             this.Window.ClientSizeChanged += new System.EventHandler<System.EventArgs>(Window_ClientSizeChanged);
 
 			// Keyboard and mouse initialization
-			newKState  = Keyboard.GetState();
-			newMState = Mouse.GetState();
+			currentKeyboardState  = Keyboard.GetState();
+			currentMouseState = Mouse.GetState();
 			
 			// Create Game Objects
 			world = new World(4);
@@ -154,19 +163,19 @@ namespace FlameWars
             // TODO: Add your update logic here
 
 			// Get keyboard states
-			oldKState = newKState;
-			newKState = Keyboard.GetState();
+			previousKeyboardState = currentKeyboardState;
+			currentKeyboardState = Keyboard.GetState();
 
 			// Get mouse states
-			oldMState = newMState;
-			newMState = Mouse.GetState();
+			previousMouseState = currentMouseState;
+			currentMouseState = Mouse.GetState();
 
 			// Switch statements is used to determine our current game state
 			switch (StateManager.gameState)
 			{
 				case StateManager.GameState.Menu:
 					// Update the menu object
-					menu.Update(newMState.X, newMState.Y);
+					menu.Update(currentMouseState.X, currentMouseState.Y);
 					
 					// If the lmb was just released, call menu.released
 					// Call the hover method to determine if mouse is hovering
@@ -178,7 +187,7 @@ namespace FlameWars
 
 				case StateManager.GameState.HowTo:
 					// Update the howto object
-					howto.Update(newMState.X, newMState.Y);
+					howto.Update(currentMouseState.X, currentMouseState.Y);
 					
 					// If the lmb was just released, call menu.released
 					// Call the hover method to determine if mouse is hovering
@@ -190,7 +199,7 @@ namespace FlameWars
 
 				case StateManager.GameState.Pause:
 					// Update the pause object
-					pause.Update(newMState.X, newMState.Y);
+					pause.Update(currentMouseState.X, currentMouseState.Y);
 					
 					// If the lmb was just released, call menu.released
 					// Call the hover method to determine if mouse is hovering
@@ -205,7 +214,7 @@ namespace FlameWars
 					// Do stuff with World class
 
 					// Game is paused
-					if (newKState.IsKeyDown(Keys.P))
+					if (currentKeyboardState.IsKeyDown(Keys.P))
 					{
 						StateManager.gameState = StateManager.GameState.Pause;
 						break;
@@ -273,7 +282,7 @@ namespace FlameWars
 		// This method determines if a key was just released
 		private bool Released(Keys k)
 		{
-			if (oldKState.IsKeyDown(k) && !newKState.IsKeyDown(k))
+			if (previousKeyboardState.IsKeyDown(k) && !currentKeyboardState.IsKeyDown(k))
 			{
 				return true;
 			}
@@ -283,8 +292,8 @@ namespace FlameWars
 		// This method determines if the left mouse button was just released
 		private bool Released()
 		{
-			if (oldMState.LeftButton == ButtonState.Pressed && 
-				newMState.LeftButton == ButtonState.Released)
+			if (previousMouseState.LeftButton == ButtonState.Pressed && 
+				currentMouseState.LeftButton == ButtonState.Released)
 			{
 				return true;
 			}
@@ -294,7 +303,7 @@ namespace FlameWars
 		// This method determines if the left mouse button is being pressed
 		private bool Pressed()
 		{
-			if (newMState.LeftButton == ButtonState.Pressed)
+			if (currentMouseState.LeftButton == ButtonState.Pressed)
 			{
 				return true;
 			}

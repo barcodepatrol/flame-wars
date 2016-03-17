@@ -10,6 +10,14 @@ namespace FlameWars
 {
 	public class Board
 	{
+		// TODO
+		/********
+			- Center board. Stretch to edges of the display screen.
+			- Center the path. Shrink so it fits neatly within the designated spaces.
+			- Create the UI for the corners of the game board.
+			- Set up player movement.
+		********/
+
 		// ============================================================================
 		// ================================ Variables =================================
 		// ============================================================================
