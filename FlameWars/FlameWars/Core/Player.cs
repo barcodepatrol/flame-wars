@@ -27,15 +27,20 @@ namespace FlameWars
 			Sprinter
 		}
 
+		// Enumerator.
+		public enum AnimationState { Idle, Roll, Animate };
+
 		// Textures.
 		private Texture2D iconTexture;  // UI Icon for the player.
 		private Rectangle iconBounds;   // Display position for the player's UI icon.
 		private Texture2D tokenTexture; // Actual texture for the player's token.
 		private Rectangle tokenBounds;  // Display position for the player's token.
 		private Random random;
+		private AnimationState animationState; // The current animation state.
 
 		private Role role; // The role of the player.
 		private int boardPosition       = 0;   // The position the player has on the board.
+		private int nextPosition        = 0;   // The position the player must move to.
 		private int money               = 0;   // The capital a given player has.
 		private int users               = 0;   // The number of users the player has.
 		private int memes               = 0;   // The number of memes the player can use.
@@ -81,6 +86,13 @@ namespace FlameWars
 		{
 			get { return this.boardPosition; }
 			set { this.boardPosition = value; }
+		}
+
+		// Stores the int value that evaluates to the position the player must move to.
+		public int NextPosition
+		{
+			get { return this.nextPosition; }
+			set { this.nextPosition = value; }
 		}
 
 		// Stores the int value for the player's money
@@ -143,18 +155,25 @@ namespace FlameWars
 		// ============================================================================
 
 		// Constructor
-		public Player()
+		public Player(int currentPathIndex)
 		{
 			tokenBounds = new Rectangle();
 			random       = new Random();
-			Initialize();
+			Initialize(currentPathIndex);
+		}
+
+		public Player()
+		{
+			tokenBounds = new Rectangle();
+			random = new Random();
+			Initialize(0);
 		}
 
 		// Initialize the Player.
-		public void Initialize()
+		public void Initialize(int currentPathIndex)
 		{
 			// Set the initial path index to zero.
-
+			BoardPosition = currentPathIndex;
 		}
 
 		// Determines how many users the player gets
@@ -174,6 +193,58 @@ namespace FlameWars
 			// Select the user's new user amount to add
 			// Add the new users to the player's users
 			users += random.Next(left, right);
+		}
+
+		// Update function.
+		public void Update(GameTime gameTime)
+		{
+			// Three states: idleState, rollState, animationState
+			switch (animationState)
+			{
+				case AnimationState.Idle:
+					Idle(gameTime);
+					break;
+				case AnimationState.Roll:
+					Roll(gameTime);
+					break;
+				case AnimationState.Animate:
+					Animate(gameTime);
+					break;
+			}
+		}
+
+		public void Idle(GameTime gameTime)
+		{
+			// Should do nothing.
+			// May change in the future.
+		}
+
+		public void Roll(GameTime gameTime)
+		{
+			// Call World to display a Roll die button.
+
+			// Get the rolled value.
+
+			// Add value to the board position.
+
+			// Pass it into the "nextPosition" index array.
+
+			// Once the value is obtained and stored, move into the next stage: animate.
+		}
+
+		public void Animate(GameTime gameTime)
+		{
+			// Animation state shall persist as long as the nextPosition is not equal to the boardPosition.
+			if (boardPosition != nextPosition)
+			{
+				// Do animation things here.
+				// TODO
+			}
+			else
+			{
+				// Change the animationState to Idle.
+				animationState = AnimationState.Idle;
+			}
 		}
 
 		// Draws the player token on the board

@@ -120,6 +120,13 @@ namespace FlameWars
 			if (player4 != null) player4.Icon = ArtManager.PlayerIcon4; this.players.Add(player4);
 		}
 
+		public void Update(GameTime gameTime)
+		{
+			// Should cycle through each of the players.
+
+
+		}
+
 		public void Draw(SpriteBatch spriteBatch)
 		{
 			// Draw the board
