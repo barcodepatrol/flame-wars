@@ -69,10 +69,20 @@ namespace FlameWars
 		// Random.
 		Random random;
 
+		// Current path object.
+		Path currentPath;
+
 		// Number of vertical squares
 		// Number of horizontal squares
 		private const int VERTICAL_LENGTH = 7;	
 		private const int HORIZONTAL_LENGTH = 12;
+
+		//* Properties *//
+		public Path CurrentPath
+		{
+			get { return this.currentPath; }
+			set { this.currentPath = value; }
+		}
 
 		#endregion Variables
 
@@ -217,6 +227,9 @@ namespace FlameWars
 				// Add the Path Object to our current path array
 				track[index] = pathSquare;
 			}
+
+			// Set the current path to the first in the index.
+			currentPath = track[0];
 		}
 
 		// Initializes the color tints array
@@ -238,6 +251,95 @@ namespace FlameWars
 		}
 
 		// Gets the actual path object based on call to index.
+		// This validates any number placed inside the parameter,
+		// Providing a feasible solution toward invalid data.
+		public Path GetPath(int index)
+		{
+			int minimum = 0;
+			int maximum = track.Length;
+
+			// Gets the value if index happens to be over the limit.
+			// This gets the difference in value from the overhang.
+			// An index of 5 with a track length of 2, for example,
+			// Will give you an end result index of 3.
+
+			// Think of this as a wrapping around form of array index searching.
+			while (index < minimum)
+			{
+				index += Math.Abs(index);
+			}
+
+			while (index > track.Length)
+			{
+				index -= track.Length;
+			}
+
+			return track[index];
+		}
+
+		// Get the next path in the index.
+		public Path GetNextPath()
+		{
+			// Minimum index.
+			int minimum = 0;
+
+			// Maximum index value.
+			int maximum = track.Length;
+
+			// Get the current path's index.
+			int currentIndex = currentPath.ID;
+
+			// Calculate the next path's index.
+			int nextPath = currentIndex++;
+
+			// If the path index for the next path is out of bounds, begin from the start once more.
+			if (nextPath >= maximum)
+			{
+				nextPath = minimum; // Cycle back to the first instance of paths.
+			}
+
+			if (nextPath != minimum)
+			{
+				// Returns the track we are looking for.
+				return track[nextPath];
+			} else { 
+				// In case of error OR In case of index simply equalling 0, return the default path.
+				return track[0];
+			}
+		}
+
+		// Get the previous path in the index.
+		public Path GetPreviousPath()
+		{
+			// Minimum index.
+			int minimum = 0;
+
+			// Maximum index value.
+			int maximum = track.Length;
+
+			// Get the current path's index.
+			int currentIndex = currentPath.ID;
+
+			// Calculate the next path's index.
+			int previousPath = currentIndex--;
+
+			// If the path index for the next path is out of bounds, begin from the start once more.
+			if (previousPath <= minimum)
+			{
+				previousPath = maximum; // Cycle back to the first instance of paths.
+			}
+
+			// 
+			if (previousPath != minimum)
+			{
+				// Returns the track we are looking for.
+				return track[previousPath];
+			}
+			else {
+				// In case of error OR In case of index simply equalling 0, return the default path.
+				return track[0];
+			}
+		}
 
 
 

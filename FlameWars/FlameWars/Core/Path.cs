@@ -83,7 +83,7 @@ namespace FlameWars
 		}
 
 		// Gets the index of the current path.
-		public int PathIndex
+		public int ID
 		{
 			get { return this.pathIndex; }
 			set { this.pathIndex = value; }
@@ -104,7 +104,7 @@ namespace FlameWars
 			Position = pos;
 			Bounds = bounds;
 			Space = type;
-			PathIndex = index;
+			ID = index;
 			Center = GameManager.GetElementCenter(bounds.Width, bounds.Height);
 		}
 
@@ -138,7 +138,7 @@ namespace FlameWars
 		// Determines if this is the path requested based on parameter index.
 		public bool IsPath(int index)
 		{
-			return (PathIndex == index);
+			return (ID == index);
 		}
 				
 		// Card Trigger

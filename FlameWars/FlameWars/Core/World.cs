@@ -82,6 +82,8 @@ namespace FlameWars
 		{
 			Texture2D[] pathImages = ArtManager.Paths;
 			Texture2D boardImage   = ArtManager.Board;
+			windowWidth = GameManager.Width;
+			windowHeight = GameManager.Height;
 
 			board = new Board(pathImages, boardImage);
 		}
