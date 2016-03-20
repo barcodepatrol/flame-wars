@@ -18,8 +18,8 @@ namespace FlameWars
 
 		const int PLAYER_UI_WIDTH = 200;
 		const int PLAYER_UI_HEIGHT = 200;
-		const int px = 15;
-		const int py = 15;
+		const int PLAYER_X = 15;
+		const int PLAYER_Y = 15;
 
 		SoundManager sm;
         OptionsManager om;
@@ -134,16 +134,16 @@ namespace FlameWars
 				switch(index)
 				{
 					case 0:
-						p.DrawUI(px, py, sb);
+						p.DrawUI(PLAYER_X, PLAYER_Y, sb);
 						break;
 					case 1:
-						p.DrawUI(GameManager.winW-PLAYER_UI_WIDTH-px, py, sb);
+						p.DrawUI(GameManager.winW-PLAYER_UI_WIDTH-PLAYER_X, PLAYER_Y, sb);
 						break;
 					case 2:
-						p.DrawUI(px, GameManager.winH-PLAYER_UI_HEIGHT-py, sb);
+						p.DrawUI(PLAYER_X, GameManager.winH-PLAYER_UI_HEIGHT-PLAYER_Y, sb);
 						break;
 					case 3:
-						p.DrawUI(GameManager.winW-PLAYER_UI_WIDTH-px, GameManager.winH-PLAYER_UI_HEIGHT-py, sb);
+						p.DrawUI(GameManager.winW-PLAYER_UI_WIDTH-PLAYER_X, GameManager.winH-PLAYER_UI_HEIGHT-PLAYER_Y, sb);
 						break;
 				}
 
