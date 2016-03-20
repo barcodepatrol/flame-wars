@@ -18,15 +18,15 @@ namespace FlameWars
 		
 		const int PLAYER_UI_WIDTH  = 200;
 		const int PLAYER_UI_HEIGHT = 200;
-		const int BUTTON_HEIGHT    = 100;
-		const int BUTTON_WIDTH     = 150;
+		const int BUTTON_HEIGHT    = 50;
+		const int BUTTON_WIDTH     = 75;
 		const int PLAYER_X         = 15;
 		const int PLAYER_Y         = 15;
 	
 		readonly Vector2 TOP_LEFT_POSITION = new Vector2(PLAYER_X, PLAYER_Y);
-		readonly Vector2 TOP_RIGHT_POSITION = new Vector2(GameManager.Width - PLAYER_UI_WIDTH - PLAYER_X, PLAYER_Y);
-		readonly Vector2 BOTTOM_LEFT_POSITION = new Vector2(PLAYER_X, GameManager.Height - PLAYER_UI_HEIGHT - PLAYER_Y);
-		readonly Vector2 BOTTOM_RIGHT_POSIITION = new Vector2(GameManager.Width - PLAYER_UI_WIDTH - PLAYER_X, GameManager.Height - PLAYER_UI_HEIGHT - PLAYER_Y);
+		readonly Vector2 TOP_RIGHT_POSITION = new Vector2(GameManager.Width - PLAYER_UI_WIDTH - (PLAYER_X / 2), PLAYER_Y);
+		readonly Vector2 BOTTOM_LEFT_POSITION = new Vector2(PLAYER_X, GameManager.Height - PLAYER_UI_HEIGHT - PLAYER_Y - BUTTON_HEIGHT);
+		readonly Vector2 BOTTOM_RIGHT_POSIITION = new Vector2(GameManager.Width - PLAYER_UI_WIDTH - (PLAYER_X / 2), GameManager.Height - PLAYER_UI_HEIGHT - PLAYER_Y - BUTTON_HEIGHT);
 		
 		SoundManager sm; // TODO
         OptionsManager om; // TODO

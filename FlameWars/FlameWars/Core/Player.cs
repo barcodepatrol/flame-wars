@@ -354,7 +354,7 @@ namespace FlameWars
 		public void MakeButton(Texture2D buttonTexture, int buttonWidth, int buttonHeight)
 		{
 			CalculateDrawYPositions();
-			int xOrigin = (int)(UIPosition.X / 2 - buttonWidth / 2);
+			int xOrigin = (int)(UIPosition.X + buttonWidth / 3);
 			int yOrigin = DrawYPositions[DrawYPositions.Length - 1];
 
 			IsButtonActive = false;

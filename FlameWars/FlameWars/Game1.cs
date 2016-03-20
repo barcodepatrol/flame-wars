@@ -57,13 +57,21 @@ namespace FlameWars
 			graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
-            SCREEN_WIDTH  = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
-            SCREEN_HEIGHT = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+			if (!debug)
+			{
+				SCREEN_WIDTH = 1400;
+				SCREEN_HEIGHT = 900;
+			}
+			else
+			{
+				SCREEN_WIDTH  = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width - 200;
+				SCREEN_HEIGHT = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height - 200;
+			}
 
-            //graphics.PreferredBackBufferWidth = 1400;  // set this value to the desired width of your window
-            //graphics.PreferredBackBufferHeight = 900;   // set this value to the desired height of your window
-            //graphics.ApplyChanges();
-            graphics.PreferredBackBufferWidth  = SCREEN_WIDTH;
+			//graphics.PreferredBackBufferWidth = 1400;  // set this value to the desired width of your window
+			//graphics.PreferredBackBufferHeight = 900;   // set this value to the desired height of your window
+			//graphics.ApplyChanges();
+			graphics.PreferredBackBufferWidth  = SCREEN_WIDTH;
             graphics.PreferredBackBufferHeight = SCREEN_HEIGHT;
             graphics.IsFullScreen              = false;	// Make this true for the real game, false for testing
             graphics.ApplyChanges();
