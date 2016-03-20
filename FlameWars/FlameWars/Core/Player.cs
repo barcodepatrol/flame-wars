@@ -216,7 +216,9 @@ namespace FlameWars
 		public void Idle(GameTime gameTime)
 		{
 			// Should do nothing.
+			
 			// May change in the future.
+
 		}
 
 		public void Roll(GameTime gameTime)
@@ -229,7 +231,7 @@ namespace FlameWars
 
 			// Pass it into the "nextPosition" index array.
 
-			// Once the value is obtained and stored, move into the next stage: animate.
+			// Once the value is obtained and stored, move into the next stage: animate. - This should be dealt with in a manager class.
 		}
 
 		public void Animate(GameTime gameTime)
@@ -245,6 +247,30 @@ namespace FlameWars
 				// Change the animationState to Idle.
 				animationState = AnimationState.Idle;
 			}
+		}
+
+		// Trigger to get the Player into the Is rolling state. 
+		public void StartRolling()
+		{
+			animationState = AnimationState.Roll;
+		}
+
+		// Check to see if the player is currently Idle.
+		public bool IsIdle()
+		{
+			return (animationState == AnimationState.Idle);
+		}
+
+		// Check to see if the player is currently Rolling.
+		public bool IsRolling()
+		{
+			return (animationState == AnimationState.Roll);
+		}
+
+		// Check to see if the player is currently being Animated.
+		public bool IsAnimated()
+		{
+			return (animationState == AnimationState.Animate);
 		}
 
 		// Draws the player token on the board

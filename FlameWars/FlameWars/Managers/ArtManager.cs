@@ -43,6 +43,7 @@ namespace FlameWars
 		public const string BUTTON_PLAY   = "PlayButton"; // For playButton.
 		public const string BUTTON_RESUME = "ResumeButton"; // For resumeButton.
 		public const string BUTTON_RETURN = "ReturnButton"; // For returnButton.
+		public const string BUTTON_ROLL = "RollButton"; // For rollButton.
 
 		// Path texture filenames.
 		public const string PATH_TEXTURE_01 = "path_texture_01"; // For pathTexture1;
@@ -82,6 +83,7 @@ namespace FlameWars
 		private static Texture2D playButton; // Play button texture.
 		private static Texture2D resumeButton; // Resume button texture.
 		private static Texture2D returnButton; // Return button texture.
+		private static Texture2D rollButton; // Roll button texture.
 
 		// Path textures.
 		private static Texture2D pathTexture1; // Path Texture type 1.
@@ -125,6 +127,7 @@ namespace FlameWars
 		public static Texture2D PlayButton { get { return playButton; } set { playButton = value; } }
 		public static Texture2D ResumeButton { get { return resumeButton; } set { resumeButton = value; } }
 		public static Texture2D ReturnButton { get { return returnButton; } set { returnButton = value; } }
+		public static Texture2D RollButton { get { return returnButton; } set { returnButton = value; } }
 
 		// Path textures.
 		public static Texture2D PathTexture1 { get { return pathTexture1; } set { pathTexture1 = value; } }
@@ -183,6 +186,7 @@ namespace FlameWars
 				PlayButton = Content.Load<Texture2D>(BUTTON_PLAY);
 				ResumeButton = Content.Load<Texture2D>(BUTTON_RESUME);
 				ReturnButton = Content.Load<Texture2D>(BUTTON_RETURN);
+				RollButton = Content.Load<Texture2D>(BUTTON_ROLL);
 
 				// Path textures.
 				PathTexture1 = Content.Load<Texture2D>(PATH_TEXTURE_01);
@@ -228,6 +232,7 @@ namespace FlameWars
 			PlayButton = Content.Load<Texture2D>(BUTTON_PLAY);
 			ResumeButton = Content.Load<Texture2D>(BUTTON_RESUME);
 			ReturnButton = Content.Load<Texture2D>(BUTTON_RETURN);
+			RollButton = Content.Load<Texture2D>(BUTTON_ROLL);
 
 			// Path textures.
 			PathTexture1 = Content.Load<Texture2D>(PATH_TEXTURE_PLACEHOLDER);

@@ -113,6 +113,9 @@
     <Content Include="Content\ReturnButton.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\RollButton.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\token.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
