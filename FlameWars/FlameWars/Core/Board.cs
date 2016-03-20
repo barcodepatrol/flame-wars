@@ -87,11 +87,11 @@ namespace FlameWars
 			track          = new Path[34];
 			tints          = new Color[6];
 			// 200, 200 are just starter values, this must be determined some other time
-			boardBounds	   = new Rectangle((GameManager.winW/2)-(BOARD_WIDTH/2), 
-										   (GameManager.winH/2)-(BOARD_HEIGHT/2), 
+			boardBounds	   = new Rectangle((GameManager.Width/2)-(BOARD_WIDTH/2), 
+										   (GameManager.Height/2)-(BOARD_HEIGHT/2), 
 											BOARD_WIDTH, BOARD_HEIGHT);
-			pathBounds     = new Rectangle((GameManager.winW/2)-(BOARD_WIDTH/2), 
-										   (GameManager.winH/2)-(BOARD_HEIGHT/2), 
+			pathBounds     = new Rectangle((GameManager.Width/2)-(BOARD_WIDTH/2), 
+										   (GameManager.Height/2)-(BOARD_HEIGHT/2), 
 											SQUARE_WIDTH, SQUARE_HEIGHT);
 			random         = new Random();
 
@@ -165,8 +165,8 @@ namespace FlameWars
 				#region CreateRec,Type,Tint
 
 				// Create the position Rectangle
-				pathBounds = new Rectangle((int)positionVector.X + (GameManager.winW/2)-(BOARD_WIDTH/2), 
-										   (int)positionVector.Y + (GameManager.winH/2)-(BOARD_HEIGHT/2), 
+				pathBounds = new Rectangle((int)positionVector.X + (GameManager.Width/2)-(BOARD_WIDTH/2), 
+										   (int)positionVector.Y + (GameManager.Height/2)-(BOARD_HEIGHT/2), 
 										   SQUARE_WIDTH, SQUARE_HEIGHT);
 
 				// Select the path texture randomly

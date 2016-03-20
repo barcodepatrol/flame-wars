@@ -118,32 +118,32 @@ namespace FlameWars
 			if (player4 != null) player4.Icon = ArtManager.PlayerIcon4; this.players.Add(player4);
 		}
 
-		public void Draw(SpriteBatch sb)
+		public void Draw(SpriteBatch spriteBatch)
 		{
 			// Draw the board
-			board.Draw(sb);
+			board.Draw(spriteBatch);
 
 			// Draw the player UI and Token
 			int index = 0;
 			foreach (Player p in players)
 			{
 				// Draw the player token
-				p.DrawToken(sb);
+				p.DrawToken(spriteBatch);
 
 				// Switch to draw in each corner
 				switch(index)
 				{
 					case 0:
-						p.DrawUI(PLAYER_X, PLAYER_Y, sb);
+						p.DrawUI(PLAYER_X, PLAYER_Y, spriteBatch);
 						break;
 					case 1:
-						p.DrawUI(GameManager.winW-PLAYER_UI_WIDTH-PLAYER_X, PLAYER_Y, sb);
+						p.DrawUI(GameManager.Width-PLAYER_UI_WIDTH-PLAYER_X, PLAYER_Y, spriteBatch);
 						break;
 					case 2:
-						p.DrawUI(PLAYER_X, GameManager.winH-PLAYER_UI_HEIGHT-PLAYER_Y, sb);
+						p.DrawUI(PLAYER_X, GameManager.Height-PLAYER_UI_HEIGHT-PLAYER_Y, spriteBatch);
 						break;
 					case 3:
-						p.DrawUI(GameManager.winW-PLAYER_UI_WIDTH-PLAYER_X, GameManager.winH-PLAYER_UI_HEIGHT-PLAYER_Y, sb);
+						p.DrawUI(GameManager.Width-PLAYER_UI_WIDTH-PLAYER_X, GameManager.Height-PLAYER_UI_HEIGHT-PLAYER_Y, spriteBatch);
 						break;
 				}
 

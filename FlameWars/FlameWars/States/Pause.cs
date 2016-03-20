@@ -55,8 +55,8 @@ namespace FlameWars
 		public void MakeButtons()
 		{
 			// Create the Origin Coordinates for the buttons
-			int xOrigin = GameManager.winW/2 - BUTTON_WIDTH/2;
-			int yOrigin = GameManager.winH/2 - BUTTON_HEIGHT/2;
+			int xOrigin = GameManager.Width/2 - BUTTON_WIDTH/2;
+			int yOrigin = GameManager.Height/2 - BUTTON_HEIGHT/2;
 
 			// Create all of the buttons
 			for (int i = 0; i < NUMBER_OF_BUTTONS; i++)
