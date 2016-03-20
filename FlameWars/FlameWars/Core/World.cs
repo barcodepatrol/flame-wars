@@ -21,8 +21,8 @@ namespace FlameWars
 		const int PLAYER_X = 15;
 		const int PLAYER_Y = 15;
 
-		SoundManager sm;
-        OptionsManager om;
+		SoundManager sm; // TODO
+        OptionsManager om; // TODO
 
 		Player player1;
 		Player player2;
@@ -31,7 +31,7 @@ namespace FlameWars
 		List<Player> players;
 		Board board;
 
-		int winW, winH;
+		int windowWidth, windowHeight;
 
 		#endregion Variables
 
