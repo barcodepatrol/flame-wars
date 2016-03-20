@@ -38,25 +38,25 @@ namespace FlameWars
 		#region Properties
 		//* Properties *//
 		// Stores the first player object
-		public Player P1
+		public Player PlayerOne
 		{
 			get { return this.player1; }
 			set { this.player1 = value; }
 		}
 		// Stores the first player object
-		public Player P2
+		public Player PlayerTwo
 		{
 			get { return this.player2; }
 			set { this.player2 = value; }
 		}
 		// Stores the first player object
-		public Player P3
+		public Player PlayerThree
 		{
 			get { return this.player3; }
 			set { this.player3 = value; }
 		}
 		// Stores the first player object
-		public Player P4
+		public Player PlayerFour
 		{
 			get { return this.player4; }
 			set { this.player4 = value; }
