@@ -47,7 +47,31 @@ namespace FlameWars
 		{
 			windowWidth  = w;
 			windowHeight = h;
-			windowCenter = new Vector2(w / 2, h / 2);
+			windowCenter = GetElementCenter(w, h);
+		}
+
+		// Service method.
+		// Call these for quick calculations in other methods.
+
+		// GetElementCenter() returns a center Vector2 value,
+		// with no regards to the elements' (X,Y) position.
+		// This treats it as if it is in the origin of (0,0).
+		// In other words this method is asking for the element's origin.
+		public static Vector2 GetElementCenter(int w, int h)
+		{
+			Vector2 centerOfElement = new Vector2(w / 2, h / 2);
+			return centerOfElement;
+		}
+
+		// GetElementCenterPoint() returns a center Vector2 value,
+		// with regards to the elements' (X,Y) position.
+		// The returned value can be used, say, to draw to a particular point.
+		public static Vector2 GetElementCenterPoint(int x, int y, int w, int h)
+		{
+			Vector2 position = new Vector2(x, y); // Gets a vector of the element's current position.
+			Vector2 origin = GetElementCenter(w, h); // Gets a vector with no regards to the current position.
+			Vector2 center = position - origin; // The center vector will be a vector addition of the position + a negative origin.
+			return center;
 		}
     }
 }
