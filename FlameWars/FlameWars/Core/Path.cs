@@ -17,6 +17,7 @@ namespace FlameWars
 		#region Variables
 
 		private Vector2 position; // Position. X and Y Co-ordinates.
+		private Vector2 center; // Provides a center point for players to be drawn upon.
 		private Rectangle boundaries; // Bounds. X and Y are arbitrary. Width and Height.
 		private Color tint; // DrawColor. Not everything will be drawn in white.
 		private Board.SpaceType space; // The "type" of square the path will be.
@@ -60,6 +61,13 @@ namespace FlameWars
 			set { this.position.Y = value; }
 		}
 
+		// Stores the center vector.
+		public Vector2 Center
+		{
+			get { return this.center; }
+			set { this.center = value; }
+		}
+
 		// Gets the current draw color for the path object.
 		public Color DrawColor {
 			get { return this.tint; }
@@ -88,6 +96,7 @@ namespace FlameWars
 			Position = pos;
 			Bounds = bounds;
 			Space = type;
+			Center = GameManager.GetElementCenter(bounds.Width, bounds.Height);
 		}
 
 		#endregion
