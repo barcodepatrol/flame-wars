@@ -123,7 +123,7 @@ namespace FlameWars
 		public void CreateBoard()
 		{
 			// Fill the entire track array
-			for (int i = 0; i < track.Length; i++)
+			for (int index = 0; index < track.Length; index++)
 			{
 				// Create position
 				// If intervals set to handle each side of board
@@ -138,27 +138,27 @@ namespace FlameWars
 				Vector2 positionVector = new Vector2();
 
 				// Bottom of the board
-				if(i >= 0 && i < 12)
+				if(index >= 0 && index < 12)
 				{
-					positionVector = new Vector2(i * SQUARE_WIDTH, 
+					positionVector = new Vector2(index * SQUARE_WIDTH, 
 									 (BOARD_HEIGHT - SQUARE_HEIGHT));
 				}
 				// Right column of the board
-				if(i >= 12 && i < 17)
+				if(index >= 12 && index < 17)
 				{
 					positionVector = new Vector2((BOARD_WIDTH - SQUARE_WIDTH), 
-									 (BOARD_HEIGHT - ((i-10) * SQUARE_HEIGHT)));
+									 (BOARD_HEIGHT - ((index-10) * SQUARE_HEIGHT)));
 				}
 				// Top row of the board
-				if(i >= 17 && i < 29)
+				if(index >= 17 && index < 29)
 				{
-					positionVector = new Vector2(((12 * SQUARE_WIDTH) - (i-16)*SQUARE_WIDTH), 
+					positionVector = new Vector2(((12 * SQUARE_WIDTH) - (index-16)*SQUARE_WIDTH), 
 									 (BOARD_HEIGHT / VERTICAL_LENGTH) - SQUARE_HEIGHT);
 				}
 				// Left column of the board
-				if(i >= 29 && i < 34)
+				if(index >= 29 && index < 34)
 				{
-					positionVector = new Vector2(0, (i-29) * SQUARE_HEIGHT + SQUARE_HEIGHT);
+					positionVector = new Vector2(0, (index-29) * SQUARE_HEIGHT + SQUARE_HEIGHT);
 				}
 				#endregion CreatePosition
 
@@ -211,10 +211,11 @@ namespace FlameWars
 												pathBounds,		// Sets the boundaries for the path square.
 												id,				// Sets the textureID for the path square.
 												tint,			// Sets the draw color for the path square.
-												spaceType);		// Sets the space type for the path square.
+												spaceType,
+												index);		// Sets the space type for the path square.
 
 				// Add the Path Object to our current path array
-				track[i] = pathSquare;
+				track[index] = pathSquare;
 			}
 		}
 
@@ -229,11 +230,16 @@ namespace FlameWars
 			tints[5] = EMPTY_COLOR;		// empty
 		}
 
-
+		// Gets the texture for a path at a given interval.
 		public Texture2D GetPathTexture(Path path)
 		{
 			// Returns path texture based on the path object's id.
 			return pathTextures[path.TextureID];
 		}
+
+		// Gets the actual path object based on call to index.
+
+
+
 	}
 }

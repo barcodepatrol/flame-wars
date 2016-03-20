@@ -22,6 +22,7 @@ namespace FlameWars
 		private Color tint; // DrawColor. Not everything will be drawn in white.
 		private Board.SpaceType space; // The "type" of square the path will be.
 		private int textureID; // The ID for the type of texture the path will receive. Zero-based!
+		private int pathIndex; // The actual index for the path.
 
 		#endregion
 
@@ -81,6 +82,13 @@ namespace FlameWars
 			set { this.textureID = value; }
 		}
 
+		// Gets the index of the current path.
+		public int PathIndex
+		{
+			get { return this.pathIndex; }
+			set { this.pathIndex = value; }
+		}
+
 		#endregion
 
 		// ============================================================================
@@ -89,13 +97,14 @@ namespace FlameWars
 
 		#region Constructors
 
-		public Path(Vector2 pos, Rectangle bounds, int id, Color tint, Board.SpaceType type)
+		public Path(Vector2 pos, Rectangle bounds, int id, Color tint, Board.SpaceType type, int index)
 		{
 			TextureID = id;
 			DrawColor = tint;
 			Position = pos;
 			Bounds = bounds;
 			Space = type;
+			PathIndex = index;
 			Center = GameManager.GetElementCenter(bounds.Width, bounds.Height);
 		}
 
@@ -104,6 +113,7 @@ namespace FlameWars
 		#region Service Methods
 
 		/*
+		TODO
 			The Trigger() method is called by a Path whenever a player lands on it.
 			Whenever trigger is called, based on the path type, a certain method will be called.
 		*/
@@ -125,7 +135,12 @@ namespace FlameWars
 			}
 		}
 
-
+		// Determines if this is the path requested based on parameter index.
+		public bool IsPath(int index)
+		{
+			return (PathIndex == index);
+		}
+				
 		// Card Trigger
 		/*
 			Play a sound effect.

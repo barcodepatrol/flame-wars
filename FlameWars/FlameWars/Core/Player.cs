@@ -147,6 +147,14 @@ namespace FlameWars
 		{
 			tokenBounds = new Rectangle();
 			random       = new Random();
+			Initialize();
+		}
+
+		// Initialize the Player.
+		public void Initialize()
+		{
+			// Set the initial path index to zero.
+
 		}
 
 		// Determines how many users the player gets
