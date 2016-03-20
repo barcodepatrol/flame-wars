@@ -64,8 +64,8 @@ namespace FlameWars
 			}
 			else
 			{
-				SCREEN_WIDTH  = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width - 200;
-				SCREEN_HEIGHT = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height - 200;
+				SCREEN_WIDTH  = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width - 10;
+				SCREEN_HEIGHT = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height - 10;
 			}
 
 			//graphics.PreferredBackBufferWidth = 1400;  // set this value to the desired width of your window

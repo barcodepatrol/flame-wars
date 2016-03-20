@@ -41,9 +41,9 @@ namespace FlameWars
 		private Random random;
 		private AnimationState animationState; // The current animation state.
 
-		// Vectors.
-		private Vector2 tokenPosition;
-		private Vector2 uiPosition;
+		// Vectors and Rectangles
+		private Rectangle tokenPosition = new Rectangle(0,0,0,0);
+		private Vector2 uiPosition = new Vector2(0,0);
 
 		private Role role; // The role of the player.
 		private int boardPosition = 0;   // The position the player has on the board.
@@ -59,6 +59,7 @@ namespace FlameWars
 		private bool buttonPressed = false;
 		private bool buttonReleased = false;
 		private bool buttonHover = false;
+		private bool currentPlayer = false;
 		private int[] DrawYPositions; // The Y positions for UI icons.
 
 		#endregion Variables
@@ -87,7 +88,7 @@ namespace FlameWars
 		}
 
 		// Stores the Vector2 for the player's token.
-		public Vector2 TokenPosition
+		public Rectangle TokenPosition
 		{
 			get { return this.tokenPosition; }
 			set { this.tokenPosition = value; }
@@ -200,6 +201,12 @@ namespace FlameWars
 			get { return this.rollButtonColors[2]; }
 			set { this.rollButtonColors[2] = value; }
 		}
+
+		public bool IsCurrentPlayer
+		{
+			get { return this.currentPlayer; }
+			set { this.currentPlayer = value; }
+		}
 		#endregion
 
 		// ============================================================================
@@ -234,7 +241,7 @@ namespace FlameWars
 			InactiveColor = Color.DarkGray;
 			PressedColor = Color.Gray;
 		}
-
+		
 		// Determines how many users the player gets
 		public void GenerateUsers()
 		{
@@ -505,7 +512,14 @@ namespace FlameWars
 		// Draws the player token on the board
 		public void DrawToken(SpriteBatch sb)
 		{
-
+			if (IsCurrentPlayer)
+			{
+				sb.Draw(tokenTexture, tokenPosition, Color.White);
+			}
+			else
+			{
+				sb.Draw(tokenTexture, tokenPosition, Color.DarkGray);
+			}
 		}
 
 		// Draws the UI portion for the player

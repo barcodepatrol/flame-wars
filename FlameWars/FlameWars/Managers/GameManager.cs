@@ -59,8 +59,10 @@ namespace FlameWars
 		// In other words this method is asking for the element's origin.
 		public static Vector2 GetElementCenter(int w, int h)
 		{
-			Vector2 centerOfElement = new Vector2(w / 2, h / 2);
-			return centerOfElement;
+			int xOrigin = (w / 2);
+			int yOrigin = (h / 2);
+			
+			return new Vector2(xOrigin, yOrigin);
 		}
 
 		// GetElementCenterPoint() returns a center Vector2 value,
@@ -68,10 +70,10 @@ namespace FlameWars
 		// The returned value can be used, say, to draw to a particular point.
 		public static Vector2 GetElementCenterPoint(int x, int y, int w, int h)
 		{
-			Vector2 position = new Vector2(x, y); // Gets a vector of the element's current position.
-			Vector2 origin = GetElementCenter(w, h); // Gets a vector with no regards to the current position.
-			Vector2 center = position - origin; // The center vector will be a vector addition of the position + a negative origin.
-			return center;
+			int xOrigin = x + (w / 2);
+			int yOrigin = y - (h / 2);
+
+			return new Vector2(xOrigin, yOrigin);
 		}
     }
 }

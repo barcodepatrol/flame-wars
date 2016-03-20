@@ -15,7 +15,8 @@ namespace FlameWars
 		// ============================================================================
 
 		#region Variables
-		
+		enum PlayerState { PlayerOne, PlayerTwo, PlayerThree, PlayerFour };
+
 		const int PLAYER_UI_WIDTH  = 200;
 		const int PLAYER_UI_HEIGHT = 200;
 		const int BUTTON_HEIGHT    = 50;
@@ -38,6 +39,7 @@ namespace FlameWars
 		Player player3;
 		Player player4;
 		List<Player> players;
+		PlayerState playerState;
 		Board board;
 
 		// state management variables.
@@ -109,6 +111,8 @@ namespace FlameWars
 			MakeButtons();
 
 			board = new Board(pathImages, boardImage);
+
+			playerState = PlayerState.PlayerOne;
 		}
 
 		// This method initializes the players
@@ -173,10 +177,10 @@ namespace FlameWars
 		public void LoadContent()
 		{
 			// Load player texture data
-			if (player1 != null) { player1.Icon = ArtManager.PlayerIcon1; this.players.Add(player1); }
-			if (player2 != null) { player2.Icon = ArtManager.PlayerIcon2; this.players.Add(player2); }
-			if (player3 != null) { player3.Icon = ArtManager.PlayerIcon3; this.players.Add(player3); }
-			if (player4 != null) { player4.Icon = ArtManager.PlayerIcon4; this.players.Add(player4); }
+			if (player1 != null) { player1.Token = ArtManager.Player1; player1.Icon = ArtManager.PlayerIcon1; this.players.Add(player1); }
+			if (player2 != null) { player2.Token = ArtManager.Player2; player2.Icon = ArtManager.PlayerIcon2; this.players.Add(player2); }
+			if (player3 != null) { player3.Token = ArtManager.Player3; player3.Icon = ArtManager.PlayerIcon3; this.players.Add(player3); }
+			if (player4 != null) { player4.Token = ArtManager.Player4; player4.Icon = ArtManager.PlayerIcon4; this.players.Add(player4); }
 		}
 
 		public void Update(GameTime gameTime, int mx, int my)
@@ -187,17 +191,84 @@ namespace FlameWars
 
 		public void Update(GameTime gameTime)
 		{
-			// Should cycle through each of the players.
-			// Get the player button released function.
+			// Should cycle through each of the players
+			int match = 0;
 
-			foreach(Player p in players)
+			switch (playerState)
 			{
-				// If buttonReleased is true.
-				// And the player is in Roll mode.
-				// Call roll die.
-
-
+				case PlayerState.PlayerOne:
+					match = 0;
+					break;
+				case PlayerState.PlayerTwo:
+					match = 1;
+					break;
+				case PlayerState.PlayerThree:
+					match = 2;
+					break;
+				case PlayerState.PlayerFour:
+					match = 3;
+					break;
 			}
+
+			for (int index = 0; index < players.Count; index++)
+			{
+				if (match != index)
+				{
+					players[index].IsCurrentPlayer = false;
+					players[match].IsButtonActive = false;
+				}
+				else
+				{
+					players[match].IsCurrentPlayer = true;
+					players[match].IsButtonActive = true;
+				}
+
+				// Do things to all players here.
+				// Set the draw position for the player token.
+				Path playerLocation = board.GetPath(players[index].BoardPosition);
+				Vector2 pathLocation = playerLocation.Center; // Center vector position of the board.
+
+				// Find the origin of the player.
+				float tokenScale = 0.24f; // This will be scale of the token.
+
+				// Find the centered corners of the path.
+				int playerHeight = (int)(players[index].Token.Height * tokenScale);
+				int playerWidth = (int)(players[index].Token.Width * tokenScale);
+
+				Vector2 playerPosition = new Vector2(0, 0);
+				float divisor = 1f;
+
+				switch (index)
+				{
+					case 0:
+						// Player One gets TOP LEFT.
+						Vector2 topLeft = new Vector2(pathLocation.X, pathLocation.Y);
+						playerPosition = new Vector2(topLeft.X + (playerWidth / divisor), topLeft.Y - (playerHeight / divisor));
+						break;
+					case 1:
+						// Player Two gets TOP RIGHT.
+						Vector2 topRight = new Vector2(pathLocation.X + playerLocation.Bounds.Width, pathLocation.Y);
+						playerPosition = new Vector2(topRight.X + (playerWidth / divisor), topRight.Y - (playerHeight / divisor));
+						break;
+					case 2:
+						// Player Three gets BOTTOM LEFT.
+						Vector2 bottomLeft = new Vector2(pathLocation.X, pathLocation.Y + playerLocation.Bounds.Height);
+						playerPosition = new Vector2(bottomLeft.X + (playerWidth / divisor), bottomLeft.Y - (playerHeight / divisor));
+						break;
+					case 3:
+						// Player Four gets BOTTOM RIGHT.
+						Vector2 bottomRight = new Vector2(pathLocation.X + playerLocation.Bounds.Width, pathLocation.Y + playerLocation.Bounds.Height);
+						playerPosition = new Vector2(bottomRight.X + (playerWidth / divisor), bottomRight.Y - (playerHeight / divisor));
+						break;
+				}
+
+				players[index].TokenPosition = new Rectangle((int)playerPosition.X, (int)playerPosition.Y, playerWidth, playerHeight);
+			}
+
+			Player currentPlayer = players[match];
+
+			// Do things to current player.
+			
 
 		}
 

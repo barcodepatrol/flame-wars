@@ -105,7 +105,7 @@ namespace FlameWars
 			Bounds = bounds;
 			Space = type;
 			ID = index;
-			Center = GameManager.GetElementCenter(bounds.Width, bounds.Height);
+			Center = GameManager.GetElementCenterPoint(bounds.X, bounds.Y, bounds.Width, bounds.Height);
 		}
 
 		#endregion
