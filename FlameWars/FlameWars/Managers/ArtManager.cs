@@ -127,7 +127,7 @@ namespace FlameWars
 		public static Texture2D PlayButton { get { return playButton; } set { playButton = value; } }
 		public static Texture2D ResumeButton { get { return resumeButton; } set { resumeButton = value; } }
 		public static Texture2D ReturnButton { get { return returnButton; } set { returnButton = value; } }
-		public static Texture2D RollButton { get { return returnButton; } set { returnButton = value; } }
+		public static Texture2D RollButton { get { return rollButton; } set { rollButton = value; } }
 
 		// Path textures.
 		public static Texture2D PathTexture1 { get { return pathTexture1; } set { pathTexture1 = value; } }

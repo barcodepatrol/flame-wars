@@ -177,44 +177,86 @@ namespace FlameWars
 				case StateManager.GameState.Menu:
 					// Update the menu object
 					menuState.Update(currentMouseState.X, currentMouseState.Y);
-					
+
 					// If the lmb was just released, call menuState.released
+					if (Released())
+					{
+						menuState.Released();
+					}
+
 					// Call the hover method to determine if mouse is hovering
-					// If the lmb is being pressed, call menuState.pressed
-					if (Released()) menuState.Released();
 					menuState.Hover();
-					if (Pressed())  menuState.Pressed();
+
+					// If the lmb is being pressed, call menuState.pressed
+					if (Pressed())
+					{
+						menuState.Pressed();
+					}
+
 					break;
 
 				case StateManager.GameState.HowTo:
 					// Update the howto object
 					howToState.Update(currentMouseState.X, currentMouseState.Y);
-					
-					// If the lmb was just released, call menuState.released
+
+					// If the lmb was just released, call howToState.released
+					if (Released())
+					{
+						howToState.Released();
+					}
+
 					// Call the hover method to determine if mouse is hovering
-					// If the lmb is being pressed, call menuState.pressed
-					if (Released()) howToState.Released();
 					howToState.Hover();
-					if (Pressed())  howToState.Pressed();
+
+					// If the lmb is being pressed, call howToState.pressed
+					if (Pressed())
+					{
+						howToState.Pressed();
+					}
+
 					break;
 
 				case StateManager.GameState.Pause:
 					// Update the pause object
 					pauseState.Update(currentMouseState.X, currentMouseState.Y);
-					
-					// If the lmb was just released, call menuState.released
+
+					// If the lmb was just released, call pauseState.released
+					if (Released())
+					{
+						pauseState.Released();
+					}
+
 					// Call the hover method to determine if mouse is hovering
-					// If the lmb is being pressed, call menuState.pressed
-					if (Released()) pauseState.Released();
 					pauseState.Hover();
-					if (Pressed())  pauseState.Pressed();
+
+					// If the lmb is being pressed, call pauseState.pressed
+					if (Pressed())
+					{
+						pauseState.Pressed();
+					}
+
 					break;
 
 				case StateManager.GameState.Game:
+					// Update the world object.
+					world.Update(gameTime, currentMouseState.X, currentMouseState.Y);
 
-					// Do stuff with World class
+					// If the lmb was just released, call world.released
+					if (Released())
+					{
+						world.Released();
+					}
 
-					// Game is paused
+					// Call the hover method to determine if mouse is hovering
+					world.Hover();
+
+					// If the lmb is being pressed, call world.pressed
+					if (Pressed())
+					{
+						world.Pressed();
+					}
+
+					// Game is paused; break out of state and head to different one.
 					if (currentKeyboardState.IsKeyDown(Keys.P))
 					{
 						StateManager.gameState = StateManager.GameState.Pause;
