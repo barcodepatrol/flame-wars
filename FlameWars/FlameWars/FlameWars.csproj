@@ -43,6 +43,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Core\Message.cs" />
     <Compile Include="Managers\ArtManager.cs" />
     <Compile Include="Core\Board.cs" />
     <Compile Include="Core\Card.cs" />
