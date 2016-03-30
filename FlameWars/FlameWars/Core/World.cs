@@ -86,6 +86,8 @@ namespace FlameWars
 		// ============================================================================
 
 		// Constructor
+
+        // Constructor
 		public World(int players)
 		{
 			// Initialize the managers
@@ -96,7 +98,7 @@ namespace FlameWars
 			InitializePlayers(players);
 		}
 
-		// passes texture to board object
+		// Passes texture to board object
 		public void Initialize()
 		{
 			Texture2D[] pathImages = ArtManager.Paths;
@@ -263,7 +265,6 @@ namespace FlameWars
 			this.mX = mx;
 			this.mY = my;
 		}
-
 
 		public void Draw(SpriteBatch spriteBatch)
 		{

@@ -20,6 +20,8 @@ namespace FlameWars_DeckLoading
 		string targ = "No Target"; // Target.
 		string atrb = "Users"; // Users.
 		int amount  = 0; // Value to change the attribute by.
+		int malice  = 0; // Value to add to malice
+		int charity = 0; // Value to add to charity
 
 		// ============================================================================
 		// ================================= Methods ==================================
@@ -34,6 +36,15 @@ namespace FlameWars_DeckLoading
 			targ = t;
 			atrb = at;
 			int.TryParse(am, out amount);
+			
+			// Determine malice/charity
+
+			// MALICE: Negative impact on others
+			if (targ == "Target Others" && amount < 0)
+				malice = amount;
+			// CHARITY: Positive impact on others
+			if (targ == "Target Others" && amount > 0)
+				charity = amount;
 		}
 	}
 }
