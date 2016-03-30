@@ -191,36 +191,21 @@ namespace FlameWars
 
 		public void Update(GameTime gameTime)
 		{
-			// Should cycle through each of the players
-			int match = 0;
-
-			switch (playerState)
-			{
-				case PlayerState.PlayerOne:
-					match = 0;
-					break;
-				case PlayerState.PlayerTwo:
-					match = 1;
-					break;
-				case PlayerState.PlayerThree:
-					match = 2;
-					break;
-				case PlayerState.PlayerFour:
-					match = 3;
-					break;
-			}
-
+            // Iterate through all players
 			for (int index = 0; index < players.Count; index++)
 			{
-				if (match != index)
+                // Switch players
+                // Previously active player is deactivated
+                // New player and their roll button is activated
+				if ((int)playerState != index)
 				{
 					players[index].IsCurrentPlayer = false;
-					players[match].IsButtonActive = false;
+					players[(int)playerState].IsButtonActive = false;
 				}
 				else
 				{
-					players[match].IsCurrentPlayer = true;
-					players[match].IsButtonActive = true;
+					players[(int)playerState].IsCurrentPlayer = true;
+					players[(int)playerState].IsButtonActive = true;
 				}
 
 				// Do things to all players here.
@@ -265,7 +250,7 @@ namespace FlameWars
 				players[index].TokenPosition = new Rectangle((int)playerPosition.X, (int)playerPosition.Y, playerWidth, playerHeight);
 			}
 
-			Player currentPlayer = players[match];
+			Player currentPlayer = players[(int)playerState];
 
 			// Do things to current player.
 			
