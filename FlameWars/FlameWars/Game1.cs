@@ -349,7 +349,7 @@ namespace FlameWars
 
 				case StateManager.GameState.Game:
 
-					//world.Draw(spriteBatch);
+					world.Draw(spriteBatch);
 					break;
 
 				case StateManager.GameState.Exit:
