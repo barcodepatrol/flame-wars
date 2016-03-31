@@ -27,8 +27,6 @@ namespace FlameWars
 		Texture2D[] buttonTextures;
 		Rectangle[] buttonBounds;
 
-		bool mousePress; // mouse press
-		bool prevPress; // previous pressed
 		int mX;		 // mouse x
 		int mY;		 // mouse y
 

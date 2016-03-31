@@ -37,13 +37,15 @@ namespace FlameWars
 		public const string PLAYER_ICON_PLACEHOLDER = "token"; // For playerIcon1, playerIcon2, playerIcon3, playerIcon4.
 
 		// Button texture filenames.
+		public const string BUTTON_OK     = "OkButton"; // For okButton.
 		public const string BUTTON_EXIT   = "ExitButton"; // For exitButton.
 		public const string BUTTON_HOW_TO = "HowToButton"; // For howToButton.
 		public const string BUTTON_MENU   = "MenuButton"; // For menuButton.
 		public const string BUTTON_PLAY   = "PlayButton"; // For playButton.
 		public const string BUTTON_RESUME = "ResumeButton"; // For resumeButton.
 		public const string BUTTON_RETURN = "ReturnButton"; // For returnButton.
-		public const string BUTTON_ROLL = "RollButton"; // For rollButton.
+		public const string BUTTON_CANCEL = "CancelButton"; // For cancelButton.
+		public const string BUTTON_ROLL   = "RollButton"; // For rollButton.
 
 		// Path texture filenames.
 		public const string PATH_TEXTURE_01 = "path_texture_01"; // For pathTexture1;
@@ -52,8 +54,11 @@ namespace FlameWars
 		public const string PATH_TEXTURE_04 = "path_texture_04"; // For pathTexture4;
 		public const string PATH_TEXTURE_PLACEHOLDER = "path_placeholder"; // For pathTexture1, pathTexture2, pathTexture3, pathTexture4;
 
-		// how to instructions filename.
-		public const string HOW_TO_INSTRUCTIONS = "Default how to instructions"; // for placeholder how to image
+		// How to instructions filename.
+		public const string HOW_TO_INSTRUCTIONS = "Default how to instructions"; // For placeholder how to image.
+
+		// MessageBox texture.
+		public const string MESSAGE_BOX = "MessageBox"; // For messageBox.
 
 		// ============================================================================
 		// ================================ Variables =================================
@@ -80,12 +85,14 @@ namespace FlameWars
 		private static Texture2D playerIcon4; // Player 4's icon texture.
 
 		// Button textures.
+		private static Texture2D okButton; // Ok button texture.
 		private static Texture2D exitButton; // Exit button texture.
 		private static Texture2D howToButton; // How-To button texture.
 		private static Texture2D menuButton; // Menu button texture.
 		private static Texture2D playButton; // Play button texture.
 		private static Texture2D resumeButton; // Resume button texture.
 		private static Texture2D returnButton; // Return button texture.
+		private static Texture2D cancelButton; // Cancel button texture.
 		private static Texture2D rollButton; // Roll button texture.
 
 		// Path textures.
@@ -96,7 +103,10 @@ namespace FlameWars
 		private static Texture2D[] paths; // Path array.
 
 		// how-to texture
-		private static Texture2D howToInstructions; // placeholder how to texture
+		private static Texture2D howToInstructions; // How to texture
+
+		// Message Box texture
+		private static Texture2D messageBox; // Message box texture
 
 		// ============================================================================
 		// =============================== Properties =================================
@@ -127,12 +137,14 @@ namespace FlameWars
 		public static Texture2D PlayerIcon4 { get { return playerIcon4; } set { playerIcon4 = value; } }
 
 		// Button textures.
+		public static Texture2D OkButton { get { return okButton; } set { okButton = value; } }
 		public static Texture2D ExitButton { get { return exitButton; } set { exitButton = value; } }
 		public static Texture2D HowToButton { get { return howToButton; } set { howToButton = value; } }
 		public static Texture2D MenuButton { get { return menuButton; } set { menuButton = value; } }
 		public static Texture2D PlayButton { get { return playButton; } set { playButton = value; } }
 		public static Texture2D ResumeButton { get { return resumeButton; } set { resumeButton = value; } }
 		public static Texture2D ReturnButton { get { return returnButton; } set { returnButton = value; } }
+		public static Texture2D CancelButton { get { return cancelButton; } set { cancelButton = value; } }
 		public static Texture2D RollButton { get { return rollButton; } set { rollButton = value; } }
 
 		// Path textures.
@@ -144,6 +156,9 @@ namespace FlameWars
 
 		// how-to texture
 		public static Texture2D HowToInstructions { get { return howToInstructions; } set { howToInstructions = value; } }
+
+		// Message box texture
+		public static Texture2D MessageBox { get { return messageBox; } set { messageBox = value; } }
 
 		// ============================================================================
 		// ================================= Methods ==================================
@@ -176,7 +191,7 @@ namespace FlameWars
 				BrownieFont = Content.Load<SpriteFont>(BROWNIE_FONT);
 
 				// Core textures.
-				Board = Content.Load<Texture2D>(BOARD_TEXTURE);
+				Board   = Content.Load<Texture2D>(BOARD_TEXTURE);
 				Player1 = Content.Load<Texture2D>(PLAYER_TEXTURE_01);
 				Player2 = Content.Load<Texture2D>(PLAYER_TEXTURE_02);
 				Player3 = Content.Load<Texture2D>(PLAYER_TEXTURE_03);
@@ -189,13 +204,15 @@ namespace FlameWars
 				PlayerIcon4 = Content.Load<Texture2D>(PLAYER_ICON_04);
 
 				// Button textures.
-				ExitButton = Content.Load<Texture2D>(BUTTON_EXIT);
-				HowToButton = Content.Load<Texture2D>(BUTTON_HOW_TO);
-				MenuButton = Content.Load<Texture2D>(BUTTON_MENU);
-				PlayButton = Content.Load<Texture2D>(BUTTON_PLAY);
+				OkButton     = Content.Load<Texture2D>(BUTTON_OK);
+				ExitButton   = Content.Load<Texture2D>(BUTTON_EXIT);
+				HowToButton  = Content.Load<Texture2D>(BUTTON_HOW_TO);
+				MenuButton   = Content.Load<Texture2D>(BUTTON_MENU);
+				PlayButton   = Content.Load<Texture2D>(BUTTON_PLAY);
 				ResumeButton = Content.Load<Texture2D>(BUTTON_RESUME);
 				ReturnButton = Content.Load<Texture2D>(BUTTON_RETURN);
-				RollButton = Content.Load<Texture2D>(BUTTON_ROLL);
+				CancelButton = Content.Load<Texture2D>(BUTTON_CANCEL);
+				RollButton   = Content.Load<Texture2D>(BUTTON_ROLL);
 
 				// Path textures.
 				PathTexture1 = Content.Load<Texture2D>(PATH_TEXTURE_01);
@@ -206,6 +223,9 @@ namespace FlameWars
 
 				// how-to texture
 				HowToInstructions = Content.Load<Texture2D>(HOW_TO_INSTRUCTIONS);
+
+				// Message Box texture
+				MessageBox = Content.Load<Texture2D>(MESSAGE_BOX);
 			}
 			else
 			{
@@ -225,7 +245,7 @@ namespace FlameWars
 			BrownieFont = Content.Load<SpriteFont>(BROWNIE_FONT);
 
 			// Core textures.
-			Board = Content.Load<Texture2D>(BOARD_TEXTURE_PLACEHOLDER);
+			Board   = Content.Load<Texture2D>(BOARD_TEXTURE_PLACEHOLDER);
 			Player1 = Content.Load<Texture2D>(PLAYER_TEXTURE_PLACEHOLDER);
 			Player2 = Content.Load<Texture2D>(PLAYER_TEXTURE_PLACEHOLDER);
 			Player3 = Content.Load<Texture2D>(PLAYER_TEXTURE_PLACEHOLDER);
@@ -238,13 +258,15 @@ namespace FlameWars
 			PlayerIcon4 = Content.Load<Texture2D>(PLAYER_ICON_PLACEHOLDER);
 
 			// Button textures.
-			ExitButton = Content.Load<Texture2D>(BUTTON_EXIT);
-			HowToButton = Content.Load<Texture2D>(BUTTON_HOW_TO);
-			MenuButton = Content.Load<Texture2D>(BUTTON_MENU);
-			PlayButton = Content.Load<Texture2D>(BUTTON_PLAY);
+			OkButton     = Content.Load<Texture2D>(BUTTON_OK);
+			ExitButton   = Content.Load<Texture2D>(BUTTON_EXIT);
+			HowToButton  = Content.Load<Texture2D>(BUTTON_HOW_TO);
+			MenuButton   = Content.Load<Texture2D>(BUTTON_MENU);
+			PlayButton   = Content.Load<Texture2D>(BUTTON_PLAY);
 			ResumeButton = Content.Load<Texture2D>(BUTTON_RESUME);
 			ReturnButton = Content.Load<Texture2D>(BUTTON_RETURN);
-			RollButton = Content.Load<Texture2D>(BUTTON_ROLL);
+			CancelButton = Content.Load<Texture2D>(BUTTON_CANCEL);
+			RollButton   = Content.Load<Texture2D>(BUTTON_ROLL);
 
 			// Path textures.
 			PathTexture1 = Content.Load<Texture2D>(PATH_TEXTURE_PLACEHOLDER);
@@ -255,6 +277,9 @@ namespace FlameWars
 
 			// How-to texture
 			HowToInstructions = Content.Load<Texture2D>(HOW_TO_INSTRUCTIONS);
+
+			// Message Box texture
+			MessageBox = Content.Load<Texture2D>(MESSAGE_BOX);
 		}
 				
 	}

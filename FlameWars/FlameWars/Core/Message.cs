@@ -147,7 +147,7 @@ namespace FlameWars
 			MakeMessageBox();
 
 			// Set up texture
-			CreateBoxTexture();
+			//CreateBoxTexture();
 		}
 
 		// Creates Messages - Includes a change to the default cancel value
@@ -180,8 +180,9 @@ namespace FlameWars
 		// This method loads the button textures
 		static public void LoadContent()
 		{
-			//buttonTextures[0] = ArtManager.OkButton;
-			//buttonTextures[1] = ArtManager.CancelButton;
+			buttonTextures[0] = ArtManager.OkButton;
+			buttonTextures[1] = ArtManager.CancelButton;
+			image             = ArtManager.MessageBox;
 		}
 
 		// This method constructs the message box
@@ -191,10 +192,23 @@ namespace FlameWars
 			MakeBox();
 
 			// Calculate button placement
+			int bx = 0, by = 0;
 
+			// Calculate for two buttons
+			if (cancel)
+			{
+				bx = (int)Center.X - BUTTON_WIDTH/2 - BUTTON_WIDTH;
+				by = (int)position.Y + BOX_HEIGHT - BUTTON_HEIGHT - PADDING;
+			}
+			// Calculate just an "Ok" button
+			else
+			{
+				bx = (int)Center.X - BUTTON_WIDTH/2;
+				by = (int)position.Y + BOX_HEIGHT - BUTTON_HEIGHT - PADDING;
+			}
 
 			// Create the buttons
-			//MakeButtons();
+			MakeButtons(bx, by);
 		}
 
 		// This method constructs the box rectangle and message location
@@ -220,7 +234,7 @@ namespace FlameWars
 			}
 			
 			// Determine size of box
-			BOX_WIDTH = (int)(message.Length * 18);
+			BOX_WIDTH = (int)(message.Length * 12);
 			BOX_HEIGHT = (int)(linecount * 35) + PADDING*2 + BUTTON_HEIGHT;
 
 			// Create box placement data
@@ -244,7 +258,7 @@ namespace FlameWars
 				buttonBounds[i] = new Rectangle(xOrigin, yOrigin, BUTTON_WIDTH, BUTTON_HEIGHT);
 
 				// Increment y position
-				xOrigin += BUTTON_WIDTH + 25;
+				xOrigin += BUTTON_WIDTH + PADDING;
 			}
 		}
 
@@ -257,7 +271,7 @@ namespace FlameWars
 
 			// Fill with blank color data
 			for (int i = 0; i < data.Length; ++i)
-				data[i] = Color.LightBlue;
+				data[i] = Color.DarkGray;
 
 			// Sets the texture equal to the color data
 			image.SetData(data);
@@ -362,21 +376,21 @@ namespace FlameWars
 			sb.DrawString(ArtManager.BrownieFont, message, textPosition, Color.Black);
 
 			// Draw buttons
-			//if (cancel)
-			//{
-				//sb.Draw(buttonTextures[OK_INDEX], 
-						//buttonBounds[OK_INDEX], 
-						//buttonColors[OK_INDEX]);
-				//sb.Draw(buttonTextures[CANCEL_INDEX], 
-						//buttonBounds[CANCEL_INDEX], 
-						//buttonColors[CANCEL_INDEX]);
-			//}
-			//else
-			//{
-				//sb.Draw(buttonTextures[OK_INDEX], 
-						//buttonBounds[OK_INDEX], 
-						//buttonColors[OK_INDEX]);
-			//}
+			if (cancel)
+			{
+				sb.Draw(buttonTextures[OK_INDEX],
+						buttonBounds[OK_INDEX],
+						buttonColors[OK_INDEX]);
+				sb.Draw(buttonTextures[CANCEL_INDEX],
+						buttonBounds[CANCEL_INDEX],
+						buttonColors[CANCEL_INDEX]);
+			}
+			else
+			{
+				sb.Draw(buttonTextures[OK_INDEX],
+						buttonBounds[OK_INDEX],
+						buttonColors[OK_INDEX]);
+			}
 		}
 	}
 }
