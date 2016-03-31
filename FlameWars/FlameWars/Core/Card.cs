@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 // Date: 3/8/2016
 // Purpose: To create and store card xml data for the game to see
 
-namespace FlameWars_DeckLoading
+namespace FlameWars
 {
-	class Card
+	public class Card
 	{
 		// ============================================================================
 		// ================================ Variables =================================
@@ -22,6 +22,44 @@ namespace FlameWars_DeckLoading
 		int amount  = 0; // Value to change the attribute by.
 		int malice  = 0; // Value to add to malice
 		int charity = 0; // Value to add to charity
+
+		#region Properties
+		public string Name
+		{
+			get {return name; }
+			set {this.name = value; }
+		}
+		public string Description
+		{
+			get {return desc; }
+			set {this.desc = value; }
+		}
+		public string Target
+		{
+			get {return targ; }
+			set {this.targ = value; }
+		}
+		public string Attribute
+		{
+			get {return atrb; }
+			set {this.atrb = value; }
+		}
+		public int Amount
+		{
+			get {return amount; }
+			set {this.amount = value; }
+		}
+		public int Malice
+		{
+			get {return malice; }
+			set {this.malice = value; }
+		}
+		public int Charity
+		{
+			get {return charity; }
+			set {this.charity = value; }
+		}
+		#endregion Properties
 
 		// ============================================================================
 		// ================================= Methods ==================================

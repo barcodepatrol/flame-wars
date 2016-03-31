@@ -16,6 +16,7 @@ namespace FlameWars
 		// ======================= Instance Variables =================================
 		// ============================================================================
 
+		#region Variables
 		// Graphics variables.
 		private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
@@ -42,12 +43,22 @@ namespace FlameWars
         private int SCREEN_WIDTH;
         private int SCREEN_HEIGHT;
 		private bool debug;
+		#endregion Variables
+
+		#region Properties
+		
+		public GraphicsDevice Graphics
+		{
+			get {return this.graphics.GraphicsDevice; }
+		}
+		
+		#endregion Properties
 
 		// ============================================================================
 		// ================================= Methods ==================================
 		// ============================================================================
 
-        public Game1()
+		public Game1()
         {
 #if DEBUG
 			debug = true;
@@ -92,7 +103,7 @@ namespace FlameWars
             this.Window.ClientSizeChanged += new System.EventHandler<System.EventArgs>(Window_ClientSizeChanged);
 
 			// Initialize GameManager
-			GameManager.Init(SCREEN_WIDTH, SCREEN_HEIGHT);
+			GameManager.Init(graphics, SCREEN_WIDTH, SCREEN_HEIGHT);
 
 			// Keyboard and mouse initialization
 			currentKeyboardState  = Keyboard.GetState();
@@ -175,6 +186,28 @@ namespace FlameWars
 			// Get mouse states
 			previousMouseState = currentMouseState;
 			currentMouseState = Mouse.GetState();
+
+			// Check to see if Message Box is active
+			if (Message.isActive)
+			{
+				// Update MessageBox's position
+				Message.Update(currentMouseState.X, currentMouseState.Y);
+
+				// If the lmb was just released, call Message.released
+				if (Released())
+				{
+					Message.Released();
+				}
+
+				// Call the hover method to determine if mouse is hovering
+				Message.Hover();
+
+				// If the lmb is being pressed, call Message.pressed
+				if (Pressed())
+				{
+					Message.Pressed();
+				}
+			}
 
 			// Switch statements is used to determine our current game state
 			switch (StateManager.gameState)
@@ -293,6 +326,8 @@ namespace FlameWars
 
             //Rectangle rec = new Rectangle(0,0,board.Width,board.Height);
             //spriteBatch.Draw(board, scrVec, null, Color.White, 0, origin, 1f, SpriteEffects.None, 0);
+			
+			
 
 			// Switch statements is used to determine our current game state
 			switch (StateManager.gameState)
@@ -314,12 +349,18 @@ namespace FlameWars
 
 				case StateManager.GameState.Game:
 
-					world.Draw(spriteBatch);
+					//world.Draw(spriteBatch);
 					break;
 
 				case StateManager.GameState.Exit:
 					Exit();
 					break;
+			}
+			
+			// Check to see if Message Box is active
+			if (Message.isActive)
+			{
+				Message.Draw(spriteBatch);
 			}
 
             spriteBatch.End();

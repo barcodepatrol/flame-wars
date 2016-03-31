@@ -10,7 +10,7 @@ using System.IO;
 // Date: 3/8/2016
 // Purpose: To create and store card xml data for the game to see
 
-namespace FlameWars_DeckLoading
+namespace FlameWars
 {
 	class Deck
 	{

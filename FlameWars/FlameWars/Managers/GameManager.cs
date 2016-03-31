@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 namespace FlameWars
 {
     internal static class GameManager
@@ -8,7 +9,9 @@ namespace FlameWars
 		// ============================================================================
 
 		// These two ints store the height and width of the board
+		// Save the game's graphics device manager
 		private static int windowWidth, windowHeight;
+		private static GraphicsDeviceManager graphicsManager;
 
 		//* Properties *//
 		// Stores the window width
@@ -37,17 +40,22 @@ namespace FlameWars
 			get { return windowCenter; }
 			set { windowCenter = value; }
 		}
+		public static GraphicsDevice Graphics
+		{
+			get {return graphicsManager.GraphicsDevice; }
+		}
 
 		// ============================================================================
 		// ================================= Methods ==================================
 		// ============================================================================
 
         // This method initializes the class
-		public static void Init(int w, int h)
+		public static void Init(GraphicsDeviceManager gd, int w, int h)
 		{
-			windowWidth  = w;
-			windowHeight = h;
-			windowCenter = GetElementCenter(w, h);
+			graphicsManager = gd;
+			windowWidth     = w;
+			windowHeight    = h;
+			windowCenter    = GetElementCenter(w, h);
 		}
 
 		// Service method.
