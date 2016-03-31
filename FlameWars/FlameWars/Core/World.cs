@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 
 namespace FlameWars
 {
-    class World
+	class World
     {
 		// ============================================================================
 		// ================================ Variables =================================
@@ -213,39 +209,46 @@ namespace FlameWars
 				// Do things to all players here.
 				// Set the draw position for the player token.
 				Path playerLocation = board.GetPath(players[index].BoardPosition);
-				Vector2 pathLocation = playerLocation.Center; // Center vector position of the board.
+				Rectangle pathLocation = new Rectangle(playerLocation.Bounds.X, playerLocation.Bounds.Y, playerLocation.Bounds.Width, playerLocation.Bounds.Height);
 
 				// Find the origin of the player.
-				float tokenScale = 0.24f; // This will be scale of the token.
+				float tokenScale = 0.25f; // This will be scale of the token.
+				float divisor = 1f / tokenScale; // This is the divisor.
 
 				// Find the centered corners of the path.
-				int playerHeight = (int)(players[index].Token.Height * tokenScale);
-				int playerWidth = (int)(players[index].Token.Width * tokenScale);
+				int playerHeight = (int)(players[index].Token.Height);
+				int playerWidth = (int)(players[index].Token.Width);
 
+				playerHeight = (int)(tokenScale * playerHeight);
+				playerWidth = (int)(tokenScale * playerWidth);
+
+				int playerQuarterOffsetX = (int)(playerWidth / divisor);
+				int playerQuarterOffsetY = (int)(playerHeight / divisor);
+				int playerOffsetX = (int)(playerWidth / 2f);
+				int playerOffsetY = (int)(playerHeight / 2f);
+
+				int margin = (int)(75 * tokenScale);
+
+				Vector2 topLeft = new Vector2(pathLocation.X - playerQuarterOffsetX, pathLocation.Y - playerQuarterOffsetY);
 				Vector2 playerPosition = new Vector2(0, 0);
-				float divisor = 1f;
 
 				switch (index)
 				{
 					case 0:
 						// Player One gets TOP LEFT.
-						Vector2 topLeft = new Vector2(pathLocation.X, pathLocation.Y);
-						playerPosition = new Vector2(topLeft.X + (playerWidth / divisor), topLeft.Y - (playerHeight / divisor));
+						playerPosition = new Vector2(topLeft.X + margin, topLeft.Y + margin);
 						break;
 					case 1:
 						// Player Two gets TOP RIGHT.
-						Vector2 topRight = new Vector2(pathLocation.X + playerLocation.Bounds.Width, pathLocation.Y);
-						playerPosition = new Vector2(topRight.X + (playerWidth / divisor), topRight.Y - (playerHeight / divisor));
+						playerPosition = new Vector2(topLeft.X + (pathLocation.Width - playerOffsetX) - margin, topLeft.Y + margin);
 						break;
 					case 2:
 						// Player Three gets BOTTOM LEFT.
-						Vector2 bottomLeft = new Vector2(pathLocation.X, pathLocation.Y + playerLocation.Bounds.Height);
-						playerPosition = new Vector2(bottomLeft.X + (playerWidth / divisor), bottomLeft.Y - (playerHeight / divisor));
+						playerPosition = new Vector2(topLeft.X + margin, topLeft.Y + (pathLocation.Height - playerOffsetY) - margin);
 						break;
 					case 3:
 						// Player Four gets BOTTOM RIGHT.
-						Vector2 bottomRight = new Vector2(pathLocation.X + playerLocation.Bounds.Width, pathLocation.Y + playerLocation.Bounds.Height);
-						playerPosition = new Vector2(bottomRight.X + (playerWidth / divisor), bottomRight.Y - (playerHeight / divisor));
+						playerPosition = new Vector2(topLeft.X + (pathLocation.Width - playerOffsetX) - margin, topLeft.Y + (pathLocation.Height - playerOffsetY) - margin);
 						break;
 				}
 
