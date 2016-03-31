@@ -52,6 +52,9 @@ namespace FlameWars
 		public const string PATH_TEXTURE_04 = "path_texture_04"; // For pathTexture4;
 		public const string PATH_TEXTURE_PLACEHOLDER = "path_placeholder"; // For pathTexture1, pathTexture2, pathTexture3, pathTexture4;
 
+		// how to instructions filename.
+		public const string HOW_TO_INSTRUCTIONS = "Default how to instructions"; // for placeholder how to image
+
 		// ============================================================================
 		// ================================ Variables =================================
 		// ============================================================================
@@ -91,6 +94,9 @@ namespace FlameWars
 		private static Texture2D pathTexture3; // Path Texture type 3.
 		private static Texture2D pathTexture4; // Path Texture type 4.
 		private static Texture2D[] paths; // Path array.
+
+		// how-to texture
+		private static Texture2D howToInstructions; // placeholder how to texture
 
 		// ============================================================================
 		// =============================== Properties =================================
@@ -135,6 +141,9 @@ namespace FlameWars
 		public static Texture2D PathTexture3 { get { return pathTexture3; } set { pathTexture3 = value; } }
 		public static Texture2D PathTexture4 { get { return pathTexture4; } set { pathTexture4 = value; } }
 		public static Texture2D[] Paths { get { return paths; } set { paths = value; } }
+
+		// how-to texture
+		public static Texture2D HowToInstructions { get { return howToInstructions; } set { howToInstructions = value; } }
 
 		// ============================================================================
 		// ================================= Methods ==================================
@@ -194,6 +203,9 @@ namespace FlameWars
 				PathTexture3 = Content.Load<Texture2D>(PATH_TEXTURE_03);
 				PathTexture4 = Content.Load<Texture2D>(PATH_TEXTURE_04);
 				Paths = new Texture2D[] { pathTexture1, pathTexture2, pathTexture3, pathTexture4 };
+
+				// how-to texture
+				HowToInstructions = Content.Load<Texture2D>(HOW_TO_INSTRUCTIONS);
 			}
 			else
 			{
@@ -240,6 +252,9 @@ namespace FlameWars
 			PathTexture3 = Content.Load<Texture2D>(PATH_TEXTURE_PLACEHOLDER);
 			PathTexture4 = Content.Load<Texture2D>(PATH_TEXTURE_PLACEHOLDER);
 			Paths = new Texture2D[] { pathTexture1, pathTexture2, pathTexture3, pathTexture4 };
+
+			// How-to texture
+			HowToInstructions = Content.Load<Texture2D>(HOW_TO_INSTRUCTIONS);
 		}
 				
 	}

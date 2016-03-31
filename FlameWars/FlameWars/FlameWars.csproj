@@ -81,6 +81,9 @@
     <Content Include="Content\board_placeholder.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Default how to instructions.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\ExitButton.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

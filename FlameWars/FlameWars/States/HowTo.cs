@@ -25,6 +25,7 @@ namespace FlameWars
 		Color[] buttonColors;
 		Texture2D[] buttonTextures;
 		Rectangle[] buttonBounds;
+		Texture2D howToTexture;
 
 		int mX;		 // mouse x
 		int mY;		 // mouse y
@@ -74,6 +75,7 @@ namespace FlameWars
 		{
 			buttonTextures[0] = tex1;
 			buttonTextures[1] = tex2;
+			howToTexture = ArtManager.HowToInstructions;
 		}
 
 		// This method sets the texture values to the default for the state.
@@ -81,6 +83,7 @@ namespace FlameWars
 		{
 			buttonTextures[0] = ArtManager.ReturnButton;
 			buttonTextures[1] = ArtManager.ExitButton;
+			howToTexture = ArtManager.HowToInstructions;
 		}
 
 		// Passes in a few variables to save for update functions
@@ -164,6 +167,9 @@ namespace FlameWars
 		// This draws all of the buttons
 		public void Draw(SpriteBatch sb)
 		{
+			// Draw how to instructions
+			sb.Draw(howToTexture, new Rectangle(GameManager.Width / 4, 100, GameManager.Width / 2, 100), Color.White);
+
 			// Iterate through all buttons
 			for (int i = 0; i < NUMBER_OF_BUTTONS; i++)
 			{
