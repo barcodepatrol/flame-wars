@@ -201,7 +201,7 @@ namespace FlameWars
 		static public void MakeBox()
 		{
 			// Update the string for printing
-			int linecount = 0;
+			int linecount = 1;
 			for (int i = 0; i < message.Length; i++)
 			{
 				// Wrapping
@@ -218,18 +218,18 @@ namespace FlameWars
 				CardString();
 				linecount += 5;
 			}
-
-			// Set message vector
-			textPosition = new Vector2 (BOX_WIDTH-PADDING, BOX_HEIGHT-PADDING);
 			
 			// Determine size of box
-			BOX_WIDTH = (int)(message.Length * 2.5);
-			BOX_HEIGHT = (int)(linecount * 2.5);
+			BOX_WIDTH = (int)(message.Length * 18);
+			BOX_HEIGHT = (int)(linecount * 35) + PADDING*2 + BUTTON_HEIGHT;
 
 			// Create box placement data
 			position   = new Vector2 (GameManager.Center.X-(BOX_WIDTH/2), GameManager.Center.Y-(BOX_HEIGHT/2));
 			center     = GameManager.Center;
 			boundaries = new Rectangle((int)position.X, (int)position.Y, BOX_WIDTH, BOX_HEIGHT);
+
+			// Set message vector
+			textPosition = new Vector2 (position.X+PADDING, position.Y+PADDING);
 		}
 
 		// This method constructs the buttons
@@ -257,7 +257,7 @@ namespace FlameWars
 
 			// Fill with blank color data
 			for (int i = 0; i < data.Length; ++i)
-				data[i] = tint;
+				data[i] = Color.LightBlue;
 
 			// Sets the texture equal to the color data
 			image.SetData(data);
