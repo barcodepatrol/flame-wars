@@ -152,7 +152,7 @@ namespace FlameWars
 
 		// Creates Messages - Includes a change to the default cancel value
 		// Also saves and loads a card's information
-		static public void CreateMessage(Card c, string message)
+		static public void CreateMessage(Card c)
 		{
 			// Set up color
 			tint = Color.White;
@@ -215,16 +215,10 @@ namespace FlameWars
 		static public void MakeBox()
 		{
 			// Update the string for printing
+			// Also count the widest line
 			int linecount = 1;
-			for (int i = 0; i < message.Length; i++)
-			{
-				// Wrapping
-				if (i == MAX_CHARACTERS)
-				{
-					message.Insert(i, "\n");
-					linecount++;
-				}
-			}
+			int longestLine = 0;
+			int lengthcount = 0;
 
 			// Update string if this messagebox involves a card
 			if (card != null)
@@ -232,10 +226,38 @@ namespace FlameWars
 				CardString();
 				linecount += 5;
 			}
+
+			for (int i = 0; i < message.Length; i++)
+			{
+				lengthcount++;
+
+				// Wrapping
+				if (i == MAX_CHARACTERS)
+				{
+					message.Insert(i, "\n");
+					linecount++;
+					longestLine = MAX_CHARACTERS;
+				}
+
+				// Set new longest line
+				if (message[i] == '\n' && lengthcount > longestLine)
+				{ 
+					longestLine = lengthcount;
+					lengthcount = 0;
+				}
+
+				// If we are on the last character but have no longest line
+				if (i == message.Length-1 && longestLine == 0)
+				{
+					longestLine = lengthcount;
+				}
+			}
+
+			
 			
 			// Determine size of box
-			BOX_WIDTH = (int)(message.Length * 12);
-			BOX_HEIGHT = (int)(linecount * 35) + PADDING*2 + BUTTON_HEIGHT;
+			BOX_WIDTH = (longestLine * 12);
+			BOX_HEIGHT = (int)(linecount * 20) + PADDING*2 + BUTTON_HEIGHT;
 
 			// Create box placement data
 			position   = new Vector2 (GameManager.Center.X-(BOX_WIDTH/2), GameManager.Center.Y-(BOX_HEIGHT/2));

@@ -21,6 +21,12 @@ namespace FlameWars
 		List<Card> cards;
 		List<Card> discard;
 
+		public List<Card> Cards
+		{
+			get { return cards; }
+			set { cards = value; }
+		}
+
 		// ============================================================================
 		// ================================= Methods ==================================
 		// ============================================================================
@@ -74,6 +80,12 @@ namespace FlameWars
 							  xn.SelectSingleNode("./amount").FirstChild.Value);
 
 			cards.Add(c);
+		}
+
+		// This method reshuffles the list of cards
+		public void Shuffle()
+		{
+
 		}
 	}
 }

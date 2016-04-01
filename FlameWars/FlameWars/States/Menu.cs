@@ -150,8 +150,10 @@ namespace FlameWars
 					{
 						case PLAY_INDEX:
 							StateManager.gameState = StateManager.GameState.Game;
+
+							// THIS IS FOR TESTING PURPOSES ONLY
 							Message.Activate();
-							Message.CreateMessage("This is a testla?");
+							Message.CreateMessage(GameManager.GetCard());
 							break;
 						case HOW_TO_INDEX:
 							StateManager.lastState = StateManager.gameState;
