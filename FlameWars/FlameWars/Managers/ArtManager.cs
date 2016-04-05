@@ -18,8 +18,8 @@ namespace FlameWars
 		public const string FOREGROUND_TEXTURE = ""; // For the foregroundTexture.
 
 		// Font filenames
-		public const string BIG_JOHN_FONT = "BIGJOHN_24";
-		public const string SLIM_JOE_FONT = "SlimJoe_14";
+		public const string STELLAR_BOLD_FONT = "Stellar-Bold_24";
+		public const string STELLAR_LIGHT_FONT = "Stellar-Light_14";
 
 		// Core texture filenames.
 		public const string BOARD_TEXTURE              = "board_final"; // For boardTexture.
@@ -70,8 +70,8 @@ namespace FlameWars
 		private static Texture2D foregroundTexture; // The foreground texture.
 
 		// Game Fonts
-		private static SpriteFont bigJohnFont;
-		private static SpriteFont slimJoeFont;
+		private static SpriteFont stellarBoldFont;
+		private static SpriteFont stellarLightFont;
 
 		// Core textures.
 		private static Texture2D boardTexture; // The actual board's texture.
@@ -123,8 +123,8 @@ namespace FlameWars
 		public static Texture2D Foreground { get { return foregroundTexture; } set { foregroundTexture = value; } }
 
 		// Game Fonts
-		public static SpriteFont BigJohnFont { get {return bigJohnFont; } set {bigJohnFont = value; } }
-		public static SpriteFont SlimJoeFont { get {return slimJoeFont; } set {slimJoeFont = value; } }
+		public static SpriteFont StellarBoldFont { get {return stellarBoldFont; } set {stellarBoldFont = value; } }
+		public static SpriteFont StellarLightFont { get {return stellarLightFont; } set {stellarLightFont = value; } }
 
 		// Core textures.
 		public static Texture2D Board { get { return boardTexture; } set { boardTexture = value; } }
@@ -191,8 +191,8 @@ namespace FlameWars
 				// Foreground = Content.Load<Texture2D>(FOREGROUND_TEXTURE);
 
 				// Game fonts
-				BigJohnFont = Content.Load<SpriteFont>(BIG_JOHN_FONT);
-				SlimJoeFont = Content.Load<SpriteFont>(SLIM_JOE_FONT);
+				StellarBoldFont = Content.Load<SpriteFont>(STELLAR_BOLD_FONT);
+				StellarLightFont = Content.Load<SpriteFont>(STELLAR_LIGHT_FONT);
 
 				// Core textures.
 				Board   = Content.Load<Texture2D>(BOARD_TEXTURE);
@@ -246,8 +246,8 @@ namespace FlameWars
 			// Foreground = Content.Load<Texture2D>(FOREGROUND_TEXTURE);
 
 			// Game fonts
-			BigJohnFont = Content.Load<SpriteFont>(BIG_JOHN_FONT);
-			SlimJoeFont = Content.Load<SpriteFont>(SLIM_JOE_FONT);
+			StellarBoldFont = Content.Load<SpriteFont>(STELLAR_BOLD_FONT);
+			StellarLightFont = Content.Load<SpriteFont>(STELLAR_LIGHT_FONT);
 
 			// Core textures.
 			Board   = Content.Load<Texture2D>(BOARD_TEXTURE_PLACEHOLDER);

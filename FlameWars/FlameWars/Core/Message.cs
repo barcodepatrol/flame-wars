@@ -395,7 +395,7 @@ namespace FlameWars
 			sb.Draw(image, boundaries, Color.White);
 
 			// Draw message
-			sb.DrawString(ArtManager.SlimJoeFont, message, textPosition, Color.Black);
+			sb.DrawString(ArtManager.StellarLightFont, message, textPosition, Color.Black);
 
 			// Draw buttons
 			if (cancel)

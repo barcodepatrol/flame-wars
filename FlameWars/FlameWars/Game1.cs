@@ -20,7 +20,6 @@ namespace FlameWars
 		// Graphics variables.
 		private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
-		private SpriteFont mainFont;
 
 		// Keyboard input states.
 		private KeyboardState previousKeyboardState;
@@ -141,9 +140,6 @@ namespace FlameWars
 
 			// Load World Content
 			world.LoadContent();
-		
-			// Load fonts
-			mainFont = Content.Load<SpriteFont>("BROWNIEregular_14");
 
 			// Load Menu Content
 			menuState.LoadContent();
