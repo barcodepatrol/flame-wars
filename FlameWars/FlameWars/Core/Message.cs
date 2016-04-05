@@ -302,7 +302,7 @@ namespace FlameWars
 		// This method updates the string to include card data
 		static public void CardString()
 		{
-			message.Insert(0, "Name: " + card.Name + "\n");
+			message = message.Insert(0, "Name: " + card.Name + "\n");
 			message += ("\nTarget: " + card.Target + "\n");
 			message += ("Attribute: " + card.Attribute + "\n");
 			message += ("Amount: " + card.Amount + "\n");
@@ -395,7 +395,7 @@ namespace FlameWars
 			sb.Draw(image, boundaries, Color.White);
 
 			// Draw message
-			sb.DrawString(ArtManager.BrownieFont, message, textPosition, Color.Black);
+			sb.DrawString(ArtManager.SlimJoeFont, message, textPosition, Color.Black);
 
 			// Draw buttons
 			if (cancel)
