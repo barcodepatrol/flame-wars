@@ -336,6 +336,17 @@ namespace FlameWars
 			animationState = AnimationState.Roll;
 		}
 
+		public void StartAnimation()
+		{
+			animationState = AnimationState.Animate;
+		}
+
+		public void Start()
+		{
+			animationState = AnimationState.Idle;
+			IsButtonActive = !Message.isActive;
+		}
+
 		// Check to see if the player is currently Idle.
 		public bool IsIdle()
 		{
@@ -357,7 +368,7 @@ namespace FlameWars
 		// Check to see if the button is currently active.
 		public bool IsRollButtonActive()
 		{
-			if (IsRolling())
+			if (IsIdle())
 			{
 				return IsButtonActive;
 			}
@@ -430,7 +441,7 @@ namespace FlameWars
 		public void Hover(int mX, int mY)
 		{
 			// Check to see if in roll state.
-			if (!IsRolling())
+			if (!IsIdle())
 			{
 				buttonHover = false;
 				buttonPressed = false;
@@ -459,7 +470,7 @@ namespace FlameWars
 		public void Pressed(int mX, int mY)
 		{
 			// Check to see if in roll state.
-			if (!IsRolling())
+			if (!IsIdle())
 			{
 				buttonHover = false;
 				buttonPressed = false;
@@ -489,7 +500,7 @@ namespace FlameWars
 		public void Released(int mX, int mY)
 		{
 			// Check to see if in roll state.
-			if (!IsRolling())
+			if (!IsIdle())
 			{
 				buttonHover = false;
 				buttonPressed = false;
@@ -509,6 +520,7 @@ namespace FlameWars
 					buttonHover = true;
 					buttonPressed = false;
 					buttonReleased = true;
+					StartRolling();
 				}
 				// Otherwise, reset the color
 				else

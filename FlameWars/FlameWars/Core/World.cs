@@ -184,25 +184,7 @@ namespace FlameWars
             // Iterate through all players
 			for (int index = 0; index < players.Count; index++)
 			{
-                // Switch players
-                // Previously active player is deactivated
-                // New player and their roll button is activated
-				if ((int)playerState != index)
-				{
-					players[index].IsCurrentPlayer = false;
-					players[(int)playerState].IsButtonActive = false;
-				}
-				else
-				{
-					players[(int)playerState].IsCurrentPlayer = true;
-					players[(int)playerState].IsButtonActive = true;
-				}
-
-				// Do things to all players here.
-				for(int i = 0; i < players.Count; i++)
-				{
-					players[i].AnimState = Player.AnimationState.Idle;
-				}
+                
 
 				// Set the draw position for the player token.
 				Path playerLocation = board.GetPath(players[index].BoardPosition);
@@ -251,13 +233,6 @@ namespace FlameWars
 
 				players[index].TokenPosition = new Rectangle((int)playerPosition.X, (int)playerPosition.Y, playerWidth, playerHeight);
 			}
-
-			currentPlayer = players[(int)playerState];
-
-			// Do things to current player.
-			currentPlayer.AnimState = Player.AnimationState.Roll;
-			currentPlayer.IsButtonActive = true;// move to state switcher
-			
 			
 			/*while(currentPlayer.AnimState == Player.AnimationState.Roll)
 			{
@@ -311,6 +286,32 @@ namespace FlameWars
 					and can draw buttons for each player.				
 				*/
 			}
+		}
+
+		public void SwitchPlayers(GameTime gameTime)
+		{
+			for (int index = 0; index < players.Count; index++)
+			{
+				// Switch players
+				// Previously active player is deactivated
+				// New player and their roll button is activated
+				if ((int)playerState != index)
+				{
+					players[index].IsCurrentPlayer = false;
+					players[(int)playerState].IsButtonActive = false;
+				}
+				else
+				{
+					players[(int)playerState].IsCurrentPlayer = true;
+					players[(int)playerState].IsButtonActive = true;
+				}
+			}
+
+			currentPlayer = players[(int)playerState];
+
+			// Do things to current player.
+			currentPlayer.Start();
+			currentPlayer.Update(gameTime);
 		}
     }
 }
