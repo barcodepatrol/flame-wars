@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace FlameWars
 {
@@ -37,6 +38,7 @@ namespace FlameWars
 		List<Player> players;
 		PlayerState playerState;
 		Board board;
+		Player currentPlayer;
 
 		// state management variables.
 		int mX, mY; // Mouse state variables.
@@ -149,26 +151,17 @@ namespace FlameWars
 		// Ask each player to determine the value of the button.
 		public void Hover()
 		{
-			foreach (Player player in players)
-			{
-				player.Hover(mX, mY);
-			}
+			currentPlayer.Hover(mX, mY);
 		}
 
 		public void Pressed()
 		{
-			foreach (Player player in players)
-			{
-				player.Pressed(mX, mY);
-			}
+			currentPlayer.Pressed(mX, mY);
 		}
 
 		public void Released()
 		{
-			foreach (Player player in players)
-			{
-				player.Released(mX, mY);
-			}
+			currentPlayer.Released(mX, mY);
 		}
 
 		// Loads texture content
@@ -207,6 +200,11 @@ namespace FlameWars
 				}
 
 				// Do things to all players here.
+				for(int i = 0; i < players.Count; i++)
+				{
+					players[i].AnimState = Player.AnimationState.Idle;
+				}
+
 				// Set the draw position for the player token.
 				Path playerLocation = board.GetPath(players[index].BoardPosition);
 				Rectangle pathLocation = new Rectangle(playerLocation.Bounds.X, playerLocation.Bounds.Y, playerLocation.Bounds.Width, playerLocation.Bounds.Height);
@@ -255,11 +253,32 @@ namespace FlameWars
 				players[index].TokenPosition = new Rectangle((int)playerPosition.X, (int)playerPosition.Y, playerWidth, playerHeight);
 			}
 
-			Player currentPlayer = players[(int)playerState];
+			currentPlayer = players[(int)playerState];
 
 			// Do things to current player.
+			currentPlayer.AnimState = Player.AnimationState.Roll;
+			currentPlayer.IsButtonActive = true;// move to state switcher
 			
+			
+			/*while(currentPlayer.AnimState == Player.AnimationState.Roll)
+			{
+				//bool test = currentPlayer.IsRollButtonActive();
+				currentPlayer.IsButtonActive = true;
+				while (currentPlayer.IsButtonActive)
+				{
+					Hover();
+					//Released();
+					//click = Mouse.GetState();
+					if(Mouse.GetState().Equals(ButtonState.Pressed))
+					{
+						Pressed();
+						//if(currentPlayer.)
+						currentPlayer.IsButtonActive = false;
+					}
+				}
 
+				currentPlayer.AnimState = Player.AnimationState.Idle;
+			}*/
 		}
 
 		// Passes in a few variables to save for update functions

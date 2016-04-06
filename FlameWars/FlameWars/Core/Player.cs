@@ -207,6 +207,12 @@ namespace FlameWars
 			get { return this.currentPlayer; }
 			set { this.currentPlayer = value; }
 		}
+
+		public AnimationState AnimState // Animationstate is the name of the enum and thus cannot be used as the name of the property
+		{
+			get { return animationState; }
+			set { animationState = value; }
+		}
 		#endregion
 
 		// ============================================================================
@@ -295,14 +301,18 @@ namespace FlameWars
 
 		public void Roll(GameTime gameTime)
 		{
-
+			int roll;
 			// Get the rolled value.
+			roll = Dice.Roll(1);
 
 			// Add value to the board position.
+			//boardPosition += roll;
 
 			// Pass it into the "nextPosition" index array.
 
+
 			// Once the value is obtained and stored, move into the next stage: animate. - This should be dealt with in a manager class.
+			//Animate(gameTime);
 		}
 
 		public void Animate(GameTime gameTime)
@@ -635,5 +645,7 @@ namespace FlameWars
 				DrawYPositions[index] = drawY;
 			}
 		}
+
+		//public 
 	}
 }
