@@ -1,4 +1,10 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.IO;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 namespace FlameWars
 {
@@ -8,11 +14,18 @@ namespace FlameWars
 		// ================================ Variables =================================
 		// ============================================================================
 
-		// These two ints store the height and width of the board
-		// Save the game's graphics device manager
+		// These two ints store the height and width of the board.
+		// Stores the window's center.
+		// Save the game's graphics device manager.
 		private static int windowWidth, windowHeight;
+		private static Vector2 windowCenter;
 		private static GraphicsDeviceManager graphicsManager;
 
+		// Saves the deck info
+		private static Deck deck;
+		private static int deckIndex = 0;
+
+		#region Properties
 		//* Properties *//
 		// Stores the window width
 		public static int Width
@@ -20,42 +33,37 @@ namespace FlameWars
 			get { return windowWidth; }
 			set { windowWidth = value; }
 		}
-
 		// Stores the window height
 		public static int Height
 		{
 			get { return windowHeight; }
 			set { windowHeight = value; }
 		}
-
-		// These Vectors store important positions in the board.
-
-		// Stores the window's center.
-		private static Vector2 windowCenter;
-
-		//* Properties *//
 		// Stores the window center position.
 		public static Vector2 Center
 		{
 			get { return windowCenter; }
 			set { windowCenter = value; }
 		}
+		// Retrieves the game's graphics device
 		public static GraphicsDevice Graphics
 		{
 			get {return graphicsManager.GraphicsDevice; }
 		}
+		#endregion Properties
 
 		// ============================================================================
 		// ================================= Methods ==================================
 		// ============================================================================
 
-        // This method initializes the class
+		// This method initializes the class
 		public static void Init(GraphicsDeviceManager gd, int w, int h)
 		{
 			graphicsManager = gd;
 			windowWidth     = w;
 			windowHeight    = h;
 			windowCenter    = GetElementCenter(w, h);
+			deck            = new Deck("Content\\example_deck.xml");
 		}
 
 		// Service method.
@@ -82,6 +90,20 @@ namespace FlameWars
 			int yOrigin = y - (h / 2);
 
 			return new Vector2(xOrigin, yOrigin);
+		}
+
+		// GetCard() returns the next card in the deck
+		public static Card GetCard()
+		{
+			// Save card and then increment index before returning
+			Card c = deck.Cards[deckIndex];
+			deckIndex++;
+
+			// If we got to the last card reshuffle the deck
+			if (deckIndex == deck.Cards.Count)
+				deck.Shuffle();
+
+			return c;
 		}
     }
 }

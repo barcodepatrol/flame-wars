@@ -42,7 +42,6 @@ namespace FlameWars
 
 		// state management variables.
 		int mX, mY; // Mouse state variables.
-		bool mousePress, prevPress; // Mouse pressed.
 		int windowWidth, windowHeight; // Height and width of screen.
 
 		#endregion Variables

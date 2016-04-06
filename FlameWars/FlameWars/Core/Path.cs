@@ -24,6 +24,9 @@ namespace FlameWars
 		private int textureID; // The ID for the type of texture the path will receive. Zero-based!
 		private int pathIndex; // The actual index for the path.
 
+		// Used for random path triggers
+		private Random rnd;
+
 		#endregion
 
 		#region Properties
@@ -101,11 +104,12 @@ namespace FlameWars
 		{
 			TextureID = id;
 			DrawColor = tint;
-			Position = pos;
-			Bounds = bounds;
-			Space = type;
-			ID = index;
-			Center = GameManager.GetElementCenterPoint(bounds.X, bounds.Y, bounds.Width, bounds.Height);
+			Position  = pos;
+			Bounds    = bounds;
+			Space     = type;
+			ID        = index;
+			Center    = GameManager.GetElementCenterPoint(bounds.X, bounds.Y, bounds.Width, bounds.Height);
+			rnd       = new Random();
 		}
 
 		#endregion
@@ -113,7 +117,6 @@ namespace FlameWars
 		#region Service Methods
 
 		/*
-		TODO
 			The Trigger() method is called by a Path whenever a player lands on it.
 			Whenever trigger is called, based on the path type, a certain method will be called.
 		*/
@@ -121,16 +124,22 @@ namespace FlameWars
 		{
 			switch(space) {
 				case Board.SpaceType.Card:
+					CardTrigger();
 					break;
 				case Board.SpaceType.Resource:
+					ResourceTrigger();
 					break;
 				case Board.SpaceType.Bonus:
+					BonusTrigger();
 					break;
 				case Board.SpaceType.Stock:
+					StockTrigger();
 					break;
 				case Board.SpaceType.Random:
+					RandomTrigger();
 					break;
 				case Board.SpaceType.Empty:
+					EmptyTrigger();
 					break;
 			}
 		}
@@ -149,12 +158,24 @@ namespace FlameWars
 			Query player as to whether or not they will pay the "processing fee."
 			Free but Random / Pay but Decline Options Pile
 		*/
+		public void CardTrigger()
+		{
+			// Play a sound effect
+
+			// Create card message by passing in next card from deck
+			Message.Activate();
+			Message.CreateMessage(GameManager.GetCard());
+		}
 
 		// Resource Trigger
 		/*
 			Play a sound effect.
 			Display a message to the user.
 		*/
+		public void ResourceTrigger()
+		{
+
+		}
 
 
 		// Bonus Trigger
@@ -162,25 +183,65 @@ namespace FlameWars
 			Play a sound effect.
 			Display a message to the user.
 		*/
+		public void BonusTrigger()
+		{
 
+		}
 
 		// Stock Trigger
 		/*
 			Play a sound effect.
 			Display a message to the user.
 		*/
+		public void StockTrigger()
+		{
+
+		}
 
 		// Random Trigger
 		/*
 			This will randomly choose among different triggers to call a different one. 
 			Picks from: Card, Resource, Bonus, Stock.
 		*/
+		public void RandomTrigger()
+		{
+			// Select a random space type
+			int select = rnd.Next(0, 5);
+
+			// Trigger based off of spacetype
+			switch ((Board.SpaceType)select)
+			{
+				case Board.SpaceType.Card:
+					CardTrigger();
+					break;
+				case Board.SpaceType.Resource:
+					ResourceTrigger();
+					break;
+				case Board.SpaceType.Bonus:
+					BonusTrigger();
+					break;
+				case Board.SpaceType.Stock:
+					StockTrigger();
+					break;
+				default:
+					EmptyTrigger();
+					break;
+			}
+		}
 
 		// Empty
 		/*
 			Play a sound effect.
 			Display a message to the user.
 		*/
+		public void EmptyTrigger()
+		{
+			// Play a sound effect
+
+			// Create message
+			Message.Activate();
+			Message.CreateMessage("NOTHING HAPPENS!");
+		}
 
 		#endregion
 	}

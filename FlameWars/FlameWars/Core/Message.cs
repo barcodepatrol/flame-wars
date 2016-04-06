@@ -147,12 +147,12 @@ namespace FlameWars
 			MakeMessageBox();
 
 			// Set up texture
-			CreateBoxTexture();
+			//CreateBoxTexture();
 		}
 
 		// Creates Messages - Includes a change to the default cancel value
 		// Also saves and loads a card's information
-		static public void CreateMessage(Card c, string message)
+		static public void CreateMessage(Card c)
 		{
 			// Set up color
 			tint = Color.White;
@@ -180,8 +180,9 @@ namespace FlameWars
 		// This method loads the button textures
 		static public void LoadContent()
 		{
-			//buttonTextures[0] = ArtManager.OkButton;
-			//buttonTextures[1] = ArtManager.CancelButton;
+			buttonTextures[0] = ArtManager.OkButton;
+			buttonTextures[1] = ArtManager.CancelButton;
+			image             = ArtManager.MessageBox;
 		}
 
 		// This method constructs the message box
@@ -191,26 +192,33 @@ namespace FlameWars
 			MakeBox();
 
 			// Calculate button placement
+			int bx = 0, by = 0;
 
+			// Calculate for two buttons
+			if (cancel)
+			{
+				bx = (int)Center.X - BUTTON_WIDTH/2 - BUTTON_WIDTH;
+				by = (int)position.Y + BOX_HEIGHT - BUTTON_HEIGHT - PADDING;
+			}
+			// Calculate just an "Ok" button
+			else
+			{
+				bx = (int)Center.X - BUTTON_WIDTH/2;
+				by = (int)position.Y + BOX_HEIGHT - BUTTON_HEIGHT - PADDING;
+			}
 
 			// Create the buttons
-			//MakeButtons();
+			MakeButtons(bx, by);
 		}
 
 		// This method constructs the box rectangle and message location
 		static public void MakeBox()
 		{
 			// Update the string for printing
-			int linecount = 0;
-			for (int i = 0; i < message.Length; i++)
-			{
-				// Wrapping
-				if (i == MAX_CHARACTERS)
-				{
-					message.Insert(i, "\n");
-					linecount++;
-				}
-			}
+			// Also count the widest line
+			int linecount = 1;
+			int longestLine = 0;
+			int lengthcount = 0;
 
 			// Update string if this messagebox involves a card
 			if (card != null)
@@ -219,17 +227,45 @@ namespace FlameWars
 				linecount += 5;
 			}
 
-			// Set message vector
-			textPosition = new Vector2 (BOX_WIDTH-PADDING, BOX_HEIGHT-PADDING);
+			for (int i = 0; i < message.Length; i++)
+			{
+				lengthcount++;
+
+				// Wrapping
+				if (i == MAX_CHARACTERS)
+				{
+					message.Insert(i, "\n");
+					linecount++;
+					longestLine = MAX_CHARACTERS;
+				}
+
+				// Set new longest line
+				if (message[i] == '\n' && lengthcount > longestLine)
+				{ 
+					longestLine = lengthcount;
+					lengthcount = 0;
+				}
+
+				// If we are on the last character but have no longest line
+				if (i == message.Length-1 && longestLine == 0)
+				{
+					longestLine = lengthcount;
+				}
+			}
+
+			
 			
 			// Determine size of box
-			BOX_WIDTH = (int)(message.Length * 2.5);
-			BOX_HEIGHT = (int)(linecount * 2.5);
+			BOX_WIDTH = (longestLine * 6);
+			BOX_HEIGHT = (int)(linecount * 20) + PADDING*2 + BUTTON_HEIGHT;
 
 			// Create box placement data
 			position   = new Vector2 (GameManager.Center.X-(BOX_WIDTH/2), GameManager.Center.Y-(BOX_HEIGHT/2));
 			center     = GameManager.Center;
 			boundaries = new Rectangle((int)position.X, (int)position.Y, BOX_WIDTH, BOX_HEIGHT);
+
+			// Set message vector
+			textPosition = new Vector2 (position.X+PADDING, position.Y+PADDING);
 		}
 
 		// This method constructs the buttons
@@ -244,7 +280,7 @@ namespace FlameWars
 				buttonBounds[i] = new Rectangle(xOrigin, yOrigin, BUTTON_WIDTH, BUTTON_HEIGHT);
 
 				// Increment y position
-				xOrigin += BUTTON_WIDTH + 25;
+				xOrigin += BUTTON_WIDTH + PADDING;
 			}
 		}
 
@@ -257,7 +293,7 @@ namespace FlameWars
 
 			// Fill with blank color data
 			for (int i = 0; i < data.Length; ++i)
-				data[i] = tint;
+				data[i] = Color.DarkGray;
 
 			// Sets the texture equal to the color data
 			image.SetData(data);
@@ -266,7 +302,7 @@ namespace FlameWars
 		// This method updates the string to include card data
 		static public void CardString()
 		{
-			message.Insert(0, "Name: " + card.Name + "\n");
+			message = message.Insert(0, "Name: " + card.Name + "\n");
 			message += ("\nTarget: " + card.Target + "\n");
 			message += ("Attribute: " + card.Attribute + "\n");
 			message += ("Amount: " + card.Amount + "\n");
@@ -359,24 +395,24 @@ namespace FlameWars
 			sb.Draw(image, boundaries, Color.White);
 
 			// Draw message
-			sb.DrawString(ArtManager.BrownieFont, message, textPosition, Color.Black);
+			sb.DrawString(ArtManager.StellarLightFont, message, textPosition, Color.Black);
 
 			// Draw buttons
-			//if (cancel)
-			//{
-				//sb.Draw(buttonTextures[OK_INDEX], 
-						//buttonBounds[OK_INDEX], 
-						//buttonColors[OK_INDEX]);
-				//sb.Draw(buttonTextures[CANCEL_INDEX], 
-						//buttonBounds[CANCEL_INDEX], 
-						//buttonColors[CANCEL_INDEX]);
-			//}
-			//else
-			//{
-				//sb.Draw(buttonTextures[OK_INDEX], 
-						//buttonBounds[OK_INDEX], 
-						//buttonColors[OK_INDEX]);
-			//}
+			if (cancel)
+			{
+				sb.Draw(buttonTextures[OK_INDEX],
+						buttonBounds[OK_INDEX],
+						buttonColors[OK_INDEX]);
+				sb.Draw(buttonTextures[CANCEL_INDEX],
+						buttonBounds[CANCEL_INDEX],
+						buttonColors[CANCEL_INDEX]);
+			}
+			else
+			{
+				sb.Draw(buttonTextures[OK_INDEX],
+						buttonBounds[OK_INDEX],
+						buttonColors[OK_INDEX]);
+			}
 		}
 	}
 }

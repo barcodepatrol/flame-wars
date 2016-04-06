@@ -27,8 +27,6 @@ namespace FlameWars
 		Texture2D[] buttonTextures;
 		Rectangle[] buttonBounds;
 
-		bool mousePress; // mouse press
-		bool prevPress; // previous pressed
 		int mX;		 // mouse x
 		int mY;		 // mouse y
 
@@ -152,8 +150,10 @@ namespace FlameWars
 					{
 						case PLAY_INDEX:
 							StateManager.gameState = StateManager.GameState.Game;
+
+							// THIS IS FOR TESTING PURPOSES ONLY
 							Message.Activate();
-							Message.CreateMessage("THIS IS A TEST");
+							Message.CreateMessage(GameManager.GetCard());
 							break;
 						case HOW_TO_INDEX:
 							StateManager.lastState = StateManager.gameState;
