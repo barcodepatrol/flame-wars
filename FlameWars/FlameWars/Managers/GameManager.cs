@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.IO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+
 namespace FlameWars
 {
     internal static class GameManager
@@ -24,6 +25,9 @@ namespace FlameWars
 		// Saves the deck info
 		private static Deck deck;
 		private static int deckIndex = 0;
+
+		// A boolean to determine if a player ended their turn
+		private static bool endTurn = false;
 
 		#region Properties
 		//* Properties *//
@@ -49,6 +53,12 @@ namespace FlameWars
 		public static GraphicsDevice Graphics
 		{
 			get {return graphicsManager.GraphicsDevice; }
+		}
+		// Stores whether or not a player has ended their turn
+		public static bool EndTurn
+		{
+			get { return endTurn; }
+			set { endTurn = value; }
 		}
 		#endregion Properties
 
@@ -100,8 +110,11 @@ namespace FlameWars
 			deckIndex++;
 
 			// If we got to the last card reshuffle the deck
-			if (deckIndex == deck.Cards.Count)
+			if (deckIndex == deck.Cards.Count-1)
+			{ 
 				deck.Shuffle();
+				deckIndex = 0;
+			}
 
 			return c;
 		}

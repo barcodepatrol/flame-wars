@@ -19,7 +19,7 @@ namespace FlameWars
 		// ============================================================================
 		XmlDocument xml;
 		List<Card> cards;
-		List<Card> discard;
+		Random rnd;
 
 		public List<Card> Cards
 		{
@@ -39,9 +39,10 @@ namespace FlameWars
 				// Create a new active cards list 
 				// and discarded cards list
 				// and a new xml document
-				cards   = new List<Card>();
-				discard = new List<Card>();
-				xml     = new XmlDocument();
+				// and a random number generator
+				cards = new List<Card>();
+				xml   = new XmlDocument();
+				rnd   = new Random();
 
 				// Load Xml Data
 				xml.Load(file);
@@ -85,7 +86,17 @@ namespace FlameWars
 		// This method reshuffles the list of cards
 		public void Shuffle()
 		{
+			// Iterate through the entire list
+			for (int i = 0; i < cards.Count; i++)
+			{
+				// Selected a random index
+				int r = i + (int)(rnd.NextDouble() * (cards.Count- i));
 
+				// Swap current location in deck with random index
+				Card temp = cards[r];
+				cards[r]  = cards[i];
+				cards[i]  = temp;
+			}
 		}
 	}
 }

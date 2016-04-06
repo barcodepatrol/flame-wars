@@ -110,8 +110,6 @@ namespace FlameWars
 			MakeButtons();
 
 			board = new Board(pathImages, boardImage);
-
-			playerState = PlayerState.PlayerOne;
 		}
 
 		// This method initializes the players
@@ -122,18 +120,28 @@ namespace FlameWars
 			this.players = new List<Player>();
 			player1      = new Player(TOP_LEFT_POSITION);
 			player2      = new Player(TOP_RIGHT_POSITION);
+			this.players.Add(player1); 
+			this.players.Add(player2);
 
 			// Four players
 			if (players > 3)
 			{
 				player3 = new Player(BOTTOM_LEFT_POSITION);
 				player4 = new Player(BOTTOM_RIGHT_POSIITION);
+				this.players.Add(player3); 
+				this.players.Add(player4);
 			}
 			// Three Players
 			else if (players > 2)
 			{
 				player3 = new Player(BOTTOM_LEFT_POSITION);
+				this.players.Add(player3);
 			}
+
+			// Set currentPlayer and playerState to first player
+			currentPlayer = this.players[0];
+			playerState = PlayerState.PlayerOne;
+			currentPlayer.Start();
 		}
 
 		// Ask each player to make their own button.
@@ -167,10 +175,10 @@ namespace FlameWars
 		public void LoadContent()
 		{
 			// Load player texture data
-			if (player1 != null) { player1.Token = ArtManager.Player1; player1.Icon = ArtManager.PlayerIcon1; this.players.Add(player1); }
-			if (player2 != null) { player2.Token = ArtManager.Player2; player2.Icon = ArtManager.PlayerIcon2; this.players.Add(player2); }
-			if (player3 != null) { player3.Token = ArtManager.Player3; player3.Icon = ArtManager.PlayerIcon3; this.players.Add(player3); }
-			if (player4 != null) { player4.Token = ArtManager.Player4; player4.Icon = ArtManager.PlayerIcon4; this.players.Add(player4); }
+			if (player1 != null) { player1.Token = ArtManager.Player1; player1.Icon = ArtManager.PlayerIcon1; }
+			if (player2 != null) { player2.Token = ArtManager.Player2; player2.Icon = ArtManager.PlayerIcon2; }
+			if (player3 != null) { player3.Token = ArtManager.Player3; player3.Icon = ArtManager.PlayerIcon3; }
+			if (player4 != null) { player4.Token = ArtManager.Player4; player4.Icon = ArtManager.PlayerIcon4; }
 		}
 
 		public void Update(GameTime gameTime, int mx, int my)
@@ -184,8 +192,6 @@ namespace FlameWars
             // Iterate through all players
 			for (int index = 0; index < players.Count; index++)
 			{
-                
-
 				// Set the draw position for the player token.
 				Path playerLocation = board.GetPath(players[index].BoardPosition);
 				Rectangle pathLocation = new Rectangle(playerLocation.Bounds.X, playerLocation.Bounds.Y, playerLocation.Bounds.Width, playerLocation.Bounds.Height);
@@ -231,28 +237,20 @@ namespace FlameWars
 						break;
 				}
 
+				// Set each player's token's position
 				players[index].TokenPosition = new Rectangle((int)playerPosition.X, (int)playerPosition.Y, playerWidth, playerHeight);
-			}
-			
-			/*while(currentPlayer.AnimState == Player.AnimationState.Roll)
-			{
-				//bool test = currentPlayer.IsRollButtonActive();
-				currentPlayer.IsButtonActive = true;
-				while (currentPlayer.IsButtonActive)
-				{
-					Hover();
-					//Released();
-					//click = Mouse.GetState();
-					if(Mouse.GetState().Equals(ButtonState.Pressed))
-					{
-						Pressed();
-						//if(currentPlayer.)
-						currentPlayer.IsButtonActive = false;
-					}
-				}
 
-				currentPlayer.AnimState = Player.AnimationState.Idle;
-			}*/
+				// Update currentPlayer
+				currentPlayer.Update(gameTime);
+
+				// If the player has ended their turn, switch players
+				if (GameManager.EndTurn)
+				{
+					GameManager.EndTurn = false;
+					currentPlayer.End();
+					SwitchPlayers(gameTime);
+				}
+			}
 		}
 
 		// Passes in a few variables to save for update functions
@@ -290,28 +288,20 @@ namespace FlameWars
 
 		public void SwitchPlayers(GameTime gameTime)
 		{
-			for (int index = 0; index < players.Count; index++)
-			{
-				// Switch players
-				// Previously active player is deactivated
-				// New player and their roll button is activated
-				if ((int)playerState != index)
-				{
-					players[index].IsCurrentPlayer = false;
-					players[(int)playerState].IsButtonActive = false;
-				}
-				else
-				{
-					players[(int)playerState].IsCurrentPlayer = true;
-					players[(int)playerState].IsButtonActive = true;
-				}
-			}
+			// Convert current playerstate to int and increment by one
+			int pState = (int)playerState;
+			pState++;
 
+			// Changes player 5 (doesn't exist) back to player 1
+			if (pState == 4)
+				pState = 0;
+
+			// Reset and recast playerState
+			playerState = (PlayerState)pState;
 			currentPlayer = players[(int)playerState];
 
-			// Do things to current player.
+			// Activate player
 			currentPlayer.Start();
-			currentPlayer.Update(gameTime);
 		}
     }
 }

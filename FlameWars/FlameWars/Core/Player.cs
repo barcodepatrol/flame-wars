@@ -305,6 +305,11 @@ namespace FlameWars
 			// Get the rolled value.
 			roll = Dice.Roll(1);
 
+			// THIS IS FOR TESTING PURPOSES ONLY
+			Message.Activate();
+			Message.CreateMessage(GameManager.GetCard());
+			animationState = AnimationState.Idle;
+
 			// Add value to the board position.
 			//boardPosition += roll;
 
@@ -341,10 +346,18 @@ namespace FlameWars
 			animationState = AnimationState.Animate;
 		}
 
+		// Initializes the players turn
 		public void Start()
 		{
 			animationState = AnimationState.Idle;
-			IsButtonActive = !Message.isActive;
+			IsButtonActive = true;
+		}
+
+		// Ends the player's turn
+		public void End()
+		{
+			animationState = AnimationState.Idle;
+			IsButtonActive = false;
 		}
 
 		// Check to see if the player is currently Idle.
@@ -384,8 +397,6 @@ namespace FlameWars
 			CalculateDrawYPositions();
 			int xOrigin = (int)(UIPosition.X + buttonWidth / 3);
 			int yOrigin = DrawYPositions[DrawYPositions.Length - 1];
-
-			IsButtonActive = false;
 
 			rollButton = buttonTexture;
 			rollButtonBounds = new Rectangle(xOrigin, yOrigin, buttonWidth, buttonHeight);

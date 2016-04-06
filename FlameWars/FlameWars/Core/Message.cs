@@ -366,10 +366,12 @@ namespace FlameWars
 						case OK_INDEX:
 							// Return to previous state - perform action if necessary
 							active = false;
+							GameManager.EndTurn = true;
 							break;
 						case CANCEL_INDEX:
 							// Return to previous state - Do not perform action
 							active = false;
+							GameManager.EndTurn = true;
 							break;
 					}
 				}

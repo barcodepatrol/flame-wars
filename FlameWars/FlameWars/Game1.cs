@@ -112,7 +112,7 @@ namespace FlameWars
 			ArtManager.Initialize(this.Content, debug);
 			
 			// Create Game Objects
-			world = new World(4);
+			world      = new World(4);
 			menuState  = new Menu();
 			howToState = new HowTo();
 			pauseState = new Pause();
