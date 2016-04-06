@@ -12,6 +12,7 @@ namespace FlameWars
 		// ================================ Constants =================================
 		// ============================================================================
 
+		#region Filepaths
 		// Filenames for the textures.
 		// Necessary texture filenames.
 		public const string BACKGROUND_TEXTURE = ""; // For the backgroundTexture.
@@ -60,11 +61,13 @@ namespace FlameWars
 
 		// MessageBox texture.
 		public const string MESSAGE_BOX = "MessageBox"; // For messageBox.
+		#endregion Filepaths
 
 		// ============================================================================
 		// ================================ Variables =================================
 		// ============================================================================
 
+		#region Variables
 		// Necessary textures for the game.
 		private static Texture2D backgroundTexture; // The background texture.
 		private static Texture2D foregroundTexture; // The foreground texture.
@@ -109,11 +112,13 @@ namespace FlameWars
 
 		// Message Box texture
 		private static Texture2D messageBox; // Message box texture
+		#endregion Variables
 
 		// ============================================================================
 		// =============================== Properties =================================
 		// ============================================================================
 
+		#region Properties
 		// Misc. properities.
 		public static ContentManager Content { get; set; }
 		public static bool Debug { get; set; }
@@ -162,6 +167,7 @@ namespace FlameWars
 
 		// Message box texture
 		public static Texture2D MessageBox { get { return messageBox; } set { messageBox = value; } }
+		#endregion Properties
 
 		// ============================================================================
 		// ================================= Methods ==================================

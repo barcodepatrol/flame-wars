@@ -256,7 +256,7 @@ namespace FlameWars
 			
 			
 			// Determine size of box
-			BOX_WIDTH = (longestLine * 12);
+			BOX_WIDTH = (longestLine * 6);
 			BOX_HEIGHT = (int)(linecount * 20) + PADDING*2 + BUTTON_HEIGHT;
 
 			// Create box placement data
