@@ -31,3 +31,36 @@ D:\Projects\Git Libraries\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Deb
 D:\Projects\Git Libraries\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\SlimJoe_14.xnb
 D:\Projects\Git Libraries\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\Stellar-Bold_24.xnb
 D:\Projects\Git Libraries\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\Stellar-Light_14.xnb
+D:\Users\dcn5783\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\FlameWars.exe.config
+D:\Users\dcn5783\Source\Repos\flame-wars\FlameWars\FlameWars\obj\x86\Debug\FlameWars.pdb
+D:\Users\dcn5783\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\board_final.png
+D:\Users\dcn5783\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\board_placeholder.png
+D:\Users\dcn5783\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\CancelButton.png
+D:\Users\dcn5783\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\Default how to instructions.jpg
+D:\Users\dcn5783\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\example_deck.xml
+D:\Users\dcn5783\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\ExitButton.png
+D:\Users\dcn5783\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\HowToButton.png
+D:\Users\dcn5783\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\MenuButton.png
+D:\Users\dcn5783\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\MessageBox.png
+D:\Users\dcn5783\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\OkButton.png
+D:\Users\dcn5783\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\path_placeholder.png
+D:\Users\dcn5783\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\path_texture_01.png
+D:\Users\dcn5783\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\path_texture_02.png
+D:\Users\dcn5783\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\path_texture_03.png
+D:\Users\dcn5783\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\path_texture_04.png
+D:\Users\dcn5783\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\PlayButton.png
+D:\Users\dcn5783\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\ResumeButton.png
+D:\Users\dcn5783\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\ReturnButton.png
+D:\Users\dcn5783\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\RollButton.png
+D:\Users\dcn5783\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\token.png
+D:\Users\dcn5783\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\token_placeholder.png
+D:\Users\dcn5783\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\BIGJOHN_24.xnb
+D:\Users\dcn5783\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\SlimJoe_14.xnb
+D:\Users\dcn5783\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\Stellar-Bold_24.xnb
+D:\Users\dcn5783\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\Stellar-Light_14.xnb
+D:\Users\dcn5783\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\FlameWars.exe
+D:\Users\dcn5783\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\FlameWars.pdb
+D:\Users\dcn5783\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\MonoGame.Framework.dll
+D:\Users\dcn5783\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\OpenTK.dll
+D:\Users\dcn5783\Source\Repos\flame-wars\FlameWars\FlameWars\obj\x86\Debug\FlameWars.csprojResolveAssemblyReference.cache
+D:\Users\dcn5783\Source\Repos\flame-wars\FlameWars\FlameWars\obj\x86\Debug\FlameWars.exe
