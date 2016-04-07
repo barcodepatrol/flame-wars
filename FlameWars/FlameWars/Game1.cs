@@ -294,6 +294,14 @@ namespace FlameWars
 					if (currentKeyboardState.IsKeyDown(Keys.P))
 					{
 						StateManager.gameState = StateManager.GameState.Pause;
+
+						// If a message box is active, deactivate it and tell pause one exists
+						if (Message.isActive)
+						{ 
+							Message.isActive = false;
+							pauseState.MessageExists = true;
+						}
+
 						break;
 					}
 					break;
