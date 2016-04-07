@@ -531,7 +531,7 @@ namespace FlameWars
 					buttonHover = true;
 					buttonPressed = false;
 					buttonReleased = true;
-					StartRolling();
+					if (Message.isActive == false) StartRolling();
 				}
 				// Otherwise, reset the color
 				else
