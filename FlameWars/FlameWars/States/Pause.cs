@@ -31,7 +31,15 @@ namespace FlameWars
 		int mX;		 // mouse x
 		int mY;		 // mouse y
 
+		private bool messageExists = false;
+
 		#endregion Variables
+
+		public bool MessageExists
+		{
+			get { return messageExists; }
+			set { messageExists = value; }
+		}
 
 		// ============================================================================
 		// ================================= Methods ==================================
@@ -88,7 +96,6 @@ namespace FlameWars
 			buttonTextures[2] = ArtManager.MenuButton;
 			buttonTextures[3] = ArtManager.ExitButton;
 		}
-
 
 		// Passes in a few variables to save for update functions
 		public void Update(int mx, int my)
@@ -166,6 +173,9 @@ namespace FlameWars
 							StateManager.gameState = StateManager.GameState.Exit;
 							break;
 					}
+
+					// If a message existed before the pause
+					if (MessageExists) Message.Activate();
 				}
 				// Otherwise, reset the color
 				else
