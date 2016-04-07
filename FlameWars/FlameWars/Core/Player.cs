@@ -55,6 +55,8 @@ namespace FlameWars
 		private int bandwidthPercentage = 100; // The percentage of bandwidth the player can utilize.
 		private int malice = 0;   // The malice amount the player has accrued.
 		private int charity = 0;   // The charity amount the player has accrued.
+		private int trackLength = 0; // Length of the board.
+		private int roll; // Roll value collected in Roll(gameTime) method.
 		private bool buttonActive = false; // Is the roll button currently interactable?
 		private bool buttonPressed = false;
 		private bool buttonReleased = false;
@@ -220,27 +222,28 @@ namespace FlameWars
 		// ============================================================================
 
 		// Constructor
-		public Player(Vector2 ui, int currentPathIndex)
+		public Player(Vector2 ui, int currentPathIndex, int currentTrackLength)
 		{
 			UIPosition = ui;
 			tokenBounds = new Rectangle();
 			random = new Random();
-			Initialize(currentPathIndex);
+			Initialize(currentPathIndex, currentTrackLength);
 		}
 
-		public Player(Vector2 ui)
+		public Player(Vector2 ui, int currentTrackLength)
 		{
 			UIPosition = ui;
 			tokenBounds = new Rectangle();
 			random = new Random();
-			Initialize(0);
+			Initialize(0, currentTrackLength);
 		}
 
 		// Initialize the Player.
-		public void Initialize(int currentPathIndex)
+		public void Initialize(int currentPathIndex, int currentTrackLength)
 		{
 			// Set the initial path index to zero.
 			BoardPosition = currentPathIndex;
+			trackLength = currentTrackLength;
 			rollButtonColors = new Color[3];
 
 			ActiveColor = Color.White;
@@ -301,38 +304,37 @@ namespace FlameWars
 
 		public void Roll(GameTime gameTime)
 		{
-			int roll;
 			// Get the rolled value.
 			roll = Dice.Roll(1);
 
-			// THIS IS FOR TESTING PURPOSES ONLY
-			Message.Activate();
-			Message.CreateMessage(GameManager.GetCard());
-			animationState = AnimationState.Idle;
-
+			// Calculate next position value.
 			// Add value to the board position.
-			//boardPosition += roll;
+			int tempPosition = boardPosition + roll;
 
-			// Pass it into the "nextPosition" index array.
+			// Validate the tempPosition before assigning it.
+			if (tempPosition < 0)
+			{
+				int difference = 0 - tempPosition;
+				tempPosition = (trackLength - 1) - difference;
+			}
+			else if (tempPosition > (trackLength - 1))
+			{
+				int difference = (trackLength - 1) - tempPosition;
+				tempPosition = difference;
+			}
 
+			// Final calculation of nextPosition.
+			nextPosition = tempPosition;
 
-			// Once the value is obtained and stored, move into the next stage: animate. - This should be dealt with in a manager class.
-			//Animate(gameTime);
+			animationState = AnimationState.Animate;
 		}
 
 		public void Animate(GameTime gameTime)
 		{
-			// Animation state shall persist as long as the nextPosition is not equal to the boardPosition.
-			if (boardPosition != nextPosition)
-			{
-				// Do animation things here.
-				// TODO
-			}
-			else
-			{
-				// Change the animationState to Idle.
-				animationState = AnimationState.Idle;
-			}
+
+			// NEXT POSITION
+			
+
 		}
 
 		// Trigger to get the Player into the Is rolling state. 

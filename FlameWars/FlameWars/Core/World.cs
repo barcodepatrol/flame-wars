@@ -20,8 +20,6 @@ namespace FlameWars
 		const int BUTTON_WIDTH     = 75;
 		const int PLAYER_X         = 15;
 		const int PLAYER_Y         = 15;
-		const int ANIM_SPEED       = 5;
-		const int FRAME_PER_SECOND = 30;
 	
 		readonly Vector2 TOP_LEFT_POSITION = new Vector2(PLAYER_X, PLAYER_Y);
 		readonly Vector2 TOP_RIGHT_POSITION = new Vector2(GameManager.Width - PLAYER_UI_WIDTH - (PLAYER_X / 2), PLAYER_Y);
@@ -41,6 +39,10 @@ namespace FlameWars
 		PlayerState playerState;
 		Board board;
 		Player currentPlayer;
+		Vector2 topLeft;
+		Vector2 playerPosition;
+		Vector2 fPosition;
+		int animationCount;
 
 		// state management variables.
 		int mX, mY; // Mouse state variables.
@@ -78,6 +80,12 @@ namespace FlameWars
 			get { return this.player4; }
 			set { this.player4 = value; }
 		}		
+		
+		// Get the track length of the current board object.
+		public int CurrentTrackLength
+		{
+			get { return board.TrackLength; }
+		}
 		#endregion Properties
 
 		// ============================================================================
@@ -120,23 +128,23 @@ namespace FlameWars
 			// Initialize the players
 			// There will always be at least two players
 			this.players = new List<Player>();
-			player1      = new Player(TOP_LEFT_POSITION);
-			player2      = new Player(TOP_RIGHT_POSITION);
+			player1      = new Player(TOP_LEFT_POSITION, CurrentTrackLength);
+			player2      = new Player(TOP_RIGHT_POSITION, CurrentTrackLength);
 			this.players.Add(player1); 
 			this.players.Add(player2);
 
 			// Four players
 			if (players > 3)
 			{
-				player3 = new Player(BOTTOM_LEFT_POSITION);
-				player4 = new Player(BOTTOM_RIGHT_POSIITION);
+				player3 = new Player(BOTTOM_LEFT_POSITION, CurrentTrackLength);
+				player4 = new Player(BOTTOM_RIGHT_POSIITION, CurrentTrackLength);
 				this.players.Add(player3); 
 				this.players.Add(player4);
 			}
 			// Three Players
 			else if (players > 2)
 			{
-				player3 = new Player(BOTTOM_LEFT_POSITION);
+				player3 = new Player(BOTTOM_LEFT_POSITION, CurrentTrackLength);
 				this.players.Add(player3);
 			}
 
@@ -194,56 +202,21 @@ namespace FlameWars
             // Iterate through all players
 			for (int index = 0; index < players.Count; index++)
 			{
-				// Set the draw position for the player token.
-				Path playerLocation = board.GetPath(players[index].BoardPosition);
-				Rectangle pathLocation = new Rectangle(playerLocation.Bounds.X, playerLocation.Bounds.Y, playerLocation.Bounds.Width, playerLocation.Bounds.Height);
-
-				// Find the origin of the player.
-				float tokenScale = 0.25f; // This will be scale of the token.
-				float divisor = 1f / tokenScale; // This is the divisor.
-
 				// Find the centered corners of the path.
 				int playerHeight = (int)(players[index].Token.Height);
 				int playerWidth = (int)(players[index].Token.Width);
-
-				playerHeight = (int)(tokenScale * playerHeight);
-				playerWidth = (int)(tokenScale * playerWidth);
-
-				int playerQuarterOffsetX = (int)(playerWidth / divisor);
-				int playerQuarterOffsetY = (int)(playerHeight / divisor);
-				int playerOffsetX = (int)(playerWidth / 2f);
-				int playerOffsetY = (int)(playerHeight / 2f);
-
-				int margin = (int)(75 * tokenScale);
-
-				Vector2 topLeft = new Vector2(pathLocation.X - playerQuarterOffsetX, pathLocation.Y - playerQuarterOffsetY);
-				Vector2 playerPosition = new Vector2(0, 0);
-
-				switch (index)
-				{
-					case 0:
-						// Player One gets TOP LEFT.
-						playerPosition = new Vector2(topLeft.X + margin, topLeft.Y + margin);
-						break;
-					case 1:
-						// Player Two gets TOP RIGHT.
-						playerPosition = new Vector2(topLeft.X + (pathLocation.Width - playerOffsetX) - margin, topLeft.Y + margin);
-						break;
-					case 2:
-						// Player Three gets BOTTOM LEFT.
-						playerPosition = new Vector2(topLeft.X + margin, topLeft.Y + (pathLocation.Height - playerOffsetY) - margin);
-						break;
-					case 3:
-						// Player Four gets BOTTOM RIGHT.
-						playerPosition = new Vector2(topLeft.X + (pathLocation.Width - playerOffsetX) - margin, topLeft.Y + (pathLocation.Height - playerOffsetY) - margin);
-						break;
-				}
 
 				// Set each player's token's position
 				players[index].TokenPosition = new Rectangle((int)playerPosition.X, (int)playerPosition.Y, playerWidth, playerHeight);
 
 				// Update currentPlayer
 				currentPlayer.Update(gameTime);
+				
+				// Animation.
+				if (currentPlayer.IsAnimated())
+				{
+					currentPlayer.Animate(gameTime);
+				}
 
 				// If the player has ended their turn, switch players
 				if (GameManager.EndTurn)
@@ -252,6 +225,50 @@ namespace FlameWars
 					currentPlayer.End();
 					SwitchPlayers(gameTime);
 				}
+			}
+		}
+
+		public void CalculatePlayerPosition(int index, int width, int height)
+		{
+			// Set the draw position for the player token.
+			Path playerLocation = board.GetPath(players[index].BoardPosition);
+			Rectangle pathLocation = new Rectangle(playerLocation.Bounds.X, playerLocation.Bounds.Y, playerLocation.Bounds.Width, playerLocation.Bounds.Height);
+
+			// Find the origin of the player.
+			float tokenScale = 0.25f; // This will be scale of the token.
+			float divisor = 1f / tokenScale; // This is the divisor.
+
+			height = (int)(tokenScale * height);
+			width = (int)(tokenScale * width);
+
+			int playerQuarterOffsetX = (int)(width / divisor);
+			int playerQuarterOffsetY = (int)(height / divisor);
+			int playerOffsetX = (int)(width / 2f);
+			int playerOffsetY = (int)(height / 2f);
+
+			int margin = (int)(75 * tokenScale);
+
+			topLeft = new Vector2(pathLocation.X - playerQuarterOffsetX, pathLocation.Y - playerQuarterOffsetY);
+			playerPosition = new Vector2(0, 0);
+
+			switch (index)
+			{
+				case 0:
+					// Player One gets TOP LEFT.
+					playerPosition = new Vector2(topLeft.X + margin, topLeft.Y + margin);
+					break;
+				case 1:
+					// Player Two gets TOP RIGHT.
+					playerPosition = new Vector2(topLeft.X + (pathLocation.Width - playerOffsetX) - margin, topLeft.Y + margin);
+					break;
+				case 2:
+					// Player Three gets BOTTOM LEFT.
+					playerPosition = new Vector2(topLeft.X + margin, topLeft.Y + (pathLocation.Height - playerOffsetY) - margin);
+					break;
+				case 3:
+					// Player Four gets BOTTOM RIGHT.
+					playerPosition = new Vector2(topLeft.X + (pathLocation.Width - playerOffsetX) - margin, topLeft.Y + (pathLocation.Height - playerOffsetY) - margin);
+					break;
 			}
 		}
 
@@ -305,20 +322,6 @@ namespace FlameWars
 			// Activate player
 			currentPlayer.Start();
 		}
-
-		public void Lerp(GameTime gameTime, Vector2 iPosition, Vector2 fPosition)
-		{
-			/* HOW TO MOVE A POINT */
-			// Speed.
-			int speed = ANIM_SPEED;
-			int tDelta = gameTime.ElapsedGameTime.Seconds;
-
-			int xInitial = (int) iPosition.X;
-			int yInitial = (int) iPosition.Y;
-
-			int xFinal = (int)fPosition.X;
-			int yFinal = (int)fPosition.Y;
-		}
-
+		
     }
 }
