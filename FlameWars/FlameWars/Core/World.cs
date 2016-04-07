@@ -20,6 +20,8 @@ namespace FlameWars
 		const int BUTTON_WIDTH     = 75;
 		const int PLAYER_X         = 15;
 		const int PLAYER_Y         = 15;
+		const int ANIM_SPEED       = 5;
+		const int FRAME_PER_SECOND = 30;
 	
 		readonly Vector2 TOP_LEFT_POSITION = new Vector2(PLAYER_X, PLAYER_Y);
 		readonly Vector2 TOP_RIGHT_POSITION = new Vector2(GameManager.Width - PLAYER_UI_WIDTH - (PLAYER_X / 2), PLAYER_Y);
@@ -303,5 +305,20 @@ namespace FlameWars
 			// Activate player
 			currentPlayer.Start();
 		}
+
+		public void Lerp(GameTime gameTime, Vector2 iPosition, Vector2 fPosition)
+		{
+			/* HOW TO MOVE A POINT */
+			// Speed.
+			int speed = ANIM_SPEED;
+			int tDelta = gameTime.ElapsedGameTime.Seconds;
+
+			int xInitial = (int) iPosition.X;
+			int yInitial = (int) iPosition.Y;
+
+			int xFinal = (int)fPosition.X;
+			int yFinal = (int)fPosition.Y;
+		}
+
     }
 }
