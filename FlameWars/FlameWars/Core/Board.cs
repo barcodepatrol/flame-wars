@@ -84,6 +84,10 @@ namespace FlameWars
 			set { this.currentPath = value; }
 		}
 
+		public int TrackLength
+		{
+			get { return this.track.Length; }
+		}
 		#endregion Variables
 
 		// ============================================================================
