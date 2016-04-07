@@ -20,6 +20,8 @@ namespace FlameWars
 		const int BUTTON_WIDTH     = 75;
 		const int PLAYER_X         = 15;
 		const int PLAYER_Y         = 15;
+		const int ANIM_SPEED       = 5;
+		const int FRAME_PER_SECOND = 30;
 	
 		readonly Vector2 TOP_LEFT_POSITION = new Vector2(PLAYER_X, PLAYER_Y);
 		readonly Vector2 TOP_RIGHT_POSITION = new Vector2(GameManager.Width - PLAYER_UI_WIDTH - (PLAYER_X / 2), PLAYER_Y);
@@ -39,8 +41,6 @@ namespace FlameWars
 		PlayerState playerState;
 		Board board;
 		Player currentPlayer;
-		Vector2 fPosition;
-		int animationCount;
 
 		// state management variables.
 		int mX, mY; // Mouse state variables.
@@ -78,12 +78,6 @@ namespace FlameWars
 			get { return this.player4; }
 			set { this.player4 = value; }
 		}		
-		
-		// Get the track length of the current board object.
-		public int CurrentTrackLength
-		{
-			get { return board.TrackLength; }
-		}
 		#endregion Properties
 
 		// ============================================================================
@@ -99,6 +93,7 @@ namespace FlameWars
 			sm = new SoundManager(0,0);
 			om = new OptionsManager();
 
+			// Initialize the players.
 			InitializePlayers(players);
 		}
 
@@ -206,10 +201,13 @@ namespace FlameWars
 				// Find the origin of the player.
 				float tokenScale = 0.25f; // This will be scale of the token.
 				float divisor = 1f / tokenScale; // This is the divisor.
-				
+
 				// Find the centered corners of the path.
 				int playerHeight = (int)(players[index].Token.Height);
 				int playerWidth = (int)(players[index].Token.Width);
+
+				playerHeight = (int)(tokenScale * playerHeight);
+				playerWidth = (int)(tokenScale * playerWidth);
 
 				int playerQuarterOffsetX = (int)(playerWidth / divisor);
 				int playerQuarterOffsetY = (int)(playerHeight / divisor);
@@ -240,21 +238,12 @@ namespace FlameWars
 						playerPosition = new Vector2(topLeft.X + (pathLocation.Width - playerOffsetX) - margin, topLeft.Y + (pathLocation.Height - playerOffsetY) - margin);
 						break;
 				}
-				
-				// 
-				CalculatePlayerPosition(index, playerHeight, playerWidth);
 
 				// Set each player's token's position
 				players[index].TokenPosition = new Rectangle((int)playerPosition.X, (int)playerPosition.Y, playerWidth, playerHeight);
 
 				// Update currentPlayer
 				currentPlayer.Update(gameTime);
-				
-				// Animation.
-				if (currentPlayer.IsAnimated())
-				{
-					currentPlayer.Animate(gameTime);
-				}
 
 				// If the player has ended their turn, switch players
 				if (GameManager.EndTurn)
@@ -264,11 +253,6 @@ namespace FlameWars
 					SwitchPlayers(gameTime);
 				}
 			}
-		}
-
-		public void CalculatePlayerPosition(int index, int width, int height)
-		{
-			
 		}
 
 		// Passes in a few variables to save for update functions
@@ -321,6 +305,20 @@ namespace FlameWars
 			// Activate player
 			currentPlayer.Start();
 		}
-		
+
+		public void Lerp(GameTime gameTime, Vector2 iPosition, Vector2 fPosition)
+		{
+			/* HOW TO MOVE A POINT */
+			// Speed.
+			int speed = ANIM_SPEED;
+			int tDelta = gameTime.ElapsedGameTime.Seconds;
+
+			int xInitial = (int) iPosition.X;
+			int yInitial = (int) iPosition.Y;
+
+			int xFinal = (int)fPosition.X;
+			int yFinal = (int)fPosition.Y;
+		}
+
     }
 }
