@@ -78,6 +78,12 @@ namespace FlameWars
 			get { return this.player4; }
 			set { this.player4 = value; }
 		}		
+		
+		// Get the track length of the current board object.
+		public int CurrentTrackLength
+		{
+			get { return board.TrackLength; }
+		}
 		#endregion Properties
 
 		// ============================================================================
