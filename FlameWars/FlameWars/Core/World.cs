@@ -306,19 +306,5 @@ namespace FlameWars
 			currentPlayer.Start();
 		}
 
-		public void Lerp(GameTime gameTime, Vector2 iPosition, Vector2 fPosition)
-		{
-			/* HOW TO MOVE A POINT */
-			// Speed.
-			int speed = ANIM_SPEED;
-			int tDelta = gameTime.ElapsedGameTime.Seconds;
-
-			int xInitial = (int) iPosition.X;
-			int yInitial = (int) iPosition.Y;
-
-			int xFinal = (int)fPosition.X;
-			int yFinal = (int)fPosition.Y;
-		}
-
     }
 }

@@ -305,10 +305,30 @@ namespace FlameWars
 			// Get the rolled value.
 			roll = Dice.Roll(1);
 
-			// THIS IS FOR TESTING PURPOSES ONLY
-			Message.Activate();
-			Message.CreateMessage(GameManager.GetCard());
-			animationState = AnimationState.Idle;
+			int tempPosition = boardPosition += roll;
+
+			// TODO REMOVE
+			int trackLength = 34;
+
+			if (tempPosition < 0)
+			{
+				while (tempPosition < 0)
+				{
+					int difference = 0 - tempPosition;
+					tempPosition = (trackLength - 1) - difference;
+				}
+			}
+			else if (tempPosition > (trackLength - 1))
+			{
+				while (tempPosition > (trackLength - 1))
+				{
+					int difference = tempPosition - (trackLength - 1);
+					tempPosition = difference;
+				}
+			}
+
+
+
 
 			// Add value to the board position.
 			//boardPosition += roll;
@@ -317,7 +337,6 @@ namespace FlameWars
 
 
 			// Once the value is obtained and stored, move into the next stage: animate. - This should be dealt with in a manager class.
-			//Animate(gameTime);
 		}
 
 		public void Animate(GameTime gameTime)
