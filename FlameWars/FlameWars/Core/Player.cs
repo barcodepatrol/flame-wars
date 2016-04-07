@@ -351,6 +351,7 @@ namespace FlameWars
 		{
 			animationState = AnimationState.Idle;
 			IsButtonActive = true;
+			IsCurrentPlayer = true;
 		}
 
 		// Ends the player's turn
@@ -358,6 +359,7 @@ namespace FlameWars
 		{
 			animationState = AnimationState.Idle;
 			IsButtonActive = false;
+			IsCurrentPlayer = false;
 		}
 
 		// Check to see if the player is currently Idle.
