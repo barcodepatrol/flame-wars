@@ -222,33 +222,37 @@ namespace FlameWars
 		// ============================================================================
 
 		// Constructor
-		public Player(Vector2 ui, int currentPathIndex, int currentTrackLength)
+		public Player(Vector2 ui, int currentPathIndex)
 		{
 			UIPosition = ui;
 			tokenBounds = new Rectangle();
 			random = new Random();
-			Initialize(currentPathIndex, currentTrackLength);
+			Initialize(currentPathIndex);
 		}
 
-		public Player(Vector2 ui, int currentTrackLength)
+		public Player(Vector2 ui)
 		{
 			UIPosition = ui;
 			tokenBounds = new Rectangle();
 			random = new Random();
-			Initialize(0, currentTrackLength);
+			Initialize(0);
 		}
 
 		// Initialize the Player.
-		public void Initialize(int currentPathIndex, int currentTrackLength)
+		public void Initialize(int currentPathIndex)
 		{
 			// Set the initial path index to zero.
 			BoardPosition = currentPathIndex;
-			trackLength = currentTrackLength;
 			rollButtonColors = new Color[3];
 
 			ActiveColor = Color.White;
 			InactiveColor = Color.DarkGray;
 			PressedColor = Color.Gray;
+		}
+
+		public void InitializeTrackLength(int currentTrackLength)
+		{
+			trackLength = currentTrackLength;
 		}
 		
 		// Determines how many users the player gets
@@ -331,8 +335,9 @@ namespace FlameWars
 
 		public void Animate(GameTime gameTime)
 		{
+			// Check to see if 
 
-			// NEXT POSITION
+
 			
 
 		}
