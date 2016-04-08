@@ -92,7 +92,6 @@ C:\Users\Dante Nardo\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\D
 C:\Users\Dante Nardo\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\TargetBox.png
 C:\Users\Dante Nardo\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\token.png
 C:\Users\Dante Nardo\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\token_placeholder.png
-C:\Users\Dante Nardo\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\BIGJOHN_24.xnb
 C:\Users\Dante Nardo\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\Stellar-Bold_24.xnb
 C:\Users\Dante Nardo\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\Stellar-Light_14.xnb
 C:\Users\Dante Nardo\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\FlameWars.exe

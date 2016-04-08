@@ -43,8 +43,8 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Core\Message.cs" />
-    <Compile Include="Core\Target.cs" />
+    <Compile Include="States\Message.cs" />
+    <Compile Include="States\Target.cs" />
     <Compile Include="Managers\ArtManager.cs" />
     <Compile Include="Core\Board.cs" />
     <Compile Include="Core\Card.cs" />
@@ -161,9 +161,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Content\BIGJOHN_24.xnb">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="Content\Stellar-Bold_24.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
