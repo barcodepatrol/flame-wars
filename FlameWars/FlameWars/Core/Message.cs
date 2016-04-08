@@ -364,9 +364,19 @@ namespace FlameWars
 					switch (i)
 					{
 						case OK_INDEX:
-							// Return to previous state - perform action if necessary
-							active = false;
-							GameManager.EndTurn = true;
+							// Check to see if there is a card and it targets others
+							if (card != null && card.Target == "Target Others")
+							{
+								active = false;
+								Target.Activate();
+								Target.CreateTarget();
+							}
+							else
+							{ 
+								// Return to previous state - perform action if necessary
+								active = false;
+								GameManager.EndTurn = true;
+							}
 							break;
 						case CANCEL_INDEX:
 							// Return to previous state - Do not perform action

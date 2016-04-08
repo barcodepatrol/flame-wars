@@ -51,7 +51,7 @@ namespace FlameWars
 		private int money = 0;   // The capital a given player has.
 		private int users = 0;   // The number of users the player has.
 		private int memes = 0;   // The number of memes the player can use.
-		private int bandwidthAmount = 0;   // The bandwidth amount the player owns.
+		private int bandwidth = 0;   // The bandwidth amount the player owns.
 		private int bandwidthPercentage = 100; // The percentage of bandwidth the player can utilize.
 		private int malice = 0;   // The malice amount the player has accrued.
 		private int charity = 0;   // The charity amount the player has accrued.
@@ -150,8 +150,8 @@ namespace FlameWars
 		// Stores the int value for the player's bandwidth amount
 		public int Bandwidth
 		{
-			get { return this.bandwidthAmount; }
-			set { this.bandwidthAmount = value; }
+			get { return this.bandwidth; }
+			set { this.bandwidth = value; }
 		}
 
 		// Stores the int value for the player's bandwidth percentage
@@ -305,27 +305,33 @@ namespace FlameWars
 			// Get the rolled value.
 			roll = Dice.Roll(1);
 
-			int tempPosition = boardPosition += roll;
+			// FOR TESTING PURPOSES ONLY
+			Message.Activate();
+			Message.CreateMessage(GameManager.GetCard());
+
+			AnimState = AnimationState.Idle;
+
+			//int tempPosition = boardPosition += roll;
 
 			// TODO REMOVE
-			int trackLength = 34;
+			//int trackLength = 34;
 
-			if (tempPosition < 0)
-			{
-				while (tempPosition < 0)
-				{
-					int difference = 0 - tempPosition;
-					tempPosition = (trackLength - 1) - difference;
-				}
-			}
-			else if (tempPosition > (trackLength - 1))
-			{
-				while (tempPosition > (trackLength - 1))
-				{
-					int difference = tempPosition - (trackLength - 1);
-					tempPosition = difference;
-				}
-			}
+			//if (tempPosition < 0)
+			//{
+			//	while (tempPosition < 0)
+			//	{
+			//		int difference = 0 - tempPosition;
+			//		tempPosition = (trackLength - 1) - difference;
+			//	}
+			//}
+			//else if (tempPosition > (trackLength - 1))
+			//{
+			//	while (tempPosition > (trackLength - 1))
+			//	{
+			//		int difference = tempPosition - (trackLength - 1);
+			//		tempPosition = difference;
+			//	}
+			//}
 
 
 
@@ -588,7 +594,7 @@ namespace FlameWars
 			sb.Draw(iconTexture, new Rectangle(ix, iy, Icon.Width, Icon.Height), Color.White);
 
 			// Draw the stats below
-			Object[] objectsToDraw = new object[] { money, users, memes, bandwidthAmount, Malice, Charity, rollButton }; // Place all drawn elements here.
+			Object[] objectsToDraw = new object[] { money, users, memes, bandwidth, Malice, Charity, rollButton }; // Place all drawn elements here.
 
 			for (int index = 0; index < objectsToDraw.Length; index++)
 			{
@@ -690,6 +696,27 @@ namespace FlameWars
 			}
 		}
 
-		//public 
+		// This method changes a player's attributes based off of some card
+		public void CardEffect(Card c)
+		{
+			switch (c.Attribute)
+			{
+				case "Money":
+					money += c.Amount;
+					break;
+				case "Users":
+					users += c.Amount;
+					break;
+				case "Memes":
+					memes += c.Amount;
+					break;
+				case "Bandwidth":
+					bandwidth += c.Amount;
+					break;
+			}
+
+			if (c.Malice != 0) malice += c.Malice;
+			if (c.Charity != 0) charity += c.Charity;
+		}
 	}
 }

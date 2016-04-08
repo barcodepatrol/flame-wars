@@ -248,6 +248,18 @@ namespace FlameWars
 				// If the player has ended their turn, switch players
 				if (GameManager.EndTurn)
 				{
+					// Check to see if we just targeted a player
+					if (Target.isActive)
+					{
+						// If so, turn off target and change player's stats
+						Target.Deactivate();
+						int playerTarget = Target.PlayerTarget;
+						players[playerTarget].CardEffect(Message.CurrentCard);
+					}
+					else if (Message.isActive && Message.CurrentCard != null)
+					{
+
+					}
 					GameManager.EndTurn = false;
 					currentPlayer.End();
 					SwitchPlayers(gameTime);

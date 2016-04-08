@@ -205,6 +205,28 @@ namespace FlameWars
 				}
 			}
 
+			// Check to see if Target Box is active
+			if (Target.isActive)
+			{
+				// Update TargetBox's position
+				Target.Update(currentMouseState.X, currentMouseState.Y);
+
+				// If the lmb was just released, call Target.released
+				if (Released())
+				{
+					Target.Released();
+				}
+
+				// Call the hover method to determine if mouse is hovering
+				Target.Hover();
+
+				// If the lmb is being pressed, call Target.pressed
+				if (Pressed())
+				{
+					Target.Pressed();
+				}
+			}
+
 			// Switch statements is used to determine our current game state
 			switch (StateManager.gameState)
 			{
@@ -365,6 +387,12 @@ namespace FlameWars
 			if (Message.isActive)
 			{
 				Message.Draw(spriteBatch);
+			}
+
+			// Check to see if Target Box is active
+			if (Target.isActive)
+			{
+				Target.Draw(spriteBatch);
 			}
 
             spriteBatch.End();
