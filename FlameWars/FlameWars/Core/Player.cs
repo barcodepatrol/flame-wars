@@ -714,8 +714,12 @@ namespace FlameWars
 					bandwidth += c.Amount;
 					break;
 			}
+		}
 
-			if (c.Malice != 0) malice += c.Malice;
+		// This method applies morality to a user
+		public void ApplyMorality(Card c)
+		{
+			if (c.Malice  != 0) malice  -= c.Malice;
 			if (c.Charity != 0) charity += c.Charity;
 		}
 	}

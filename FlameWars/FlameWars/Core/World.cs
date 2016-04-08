@@ -255,10 +255,14 @@ namespace FlameWars
 						Target.Deactivate();
 						int playerTarget = Target.PlayerTarget;
 						players[playerTarget].CardEffect(Message.CurrentCard);
+						currentPlayer.ApplyMorality(Message.CurrentCard);
 					}
-					else if (Message.isActive && Message.CurrentCard != null)
+					else if (Message.isActive && Message.CurrentCard != null && 
+							 Message.CurrentCard.Target == "Self Target")
 					{
-
+						// Change the current player's values
+						currentPlayer.CardEffect(Message.CurrentCard);
+						currentPlayer.ApplyMorality(Message.CurrentCard);
 					}
 					GameManager.EndTurn = false;
 					currentPlayer.End();

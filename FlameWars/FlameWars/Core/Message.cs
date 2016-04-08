@@ -174,7 +174,7 @@ namespace FlameWars
 			MakeMessageBox();
 
 			// Set up texture
-			CreateBoxTexture();
+			// CreateBoxTexture();
 		}
 
 		// This method loads the button textures
