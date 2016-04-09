@@ -174,9 +174,9 @@ namespace FlameWars
 		*/
 		public void ResourceTrigger()
 		{
-
+			// FOR TESTING ONLY
+			CardTrigger();
 		}
-
 
 		// Bonus Trigger
 		/*
@@ -185,7 +185,8 @@ namespace FlameWars
 		*/
 		public void BonusTrigger()
 		{
-
+			// FOR TESTING ONLY
+			CardTrigger();
 		}
 
 		// Stock Trigger
@@ -195,7 +196,8 @@ namespace FlameWars
 		*/
 		public void StockTrigger()
 		{
-
+			// FOR TESTING ONLY
+			CardTrigger();
 		}
 
 		// Random Trigger

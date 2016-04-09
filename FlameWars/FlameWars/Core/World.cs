@@ -245,9 +245,34 @@ namespace FlameWars
 				// Update currentPlayer
 				currentPlayer.Update(gameTime);
 
+				// If the player has just rolled, start animating
+				if (currentPlayer.IsRolling())
+					AnimatePlayer();
+
+				// If the player is animating, update their animation
+				if (currentPlayer.IsAnimated())
+					UpdateAnimation();
+
 				// If the player has ended their turn, switch players
 				if (GameManager.EndTurn)
 				{
+					// Check to see if we just targeted a player
+					if (Target.isActive)
+					{
+						// If so, turn off target and change player's stats
+						Target.Deactivate();
+						int playerTarget = Target.PlayerTarget;
+						players[playerTarget].CardEffect(Message.CurrentCard);
+						currentPlayer.ApplyMorality(Message.CurrentCard);
+					}
+					else if (Message.isActive && 
+							 Message.CurrentCard != null && 
+							 Message.CurrentCard.Target == "Self Target")
+					{
+						// Change the current player's values
+						currentPlayer.CardEffect(Message.CurrentCard);
+						currentPlayer.ApplyMorality(Message.CurrentCard);
+					}
 					GameManager.EndTurn = false;
 					currentPlayer.End();
 					SwitchPlayers(gameTime);
@@ -306,5 +331,28 @@ namespace FlameWars
 			currentPlayer.Start();
 		}
 
+		// This method starts the animation by giving the player the
+		// required info about the board
+		public void AnimatePlayer()
+		{
+			// Set the player to animating state
+			currentPlayer.StartAnimation();
+		}
+
+		// This method is called in World.Update
+		// The point of this method is to call the player animation update
+		// This method will also give the player the new position to go to
+		// once the player has moved to the first square, they are told to
+		// go to the second square, until they have moved the roll amount
+		public void UpdateAnimation()
+		{
+			// Check if we have reached the final position
+			if (currentPlayer.BoardPosition == currentPlayer.FinalPosition)
+			{ 
+				// End animation, trigger the path object
+				currentPlayer.EndAnimation();
+				board.GetPath(currentPlayer.FinalPosition).Trigger();
+			}
+		}
     }
 }

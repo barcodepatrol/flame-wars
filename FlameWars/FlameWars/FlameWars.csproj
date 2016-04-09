@@ -43,13 +43,13 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Core\Message.cs" />
-    <Compile Include="Core\Target.cs" />
+    <Compile Include="States\Message.cs" />
+    <Compile Include="States\Target.cs" />
     <Compile Include="Managers\ArtManager.cs" />
     <Compile Include="Core\Board.cs" />
     <Compile Include="Core\Card.cs" />
     <Compile Include="Core\Deck.cs" />
-    <Compile Include="Managers\Dice.cs" />
+    <Compile Include="Core\Dice.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Managers\GameManager.cs" />
     <Compile Include="States\HowTo.cs" />
@@ -124,6 +124,18 @@
     <Content Include="Content\PlayButton.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Player1Button.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Player2Button.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Player3Button.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Player4Button.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\ResumeButton.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -131,6 +143,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\RollButton.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\TargetBox.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\token.png">
@@ -146,12 +161,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Content\BIGJOHN_24.xnb">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Content\SlimJoe_14.xnb">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="Content\Stellar-Bold_24.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

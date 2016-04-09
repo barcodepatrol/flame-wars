@@ -302,7 +302,9 @@ namespace FlameWars
 			{
 				// Returns the track we are looking for.
 				return track[nextPath];
-			} else { 
+			}
+			else
+			{ 
 				// In case of error OR In case of index simply equalling 0, return the default path.
 				return track[0];
 			}

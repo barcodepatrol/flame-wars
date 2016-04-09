@@ -39,15 +39,19 @@ namespace FlameWars
 		public const string PLAYER_ICON_PLACEHOLDER = "token"; // For playerIcon1, playerIcon2, playerIcon3, playerIcon4.
 
 		// Button texture filenames.
-		public const string BUTTON_OK     = "OkButton"; // For okButton.
-		public const string BUTTON_EXIT   = "ExitButton"; // For exitButton.
-		public const string BUTTON_HOW_TO = "HowToButton"; // For howToButton.
-		public const string BUTTON_MENU   = "MenuButton"; // For menuButton.
-		public const string BUTTON_PLAY   = "PlayButton"; // For playButton.
-		public const string BUTTON_RESUME = "ResumeButton"; // For resumeButton.
-		public const string BUTTON_RETURN = "ReturnButton"; // For returnButton.
-		public const string BUTTON_CANCEL = "CancelButton"; // For cancelButton.
-		public const string BUTTON_ROLL   = "RollButton"; // For rollButton.
+		public const string BUTTON_OK      = "OkButton"; // For okButton.
+		public const string BUTTON_EXIT    = "ExitButton"; // For exitButton.
+		public const string BUTTON_HOW_TO  = "HowToButton"; // For howToButton.
+		public const string BUTTON_MENU    = "MenuButton"; // For menuButton.
+		public const string BUTTON_PLAY    = "PlayButton"; // For playButton.
+		public const string BUTTON_RESUME  = "ResumeButton"; // For resumeButton.
+		public const string BUTTON_RETURN  = "ReturnButton"; // For returnButton.
+		public const string BUTTON_CANCEL  = "CancelButton"; // For cancelButton.
+		public const string BUTTON_ROLL    = "RollButton"; // For rollButton.
+		public const string BUTTON_PLAYER1 = "Player1Button"; // For player1Button
+		public const string BUTTON_PLAYER2 = "Player2Button"; // For player2Button
+		public const string BUTTON_PLAYER3 = "Player3Button"; // For player3Button
+		public const string BUTTON_PLAYER4 = "Player4Button"; // For player4Button
 
 		// Path texture filenames.
 		public const string PATH_TEXTURE_01 = "path_texture_01"; // For pathTexture1;
@@ -61,6 +65,7 @@ namespace FlameWars
 
 		// MessageBox texture.
 		public const string MESSAGE_BOX = "MessageBox"; // For messageBox.
+		public const string TARGET_BOX = "TargetBox"; // for targetBox
 		#endregion Filepaths
 
 		// ============================================================================
@@ -99,6 +104,10 @@ namespace FlameWars
 		private static Texture2D returnButton; // Return button texture.
 		private static Texture2D cancelButton; // Cancel button texture.
 		private static Texture2D rollButton; // Roll button texture.
+		private static Texture2D player1Button; // Player1 button texture
+		private static Texture2D player2Button; // Player2 button texture
+		private static Texture2D player3Button; // Player3 button texture
+		private static Texture2D player4Button; // Player4 button texture
 
 		// Path textures.
 		private static Texture2D pathTexture1; // Path Texture type 1.
@@ -112,6 +121,7 @@ namespace FlameWars
 
 		// Message Box texture
 		private static Texture2D messageBox; // Message box texture
+		private static Texture2D targetBox; // Target box texture
 		#endregion Variables
 
 		// ============================================================================
@@ -154,6 +164,10 @@ namespace FlameWars
 		public static Texture2D ReturnButton { get { return returnButton; } set { returnButton = value; } }
 		public static Texture2D CancelButton { get { return cancelButton; } set { cancelButton = value; } }
 		public static Texture2D RollButton { get { return rollButton; } set { rollButton = value; } }
+		public static Texture2D Player1Button { get { return player1Button; } set { player1Button = value; } }
+		public static Texture2D Player2Button { get { return player2Button; } set { player2Button = value; } }
+		public static Texture2D Player3Button { get { return player3Button; } set { player3Button = value; } }
+		public static Texture2D Player4Button { get { return player4Button; } set { player4Button = value; } }
 
 		// Path textures.
 		public static Texture2D PathTexture1 { get { return pathTexture1; } set { pathTexture1 = value; } }
@@ -167,12 +181,14 @@ namespace FlameWars
 
 		// Message box texture
 		public static Texture2D MessageBox { get { return messageBox; } set { messageBox = value; } }
+		public static Texture2D TargetBox { get { return targetBox; } set { targetBox = value; } }
 		#endregion Properties
 
 		// ============================================================================
 		// ================================= Methods ==================================
 		// ============================================================================
 
+		#region Methods
 		// Initialize a series of these Texture2D items.
 		public static void Initialize(ContentManager cm, bool debug)
 		{
@@ -214,15 +230,19 @@ namespace FlameWars
 				PlayerIcon4 = Content.Load<Texture2D>(PLAYER_ICON_04);
 
 				// Button textures.
-				OkButton     = Content.Load<Texture2D>(BUTTON_OK);
-				ExitButton   = Content.Load<Texture2D>(BUTTON_EXIT);
-				HowToButton  = Content.Load<Texture2D>(BUTTON_HOW_TO);
-				MenuButton   = Content.Load<Texture2D>(BUTTON_MENU);
-				PlayButton   = Content.Load<Texture2D>(BUTTON_PLAY);
-				ResumeButton = Content.Load<Texture2D>(BUTTON_RESUME);
-				ReturnButton = Content.Load<Texture2D>(BUTTON_RETURN);
-				CancelButton = Content.Load<Texture2D>(BUTTON_CANCEL);
-				RollButton   = Content.Load<Texture2D>(BUTTON_ROLL);
+				OkButton        = Content.Load<Texture2D>(BUTTON_OK);
+				ExitButton      = Content.Load<Texture2D>(BUTTON_EXIT);
+				HowToButton     = Content.Load<Texture2D>(BUTTON_HOW_TO);
+				MenuButton      = Content.Load<Texture2D>(BUTTON_MENU);
+				PlayButton      = Content.Load<Texture2D>(BUTTON_PLAY);
+				ResumeButton    = Content.Load<Texture2D>(BUTTON_RESUME);
+				ReturnButton    = Content.Load<Texture2D>(BUTTON_RETURN);
+				CancelButton    = Content.Load<Texture2D>(BUTTON_CANCEL);
+				RollButton      = Content.Load<Texture2D>(BUTTON_ROLL);
+				Player1Button   = Content.Load<Texture2D>(BUTTON_PLAYER1);
+				Player2Button   = Content.Load<Texture2D>(BUTTON_PLAYER2);
+				Player3Button   = Content.Load<Texture2D>(BUTTON_PLAYER3);
+				Player4Button   = Content.Load<Texture2D>(BUTTON_PLAYER4);
 
 				// Path textures.
 				PathTexture1 = Content.Load<Texture2D>(PATH_TEXTURE_01);
@@ -236,6 +256,7 @@ namespace FlameWars
 
 				// Message Box texture
 				MessageBox = Content.Load<Texture2D>(MESSAGE_BOX);
+				TargetBox  = Content.Load<Texture2D>(TARGET_BOX);
 			}
 			else
 			{
@@ -269,15 +290,19 @@ namespace FlameWars
 			PlayerIcon4 = Content.Load<Texture2D>(PLAYER_ICON_PLACEHOLDER);
 
 			// Button textures.
-			OkButton     = Content.Load<Texture2D>(BUTTON_OK);
-			ExitButton   = Content.Load<Texture2D>(BUTTON_EXIT);
-			HowToButton  = Content.Load<Texture2D>(BUTTON_HOW_TO);
-			MenuButton   = Content.Load<Texture2D>(BUTTON_MENU);
-			PlayButton   = Content.Load<Texture2D>(BUTTON_PLAY);
-			ResumeButton = Content.Load<Texture2D>(BUTTON_RESUME);
-			ReturnButton = Content.Load<Texture2D>(BUTTON_RETURN);
-			CancelButton = Content.Load<Texture2D>(BUTTON_CANCEL);
-			RollButton   = Content.Load<Texture2D>(BUTTON_ROLL);
+			OkButton        = Content.Load<Texture2D>(BUTTON_OK);
+			ExitButton      = Content.Load<Texture2D>(BUTTON_EXIT);
+			HowToButton     = Content.Load<Texture2D>(BUTTON_HOW_TO);
+			MenuButton      = Content.Load<Texture2D>(BUTTON_MENU);
+			PlayButton      = Content.Load<Texture2D>(BUTTON_PLAY);
+			ResumeButton    = Content.Load<Texture2D>(BUTTON_RESUME);
+			ReturnButton    = Content.Load<Texture2D>(BUTTON_RETURN);
+			CancelButton    = Content.Load<Texture2D>(BUTTON_CANCEL);
+			RollButton      = Content.Load<Texture2D>(BUTTON_ROLL);
+			Player1Button   = Content.Load<Texture2D>(BUTTON_PLAYER1);
+			Player2Button   = Content.Load<Texture2D>(BUTTON_PLAYER2);
+			Player3Button   = Content.Load<Texture2D>(BUTTON_PLAYER3);
+			Player4Button   = Content.Load<Texture2D>(BUTTON_PLAYER4);
 
 			// Path textures.
 			PathTexture1 = Content.Load<Texture2D>(PATH_TEXTURE_PLACEHOLDER);
@@ -291,7 +316,9 @@ namespace FlameWars
 
 			// Message Box texture
 			MessageBox = Content.Load<Texture2D>(MESSAGE_BOX);
+			TargetBox  = Content.Load<Texture2D>(TARGET_BOX);
 		}
-				
+		#endregion Methods
+
 	}
 }

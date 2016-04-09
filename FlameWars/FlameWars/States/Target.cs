@@ -28,18 +28,18 @@ namespace FlameWars
 		static private Color tint; // DrawColor. Not everything will be drawn in white.
 
 		// Used for message box
-		static private int BOX_WIDTH = 100; // This one cannot be constant since we don't know message length
+		static private int BOX_WIDTH  = 100; // This one cannot be constant since we don't know message length
 		static private int BOX_HEIGHT = 200; // This one cannot be constant since we don't know message length
 		const int PADDING = 20;
 
 		// Used for buttons
-		const int NUMBER_OF_BUTTONS = 3;
-		const int PLAYER1_INDEX = 0;
-		const int PLAYER2_INDEX = 1;
-		const int PLAYER3_INDEX = 2;
-		const int PLAYER4_INDEX = 3;
-		const int BUTTON_WIDTH = 100;
-		const int BUTTON_HEIGHT = 50;
+		const int NUMBER_OF_BUTTONS = 4;
+		const int PLAYER1_INDEX     = 0;
+		const int PLAYER2_INDEX     = 1;
+		const int PLAYER3_INDEX     = 2;
+		const int PLAYER4_INDEX     = 3;
+		const int BUTTON_WIDTH      = 100;
+		const int BUTTON_HEIGHT     = 50;
 
 		// Stores button info
 		static Color[] buttonColors;
@@ -82,6 +82,12 @@ namespace FlameWars
 			active = true;
 		}
 
+		// This method deactivates the messagebox
+		static public void Deactivate()
+		{
+			active = false;
+		}
+
 		// Creates Messages - Includes a change to the default cancel value
 		static public void CreateTarget()
 		{
@@ -92,9 +98,9 @@ namespace FlameWars
 			playerTarget = 0;
 
 			// Set up button data
-			buttonColors = new Color[NUMBER_OF_BUTTONS];
+			buttonColors   = new Color[NUMBER_OF_BUTTONS];
 			buttonTextures = new Texture2D[NUMBER_OF_BUTTONS];
-			buttonBounds = new Rectangle[NUMBER_OF_BUTTONS];
+			buttonBounds   = new Rectangle[NUMBER_OF_BUTTONS];
 
 			// Load the button textures
 			LoadContent();
@@ -109,11 +115,11 @@ namespace FlameWars
 		// This method loads the button textures
 		static public void LoadContent()
 		{
-			//buttonTextures[0] = ArtManager.PlayerTarget1;
-			//buttonTextures[1] = ArtManager.PlayerTarget2;
-			//buttonTextures[2] = ArtManager.PlayerTarget3;
-			//buttonTextures[3] = ArtManager.PlayerTarget4;
-			image = ArtManager.MessageBox;
+			buttonTextures[0] = ArtManager.Player1Button;
+			buttonTextures[1] = ArtManager.Player2Button;
+			buttonTextures[2] = ArtManager.Player3Button;
+			buttonTextures[3] = ArtManager.Player4Button;
+			image             = ArtManager.TargetBox;
 		}
 
 		// This method constructs the message box
@@ -126,7 +132,7 @@ namespace FlameWars
 			int bx = 0, by = 0;
 
 			bx = (int)center.X - (BUTTON_WIDTH/2);
-			by = (int)position.Y + (BOX_HEIGHT/2) - (2*BUTTON_HEIGHT) - PADDING;
+			by = (int)position.Y + PADDING;
 
 			// Create the buttons
 			MakeButtons(bx, by);
@@ -136,9 +142,9 @@ namespace FlameWars
 		static public void MakeBox()
 		{
 			// Create box placement data
-			position = new Vector2(GameManager.Center.X - (BOX_WIDTH / 2), GameManager.Center.Y - (BOX_HEIGHT / 2));
+			position = new Vector2(GameManager.Center.X - (BOX_WIDTH / 2) - PADDING, GameManager.Center.Y - (BOX_HEIGHT / 2));
 			center = GameManager.Center;
-			boundaries = new Rectangle((int)position.X, (int)position.Y, BOX_WIDTH, BOX_HEIGHT);
+			boundaries = new Rectangle((int)position.X, (int)position.Y, BOX_WIDTH+(2*PADDING), BOX_HEIGHT+(5*PADDING));
 		}
 
 		// This method constructs the buttons
@@ -224,9 +230,6 @@ namespace FlameWars
 					buttonBounds[i].Y <= mY && mY <= buttonBounds[i].Y + BUTTON_HEIGHT &&
 					buttonColors[i] == Color.Gray)
 				{
-					// Set the target box to inactive
-					active = false;
-
 					// Set the playerTarget equal to the current looping index
 					playerTarget = i;
 

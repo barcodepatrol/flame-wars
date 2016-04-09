@@ -29,6 +29,7 @@ namespace FlameWars
 
 		// Enumerator.
 		public enum AnimationState { Idle, Roll, Animate };
+		public enum Direction { North, South, East, West };
 
 		// Textures.
 		private Texture2D rollButton; // UI RollButton texture for the player.
@@ -40,26 +41,30 @@ namespace FlameWars
 		private Rectangle tokenBounds;  // Display position for the player's token.
 		private Random random;
 		private AnimationState animationState; // The current animation state.
+		private Direction currentDirection; // The current direction we are moving in.
+		private const double MOVEMENT_AMOUNT = 1; // The amount we move by when we animate.
 
 		// Vectors and Rectangles
 		private Rectangle tokenPosition = new Rectangle(0,0,0,0);
 		private Vector2 uiPosition = new Vector2(0,0);
 
 		private Role role; // The role of the player.
-		private int boardPosition = 0;   // The position the player has on the board.
-		private int nextPosition = 0;   // The position the player must move to.
-		private int money = 0;   // The capital a given player has.
-		private int users = 0;   // The number of users the player has.
-		private int memes = 0;   // The number of memes the player can use.
-		private int bandwidthAmount = 0;   // The bandwidth amount the player owns.
+		private int boardPosition       = 0;   // The position the player has on the board.
+		private int nextPosition        = 0;   // The position the player must move to.
+		private int finalPosition		= 0;   // The position the player will finish moving at.
+		private double movedAmount      = 0;   // The amount we have moved so far during animation.
+		private int money               = 0;   // The capital a given player has.
+		private int users               = 0;   // The number of users the player has.
+		private int memes               = 0;   // The number of memes the player can use.
+		private int bandwidth           = 0;   // The bandwidth amount the player owns.
 		private int bandwidthPercentage = 100; // The percentage of bandwidth the player can utilize.
-		private int malice = 0;   // The malice amount the player has accrued.
-		private int charity = 0;   // The charity amount the player has accrued.
-		private bool buttonActive = false; // Is the roll button currently interactable?
-		private bool buttonPressed = false;
+		private int malice              = 0;   // The malice amount the player has accrued.
+		private int charity             = 0;   // The charity amount the player has accrued.
+		private bool buttonActive   = false; // Is the roll button currently interactable?
+		private bool buttonPressed  = false;
 		private bool buttonReleased = false;
-		private bool buttonHover = false;
-		private bool currentPlayer = false;
+		private bool buttonHover    = false;
+		private bool currentPlayer  = false;
 		private int[] DrawYPositions; // The Y positions for UI icons.
 
 		#endregion Variables
@@ -122,6 +127,13 @@ namespace FlameWars
 			set { this.nextPosition = value; }
 		}
 
+		// Stores the index of the final position
+		public int FinalPosition
+		{
+			get { return finalPosition; }
+			set { finalPosition = value; }
+		}
+
 		// Stores the int value for the player's money
 		public int Money
 		{
@@ -150,8 +162,8 @@ namespace FlameWars
 		// Stores the int value for the player's bandwidth amount
 		public int Bandwidth
 		{
-			get { return this.bandwidthAmount; }
-			set { this.bandwidthAmount = value; }
+			get { return this.bandwidth; }
+			set { this.bandwidth = value; }
 		}
 
 		// Stores the int value for the player's bandwidth percentage
@@ -207,11 +219,18 @@ namespace FlameWars
 			get { return this.currentPlayer; }
 			set { this.currentPlayer = value; }
 		}
-
-		public AnimationState AnimState // Animationstate is the name of the enum and thus cannot be used as the name of the property
+		
+		// Animationstate is the name of the enum and thus cannot be used as the name of the property
+		public AnimationState AnimState 
 		{
 			get { return animationState; }
 			set { animationState = value; }
+		}
+
+		public Direction CurrentDirection
+		{
+			get { return currentDirection; }
+			set { currentDirection = value; }
 		}
 		#endregion
 
@@ -241,11 +260,12 @@ namespace FlameWars
 		{
 			// Set the initial path index to zero.
 			BoardPosition = currentPathIndex;
+			NextPosition  = BoardPosition++;
 			rollButtonColors = new Color[3];
 
-			ActiveColor = Color.White;
+			ActiveColor   = Color.White;
 			InactiveColor = Color.DarkGray;
-			PressedColor = Color.Gray;
+			PressedColor  = Color.Gray;
 		}
 		
 		// Determines how many users the player gets
@@ -286,7 +306,7 @@ namespace FlameWars
 					Roll(gameTime);
 					break;
 				case AnimationState.Animate:
-					Animate(gameTime);
+					UpdateAnimation();
 					break;
 			}
 		}
@@ -301,56 +321,85 @@ namespace FlameWars
 
 		public void Roll(GameTime gameTime)
 		{
-			int roll;
-			// Get the rolled value.
-			roll = Dice.Roll(1);
+			// FOR TESTING PURPOSES ONLY
+			//Message.Activate();
+			//Message.CreateMessage(GameManager.GetCard());
 
-			int tempPosition = boardPosition += roll;
+			//AnimState = AnimationState.Idle;
 
-			// TODO REMOVE
-			int trackLength = 34;
-
-			if (tempPosition < 0)
-			{
-				while (tempPosition < 0)
-				{
-					int difference = 0 - tempPosition;
-					tempPosition = (trackLength - 1) - difference;
-				}
-			}
-			else if (tempPosition > (trackLength - 1))
-			{
-				while (tempPosition > (trackLength - 1))
-				{
-					int difference = tempPosition - (trackLength - 1);
-					tempPosition = difference;
-				}
-			}
-
-
-
-
-			// Add value to the board position.
-			//boardPosition += roll;
-
-			// Pass it into the "nextPosition" index array.
-
-
-			// Once the value is obtained and stored, move into the next stage: animate. - This should be dealt with in a manager class.
+			// Set nextPosition to be one square ahead
+			// Set finalPosition to be 
+			nextPosition = BoardPosition++;
+			finalPosition = BoardPosition + Dice.Roll(1);
 		}
 
-		public void Animate(GameTime gameTime)
+		// This method merely updates the player's position (animation)
+		public void UpdateAnimation()
 		{
-			// Animation state shall persist as long as the nextPosition is not equal to the boardPosition.
-			if (boardPosition != nextPosition)
+			// Move based off of current direction
+			switch (CurrentDirection)
 			{
-				// Do animation things here.
-				// TODO
+				case Direction.North:
+					TokenPosition = new Rectangle(TokenPosition.X, 
+												  (int)(TokenPosition.Y+MOVEMENT_AMOUNT), 
+												  TokenPosition.Width, 
+												  TokenPosition.Height);
+					break;
+				case Direction.South:
+					TokenPosition = new Rectangle(TokenPosition.X, 
+												  (int)(TokenPosition.Y-MOVEMENT_AMOUNT), 
+												  TokenPosition.Width, 
+												  TokenPosition.Height);
+					break;
+				case Direction.East:
+					TokenPosition = new Rectangle((int)(TokenPosition.X+MOVEMENT_AMOUNT), 
+												  TokenPosition.Y, 
+												  TokenPosition.Width, 
+												  TokenPosition.Height);
+					break;
+				case Direction.West:
+					TokenPosition = new Rectangle((int)(TokenPosition.X-MOVEMENT_AMOUNT), 
+												  TokenPosition.Y, 
+												  TokenPosition.Width, 
+												  TokenPosition.Height);
+					break;
 			}
-			else
+
+			// Increment movedAmount
+			movedAmount += MOVEMENT_AMOUNT;
+
+			// Update movedAmount and check if our position has changed
+			if (movedAmount >= 100)
 			{
-				// Change the animationState to Idle.
-				animationState = AnimationState.Idle;
+				movedAmount = 0;
+				BoardPosition = NextPosition;
+				NextPosition++;
+				UpdateDirection();
+			}
+		}
+
+		// This method changes the direction for the player
+		public void UpdateDirection()
+		{
+			// East
+			if (NextPosition > 0 && NextPosition <= 12)
+			{
+				CurrentDirection = Direction.East;
+			}
+			// North
+			else if (NextPosition > 12 && NextPosition <= 17)
+			{
+				CurrentDirection = Direction.North;
+			}
+			// West
+			else if (NextPosition > 17 && NextPosition <= 29)
+			{
+				CurrentDirection = Direction.West;
+			}
+			// South
+			else if (NextPosition > 29 && NextPosition <= 34)
+			{
+				CurrentDirection = Direction.South;
 			}
 		}
 
@@ -363,6 +412,12 @@ namespace FlameWars
 		public void StartAnimation()
 		{
 			animationState = AnimationState.Animate;
+			UpdateDirection();
+		}
+
+		public void EndAnimation()
+		{
+			animationState = AnimationState.Idle;
 		}
 
 		// Initializes the players turn
@@ -588,7 +643,7 @@ namespace FlameWars
 			sb.Draw(iconTexture, new Rectangle(ix, iy, Icon.Width, Icon.Height), Color.White);
 
 			// Draw the stats below
-			Object[] objectsToDraw = new object[] { money, users, memes, bandwidthAmount, Malice, Charity, rollButton }; // Place all drawn elements here.
+			Object[] objectsToDraw = new object[] { money, users, memes, bandwidth, Malice, Charity, rollButton }; // Place all drawn elements here.
 
 			for (int index = 0; index < objectsToDraw.Length; index++)
 			{
@@ -652,7 +707,8 @@ namespace FlameWars
 
 		// Calculuate DrawY positions
 		public void CalculateDrawYPositions()
-		{// Get the int values for ix, iy.
+		{
+			// Get the int values for ix, iy.
 			int ix = (int)UIPosition.X;
 			int iy = (int)UIPosition.Y;
 
@@ -690,6 +746,31 @@ namespace FlameWars
 			}
 		}
 
-		//public 
+		// This method changes a player's attributes based off of some card
+		public void CardEffect(Card c)
+		{
+			switch (c.Attribute)
+			{
+				case "Money":
+					money += c.Amount;
+					break;
+				case "Users":
+					users += c.Amount;
+					break;
+				case "Memes":
+					memes += c.Amount;
+					break;
+				case "Bandwidth":
+					bandwidth += c.Amount;
+					break;
+			}
+		}
+
+		// This method applies morality to a user
+		public void ApplyMorality(Card c)
+		{
+			if (c.Malice  != 0) malice  -= c.Malice;
+			if (c.Charity != 0) charity += c.Charity;
+		}
 	}
 }

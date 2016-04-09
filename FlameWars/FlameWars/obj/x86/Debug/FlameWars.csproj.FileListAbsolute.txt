@@ -64,3 +64,76 @@ D:\Users\dcn5783\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug
 D:\Users\dcn5783\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\OpenTK.dll
 D:\Users\dcn5783\Source\Repos\flame-wars\FlameWars\FlameWars\obj\x86\Debug\FlameWars.csprojResolveAssemblyReference.cache
 D:\Users\dcn5783\Source\Repos\flame-wars\FlameWars\FlameWars\obj\x86\Debug\FlameWars.exe
+C:\Users\Dante Nardo\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\FlameWars.exe.config
+C:\Users\Dante Nardo\Source\Repos\flame-wars\FlameWars\FlameWars\obj\x86\Debug\FlameWars.pdb
+C:\Users\Dante Nardo\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\board_final.png
+C:\Users\Dante Nardo\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\board_placeholder.png
+C:\Users\Dante Nardo\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\CancelButton.png
+C:\Users\Dante Nardo\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\Default how to instructions.jpg
+C:\Users\Dante Nardo\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\example_deck.xml
+C:\Users\Dante Nardo\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\ExitButton.png
+C:\Users\Dante Nardo\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\HowToButton.png
+C:\Users\Dante Nardo\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\MenuButton.png
+C:\Users\Dante Nardo\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\MessageBox.png
+C:\Users\Dante Nardo\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\OkButton.png
+C:\Users\Dante Nardo\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\path_placeholder.png
+C:\Users\Dante Nardo\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\path_texture_01.png
+C:\Users\Dante Nardo\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\path_texture_02.png
+C:\Users\Dante Nardo\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\path_texture_03.png
+C:\Users\Dante Nardo\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\path_texture_04.png
+C:\Users\Dante Nardo\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\PlayButton.png
+C:\Users\Dante Nardo\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\Player1Button.png
+C:\Users\Dante Nardo\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\Player2Button.png
+C:\Users\Dante Nardo\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\Player3Button.png
+C:\Users\Dante Nardo\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\Player4Button.png
+C:\Users\Dante Nardo\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\ResumeButton.png
+C:\Users\Dante Nardo\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\ReturnButton.png
+C:\Users\Dante Nardo\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\RollButton.png
+C:\Users\Dante Nardo\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\TargetBox.png
+C:\Users\Dante Nardo\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\token.png
+C:\Users\Dante Nardo\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\token_placeholder.png
+C:\Users\Dante Nardo\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\Stellar-Bold_24.xnb
+C:\Users\Dante Nardo\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\Stellar-Light_14.xnb
+C:\Users\Dante Nardo\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\FlameWars.exe
+C:\Users\Dante Nardo\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\FlameWars.pdb
+C:\Users\Dante Nardo\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\MonoGame.Framework.dll
+C:\Users\Dante Nardo\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\OpenTK.dll
+C:\Users\Dante Nardo\Source\Repos\flame-wars\FlameWars\FlameWars\obj\x86\Debug\FlameWars.csprojResolveAssemblyReference.cache
+C:\Users\Dante Nardo\Source\Repos\flame-wars\FlameWars\FlameWars\obj\x86\Debug\FlameWars.exe
+C:\Users\dante\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\FlameWars.exe.config
+C:\Users\dante\Source\Repos\flame-wars\FlameWars\FlameWars\obj\x86\Debug\FlameWars.pdb
+C:\Users\dante\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\board_final.png
+C:\Users\dante\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\board_placeholder.png
+C:\Users\dante\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\CancelButton.png
+C:\Users\dante\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\Default how to instructions.jpg
+C:\Users\dante\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\example_deck.xml
+C:\Users\dante\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\ExitButton.png
+C:\Users\dante\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\HowToButton.png
+C:\Users\dante\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\MenuButton.png
+C:\Users\dante\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\MessageBox.png
+C:\Users\dante\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\OkButton.png
+C:\Users\dante\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\path_placeholder.png
+C:\Users\dante\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\path_texture_01.png
+C:\Users\dante\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\path_texture_02.png
+C:\Users\dante\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\path_texture_03.png
+C:\Users\dante\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\path_texture_04.png
+C:\Users\dante\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\PlayButton.png
+C:\Users\dante\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\Player1Button.png
+C:\Users\dante\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\Player2Button.png
+C:\Users\dante\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\Player3Button.png
+C:\Users\dante\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\Player4Button.png
+C:\Users\dante\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\ResumeButton.png
+C:\Users\dante\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\ReturnButton.png
+C:\Users\dante\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\RollButton.png
+C:\Users\dante\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\TargetBox.png
+C:\Users\dante\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\token.png
+C:\Users\dante\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\token_placeholder.png
+C:\Users\dante\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\BIGJOHN_24.xnb
+C:\Users\dante\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\Stellar-Bold_24.xnb
+C:\Users\dante\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\Stellar-Light_14.xnb
+C:\Users\dante\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\FlameWars.exe
+C:\Users\dante\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\FlameWars.pdb
+C:\Users\dante\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\MonoGame.Framework.dll
+C:\Users\dante\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\OpenTK.dll
+C:\Users\dante\Source\Repos\flame-wars\FlameWars\FlameWars\obj\x86\Debug\FlameWars.csprojResolveAssemblyReference.cache
+C:\Users\dante\Source\Repos\flame-wars\FlameWars\FlameWars\obj\x86\Debug\FlameWars.exe
