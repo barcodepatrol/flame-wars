@@ -269,7 +269,7 @@ namespace FlameWars
 				index += Math.Abs(index);
 			}
 
-			while (index > track.Length)
+			while (index > (track.Length - 1))
 			{
 				index -= track.Length;
 			}
