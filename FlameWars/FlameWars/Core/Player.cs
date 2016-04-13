@@ -381,22 +381,22 @@ namespace FlameWars
 		public void UpdateDirection()
 		{
 			// East
-			if (NextPosition > 0 && NextPosition <= 12)
+			if (NextPosition >= 0 && NextPosition < 12)
 			{
 				CurrentDirection = Direction.East;
 			}
 			// North
-			else if (NextPosition > 12 && NextPosition <= 17)
+			else if (NextPosition >= 12 && NextPosition < 17)
 			{
 				CurrentDirection = Direction.North;
 			}
 			// West
-			else if (NextPosition > 17 && NextPosition <= 29)
+			else if (NextPosition >= 17 && NextPosition < 29)
 			{
 				CurrentDirection = Direction.West;
 			}
 			// South
-			else if (NextPosition > 29 && NextPosition <= 34)
+			else if (NextPosition >= 29 && NextPosition < 34)
 			{
 				CurrentDirection = Direction.South;
 			}

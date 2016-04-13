@@ -13,6 +13,7 @@ namespace FlameWars
 
 		#region Variables
 		enum PlayerState { PlayerOne, PlayerTwo, PlayerThree, PlayerFour };
+		private int numberOfPlayers = 0;
 
 		const int PLAYER_UI_WIDTH  = 200;
 		const int PLAYER_UI_HEIGHT = 200;
@@ -92,7 +93,7 @@ namespace FlameWars
 			// Initialize the managers
 			sm = new SoundManager(0,0);
 			om = new OptionsManager();
-
+			
 			// Initialize the players.
 			InitializePlayers(players);
 		}
@@ -103,20 +104,24 @@ namespace FlameWars
 			Texture2D[] pathImages = ArtManager.Paths;
 			Texture2D boardImage   = ArtManager.Board;
 
-			windowWidth = GameManager.Width;
+			// Initialize the board
+			board = new Board(pathImages, boardImage);
+
+			InitializePlayerTokens();
+
+			windowWidth  = GameManager.Width;
 			windowHeight = GameManager.Height;
 			
 			buttonColors = new Color[]{ Color.DarkGray, Color.White }; // 0 for inactive, 1 for active.
 			buttonTexture = ArtManager.RollButton;
 
 			MakeButtons();
-
-			board = new Board(pathImages, boardImage);
 		}
 
 		// This method initializes the players
 		public void InitializePlayers(int players)
 		{
+			#region CreatePlayers
 			// Initialize the players
 			// There will always be at least two players
 			this.players = new List<Player>();
@@ -139,11 +144,79 @@ namespace FlameWars
 				player3 = new Player(BOTTOM_LEFT_POSITION);
 				this.players.Add(player3);
 			}
+			#endregion CreatePlayers
 
 			// Set currentPlayer and playerState to first player
 			currentPlayer = this.players[0];
 			playerState = PlayerState.PlayerOne;
 			currentPlayer.Start();
+		}
+
+		// This method will initialize the player token positions
+		public void InitializePlayerTokens()
+		{
+			// Iterate through all players
+			for (int index = 0; index < this.players.Count; index++)
+			{
+				// Set the draw position for the player token.
+				Path playerLocation = board.GetPath(this.players[index].BoardPosition);
+				Rectangle pathLocation = new Rectangle(playerLocation.Bounds.X, 
+													   playerLocation.Bounds.Y, 
+													   playerLocation.Bounds.Width, 
+													   playerLocation.Bounds.Height);
+
+				// Find the origin of the player.
+				float tokenScale = 0.25f; // This will be scale of the token.
+				float divisor = 1f / tokenScale; // This is the divisor.
+
+				// Find the centered corners of the path.
+				int playerHeight = this.players[index].Token.Height;
+				int playerWidth = this.players[index].Token.Width;
+
+				playerHeight = (int)(tokenScale * playerHeight);
+				playerWidth = (int)(tokenScale * playerWidth);
+
+				int playerQuarterOffsetX = (int)(playerWidth / divisor);
+				int playerQuarterOffsetY = (int)(playerHeight / divisor);
+				int playerOffsetX = (playerWidth / 2);
+				int playerOffsetY = (playerHeight / 2);
+
+				int margin = (int)(75 * tokenScale);
+
+				Vector2 topLeft = new Vector2(pathLocation.X - playerQuarterOffsetX, 
+											  pathLocation.Y - playerQuarterOffsetY);
+				Vector2 playerPosition = new Vector2(0, 0);
+
+				switch (index)
+				{
+					case 0:
+						// Player One gets TOP LEFT.
+						playerPosition = new Vector2(topLeft.X + margin, 
+													 topLeft.Y + margin);
+						break;
+					case 1:
+						// Player Two gets TOP RIGHT.
+						playerPosition = new Vector2(topLeft.X + (pathLocation.Width - playerOffsetX) - margin, 
+													 topLeft.Y + margin);
+						break;
+					case 2:
+						// Player Three gets BOTTOM LEFT.
+						playerPosition = new Vector2(topLeft.X + margin, 
+													 topLeft.Y + (pathLocation.Height - playerOffsetY) - margin);
+						break;
+					case 3:
+						// Player Four gets BOTTOM RIGHT.
+						playerPosition = new Vector2(topLeft.X + (pathLocation.Width - playerOffsetX) - margin, 
+													 topLeft.Y + (pathLocation.Height - playerOffsetY) - margin);
+						break;
+				}
+
+				// Set each player's token's position
+				this.players[index].TokenPosition = new Rectangle((int)playerPosition.X, 
+																  (int)playerPosition.Y, 
+																       playerWidth, 
+																	   playerHeight);
+			}
 		}
 
 		// Ask each player to make their own button.
@@ -194,54 +267,6 @@ namespace FlameWars
             // Iterate through all players
 			for (int index = 0; index < players.Count; index++)
 			{
-				// Set the draw position for the player token.
-				Path playerLocation = board.GetPath(players[index].BoardPosition);
-				Rectangle pathLocation = new Rectangle(playerLocation.Bounds.X, playerLocation.Bounds.Y, playerLocation.Bounds.Width, playerLocation.Bounds.Height);
-
-				// Find the origin of the player.
-				float tokenScale = 0.25f; // This will be scale of the token.
-				float divisor = 1f / tokenScale; // This is the divisor.
-
-				// Find the centered corners of the path.
-				int playerHeight = players[index].Token.Height;
-				int playerWidth = players[index].Token.Width;
-
-				playerHeight = (int)(tokenScale * playerHeight);
-				playerWidth = (int)(tokenScale * playerWidth);
-
-				int playerQuarterOffsetX = (int)(playerWidth / divisor);
-				int playerQuarterOffsetY = (int)(playerHeight / divisor);
-				int playerOffsetX = (playerWidth / 2);
-				int playerOffsetY = (playerHeight / 2);
-
-				int margin = (int)(75 * tokenScale);
-
-				Vector2 topLeft = new Vector2(pathLocation.X - playerQuarterOffsetX, pathLocation.Y - playerQuarterOffsetY);
-				Vector2 playerPosition = new Vector2(0, 0);
-
-				switch (index)
-				{
-					case 0:
-						// Player One gets TOP LEFT.
-						playerPosition = new Vector2(topLeft.X + margin, topLeft.Y + margin);
-						break;
-					case 1:
-						// Player Two gets TOP RIGHT.
-						playerPosition = new Vector2(topLeft.X + (pathLocation.Width - playerOffsetX) - margin, topLeft.Y + margin);
-						break;
-					case 2:
-						// Player Three gets BOTTOM LEFT.
-						playerPosition = new Vector2(topLeft.X + margin, topLeft.Y + (pathLocation.Height - playerOffsetY) - margin);
-						break;
-					case 3:
-						// Player Four gets BOTTOM RIGHT.
-						playerPosition = new Vector2(topLeft.X + (pathLocation.Width - playerOffsetX) - margin, topLeft.Y + (pathLocation.Height - playerOffsetY) - margin);
-						break;
-				}
-
-				// Set each player's token's position
-				players[index].TokenPosition = new Rectangle((int)playerPosition.X, (int)playerPosition.Y, playerWidth, playerHeight);
-
 				// Update currentPlayer
 				currentPlayer.Update(gameTime);
 
