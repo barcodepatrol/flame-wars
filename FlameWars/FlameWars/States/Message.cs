@@ -121,6 +121,7 @@ namespace FlameWars
 		static public void Activate()
 		{
 			active = true;
+			cancel = false;
 		}
 
 		// Creates Messages - Includes a change to the default cancel value

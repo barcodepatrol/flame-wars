@@ -340,13 +340,13 @@ namespace FlameWars
 			{
 				case Direction.North:
 					TokenPosition = new Rectangle(TokenPosition.X, 
-												  (int)(TokenPosition.Y+MOVEMENT_AMOUNT), 
+												  (int)(TokenPosition.Y-MOVEMENT_AMOUNT), 
 												  TokenPosition.Width, 
 												  TokenPosition.Height);
 					break;
 				case Direction.South:
 					TokenPosition = new Rectangle(TokenPosition.X, 
-												  (int)(TokenPosition.Y-MOVEMENT_AMOUNT), 
+												  (int)(TokenPosition.Y+MOVEMENT_AMOUNT), 
 												  TokenPosition.Width, 
 												  TokenPosition.Height);
 					break;
