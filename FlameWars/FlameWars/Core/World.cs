@@ -203,16 +203,16 @@ namespace FlameWars
 				float divisor = 1f / tokenScale; // This is the divisor.
 
 				// Find the centered corners of the path.
-				int playerHeight = (int)(players[index].Token.Height);
-				int playerWidth = (int)(players[index].Token.Width);
+				int playerHeight = players[index].Token.Height;
+				int playerWidth = players[index].Token.Width;
 
 				playerHeight = (int)(tokenScale * playerHeight);
 				playerWidth = (int)(tokenScale * playerWidth);
 
 				int playerQuarterOffsetX = (int)(playerWidth / divisor);
 				int playerQuarterOffsetY = (int)(playerHeight / divisor);
-				int playerOffsetX = (int)(playerWidth / 2f);
-				int playerOffsetY = (int)(playerHeight / 2f);
+				int playerOffsetX = (playerWidth / 2);
+				int playerOffsetY = (playerHeight / 2);
 
 				int margin = (int)(75 * tokenScale);
 

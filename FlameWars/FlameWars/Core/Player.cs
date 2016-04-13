@@ -259,8 +259,7 @@ namespace FlameWars
 		public void Initialize(int currentPathIndex)
 		{
 			// Set the initial path index to zero.
-			BoardPosition = currentPathIndex;
-			NextPosition  = BoardPosition++;
+			BoardPosition = 0;
 			rollButtonColors = new Color[3];
 
 			ActiveColor   = Color.White;
