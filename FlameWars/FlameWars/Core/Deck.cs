@@ -49,6 +49,10 @@ namespace FlameWars
 			
 				// Load all of the cards
 				LoadCards();
+
+				// If this is a premium deck, mark cards
+				if (file.Contains("Premium"))
+					SetPremium();
 			}
 			catch (FileNotFoundException)
 			{
@@ -81,6 +85,14 @@ namespace FlameWars
 							  xn.SelectSingleNode("./amount").FirstChild.Value);
 
 			cards.Add(c);
+		}
+
+		// This method sets every card in the deck to be a Premium card
+		public void SetPremium()
+		{
+			// Iterate through all cards
+			foreach (Card c in cards)
+				c.Premium = true;
 		}
 
 		// This method reshuffles the list of cards
