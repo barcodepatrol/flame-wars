@@ -328,7 +328,7 @@ namespace FlameWars
 
 			// Set nextPosition to be one square ahead
 			// Set finalPosition to be 
-			nextPosition = BoardPosition++;
+			nextPosition = BoardPosition + 1;
 			finalPosition = BoardPosition + Dice.Roll(1);
 		}
 
