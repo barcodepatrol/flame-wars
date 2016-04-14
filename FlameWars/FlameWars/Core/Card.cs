@@ -22,6 +22,7 @@ namespace FlameWars
 		int amount  = 0; // Value to change the attribute by.
 		int malice  = 0; // Value to add to malice
 		int charity = 0; // Value to add to charity
+		bool premium = false; // Whether or not this is a premium card
 
 		#region Properties
 		public string Name
@@ -58,6 +59,11 @@ namespace FlameWars
 		{
 			get {return charity; }
 			set {this.charity = value; }
+		}
+		public bool Premium
+		{
+			get {return premium; }
+			set {this.premium = value; }
 		}
 		#endregion Properties
 

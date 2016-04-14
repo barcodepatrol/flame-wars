@@ -259,8 +259,7 @@ namespace FlameWars
 		public void Initialize(int currentPathIndex)
 		{
 			// Set the initial path index to zero.
-			BoardPosition = currentPathIndex;
-			NextPosition  = BoardPosition++;
+			BoardPosition = 0;
 			rollButtonColors = new Color[3];
 
 			ActiveColor   = Color.White;
@@ -329,7 +328,7 @@ namespace FlameWars
 
 			// Set nextPosition to be one square ahead
 			// Set finalPosition to be 
-			nextPosition = BoardPosition++;
+			nextPosition = BoardPosition + 1;
 			finalPosition = BoardPosition + Dice.Roll(1);
 		}
 
@@ -341,13 +340,13 @@ namespace FlameWars
 			{
 				case Direction.North:
 					TokenPosition = new Rectangle(TokenPosition.X, 
-												  (int)(TokenPosition.Y+MOVEMENT_AMOUNT), 
+												  (int)(TokenPosition.Y-MOVEMENT_AMOUNT), 
 												  TokenPosition.Width, 
 												  TokenPosition.Height);
 					break;
 				case Direction.South:
 					TokenPosition = new Rectangle(TokenPosition.X, 
-												  (int)(TokenPosition.Y-MOVEMENT_AMOUNT), 
+												  (int)(TokenPosition.Y+MOVEMENT_AMOUNT), 
 												  TokenPosition.Width, 
 												  TokenPosition.Height);
 					break;
@@ -382,22 +381,22 @@ namespace FlameWars
 		public void UpdateDirection()
 		{
 			// East
-			if (NextPosition > 0 && NextPosition <= 12)
+			if (NextPosition >= 0 && NextPosition < 12)
 			{
 				CurrentDirection = Direction.East;
 			}
 			// North
-			else if (NextPosition > 12 && NextPosition <= 17)
+			else if (NextPosition >= 12 && NextPosition < 17)
 			{
 				CurrentDirection = Direction.North;
 			}
 			// West
-			else if (NextPosition > 17 && NextPosition <= 29)
+			else if (NextPosition >= 17 && NextPosition < 29)
 			{
 				CurrentDirection = Direction.West;
 			}
 			// South
-			else if (NextPosition > 29 && NextPosition <= 34)
+			else if (NextPosition >= 29 && NextPosition < 34)
 			{
 				CurrentDirection = Direction.South;
 			}

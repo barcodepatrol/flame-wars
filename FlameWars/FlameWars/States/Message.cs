@@ -121,6 +121,7 @@ namespace FlameWars
 		static public void Activate()
 		{
 			active = true;
+			cancel = false;
 		}
 
 		// Creates Messages - Includes a change to the default cancel value
@@ -165,7 +166,11 @@ namespace FlameWars
 			// Save card and message data
 			CurrentCard = c;
 			message     = c.Description;
-			cancel      = true;
+			
+			// Determine if card can be canceled or not
+			// Premium Card: Can be canceled
+			// Plebian Card: Cannot be canceled
+			if (c.Premium) cancel = true;
 
 			// Load the button textures
 			LoadContent();
