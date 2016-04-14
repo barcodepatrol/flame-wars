@@ -288,7 +288,11 @@ namespace FlameWars
 						Target.Deactivate();
 						int playerTarget = Target.PlayerTarget;
 						players[playerTarget].CardEffect(Message.CurrentCard);
-						currentPlayer.ApplyMorality(Message.CurrentCard);
+
+						// Check to see if a player targets themselves 
+						// If they do, they do not have morality applied
+						if (players[playerTarget] != currentPlayer)
+							currentPlayer.ApplyMorality(Message.CurrentCard);
 					}
 					else if (Message.isActive && 
 							 Message.CurrentCard != null && 
