@@ -293,6 +293,9 @@ namespace FlameWars
 						// If they do, they do not have morality applied
 						if (players[playerTarget] != currentPlayer)
 							currentPlayer.ApplyMorality(Message.CurrentCard);
+
+						// Subtract cost of card
+						currentPlayer.Money -= Message.CurrentCard.Cost;
 					}
 					else if (Message.isActive && 
 							 Message.CurrentCard != null && 
