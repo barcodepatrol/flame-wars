@@ -329,6 +329,8 @@ namespace FlameWars
 			finalPosition = BoardPosition + Dice.Roll(1);
 		}
 
+		
+
 		// This method merely updates the player's position (animation)
 		public void UpdateAnimation()
 		{
