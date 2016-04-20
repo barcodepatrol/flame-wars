@@ -60,6 +60,7 @@ namespace FlameWars
 		private int bandwidthPercentage = 0; // The percentage of bandwidth the player can utilize.
 		private int malice              = 0;   // The malice amount the player has accrued.
 		private int charity             = 0;   // The charity amount the player has accrued.
+		private int baseRate            = 1;  // base rate at which users are accrued
 		private bool buttonActive   = false; // Is the roll button currently interactable?
 		private bool buttonPressed  = false;
 		private bool buttonReleased = false;
@@ -280,7 +281,7 @@ namespace FlameWars
 			// Memes increase your users by an exponential addition
 			int memeAddicts = (memes / 20) ^ 2;
 
-			users += (int)(memeAddicts * bandwidthPercentage / ((userCap - users) + .01));
+			users += baseRate + (memeAddicts + bandwidthPercentage * ((userCap - users)));
 		}
 
 		// Update function.
