@@ -14,6 +14,7 @@ namespace FlameWars
 		#region Variables
 		enum PlayerState { PlayerOne, PlayerTwo, PlayerThree, PlayerFour };
 		private int numberOfPlayers = 0;
+		private int totalBandwidth = 0;
 
 		const int PLAYER_UI_WIDTH  = 200;
 		const int PLAYER_UI_HEIGHT = 200;
@@ -79,6 +80,13 @@ namespace FlameWars
 			get { return this.player4; }
 			set { this.player4 = value; }
 		}		
+
+		// stores the amount of badwidth available on the board
+		public int TotalBandwidth
+		{
+			get { return this.totalBandwidth; }
+			set { this.totalBandwidth = value; }
+		}
 		#endregion Properties
 
 		// ============================================================================
@@ -304,6 +312,7 @@ namespace FlameWars
 					}
 					GameManager.EndTurn = false;
 					currentPlayer.End();
+					currentPlayer.GenerateUsers(TotalBandwidth);
 					SwitchPlayers(gameTime);
 				}
 			}
