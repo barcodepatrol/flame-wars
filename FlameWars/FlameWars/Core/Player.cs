@@ -235,6 +235,16 @@ namespace FlameWars
 		}
 		#endregion
 
+		#region Constants
+
+		// Endgame conditions.
+		private const int TURN_LIMIT = 10;
+		private const int WEALTH_LIMIT = 100000;
+		private const int USER_LIMIT = 100000;
+		private const int MEME_LIMIT = 100000;
+
+		#endregion
+
 		// ============================================================================
 		// ================================= Methods ==================================
 		// ============================================================================
