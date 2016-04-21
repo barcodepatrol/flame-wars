@@ -775,5 +775,21 @@ namespace FlameWars
 			if (c.Malice  != 0) malice  -= c.Malice;
 			if (c.Charity != 0) charity += c.Charity;
 		}
+
+		public bool CheckWinStatus(int turnCount)
+		{
+			switch (role)
+			{
+				case Role.Dankest: if(memes >= 1000) { return true; }
+					break;
+				case Role.Narcissist: if(turnCount >= 5) { return true; }
+					break;
+				case Role.Plastic: if(users >= 1000000) { return true; }
+					break;
+				case Role.TopHat: if(money >= 10000000) { return true; }
+					break;
+			}
+			return false;
+		}
 	}
 }
