@@ -789,13 +789,13 @@ namespace FlameWars
 		{
 			switch (role)
 			{
-				case Role.Dankest: if(memes >= 1000) { return true; }
+				case Role.Dankest: if(memes >= MEME_LIMIT) { return true; }
 					break;
-				case Role.Narcissist: if(turnCount >= 5) { return true; }
+				case Role.Narcissist: if(turnCount >= TURN_LIMIT) { return true; }
 					break;
-				case Role.Plastic: if(users >= 1000000) { return true; }
+				case Role.Plastic: if(users >= USER_LIMIT) { return true; }
 					break;
-				case Role.TopHat: if(money >= 10000000) { return true; }
+				case Role.TopHat: if(money >= WEALTH_LIMIT) { return true; }
 					break;
 			}
 			return false;
