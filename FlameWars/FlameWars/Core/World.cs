@@ -137,6 +137,12 @@ namespace FlameWars
 		public void InitializePlayers(int players)
 		{
 			#region CreatePlayers
+			// populate player role list
+			Player.roles.Add(Player.Role.Dankest);
+			Player.roles.Add(Player.Role.Narcissist);
+			Player.roles.Add(Player.Role.Plastic);
+			Player.roles.Add(Player.Role.TopHat);
+
 			// Initialize the players
 			// There will always be at least two players
 			this.players = new List<Player>();
