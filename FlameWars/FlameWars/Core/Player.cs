@@ -24,7 +24,7 @@ namespace FlameWars
 			Narcissist,
 			Dankest
 		}
-		private static List<Role> roles = new List<Role>();
+		public static List<Role> roles = new List<Role>();
 
 		// Enumerator.
 		public enum AnimationState { Idle, Roll, Animate };
@@ -266,11 +266,6 @@ namespace FlameWars
 			//initialize player
 			UIPosition = ui;
 			tokenBounds = new Rectangle();
-			
-			roles.Add(Role.Dankest);
-			roles.Add(Role.Narcissist);
-			roles.Add(Role.Plastic);
-			roles.Add(Role.TopHat);
 
 			// Set the initial path index to zero.
 			BoardPosition = 0;
