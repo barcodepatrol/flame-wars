@@ -331,7 +331,7 @@ namespace FlameWars
 			// Set nextPosition to be one square ahead
 			// Set finalPosition to be 
 			NextPosition = BoardPosition + 1;
-			finalPosition = BoardPosition + 30;//Dice.Roll(1);
+			finalPosition = BoardPosition + Dice.Roll(1);
 
 			// Wrap final position
 			if (finalPosition > 33)
