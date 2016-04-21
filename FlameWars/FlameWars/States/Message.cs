@@ -22,17 +22,19 @@ namespace FlameWars
 
 		// Stores the card data
 		static private Card card;
+		static private int  cost;
+		static private bool buying;
 
 		// Used for drawing the background box
-		static private Texture2D image; // Stores the box's texture
-		static private Vector2 position; // Position. X and Y Co-ordinates.
-		static private Vector2 center; // Provides a center point for players to be drawn upon.
+		static private Texture2D image;		 // Stores the box's texture
+		static private Vector2 position;	 // Position. X and Y Co-ordinates.
+		static private Vector2 center;		 // Provides a center point for players to be drawn upon.
 		static private Vector2 textPosition; // Position for the text
 		static private Rectangle boundaries; // Bounds. X and Y are arbitrary. Width and Height.
-		static private Color tint; // DrawColor. Not everything will be drawn in white.
+		static private Color tint;			 // DrawColor. Not everything will be drawn in white.
 
 		// Used for displaying content
-		static private string message; // Contains the message to display
+		static private string message;		 // Contains the message to display
 		static private bool cancel = false;  // Determines if a cancel button is displayed
 
 		// Used for message box
@@ -61,16 +63,28 @@ namespace FlameWars
 
 		#region Properties
 
+		// Stores whether or not the messagebox is active
 		public static bool isActive
 		{
 			get { return active; }
 			set { active = value; }
 		}
+
+		// Stores the card the messagebox is displaying
 		public static Card CurrentCard
 		{
 			get { return card; }
 			set { card = value; }
 		}
+
+		// Stores the cost of the messagebox's card
+		public static int Cost
+		{
+			get { return cost; }
+			set { cost = value; }
+		}
+
+		// Stores the position of the box
 		public static Vector2 Position
 		{
 			get { return position; }
@@ -122,6 +136,7 @@ namespace FlameWars
 		{
 			active = true;
 			cancel = false;
+			cost   = 0;
 		}
 
 		// Creates Messages - Includes a change to the default cancel value
@@ -150,10 +165,36 @@ namespace FlameWars
 			// Set up texture
 			//CreateBoxTexture();
 		}
-
-		// Creates Messages - Includes a change to the default cancel value
-		// Also saves and loads a card's information
+		
+		// Creates Messages - Asks user if they want to purchase card
 		static public void CreateMessage(Card c)
+		{
+			// Set up color
+			tint = Color.White;
+
+			// Set up button data
+			buttonColors =   new Color[NUMBER_OF_BUTTONS];
+			buttonTextures = new Texture2D[NUMBER_OF_BUTTONS];
+			buttonBounds =   new Rectangle[NUMBER_OF_BUTTONS];
+
+			// Save the cost and card - default card buying message
+			message = "Would you like to purchase the card?\n" +
+					  "Cost: " + cost + "\n";
+			card = c;
+			Cost = c.Cost;
+			cancel = true;
+			buying = true;
+
+			// Load the button textures
+			LoadContent();
+
+			// Create the message box
+			MakeMessageBox();
+		}
+
+		// Creates Messages - Displays card
+		// Also saves and loads a card's information
+		static public void CreateMessage()
 		{
 			// Set up color
 			tint = Color.White;
@@ -164,23 +205,24 @@ namespace FlameWars
 			buttonBounds   = new Rectangle[NUMBER_OF_BUTTONS];
 
 			// Save card and message data
-			CurrentCard = c;
-			message     = c.Description;
+			message = card.Description;
+			buying  = false;
 			
 			// Determine if card can be canceled or not
 			// Premium Card: Can be canceled
 			// Plebian Card: Cannot be canceled
-			if (c.Premium) cancel = true;
+			if (card.Premium) cancel = true;
 
 			// Load the button textures
 			LoadContent();
 
 			// Create the message box
 			MakeMessageBox();
-
-			// Set up texture
-			// CreateBoxTexture();
 		}
+
+		// Creats Card display
+		// NOTE: Only called when we use the CreateMessage(int cost) method
+		// This method is called internally
 
 		// This method loads the button textures
 		static public void LoadContent()
@@ -226,7 +268,7 @@ namespace FlameWars
 			int lengthcount = 0;
 
 			// Update string if this messagebox involves a card
-			if (card != null)
+			if (card != null && buying != true)
 			{
 				CardString();
 				linecount += 5;
@@ -257,8 +299,6 @@ namespace FlameWars
 					longestLine = lengthcount;
 				}
 			}
-
-			
 			
 			// Determine size of box
 			BOX_WIDTH = (int)(longestLine * 6.5f);
@@ -369,8 +409,14 @@ namespace FlameWars
 					switch (i)
 					{
 						case OK_INDEX:
+							// We just bought a card so display it
+							if (card != null && buying)
+							{
+								// Create card display
+								CreateMessage();
+							}
 							// Check to see if there is a card and it targets others
-							if (card != null && card.Target == "Target Others")
+							else if (card != null && card.Target == "Target Others")
 							{
 								active = false;
 								Target.Activate();
