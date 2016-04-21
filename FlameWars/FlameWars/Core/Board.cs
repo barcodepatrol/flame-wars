@@ -42,17 +42,17 @@ namespace FlameWars
 		/****
 			enum SpaceType - Indicators for path type.
 
-			Resource - This path provides resources (users, memes, bandwitdh, or money).
+			Resource - This path provides resources (users, memes, bandwidth, or money).
 			Card - This path triggers a card drawing.
-			Bonus - This path triggers a bonus for the player.
-			Stock - This path triggers a stock market mechanic.
-			Random - This path triggers the stock.
+			BondReturn - This path triggers a bond return action.
+			BondBuying - This path triggers a bond buying action.
+			Random - This path triggers a random trigger().
 			Empty - This path has no triggers. It's an empty, brick pavestone.
 
 			****/
 
 		// Enumerator.
-		public enum SpaceType { Resource, Card, Bonus, Stock, Random, Empty };
+		public enum SpaceType { Resource, Card, BondReturn, BondBuying, Random, Empty };
 
 		// Collections.
 		Path[] track; // Array containing the board's path objects.
@@ -199,10 +199,10 @@ namespace FlameWars
 					case SpaceType.Card:
 						tint = tints[1];
 						break;
-					case SpaceType.Bonus:
+					case SpaceType.BondReturn:
 						tint = tints[2];
 						break;
-					case SpaceType.Stock:
+					case SpaceType.BondBuying:
 						tint = tints[3];
 						break;
 					case SpaceType.Random:

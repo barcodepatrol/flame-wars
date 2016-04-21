@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FlameWars
 {
-	class Bond
+	public class Bond
 	{
 		// ============================================================================
 		// ================================ Variables =================================

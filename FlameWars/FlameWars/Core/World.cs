@@ -297,21 +297,19 @@ namespace FlameWars
 						int playerTarget = Target.PlayerTarget;
 						players[playerTarget].CardEffect(Message.CurrentCard);
 
-						// Check to see if a player targets themselves 
-						// If they do, they do not have morality applied
-						if (players[playerTarget] != currentPlayer)
-							currentPlayer.ApplyMorality(Message.CurrentCard);
-
 						// Subtract cost of card
 						currentPlayer.Money -= Message.CurrentCard.Cost;
 					}
 					else if (Message.isActive && 
-							 Message.CurrentCard != null && 
-							 Message.CurrentCard.Target == "Self Target")
+							 Message.CurrentCard != null)
 					{
 						// Change the current player's values
 						currentPlayer.CardEffect(Message.CurrentCard);
-						currentPlayer.ApplyMorality(Message.CurrentCard);
+					}
+					else if (Message.CurrentBond != null)
+					{
+						// Change the current player's values
+						currentPlayer.BuyBond(Message.CurrentBond);
 					}
 					GameManager.EndTurn = false;
 					currentPlayer.End();
@@ -367,6 +365,9 @@ namespace FlameWars
 			// Reset and recast playerState
 			playerState = (PlayerState)pState;
 			currentPlayer = players[(int)playerState];
+
+			// Set GameManager to have a reference to the current player
+			GameManager.CurrentPlayer = currentPlayer;
 
 			// Activate player
 			currentPlayer.Start();

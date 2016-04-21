@@ -16,7 +16,7 @@ namespace FlameWars
 
 		#region Variables
 
-		// Enumerator.
+		// Enumerator
 		public enum Role
 		{
 			TopHat,
@@ -47,6 +47,7 @@ namespace FlameWars
 		private Vector2 uiPosition = new Vector2(0,0);
 
 		private Role role; // The role of the player.
+		private List<Bond> bonds;
 		private int boardPosition       = 0;   // The position the player has on the board.
 		private int nextPosition        = 0;   // The position the player must move to.
 		private int finalPosition		= 0;   // The position the player will finish moving at.
@@ -112,6 +113,12 @@ namespace FlameWars
 		{
 			get { return this.role; }
 			set { this.role = value; }
+		}
+
+		// Stores the list of bonds the player owns
+		public List<Bond> Bonds
+		{
+			get { return bonds; }
 		}
 
 		// Stores the int value that evaluates to board position
@@ -253,9 +260,10 @@ namespace FlameWars
 		// Initialize the Player.
 		public void Initialize(int currentPathIndex, Vector2 ui)
 		{
-			//initialize player
+			// Initialize player
 			UIPosition = ui;
 			tokenBounds = new Rectangle();
+			bonds		= new List<Bond>();
 			
 			roles.Add(Role.Dankest);
 			roles.Add(Role.Narcissist);
@@ -772,6 +780,16 @@ namespace FlameWars
 		{
 			if (c.Malice  != 0) malice  -= c.Malice;
 			if (c.Charity != 0) charity += c.Charity;
+		}
+
+		// This method lets a player buy a bond and adds it to their bond list
+		public void BuyBond(Bond b)
+		{
+			if (money > 0)
+			{
+				money -= b.Cost;
+				bonds.Add(b);
+			}
 		}
 	}
 }

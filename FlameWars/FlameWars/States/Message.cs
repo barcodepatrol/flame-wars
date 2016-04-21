@@ -20,10 +20,12 @@ namespace FlameWars
 		// Used to control whether the messagebox is active
 		static private bool active = false;
 
-		// Stores the card data
+		// Stores the card and bond data
 		static private Card card;
+		static private Bond bond;
 		static private int  cost;
 		static private bool buying;
+		static private bool bought;
 
 		// Used for drawing the background box
 		static private Texture2D image;		 // Stores the box's texture
@@ -76,12 +78,26 @@ namespace FlameWars
 			get { return card; }
 			set { card = value; }
 		}
+		
+		// Stores the card the messagebox is displaying
+		public static Bond CurrentBond
+		{
+			get { return bond; }
+			set { bond = value; }
+		}
 
 		// Stores the cost of the messagebox's card
 		public static int Cost
 		{
 			get { return cost; }
 			set { cost = value; }
+		}
+
+		// Stores whether or not something was bought
+		public static bool Bought
+		{
+			get { return bought; }
+			set { bought = value; }
 		}
 
 		// Stores the position of the box
@@ -136,6 +152,9 @@ namespace FlameWars
 		{
 			active = true;
 			cancel = false;
+			bought = false;
+			card = null;
+			bond = null;
 			cost   = 0;
 		}
 
@@ -182,6 +201,32 @@ namespace FlameWars
 					  "Cost: " + cost + "\n";
 			card = c;
 			Cost = c.Cost;
+			cancel = true;
+			buying = true;
+
+			// Load the button textures
+			LoadContent();
+
+			// Create the message box
+			MakeMessageBox();
+		}
+
+		// Creates Messages - Asks user if they want to purchase a bond
+		static public void CreateMessage(Bond b)
+		{
+			// Set up color
+			tint = Color.White;
+
+			// Set up button data
+			buttonColors =   new Color[NUMBER_OF_BUTTONS];
+			buttonTextures = new Texture2D[NUMBER_OF_BUTTONS];
+			buttonBounds =   new Rectangle[NUMBER_OF_BUTTONS];
+
+			// Save the cost and card - default card buying message
+			message = "Would you like to purchase the bond?\n" +
+					  "Cost: " + cost + "\n";
+			bond = b;
+			Cost = b.Cost;
 			cancel = true;
 			buying = true;
 
@@ -409,10 +454,18 @@ namespace FlameWars
 					switch (i)
 					{
 						case OK_INDEX:
+							// We just bought a bond
+							if (bond != null && buying)
+							{
+								bought = true;
+								active = false;
+								GameManager.EndTurn = true;
+							}
 							// We just bought a card so display it
-							if (card != null && buying)
+							else if (card != null && buying)
 							{
 								// Create card display
+								bought = true;
 								CreateMessage();
 							}
 							// Check to see if there is a card and it targets others

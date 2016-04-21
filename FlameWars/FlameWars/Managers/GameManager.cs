@@ -26,6 +26,9 @@ namespace FlameWars
 		private static Deck deck;
 		private static int deckIndex = 0;
 
+		// Saves the current player info
+		private static Player cPlayer = null;
+
 		// A boolean to determine if a player ended their turn
 		private static bool endTurn = false;
 
@@ -44,6 +47,12 @@ namespace FlameWars
 		{
 			get { return windowHeight; }
 			set { windowHeight = value; }
+		}
+		// Stores the current player info
+		public static Player CurrentPlayer
+		{
+			get { return cPlayer; }
+			set { cPlayer = value; }
 		}
 		// Stores the window center position.
 		public static Vector2 Center

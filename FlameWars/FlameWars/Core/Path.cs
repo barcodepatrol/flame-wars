@@ -129,11 +129,11 @@ namespace FlameWars
 				case Board.SpaceType.Resource:
 					ResourceTrigger();
 					break;
-				case Board.SpaceType.Bonus:
-					BonusTrigger();
+				case Board.SpaceType.BondReturn:
+					BondReturnTrigger();
 					break;
-				case Board.SpaceType.Stock:
-					StockTrigger();
+				case Board.SpaceType.BondBuying:
+					BondBuyingTrigger();
 					break;
 				case Board.SpaceType.Random:
 					RandomTrigger();
@@ -178,26 +178,38 @@ namespace FlameWars
 			CardTrigger();
 		}
 
-		// Bonus Trigger
+		// BondReturn Trigger
 		/*
 			Play a sound effect.
 			Display a message to the user.
 		*/
-		public void BonusTrigger()
+		public void BondReturnTrigger()
 		{
-			// FOR TESTING ONLY
-			CardTrigger();
+			// Check if player has bonds
+			if (GameManager.CurrentPlayer.Bonds.Count > 0)
+			{
+				// Add the value of each bond
+				foreach (Bond b in GameManager.CurrentPlayer.Bonds)
+				{
+					GameManager.CurrentPlayer.Money += b.GenerateRevenue();
+					GameManager.CurrentPlayer.Bonds.Remove(b);
+				}
+			}
 		}
 
-		// Stock Trigger
+		// BondBuying Trigger
 		/*
 			Play a sound effect.
 			Display a message to the user.
 		*/
-		public void StockTrigger()
+		public void BondBuyingTrigger()
 		{
-			// FOR TESTING ONLY
-			CardTrigger();
+			// Create a bond
+			Bond bond = new Bond();
+
+			// Ask player if they want to buy Bond
+			Message.Activate();
+			Message.CreateMessage(bond);
 		}
 
 		// Random Trigger
@@ -219,11 +231,11 @@ namespace FlameWars
 				case Board.SpaceType.Resource:
 					ResourceTrigger();
 					break;
-				case Board.SpaceType.Bonus:
-					BonusTrigger();
+				case Board.SpaceType.BondReturn:
+					BondReturnTrigger();
 					break;
-				case Board.SpaceType.Stock:
-					StockTrigger();
+				case Board.SpaceType.BondBuying:
+					BondBuyingTrigger();
 					break;
 				default:
 					EmptyTrigger();
