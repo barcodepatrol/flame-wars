@@ -22,10 +22,9 @@ namespace FlameWars
 			TopHat,
 			Plastic,
 			Narcissist,
-			Befriender,
-			Dankest,
-			Sprinter
+			Dankest
 		}
+		private static List<Role> roles = new List<Role>();
 
 		// Enumerator.
 		public enum AnimationState { Idle, Roll, Animate };
@@ -39,7 +38,6 @@ namespace FlameWars
 		private Rectangle iconBounds;   // Display position for the player's UI icon.
 		private Texture2D tokenTexture; // Actual texture for the player's token.
 		private Rectangle tokenBounds;  // Display position for the player's token.
-		private Random random;
 		private AnimationState animationState; // The current animation state.
 		private Direction currentDirection; // The current direction we are moving in.
 		private const double MOVEMENT_AMOUNT = 1; // The amount we move by when we animate.
@@ -244,23 +242,26 @@ namespace FlameWars
 		// Constructor
 		public Player(Vector2 ui, int currentPathIndex)
 		{
-			UIPosition = ui;
-			tokenBounds = new Rectangle();
-			random = new Random();
-			Initialize(currentPathIndex);
+			Initialize(currentPathIndex,ui);
 		}
 
 		public Player(Vector2 ui)
 		{
-			UIPosition = ui;
-			tokenBounds = new Rectangle();
-			random = new Random();
-			Initialize(0);
+			Initialize(0,ui);
 		}
 
 		// Initialize the Player.
-		public void Initialize(int currentPathIndex)
+		public void Initialize(int currentPathIndex, Vector2 ui)
 		{
+			//initialize player
+			UIPosition = ui;
+			tokenBounds = new Rectangle();
+			
+			roles.Add(Role.Dankest);
+			roles.Add(Role.Narcissist);
+			roles.Add(Role.Plastic);
+			roles.Add(Role.TopHat);
+
 			// Set the initial path index to zero.
 			BoardPosition = 0;
 			rollButtonColors = new Color[3];
@@ -268,6 +269,9 @@ namespace FlameWars
 			ActiveColor   = Color.White;
 			InactiveColor = Color.DarkGray;
 			PressedColor  = Color.Gray;
+
+			role = roles[GameManager.random.Next(roles.Count)];
+			roles.Remove(role);
 		}
 		
 		// Determines how many users the player gets
