@@ -27,8 +27,6 @@ D:\Projects\Git Libraries\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Deb
 D:\Projects\Git Libraries\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\example_deck.xml
 D:\Projects\Git Libraries\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\MessageBox.png
 D:\Projects\Git Libraries\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\OkButton.png
-D:\Projects\Git Libraries\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\BIGJOHN_24.xnb
-D:\Projects\Git Libraries\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\SlimJoe_14.xnb
 D:\Projects\Git Libraries\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\Stellar-Bold_24.xnb
 D:\Projects\Git Libraries\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\Stellar-Light_14.xnb
 D:\Users\dcn5783\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\FlameWars.exe.config
@@ -176,3 +174,8 @@ C:\Users\Michael\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug
 C:\Users\Michael\Source\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\OpenTK.dll
 C:\Users\Michael\Source\Repos\flame-wars\FlameWars\FlameWars\obj\x86\Debug\FlameWars.csprojResolveAssemblyReference.cache
 C:\Users\Michael\Source\Repos\flame-wars\FlameWars\FlameWars\obj\x86\Debug\FlameWars.exe
+D:\Projects\Git Libraries\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\Player1Button.png
+D:\Projects\Git Libraries\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\Player2Button.png
+D:\Projects\Git Libraries\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\Player3Button.png
+D:\Projects\Git Libraries\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\Player4Button.png
+D:\Projects\Git Libraries\Repos\flame-wars\FlameWars\FlameWars\bin\WindowsGL\Debug\Content\TargetBox.png
