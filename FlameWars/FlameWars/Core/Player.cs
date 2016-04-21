@@ -16,7 +16,7 @@ namespace FlameWars
 
 		#region Variables
 
-		// Enumerator
+		// Enumerator.
 		public enum Role
 		{
 			TopHat,
@@ -47,7 +47,6 @@ namespace FlameWars
 		private Vector2 uiPosition = new Vector2(0,0);
 
 		private Role role; // The role of the player.
-		private List<Bond> bonds;
 		private int boardPosition       = 0;   // The position the player has on the board.
 		private int nextPosition        = 0;   // The position the player must move to.
 		private int finalPosition		= 0;   // The position the player will finish moving at.
@@ -113,12 +112,6 @@ namespace FlameWars
 		{
 			get { return this.role; }
 			set { this.role = value; }
-		}
-
-		// Stores the list of bonds the player owns
-		public List<Bond> Bonds
-		{
-			get { return bonds; }
 		}
 
 		// Stores the int value that evaluates to board position
@@ -260,10 +253,9 @@ namespace FlameWars
 		// Initialize the Player.
 		public void Initialize(int currentPathIndex, Vector2 ui)
 		{
-			// Initialize player
+			//initialize player
 			UIPosition = ui;
 			tokenBounds = new Rectangle();
-			bonds		= new List<Bond>();
 			
 			roles.Add(Role.Dankest);
 			roles.Add(Role.Narcissist);
@@ -287,7 +279,7 @@ namespace FlameWars
 		{
 			// Memes increase the amount of users you get each round
 			// Bandwidth determines the upper and lower bounds of how many users you gain/lose
-			bandwidthPercentage = bandwidth / totBandwidth;
+			bandwidthPercentage = (int)(bandwidth / (totBandwidth + .01));
 			int userCap = bandwidth * 100;
 
 			// Memes increase your users by an exponential addition
@@ -338,8 +330,12 @@ namespace FlameWars
 
 			// Set nextPosition to be one square ahead
 			// Set finalPosition to be 
-			nextPosition = BoardPosition + 1;
+			NextPosition = BoardPosition + 1;
 			finalPosition = BoardPosition + Dice.Roll(1);
+
+			// Wrap final position
+			if (finalPosition > 33)
+				finalPosition -= 34;
 		}
 
 		// This method merely updates the player's position (animation)
@@ -383,6 +379,8 @@ namespace FlameWars
 				movedAmount = 0;
 				BoardPosition = NextPosition;
 				NextPosition++;
+				if (NextPosition == 34)
+					NextPosition = 0;
 				UpdateDirection();
 			}
 		}
@@ -391,22 +389,22 @@ namespace FlameWars
 		public void UpdateDirection()
 		{
 			// East
-			if (NextPosition >= 0 && NextPosition < 12)
+			if (NextPosition > 0 && NextPosition < 12)
 			{
 				CurrentDirection = Direction.East;
 			}
 			// North
-			else if (NextPosition >= 12 && NextPosition < 17)
+			else if (NextPosition >= 12 && NextPosition <= 17)
 			{
 				CurrentDirection = Direction.North;
 			}
 			// West
-			else if (NextPosition >= 17 && NextPosition < 29)
+			else if (NextPosition > 17 && NextPosition < 29)
 			{
 				CurrentDirection = Direction.West;
 			}
 			// South
-			else if (NextPosition >= 29 && NextPosition < 34)
+			else if ((NextPosition >= 29 && NextPosition <= 33) || NextPosition == 0)
 			{
 				CurrentDirection = Direction.South;
 			}
@@ -782,14 +780,20 @@ namespace FlameWars
 			if (c.Charity != 0) charity += c.Charity;
 		}
 
-		// This method lets a player buy a bond and adds it to their bond list
-		public void BuyBond(Bond b)
+		public bool CheckWinStatus(int turnCount)
 		{
-			if (money > 0)
+			switch (role)
 			{
-				money -= b.Cost;
-				bonds.Add(b);
+				case Role.Dankest: if(memes >= 1000) { return true; }
+					break;
+				case Role.Narcissist: if(turnCount >= 5) { return true; }
+					break;
+				case Role.Plastic: if(users >= 1000000) { return true; }
+					break;
+				case Role.TopHat: if(money >= 10000000) { return true; }
+					break;
 			}
+			return false;
 		}
 	}
 }

@@ -15,6 +15,7 @@ namespace FlameWars
 		enum PlayerState { PlayerOne, PlayerTwo, PlayerThree, PlayerFour };
 		private int numberOfPlayers = 0;
 		private int totalBandwidth = 0;
+		private int turnCount = 0;
 
 		const int PLAYER_UI_WIDTH  = 200;
 		const int PLAYER_UI_HEIGHT = 200;
@@ -86,6 +87,12 @@ namespace FlameWars
 		{
 			get { return this.totalBandwidth; }
 			set { this.totalBandwidth = value; }
+		}
+
+		// stores count of turns since game has begun
+		public int TurnCount
+		{
+			get { return this.turnCount; }
 		}
 		#endregion Properties
 
@@ -314,7 +321,10 @@ namespace FlameWars
 					GameManager.EndTurn = false;
 					currentPlayer.End();
 					currentPlayer.GenerateUsers(TotalBandwidth);
-					SwitchPlayers(gameTime);
+					if (!currentPlayer.CheckWinStatus(turnCount))
+					{
+						SwitchPlayers(gameTime);
+					}
 				}
 			}
 		}
@@ -360,7 +370,10 @@ namespace FlameWars
 
 			// Changes player 5 (doesn't exist) back to player 1
 			if (pState == 4)
+			{
 				pState = 0;
+				turnCount++;
+			}
 
 			// Reset and recast playerState
 			playerState = (PlayerState)pState;
