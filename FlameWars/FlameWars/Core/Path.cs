@@ -195,6 +195,8 @@ namespace FlameWars
 					GameManager.CurrentPlayer.Bonds.Remove(b);
 				}
 			}
+
+			GameManager.EndTurn = true;
 		}
 
 		// BondBuying Trigger

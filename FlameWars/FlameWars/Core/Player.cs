@@ -47,6 +47,7 @@ namespace FlameWars
 		private Vector2 uiPosition = new Vector2(0,0);
 
 		private Role role; // The role of the player.
+		private List<Bond> bonds;
 		private int boardPosition       = 0;   // The position the player has on the board.
 		private int nextPosition        = 0;   // The position the player must move to.
 		private int finalPosition		= 0;   // The position the player will finish moving at.
@@ -112,6 +113,12 @@ namespace FlameWars
 		{
 			get { return this.role; }
 			set { this.role = value; }
+		}
+
+		// Stores the player's current bonds
+		public List<Bond> Bonds
+		{
+			get { return bonds; }
 		}
 
 		// Stores the int value that evaluates to board position
@@ -266,6 +273,7 @@ namespace FlameWars
 			//initialize player
 			UIPosition = ui;
 			tokenBounds = new Rectangle();
+			bonds		= new List<Bond>();
 
 			// Set the initial path index to zero.
 			BoardPosition = 0;
@@ -799,6 +807,16 @@ namespace FlameWars
 					break;
 			}
 			return false;
+		}
+
+		// This method lets a player buy a bond and adds it to their bond list
+		public void BuyBond(Bond b)
+		{
+			if (money > 0)
+			{
+				money -= b.Cost;
+				bonds.Add(b);
+			}
 		}
 	}
 }
