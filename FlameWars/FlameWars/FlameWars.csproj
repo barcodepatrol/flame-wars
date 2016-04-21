@@ -43,6 +43,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Core\Bond.cs" />
     <Compile Include="States\Message.cs" />
     <Compile Include="States\Target.cs" />
     <Compile Include="Managers\ArtManager.cs" />
