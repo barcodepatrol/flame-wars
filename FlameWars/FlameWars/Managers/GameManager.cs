@@ -29,6 +29,8 @@ namespace FlameWars
 		// A boolean to determine if a player ended their turn
 		private static bool endTurn = false;
 
+		public static Random random;
+
 		#region Properties
 		//* Properties *//
 		// Stores the window width
@@ -74,6 +76,7 @@ namespace FlameWars
 			windowHeight    = h;
 			windowCenter    = GetElementCenter(w, h);
 			deck            = new Deck("Content\\example_deck.xml");
+			random			= new Random();
 		}
 
 		// Service method.

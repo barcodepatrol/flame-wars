@@ -15,11 +15,12 @@ namespace FlameWars
 		// ============================================================================
 		// ================================ Variables =================================
 		// ============================================================================
-		string name = "Default"; // Name.
-		string desc = "Default"; // Description.
-		string targ = "No Target"; // Target.
-		string atrb = "Users"; // Users.
-		int amount  = 0; // Value to change the attribute by.
+		string name = "Default"; // Name
+		string desc = "Default"; // Description
+		string targ = "No Target"; // Target
+		string atrb = "Users"; // Users
+		int amount  = 0; // Value to change the attribute by
+		int cost    = 0; // Amount to subtract from buyer's money
 		int malice  = 0; // Value to add to malice
 		int charity = 0; // Value to add to charity
 		bool premium = false; // Whether or not this is a premium card
@@ -50,6 +51,11 @@ namespace FlameWars
 			get {return amount; }
 			set {this.amount = value; }
 		}
+		public int Cost
+		{
+			get {return cost; }
+			set {this.cost = value; }
+		}
 		public int Malice
 		{
 			get {return malice; }
@@ -73,13 +79,14 @@ namespace FlameWars
 
 		// Constructor
 		// Given all of the data for each card
-		public Card(string n, string d, string t, string at, string am)
+		public Card(string n, string d, string t, string at, string am, string c)
 		{
 			name = n;
 			desc = d;
 			targ = t;
 			atrb = at;
 			int.TryParse(am, out amount);
+			int.TryParse(c, out cost);
 			
 			// Determine malice/charity
 

@@ -22,10 +22,9 @@ namespace FlameWars
 			TopHat,
 			Plastic,
 			Narcissist,
-			Befriender,
-			Dankest,
-			Sprinter
+			Dankest
 		}
+		private static List<Role> roles = new List<Role>();
 
 		// Enumerator.
 		public enum AnimationState { Idle, Roll, Animate };
@@ -39,7 +38,6 @@ namespace FlameWars
 		private Rectangle iconBounds;   // Display position for the player's UI icon.
 		private Texture2D tokenTexture; // Actual texture for the player's token.
 		private Rectangle tokenBounds;  // Display position for the player's token.
-		private Random random;
 		private AnimationState animationState; // The current animation state.
 		private Direction currentDirection; // The current direction we are moving in.
 		private const double MOVEMENT_AMOUNT = 1; // The amount we move by when we animate.
@@ -57,15 +55,18 @@ namespace FlameWars
 		private int users               = 0;   // The number of users the player has.
 		private int memes               = 0;   // The number of memes the player can use.
 		private int bandwidth           = 0;   // The bandwidth amount the player owns.
-		private int bandwidthPercentage = 100; // The percentage of bandwidth the player can utilize.
+		private int bandwidthPercentage = 0; // The percentage of bandwidth the player can utilize.
 		private int malice              = 0;   // The malice amount the player has accrued.
 		private int charity             = 0;   // The charity amount the player has accrued.
+		private int baseRate            = 1;  // base rate at which users are accrued
 		private bool buttonActive   = false; // Is the roll button currently interactable?
 		private bool buttonPressed  = false;
 		private bool buttonReleased = false;
 		private bool buttonHover    = false;
 		private bool currentPlayer  = false;
 		private int[] DrawYPositions; // The Y positions for UI icons.
+
+		
 
 		#endregion Variables
 
@@ -241,23 +242,26 @@ namespace FlameWars
 		// Constructor
 		public Player(Vector2 ui, int currentPathIndex)
 		{
-			UIPosition = ui;
-			tokenBounds = new Rectangle();
-			random = new Random();
-			Initialize(currentPathIndex);
+			Initialize(currentPathIndex,ui);
 		}
 
 		public Player(Vector2 ui)
 		{
-			UIPosition = ui;
-			tokenBounds = new Rectangle();
-			random = new Random();
-			Initialize(0);
+			Initialize(0,ui);
 		}
 
 		// Initialize the Player.
-		public void Initialize(int currentPathIndex)
+		public void Initialize(int currentPathIndex, Vector2 ui)
 		{
+			//initialize player
+			UIPosition = ui;
+			tokenBounds = new Rectangle();
+			
+			roles.Add(Role.Dankest);
+			roles.Add(Role.Narcissist);
+			roles.Add(Role.Plastic);
+			roles.Add(Role.TopHat);
+
 			// Set the initial path index to zero.
 			BoardPosition = 0;
 			rollButtonColors = new Color[3];
@@ -265,25 +269,23 @@ namespace FlameWars
 			ActiveColor   = Color.White;
 			InactiveColor = Color.DarkGray;
 			PressedColor  = Color.Gray;
+
+			role = roles[GameManager.random.Next(roles.Count)];
+			roles.Remove(role);
 		}
 		
 		// Determines how many users the player gets
-		public void GenerateUsers()
+		public void GenerateUsers(int totBandwidth)
 		{
 			// Memes increase the amount of users you get each round
 			// Bandwidth determines the upper and lower bounds of how many users you gain/lose
+			bandwidthPercentage = bandwidth / totBandwidth;
+			int userCap = bandwidth * 100;
 
 			// Memes increase your users by an exponential addition
-			int memeAddicts = (memes ^ 2) / 20;
+			int memeAddicts = (memes / 20) ^ 2;
 
-			// The left bound is positive as long as the bandwidth is above 80%
-			// The right bound is positive as long as the bandwidth is above 60%
-			int left = 5 + users * (bandwidthPercentage - 80);
-			int right = 10 + users * (bandwidthPercentage - 60);
-
-			// Select the user's new user amount to add
-			// Add the new users to the player's users
-			users += random.Next(left, right);
+			users += baseRate + (memeAddicts + bandwidthPercentage * ((userCap - users)));
 		}
 
 		// Update function.
@@ -331,6 +333,8 @@ namespace FlameWars
 			nextPosition = BoardPosition + 1;
 			finalPosition = BoardPosition + Dice.Roll(1);
 		}
+
+		
 
 		// This method merely updates the player's position (animation)
 		public void UpdateAnimation()

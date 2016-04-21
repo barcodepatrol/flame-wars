@@ -6,6 +6,7 @@
 	  <target>Target Others</target>
 	  <attribute>Users</attribute>
 	  <amount>-10</amount>
+	  <cost>100</cost>
   </card>
   <card>
 	  <name>Card 2</name>
@@ -13,6 +14,7 @@
 	  <target>Target Others</target>
 	  <attribute>Memes</attribute>
 	  <amount>10</amount>
+	  <cost>100</cost>
   </card>
   <card>
 	  <name>Card 3</name>
@@ -20,6 +22,7 @@
 	  <target>Self Target</target>
 	  <attribute>Bandwidth</attribute>
 	  <amount>5</amount>
+	  <cost>100</cost>
   </card>
   <card>
 	  <name>Card 4</name>
@@ -27,6 +30,7 @@
 	  <target>Self Target</target>
 	  <attribute>Money</attribute>
 	  <amount>-50</amount>
+	  <cost>100</cost>
   </card>
   <card>
 	  <name>Card 5</name>
@@ -34,5 +38,6 @@
 	  <target>Target Others</target>
 	  <attribute>Memes</attribute>
 	  <amount>9001</amount>
+	  <cost>100</cost>
   </card>
 </deck>

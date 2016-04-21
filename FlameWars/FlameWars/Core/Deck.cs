@@ -82,7 +82,8 @@ namespace FlameWars
 							  xn.SelectSingleNode("./description").FirstChild.Value,
 							  xn.SelectSingleNode("./target").FirstChild.Value,
 							  xn.SelectSingleNode("./attribute").FirstChild.Value,
-							  xn.SelectSingleNode("./amount").FirstChild.Value);
+							  xn.SelectSingleNode("./amount").FirstChild.Value,
+							  xn.SelectSingleNode("./cost").FirstChild.Value);
 
 			cards.Add(c);
 		}
