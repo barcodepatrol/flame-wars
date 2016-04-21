@@ -279,7 +279,7 @@ namespace FlameWars
 		{
 			// Memes increase the amount of users you get each round
 			// Bandwidth determines the upper and lower bounds of how many users you gain/lose
-			bandwidthPercentage = bandwidth / totBandwidth;
+			bandwidthPercentage = (int)(bandwidth / (totBandwidth + .01));
 			int userCap = bandwidth * 100;
 
 			// Memes increase your users by an exponential addition
