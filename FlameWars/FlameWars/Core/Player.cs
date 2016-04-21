@@ -330,8 +330,12 @@ namespace FlameWars
 
 			// Set nextPosition to be one square ahead
 			// Set finalPosition to be 
-			nextPosition = BoardPosition + 1;
-			finalPosition = BoardPosition + Dice.Roll(1);
+			NextPosition = BoardPosition + 1;
+			finalPosition = BoardPosition + 30;//Dice.Roll(1);
+
+			// Wrap final position
+			if (finalPosition > 33)
+				finalPosition -= 34;
 		}
 
 		// This method merely updates the player's position (animation)
@@ -375,6 +379,8 @@ namespace FlameWars
 				movedAmount = 0;
 				BoardPosition = NextPosition;
 				NextPosition++;
+				if (NextPosition == 34)
+					NextPosition = 0;
 				UpdateDirection();
 			}
 		}
@@ -383,22 +389,22 @@ namespace FlameWars
 		public void UpdateDirection()
 		{
 			// East
-			if (NextPosition >= 0 && NextPosition < 12)
+			if (NextPosition > 0 && NextPosition < 12)
 			{
 				CurrentDirection = Direction.East;
 			}
 			// North
-			else if (NextPosition >= 12 && NextPosition < 17)
+			else if (NextPosition >= 12 && NextPosition <= 17)
 			{
 				CurrentDirection = Direction.North;
 			}
 			// West
-			else if (NextPosition >= 17 && NextPosition < 29)
+			else if (NextPosition > 17 && NextPosition < 29)
 			{
 				CurrentDirection = Direction.West;
 			}
 			// South
-			else if (NextPosition >= 29 && NextPosition < 34)
+			else if ((NextPosition >= 29 && NextPosition <= 33) || NextPosition == 0)
 			{
 				CurrentDirection = Direction.South;
 			}
