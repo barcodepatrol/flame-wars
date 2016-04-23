@@ -169,6 +169,7 @@ namespace FlameWars
 
 			// Set currentPlayer and playerState to first player
 			currentPlayer = this.players[0];
+			GameManager.CurrentPlayer = currentPlayer;
 			playerState = PlayerState.PlayerOne;
 			currentPlayer.Start();
 		}
@@ -313,23 +314,35 @@ namespace FlameWars
 						// Subtract cost of card
 						currentPlayer.Money -= Message.CurrentCard.Cost;
 					}
-					else if (Message.isActive && 
-							 Message.CurrentCard != null)
+					// Check to see if we bought a card
+					else if (Message.CurrentCard != null && Message.Bought)
 					{
 						// Change the current player's values
 						currentPlayer.CardEffect(Message.CurrentCard);
 					}
-					else if (Message.CurrentBond != null)
+					// Check to see if we just bought a bond
+					else if (Message.CurrentBond != null && Message.Bought)
 					{
 						// Change the current player's values
 						currentPlayer.BuyBond(Message.CurrentBond);
 					}
+
+					// Player ends their turn
 					GameManager.EndTurn = false;
 					currentPlayer.End();
 					currentPlayer.GenerateUsers(TotalBandwidth);
+
+					// Update player bonds
+					foreach (Bond b in currentPlayer.Bonds)
+						b.Turn++;
+
+					// Check to see if a player just won
 					if (!currentPlayer.CheckWinStatus(turnCount))
-					{
 						SwitchPlayers(gameTime);
+					else
+					{
+						Message.Activate();
+						Message.CreateMessage("You win");
 					}
 				}
 			}

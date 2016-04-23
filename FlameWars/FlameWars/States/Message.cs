@@ -465,6 +465,7 @@ namespace FlameWars
 							else if (card != null && buying)
 							{
 								// Create card display
+								active = false;
 								bought = true;
 								CreateMessage();
 							}
