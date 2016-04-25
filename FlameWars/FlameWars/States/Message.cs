@@ -180,9 +180,6 @@ namespace FlameWars
 
 			// Create the message box
 			MakeMessageBox();
-
-			// Set up texture
-			//CreateBoxTexture();
 		}
 		
 		// Creates Messages - Asks user if they want to purchase card

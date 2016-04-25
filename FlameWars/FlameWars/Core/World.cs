@@ -331,6 +331,10 @@ namespace FlameWars
 					{
 						SwitchPlayers(gameTime);
 					}
+					else
+					{
+						// EndGame(currentPlayer);
+					}
 				}
 			}
 		}
