@@ -270,10 +270,13 @@ namespace FlameWars
 		// Initialize the Player.
 		public void Initialize(int currentPathIndex, Vector2 ui)
 		{
-			//initialize player
+			// Initialize player
 			UIPosition = ui;
 			tokenBounds = new Rectangle();
 			bonds		= new List<Bond>();
+
+			// Initialize money
+			money = 10000;
 
 			// Set the initial path index to zero.
 			BoardPosition = 0;

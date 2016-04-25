@@ -192,11 +192,17 @@ namespace FlameWars
 				foreach (Bond b in GameManager.CurrentPlayer.Bonds)
 				{
 					GameManager.CurrentPlayer.Money += b.GenerateRevenue();
-					GameManager.CurrentPlayer.Bonds.Remove(b);
 				}
-			}
 
-			GameManager.EndTurn = true;
+				// Clear bonds
+				GameManager.CurrentPlayer.Bonds.Clear();
+				GameManager.EndTurn = true;
+			}
+			else
+			{
+				Message.Activate();
+				Message.CreateMessage("No Bonds Returned");
+			}
 		}
 
 		// BondBuying Trigger
