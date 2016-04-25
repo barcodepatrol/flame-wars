@@ -343,9 +343,6 @@ namespace FlameWars
 					{
 						Message.Activate();
 						Message.CreateMessage("You win");
-					}
-					else
-					{
 						// EndGame(currentPlayer);
 					}
 				}
