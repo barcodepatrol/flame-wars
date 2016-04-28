@@ -303,57 +303,22 @@ namespace FlameWars
 		// This method constructs the box rectangle and message location
 		static public void MakeBox()
 		{
-			// Update the string for printing
-			// Also count the widest line
-			int linecount = 1;
-			int longestLine = 0;
-			int lengthcount = 0;
-
 			// Update string if this messagebox involves a card
 			if (card != null && buying != true)
 			{
 				CardString();
 			}
 
-			for (int i = 0; i < message.Length; i++)
-			{
-				lengthcount++;
-
-				// Wrapping
-				if (i == MAX_CHARACTERS)
-				{
-					message.Insert(i, "\n");
-					linecount++;
-					longestLine = MAX_CHARACTERS;
-				}
-
-				// Check if the line has a line break
-				if (message[i] == '\n')
-				{
-					linecount++;
-
-					// Set new longest line
-					if (lengthcount > longestLine)
-					{
-						longestLine = lengthcount;
-						lengthcount = 0;
-					}
-				}
-
-				// If we are on the last character but have no longest line
-				if (i == message.Length-1 && longestLine == 0)
-				{
-					longestLine = lengthcount;
-				}
-			}
+			// Get the size of the string
+			Vector2 messageSize = ArtManager.MainFont.MeasureString(message);
 			
 			// Determine size of box
-			BOX_WIDTH = (int)(longestLine * 6.5f);
-			BOX_HEIGHT = (int)(linecount * 20) + PADDING*2 + BUTTON_HEIGHT;
+			BOX_WIDTH = (int)messageSize.X + (2*PADDING);
+			BOX_HEIGHT = (int)messageSize.Y + PADDING*2 + BUTTON_HEIGHT;
 
 			// Create box placement data
-			position   = new Vector2 (GameManager.Center.X-(BOX_WIDTH/2), GameManager.Center.Y-(BOX_HEIGHT/2));
 			center     = GameManager.Center;
+			position   = new Vector2 (GameManager.Center.X-(BOX_WIDTH/2), GameManager.Center.Y-(BOX_HEIGHT/2));
 			boundaries = new Rectangle((int)position.X, (int)position.Y, BOX_WIDTH, BOX_HEIGHT);
 
 			// Set message vector
