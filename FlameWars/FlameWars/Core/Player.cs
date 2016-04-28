@@ -709,7 +709,7 @@ namespace FlameWars
 							break;
 					}
 
-					sb.DrawString(ArtManager.StellarLightFont, stringToPrint + value, new Vector2(ix, DrawYPositions[index]), Color.Black);
+					sb.DrawString(ArtManager.MainFont, stringToPrint + value, new Vector2(ix, DrawYPositions[index]), Color.Black);
 				}
 			}
 

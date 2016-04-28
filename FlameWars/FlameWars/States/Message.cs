@@ -313,7 +313,6 @@ namespace FlameWars
 			if (card != null && buying != true)
 			{
 				CardString();
-				linecount += 5;
 			}
 
 			for (int i = 0; i < message.Length; i++)
@@ -328,11 +327,17 @@ namespace FlameWars
 					longestLine = MAX_CHARACTERS;
 				}
 
-				// Set new longest line
-				if (message[i] == '\n' && lengthcount > longestLine)
-				{ 
-					longestLine = lengthcount;
-					lengthcount = 0;
+				// Check if the line has a line break
+				if (message[i] == '\n')
+				{
+					linecount++;
+
+					// Set new longest line
+					if (lengthcount > longestLine)
+					{
+						longestLine = lengthcount;
+						lengthcount = 0;
+					}
 				}
 
 				// If we are on the last character but have no longest line
@@ -508,7 +513,7 @@ namespace FlameWars
 			sb.Draw(image, boundaries, Color.White);
 
 			// Draw message
-			sb.DrawString(ArtManager.StellarLightFont, message, textPosition, Color.Black);
+			sb.DrawString(ArtManager.MainFont, message, textPosition, Color.Black);
 
 			// Draw buttons
 			if (cancel)

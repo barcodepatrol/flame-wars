@@ -162,12 +162,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Content\Stellar-Bold_24.xnb">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <None Include="Content\DisplayFont.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Content\Stellar-Light_14.xnb">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <None Include="Content\MainFont.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="DisplayFont.xnb" />
+    <None Include="MainFont.xnb" />
   </ItemGroup>
   <!-- Specify the search path explicitly so the ResolveAssemblyReferences task picks the right ones -->
   <Target Name="BeforeResolveReferences">
