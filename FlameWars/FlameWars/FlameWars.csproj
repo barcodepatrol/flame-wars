@@ -89,7 +89,7 @@
     <Content Include="Content\Default how to instructions.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\example_deck.xml">
+    <Content Include="Content\MainDeck.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\ExitButton.png">

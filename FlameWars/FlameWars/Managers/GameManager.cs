@@ -23,7 +23,7 @@ namespace FlameWars
 		private static GraphicsDeviceManager graphicsManager;
 
 		// Saves the deck info
-		private static Deck deck;
+		private static Deck mainDeck;
 		private static int deckIndex = 0;
 
 		// Saves the current player info
@@ -84,7 +84,7 @@ namespace FlameWars
 			windowWidth     = w;
 			windowHeight    = h;
 			windowCenter    = GetElementCenter(w, h);
-			deck            = new Deck("Content\\example_deck.xml");
+			mainDeck        = new Deck("Content\\MainDeck.xml");
 			random			= new Random();
 		}
 
@@ -118,13 +118,13 @@ namespace FlameWars
 		public static Card GetCard()
 		{
 			// Save card and then increment index before returning
-			Card c = deck.Cards[deckIndex];
+			Card c = mainDeck.Cards[deckIndex];
 			deckIndex++;
 
 			// If we got to the last card reshuffle the deck
-			if (deckIndex == deck.Cards.Count-1)
+			if (deckIndex == mainDeck.Cards.Count-1)
 			{ 
-				deck.Shuffle();
+				mainDeck.Shuffle();
 				deckIndex = 0;
 			}
 

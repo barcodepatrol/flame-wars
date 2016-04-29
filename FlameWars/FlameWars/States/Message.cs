@@ -195,7 +195,7 @@ namespace FlameWars
 
 			// Save the cost and card - default card buying message
 			message = "Would you like to purchase the card?\n" +
-					  "Cost: " + cost + "\n";
+					  "Cost: " + c.Cost + "\n";
 			card = c;
 			Cost = c.Cost;
 			cancel = true;
@@ -221,7 +221,7 @@ namespace FlameWars
 
 			// Save the cost and card - default card buying message
 			message = "Would you like to purchase the bond?\n" +
-					  "Cost: " + cost + "\n";
+					  "Cost: " + b.Cost + "\n";
 			bond = b;
 			Cost = b.Cost;
 			cancel = true;

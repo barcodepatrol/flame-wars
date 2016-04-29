@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<deck>
+	<card>
+		<name>Capitalism: Users</name>
+		<description>This card targets a player and lowers their users by 10.</description>
+		<target>Target Others</target>
+		<attribute>Users</attribute>
+		<amount>-10</amount>
+		<cost>100</cost>
+	</card>
+	<card>
+		<name>Capitalism: Money</name>
+		<description>This card targets a player and lowers their money by 100.</description>
+		<target>Target Others</target>
+		<attribute>Money</attribute>
+		<amount>-100</amount>
+		<cost>100</cost>
+	</card>
+	<card>
+		<name>Capitalism: Bandwidth</name>
+		<description>This card targets a player and lowers their bandwidth by 5.</description>
+		<target>Target Others</target>
+		<attribute>Bandwidth</attribute>
+		<amount>-5</amount>
+		<cost>100</cost>
+	</card>
+	<card>
+		<name>Capitalism: Memes</name>
+		<description>This card targets a player and lowers their memes by 2.</description>
+		<target>Target Others</target>
+		<attribute>Memes</attribute>
+		<amount>-2</amount>
+		<cost>100</cost>
+	</card>
+	
+	
+	
+	<card>
+		<name>Good Investment: Users</name>
+		<description>This card increases your users by 10.</description>
+		<target>Self Target</target>
+		<attribute>Users</attribute>
+		<amount>10</amount>
+		<cost>100</cost>
+	</card>
+	<card>
+		<name>Good Investment: Money</name>
+		<description>This card increases your money by 100.</description>
+		<target>Self Target</target>
+		<attribute>Money</attribute>
+		<amount>100</amount>
+		<cost>100</cost>
+	</card>
+	<card>
+		<name>Good Investment: Bandwidth</name>
+		<description>This card increases your bandwidth by 5.</description>
+		<target>Self Target</target>
+		<attribute>Bandwidth</attribute>
+		<amount>5</amount>
+		<cost>100</cost>
+	</card>
+	<card>
+		<name>Good Investment: Memes</name>
+		<description>This card increases your users by 2.</description>
+		<target>Self Target</target>
+		<attribute>Memes</attribute>
+		<amount>2</amount>
+		<cost>100</cost>
+	</card>
+
+
+	<card>
+		<name>Bad Investment: Users</name>
+		<description>This card decreases your users by 10.</description>
+		<target>Self Target</target>
+		<attribute>Users</attribute>
+		<amount>-10</amount>
+		<cost>100</cost>
+	</card>
+	<card>
+		<name>Bad Investment: Money</name>
+		<description>This card decreases your money by 100.</description>
+		<target>Self Target</target>
+		<attribute>Money</attribute>
+		<amount>-100</amount>
+		<cost>100</cost>
+	</card>
+	<card>
+		<name>Bad Investment: Bandwidth</name>
+		<description>This card decreases your bandwidth by 5.</description>
+		<target>Self Target</target>
+		<attribute>Bandwidth</attribute>
+		<amount>-5</amount>
+		<cost>100</cost>
+	</card>
+	<card>
+		<name>Bad Investment: Memes</name>
+		<description>This card decreases your users by 2.</description>
+		<target>Self Target</target>
+		<attribute>Memes</attribute>
+		<amount>-2</amount>
+		<cost>100</cost>
+	</card>
+</deck>
