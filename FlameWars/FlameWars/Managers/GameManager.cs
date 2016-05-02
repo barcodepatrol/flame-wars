@@ -24,7 +24,9 @@ namespace FlameWars
 
 		// Saves the deck info
 		private static Deck mainDeck;
-		private static int deckIndex = 0;
+		private static Deck premiumDeck;
+		private static int mainDeckIndex = 0;
+		private static int premiumDeckIndex = 0;
 
 		// Saves the current player info
 		private static Player cPlayer = null;
@@ -85,7 +87,11 @@ namespace FlameWars
 			windowHeight    = h;
 			windowCenter    = GetElementCenter(w, h);
 			mainDeck        = new Deck("Content\\MainDeck.xml");
+			premiumDeck     = new Deck("Content\\PremiumDeck.xml");
 			random			= new Random();
+
+			// Set up Premium cards
+			premiumDeck.SetPremium();
 		}
 
 		// Service method.
@@ -118,14 +124,31 @@ namespace FlameWars
 		public static Card GetCard()
 		{
 			// Save card and then increment index before returning
-			Card c = mainDeck.Cards[deckIndex];
-			deckIndex++;
+			Card c = mainDeck.Cards[mainDeckIndex];
+			mainDeckIndex++;
 
 			// If we got to the last card reshuffle the deck
-			if (deckIndex == mainDeck.Cards.Count-1)
+			if (mainDeckIndex == mainDeck.Cards.Count-1)
 			{ 
 				mainDeck.Shuffle();
-				deckIndex = 0;
+				mainDeckIndex = 0;
+			}
+
+			return c;
+		}
+
+		// GetPremiumCard() returns the next card in the premium deck
+		public static Card GetPremiumCard()
+		{
+			// Save card and then increment index before returning
+			Card c = premiumDeck.Cards[premiumDeckIndex];
+			premiumDeckIndex++;
+
+			// If we got to the last card reshuffle the deck
+			if (premiumDeckIndex == premiumDeck.Cards.Count-1)
+			{ 
+				premiumDeck.Shuffle();
+				premiumDeckIndex = 0;
 			}
 
 			return c;

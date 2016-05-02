@@ -126,6 +126,9 @@ namespace FlameWars
 				case Board.SpaceType.Card:
 					CardTrigger();
 					break;
+				case Board.SpaceType.PremiumCard:
+					PremiumCardTrigger();
+					break;
 				case Board.SpaceType.Resource:
 					ResourceTrigger();
 					break;
@@ -165,6 +168,13 @@ namespace FlameWars
 			// Create card message by passing in next card from deck
 			Message.Activate();
 			Message.CreateMessage(GameManager.GetCard());
+		}
+
+		public void PremiumCardTrigger()
+		{
+			// Create card message by passing in next premium card from deck
+			Message.Activate();
+			Message.CreateMessage(GameManager.GetPremiumCard());
 		}
 
 		// Resource Trigger

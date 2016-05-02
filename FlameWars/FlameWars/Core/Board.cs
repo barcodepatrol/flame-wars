@@ -29,7 +29,8 @@ namespace FlameWars
 
 		private readonly Color RESOURCE_COLOR = Color.LightGreen;
 		private readonly Color CARD_COLOR     = Color.Green;
-		private readonly Color BONUS_COLOR    = Color.DarkGreen;
+		private readonly Color PREMIUM_COLOR  = Color.DarkGreen;
+		private readonly Color BONUS_COLOR    = Color.DarkOliveGreen;
 		private readonly Color STOCK_COLOR    = Color.LightBlue;
 		private readonly Color RANDOM_COLOR   = Color.Blue;
 		private readonly Color EMPTY_COLOR    = Color.DarkBlue;
@@ -52,7 +53,7 @@ namespace FlameWars
 			****/
 
 		// Enumerator.
-		public enum SpaceType { Resource, Card, BondReturn, BondBuying, Random, Empty };
+		public enum SpaceType { Resource, Card, PremiumCard, BondReturn, BondBuying, Random, Empty };
 
 		// Collections.
 		Path[] track; // Array containing the board's path objects.
@@ -95,7 +96,7 @@ namespace FlameWars
 		{
 
 			track          = new Path[34];
-			tints          = new Color[6];
+			tints          = new Color[7];
 			// 200, 200 are just starter values, this must be determined some other time
 			boardBounds	   = new Rectangle((GameManager.Width/2)-(BOARD_WIDTH/2), 
 										   (GameManager.Height/2)-(BOARD_HEIGHT/2), 
@@ -184,7 +185,6 @@ namespace FlameWars
 
 				// Select space type
 				// Enums cast to ints
-				// Save an int from 0 to 5
 				Array values   = Enum.GetValues(typeof(SpaceType));
 				SpaceType spaceType = (SpaceType)values.GetValue(random.Next(values.Length));
 
@@ -199,17 +199,20 @@ namespace FlameWars
 					case SpaceType.Card:
 						tint = tints[1];
 						break;
-					case SpaceType.BondReturn:
+					case SpaceType.PremiumCard:
 						tint = tints[2];
 						break;
-					case SpaceType.BondBuying:
+					case SpaceType.BondReturn:
 						tint = tints[3];
 						break;
-					case SpaceType.Random:
+					case SpaceType.BondBuying:
 						tint = tints[4];
 						break;
-					case SpaceType.Empty:
+					case SpaceType.Random:
 						tint = tints[5];
+						break;
+					case SpaceType.Empty:
+						tint = tints[6];
 						break;
 				}
 
@@ -217,12 +220,12 @@ namespace FlameWars
 
 				// Create the Path Object
 				// Save the data into the Path object
-				Path pathSquare      = new Path(positionVector,	// Sets the position for the path square.
-												pathBounds,		// Sets the boundaries for the path square.
-												id,				// Sets the textureID for the path square.
-												tint,			// Sets the draw color for the path square.
-												spaceType,
-												index);		// Sets the space type for the path square.
+				Path pathSquare = new Path(positionVector,	// Sets the position for the path square.
+												pathBounds,	// Sets the boundaries for the path square.
+												id,			// Sets the textureID for the path square.
+												tint,		// Sets the draw color for the path square.
+												spaceType,  // Sets the space type for the path square.
+												index);		
 
 				// Add the Path Object to our current path array
 				track[index] = pathSquare;
@@ -237,10 +240,11 @@ namespace FlameWars
 		{
 			tints[0] = RESOURCE_COLOR;	// resource
 			tints[1] = CARD_COLOR;		// card
-			tints[2] = BONUS_COLOR;		// bonus
-			tints[3] = STOCK_COLOR;		// stock
-			tints[4] = RANDOM_COLOR;	// Random
-			tints[5] = EMPTY_COLOR;		// empty
+			tints[2] = PREMIUM_COLOR;	// premium card
+			tints[3] = BONUS_COLOR;		// bonus
+			tints[4] = STOCK_COLOR;		// stock
+			tints[5] = RANDOM_COLOR;	// Random
+			tints[6] = EMPTY_COLOR;		// empty
 		}
 
 		// Gets the texture for a path at a given interval.
@@ -342,8 +346,5 @@ namespace FlameWars
 				return track[0];
 			}
 		}
-
-
-
 	}
 }

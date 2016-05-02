@@ -201,6 +201,13 @@ namespace FlameWars
 			cancel = true;
 			buying = true;
 
+			// Check if premium - Premium cards can be canceled
+			if (c.Premium)
+			{
+				message = "Would you like to purchase the PREMIUM card?\n" +
+						  "Cost: " + c.Cost + "\n";
+			}
+
 			// Load the button textures
 			LoadContent();
 
@@ -286,7 +293,7 @@ namespace FlameWars
 			// Calculate for two buttons
 			if (cancel)
 			{
-				bx = (int)Center.X - BUTTON_WIDTH/2 - BUTTON_WIDTH;
+				bx = (int)Center.X - BUTTON_WIDTH/2 - BUTTON_WIDTH + PADDING;
 				by = (int)position.Y + BOX_HEIGHT - BUTTON_HEIGHT - PADDING;
 			}
 			// Calculate just an "Ok" button
@@ -335,7 +342,7 @@ namespace FlameWars
 				// Set state, color, and rectangle
 				buttonColors[i] = Color.White;
 				buttonBounds[i] = new Rectangle(xOrigin, yOrigin, BUTTON_WIDTH, BUTTON_HEIGHT);
-
+				
 				// Increment y position
 				xOrigin += BUTTON_WIDTH + PADDING;
 			}
