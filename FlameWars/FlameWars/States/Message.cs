@@ -256,11 +256,12 @@ namespace FlameWars
 			// Save card and message data
 			message = card.Description;
 			buying  = false;
-			
-			// Determine if card can be canceled or not
-			// Premium Card: Can be canceled
-			// Plebian Card: Cannot be canceled
-			if (card.Premium) cancel = true;
+
+            // Determine if card can be canceled or not
+            // Premium Card: Can be canceled
+            // Plebian Card: Cannot be canceled
+            if (card.Premium) cancel = true;
+            else			  cancel = false;
 
 			// Load the button textures
 			LoadContent();
