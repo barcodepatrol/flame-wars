@@ -171,7 +171,14 @@ namespace FlameWars
 		public int Bandwidth
 		{
 			get { return this.bandwidth; }
-			set { this.bandwidth = value; }
+			set
+			{
+				this.bandwidth = value;
+				if(this.bandwidth > GameManager.TotalBandwidth)
+				{
+					bandwidth = GameManager.TotalBandwidth;
+				}
+			}
 		}
 
 		// Stores the int value for the player's bandwidth percentage
@@ -291,11 +298,11 @@ namespace FlameWars
 		}
 		
 		// Determines how many users the player gets
-		public void GenerateUsers(int totBandwidth)
+		public void GenerateUsers()
 		{
 			// Memes increase the amount of users you get each round
 			// Bandwidth determines the upper and lower bounds of how many users you gain/lose
-			bandwidthPercentage = (int)(bandwidth / (totBandwidth + .01));
+			bandwidthPercentage = (int)(bandwidth / (GameManager.TotalBandwidth + .01));
 			int userCap = bandwidth * 100;
 
 			// Memes increase your users by an exponential addition

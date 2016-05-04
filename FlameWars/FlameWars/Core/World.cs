@@ -14,7 +14,7 @@ namespace FlameWars
 		#region Variables
 		enum PlayerState { PlayerOne, PlayerTwo, PlayerThree, PlayerFour };
 		private int numberOfPlayers = 0;
-		private int totalBandwidth = 0;
+		//private int totalBandwidth = 100;
 		private int turnCount = 0;
 
 		const int PLAYER_UI_WIDTH  = 200;
@@ -83,11 +83,11 @@ namespace FlameWars
 		}		
 
 		// stores the amount of badwidth available on the board
-		public int TotalBandwidth
+		/*public int TotalBandwidth
 		{
 			get { return this.totalBandwidth; }
 			set { this.totalBandwidth = value; }
-		}
+		}*/
 
 		// stores count of turns since game has begun
 		public int TurnCount
@@ -330,7 +330,7 @@ namespace FlameWars
 					// Player ends their turn
 					GameManager.EndTurn = false;
 					currentPlayer.End();
-					currentPlayer.GenerateUsers(TotalBandwidth);
+					currentPlayer.GenerateUsers();
 
 					// Update player bonds
 					foreach (Bond b in currentPlayer.Bonds)

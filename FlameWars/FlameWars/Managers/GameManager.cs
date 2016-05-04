@@ -36,6 +36,8 @@ namespace FlameWars
 
 		public static Random random;
 
+		private static int totalBandwidth = 100;
+
 		#region Properties
 		//* Properties *//
 		// Stores the window width
@@ -72,6 +74,12 @@ namespace FlameWars
 		{
 			get { return endTurn; }
 			set { endTurn = value; }
+		}
+
+		public static int TotalBandwidth
+		{
+			get { return totalBandwidth; }
+			set { totalBandwidth = value; }
 		}
 		#endregion Properties
 
