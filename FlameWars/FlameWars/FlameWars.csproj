@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Core\Bond.cs" />
     <Compile Include="States\Message.cs" />
+    <Compile Include="States\Start.cs" />
     <Compile Include="States\Target.cs" />
     <Compile Include="Managers\ArtManager.cs" />
     <Compile Include="Core\Board.cs" />
