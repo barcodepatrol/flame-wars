@@ -15,7 +15,7 @@ namespace FlameWars
 		enum PlayerState { PlayerOne, PlayerTwo, PlayerThree, PlayerFour };
 		private int numberOfPlayers = 0;
 		//private int totalBandwidth = 100;
-		private int turnCount = 0;
+		private int turnCount = 1;
 
 		const int PLAYER_UI_WIDTH  = 200;
 		const int PLAYER_UI_HEIGHT = 200;
@@ -343,7 +343,8 @@ namespace FlameWars
 					else
 					{
 						Message.Activate();
-						Message.CreateMessage("You win");
+						Message.CreateMessage("You win!\nReturn to menu.");
+						StateManager.gameState = StateManager.GameState.Menu;
 						// EndGame(currentPlayer);
 					}
 				}
@@ -381,6 +382,9 @@ namespace FlameWars
 					and can draw buttons for each player.				
 				*/
 			}
+
+			// draw turn counter
+			spriteBatch.DrawString(ArtManager.MainFont, "Current Turn: " + turnCount, new Vector2(GameManager.Width / 2 - 70, 50), Color.Black);
 		}
 
 		public void SwitchPlayers(GameTime gameTime)

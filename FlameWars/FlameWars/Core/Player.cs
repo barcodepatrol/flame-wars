@@ -165,7 +165,14 @@ namespace FlameWars
 		public int Memes
 		{
 			get { return this.memes; }
-			set { this.memes = value; }
+			set
+			{
+				if (this.memes + value < 0)
+				{
+					this.memes = 0;
+				}
+				else this.memes = value;
+			}
 		}
 
 		// Stores the int value for the player's bandwidth amount
@@ -178,6 +185,10 @@ namespace FlameWars
 				if(this.bandwidth > GameManager.TotalBandwidth)
 				{
 					bandwidth = GameManager.TotalBandwidth;
+				}
+				if(bandwidth < 0)
+				{
+					bandwidth = 0;
 				}
 			}
 		}
@@ -239,7 +250,7 @@ namespace FlameWars
 		#region Constants
 
 		// Endgame conditions.
-		private const int TURN_LIMIT = 36;
+		private const int TURN_LIMIT = 37;
 		private const int WEALTH_LIMIT = 100000;
 		private const int USER_LIMIT = 1000;
 		private const int MEME_LIMIT = 40;

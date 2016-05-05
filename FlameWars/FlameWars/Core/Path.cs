@@ -217,11 +217,16 @@ namespace FlameWars
 			// Check if player has bonds
 			if (GameManager.CurrentPlayer.Bonds.Count > 0)
 			{
+				int totalRevenue = 0;
 				// Add the value of each bond
 				foreach (Bond b in GameManager.CurrentPlayer.Bonds)
 				{
 					GameManager.CurrentPlayer.Money += b.GenerateRevenue();
+					totalRevenue += b.GenerateRevenue();
 				}
+
+				Message.Activate();
+				Message.CreateMessage(GameManager.CurrentPlayer.Bonds.Count + " bond(s) cashed in.\n $" + totalRevenue + " received.");
 
 				// Clear bonds
 				GameManager.CurrentPlayer.Bonds.Clear();
