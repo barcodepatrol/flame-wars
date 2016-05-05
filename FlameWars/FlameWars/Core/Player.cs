@@ -54,7 +54,7 @@ namespace FlameWars
 		private double movedAmount      = 0;   // The amount we have moved so far during animation.
 		private int money               = 0;   // The capital a given player has.
 		private int users               = 0;   // The number of users the player has.
-		private int memes               = 0;   // The number of memes the player can use.
+		private int memes               = 1;   // The number of memes the player can use.
 		private int bandwidth           = 0;   // The bandwidth amount the player owns.
 		private int bandwidthPercentage = 0; // The percentage of bandwidth the player can utilize.
 		private int malice              = 0;   // The malice amount the player has accrued.
@@ -252,7 +252,7 @@ namespace FlameWars
 		#region Constants
 
 		// Endgame conditions.
-		private const int TURN_LIMIT = 10;
+		private const int TURN_LIMIT = 20;
 		private const int WEALTH_LIMIT = 100000;
 		private const int USER_LIMIT = 100000;
 		private const int MEME_LIMIT = 100000;
@@ -286,7 +286,7 @@ namespace FlameWars
 			money = 10000;
 
 			// Set the initial path index to zero.
-			BoardPosition = 0;
+			BoardPosition = currentPathIndex;
 			rollButtonColors = new Color[3];
 
 			ActiveColor   = Color.White;
@@ -354,10 +354,15 @@ namespace FlameWars
 			// Set nextPosition to be one square ahead
 			// Set finalPosition to be 
 			NextPosition = BoardPosition + 1;
+			if (NextPosition == 34)
+			{
+				NextPosition = 0;
+			}
+
 			finalPosition = BoardPosition + Dice.Roll(1);
 
 			// Wrap final position
-			if (finalPosition > 33)
+			if (finalPosition >= 34)
 				finalPosition -= 34;
 		}
 
@@ -397,7 +402,7 @@ namespace FlameWars
 			movedAmount += MOVEMENT_AMOUNT;
 
 			// Update movedAmount and check if our position has changed
-			if (movedAmount >= 100)
+			if (movedAmount >= 100) // width of path object.
 			{
 				movedAmount = 0;
 				BoardPosition = NextPosition;
