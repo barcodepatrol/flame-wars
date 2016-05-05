@@ -184,8 +184,27 @@ namespace FlameWars
 		*/
 		public void ResourceTrigger()
 		{
-			// FOR TESTING ONLY
-			CardTrigger();
+			int rsc = GameManager.RandomGen.Next(4);// determine which resource is changed
+
+			switch(rsc)
+			{
+				case 0: GameManager.CurrentPlayer.Money += 100;
+					Message.Activate();
+					Message.CreateMessage("You have recieved $100");
+					break;
+				case 1: GameManager.CurrentPlayer.Users += 20;
+					Message.Activate();
+					Message.CreateMessage("You have recieved 20 users");
+					break;
+				case 2: GameManager.CurrentPlayer.Memes += 5;
+					Message.Activate();
+					Message.CreateMessage("You have recieved 5 memes");
+					break;
+				case 3: GameManager.CurrentPlayer.Bandwidth += 5;
+					Message.Activate();
+					Message.CreateMessage("You have recieved 5 bandwidth");
+					break;
+			}
 		}
 
 		// BondReturn Trigger
