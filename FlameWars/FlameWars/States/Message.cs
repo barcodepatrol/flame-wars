@@ -432,16 +432,30 @@ namespace FlameWars
 							// We just bought a bond
 							if (bond != null && buying)
 							{
-								bought = true;
-								active = false;
+								if (GameManager.CurrentPlayer.Money >= bond.Cost)
+								{
+									bought = true;
+									active = false;
+								}
+								else
+								{
+									Message.CreateMessage("INSUFFICIENT FUNDS.");
+								}
 								GameManager.EndTurn = true;
 							}
 							// We just bought a card so display it
 							else if (card != null && buying)
 							{
-								// Create card display
-								bought = true;
-								CreateMessage();
+								if (GameManager.CurrentPlayer.Money >= card.Cost)
+								{
+									// Create card display
+									bought = true;
+									CreateMessage();
+								}
+								else
+								{
+									Message.CreateMessage("INSUFFICIENT FUNDS.");
+								}
 							}
 							// Check to see if there is a card and it targets others
 							else if (card != null && card.Target == "Target Others")
