@@ -8,6 +8,7 @@
 
 		public enum GameState
 		{
+			Start,
 			Menu,
 			HowTo,
 			Pause,

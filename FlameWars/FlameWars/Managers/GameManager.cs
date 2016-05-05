@@ -30,6 +30,7 @@ namespace FlameWars
 
 		// Saves the current player info
 		private static Player cPlayer = null;
+		private static int numberOfPlayers = 2;
 
 		// A boolean to determine if a player ended their turn
 		private static bool endTurn = false;
@@ -57,6 +58,12 @@ namespace FlameWars
 		{
 			get { return cPlayer; }
 			set { cPlayer = value; }
+		}
+		// Stores the amount of players in the game
+		public static int NumberOfPlayers
+		{
+			get { return numberOfPlayers; }
+			set { numberOfPlayers = value; }
 		}
 		// Stores the window center position.
 		public static Vector2 Center

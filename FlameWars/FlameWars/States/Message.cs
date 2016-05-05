@@ -439,7 +439,7 @@ namespace FlameWars
 								}
 								else
 								{
-									Message.CreateMessage("INSUFFICIENT FUNDS.");
+									CreateMessage("INSUFFICIENT FUNDS.");
 								}
 								GameManager.EndTurn = true;
 							}

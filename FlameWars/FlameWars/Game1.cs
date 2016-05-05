@@ -34,6 +34,7 @@ namespace FlameWars
 
 		// Game and State Classes
 		private World world;
+		private Start startState;
 		private Menu menuState;
 		private HowTo howToState;
 		private Pause pauseState;
@@ -113,10 +114,11 @@ namespace FlameWars
 			currentMouseState = Mouse.GetState();
 
 			// Initialize Management Classes.
-			ArtManager.Initialize(this.Content, debug);
+			ArtManager.Initialize(Content, debug);
 			
 			// Create Game Objects
 			world      = new World(4);
+			startState = new Start();
 			menuState  = new Menu();
 			howToState = new HowTo();
 			pauseState = new Pause();
@@ -144,6 +146,9 @@ namespace FlameWars
 
 			// Load World Content
 			world.LoadContent();
+
+			// Load Start Content
+			startState.LoadContent();
 
 			// Load Menu Content
 			menuState.LoadContent();
@@ -234,6 +239,27 @@ namespace FlameWars
 			// Switch statements is used to determine our current game state
 			switch (StateManager.gameState)
 			{
+				case StateManager.GameState.Start:
+					// Update the start object
+					startState.Update(currentMouseState.X, currentMouseState.Y);
+
+					// If the lmb was just released, call startState.released
+					if (Released())
+					{
+						startState.Released();
+					}
+
+					// Call the hover method to determine if mouse is hovering
+					startState.Hover();
+
+					// If the lmb is being pressed, call startState.pressed
+					if (Pressed())
+					{
+						startState.Pressed();
+					}
+
+					break;
+
 				case StateManager.GameState.Menu:
 					// Update the menu object
 					menuState.Update(currentMouseState.X, currentMouseState.Y);
@@ -362,6 +388,11 @@ namespace FlameWars
 			// Switch statements is used to determine our current game state
 			switch (StateManager.gameState)
 			{
+				case StateManager.GameState.Start:
+
+					startState.Draw(spriteBatch);
+					break;
+
 				case StateManager.GameState.Menu:
 					
 					menuState.Draw(spriteBatch);
