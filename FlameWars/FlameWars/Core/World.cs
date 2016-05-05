@@ -331,6 +331,7 @@ namespace FlameWars
 					GameManager.EndTurn = false;
 					currentPlayer.End();
 					currentPlayer.GenerateUsers();
+					currentPlayer.GenerateMoney();
 
 					// Update player bonds
 					foreach (Bond b in currentPlayer.Bonds)

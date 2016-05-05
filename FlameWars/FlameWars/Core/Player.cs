@@ -155,7 +155,10 @@ namespace FlameWars
 			get { return this.users; }
 			set
 			{
-				if (this.users - value < 0) this.users = 0;
+				if (this.users + value < 0)
+				{
+					this.users = 0;
+				}
 				else this.users = value;
 			}
 		}
@@ -283,7 +286,7 @@ namespace FlameWars
 			bonds		= new List<Bond>();
 
 			// Initialize money
-			money = 10000;
+			money = 1000;
 
 			// Set the initial path index to zero.
 			BoardPosition = currentPathIndex;
@@ -309,6 +312,12 @@ namespace FlameWars
 			int memeAddicts = (memes / 20) ^ 2;
 
 			users += baseRate + (memeAddicts + bandwidthPercentage * ((userCap - users)));
+		}
+
+		// determines how much money players get
+		public void GenerateMoney()
+		{
+			money += 10 * users;
 		}
 
 		// Update function.
@@ -787,16 +796,16 @@ namespace FlameWars
 			switch (c.Attribute)
 			{
 				case "Money":
-					money += c.Amount;
+					Money += c.Amount;
 					break;
 				case "Users":
-					users += c.Amount;
+					Users += c.Amount;
 					break;
 				case "Memes":
-					memes += c.Amount;
+					Memes += c.Amount;
 					break;
 				case "Bandwidth":
-					bandwidth += c.Amount;
+					Bandwidth += c.Amount;
 					break;
 			}
 		}
