@@ -81,6 +81,11 @@ namespace FlameWars
 			get { return totalBandwidth; }
 			set { totalBandwidth = value; }
 		}
+
+		public static Random RandomGen
+		{
+			get { return random; }
+		}
 		#endregion Properties
 
 		// ============================================================================

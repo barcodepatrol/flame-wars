@@ -55,7 +55,7 @@ namespace FlameWars
 		private int money               = 0;   // The capital a given player has.
 		private int users               = 0;   // The number of users the player has.
 		private int memes               = 1;   // The number of memes the player can use.
-		private int bandwidth           = 0;   // The bandwidth amount the player owns.
+		private int bandwidth           = 5;   // The bandwidth amount the player owns.
 		private int bandwidthPercentage = 0;   // The percentage of bandwidth the player can utilize.
 		private int baseRate            = 1;   // base rate at which users are accrued
 		private bool buttonActive   = false;   // Is the roll button currently interactable?
@@ -239,10 +239,10 @@ namespace FlameWars
 		#region Constants
 
 		// Endgame conditions.
-		private const int TURN_LIMIT = 20;
+		private const int TURN_LIMIT = 36;
 		private const int WEALTH_LIMIT = 100000;
-		private const int USER_LIMIT = 100000;
-		private const int MEME_LIMIT = 100000;
+		private const int USER_LIMIT = 1000;
+		private const int MEME_LIMIT = 40;
 
 		#endregion
 
@@ -270,7 +270,7 @@ namespace FlameWars
 			bonds		= new List<Bond>();
 
 			// Initialize money
-			money = 1000;
+			money = 100;
 
 			// Set the initial path index to zero.
 			BoardPosition = currentPathIndex;
