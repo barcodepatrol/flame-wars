@@ -56,11 +56,9 @@ namespace FlameWars
 		private int users               = 0;   // The number of users the player has.
 		private int memes               = 1;   // The number of memes the player can use.
 		private int bandwidth           = 0;   // The bandwidth amount the player owns.
-		private int bandwidthPercentage = 0; // The percentage of bandwidth the player can utilize.
-		private int malice              = 0;   // The malice amount the player has accrued.
-		private int charity             = 0;   // The charity amount the player has accrued.
-		private int baseRate            = 1;  // base rate at which users are accrued
-		private bool buttonActive   = false; // Is the roll button currently interactable?
+		private int bandwidthPercentage = 0;   // The percentage of bandwidth the player can utilize.
+		private int baseRate            = 1;   // base rate at which users are accrued
+		private bool buttonActive   = false;   // Is the roll button currently interactable?
 		private bool buttonPressed  = false;
 		private bool buttonReleased = false;
 		private bool buttonHover    = false;
@@ -189,20 +187,6 @@ namespace FlameWars
 		{
 			get { return this.bandwidthPercentage; }
 			set { this.bandwidthPercentage = value; }
-		}
-
-		// Stores the int value for the player's malice
-		public int Malice
-		{
-			get { return this.malice; }
-			set { this.malice = value; }
-		}
-
-		// Stores the int value for the player's charity
-		public int Charity
-		{
-			get { return this.charity; }
-			set { this.charity = value; }
 		}
 
 		// Stores the bool value for the player's button active property.
@@ -687,7 +671,7 @@ namespace FlameWars
 			sb.Draw(iconTexture, new Rectangle(ix, iy, Icon.Width, Icon.Height), Color.White);
 
 			// Draw the stats below
-			Object[] objectsToDraw = new object[] { money, users, memes, bandwidth, Malice, Charity, rollButton }; // Place all drawn elements here.
+			Object[] objectsToDraw = new object[] { money, users, memes, bandwidth, bonds.Count, rollButton }; // Place all drawn elements here.
 
 			for (int index = 0; index < objectsToDraw.Length; index++)
 			{
@@ -721,32 +705,14 @@ namespace FlameWars
 							stringToPrint = "Bandwidth: ";
 							break;
 						case 4:
-							// Malice.
-							stringToPrint = "Malice: ";
-							break;
-						case 5:
-							// Charity.
-							stringToPrint = "Charity: ";
+							// Bonds
+							stringToPrint = "Bonds: ";
 							break;
 					}
 
 					sb.DrawString(ArtManager.DisplayFont, stringToPrint + value, new Vector2(ix, DrawYPositions[index]), Color.Black);
 				}
 			}
-
-			/*
-				sb.DrawString(ArtManager.BrownieFont, "Money: " + money, new Vector2(ix, iy+Icon.Height+10), Color.Black);
-			
-				sb.DrawString(ArtManager.BrownieFont, "Users: " + users, new Vector2(ix, iy+Icon.Height+30), Color.Black);
-
-				sb.DrawString(ArtManager.BrownieFont, "Memes: " + memes, new Vector2(ix, iy+Icon.Height+50), Color.Black);
-
-				sb.DrawString(ArtManager.BrownieFont, "Bandwidth: " + bandwidthAmount, new Vector2(ix, iy+Icon.Height+70), Color.Black);
-
-				sb.DrawString(ArtManager.BrownieFont, "Malice: " + Malice, new Vector2(ix, iy+Icon.Height+90), Color.Black);
-
-				sb.DrawString(ArtManager.BrownieFont, "Charity: " + Charity, new Vector2(ix, iy+Icon.Height+110), Color.Black);
-			*/
 		}
 
 		// Calculuate DrawY positions
@@ -765,9 +731,8 @@ namespace FlameWars
 			int placeholderUsers = 1;
 			int placeholderMemes = 2;
 			int placeholderBandwidthAmount = 3;
-			int placeholderMalice = 4;
-			int placeholderCharity = 5;
-			int placeholderRollButtonTexture = 6;
+			int placeholderBonds = 4;
+			int placeholderRollButtonTexture = 5;
 		
 			// Using integers as placeholders allows us to calculate position values
 			// Without actually having data within them. Eg. for the roll button texture,
@@ -775,9 +740,11 @@ namespace FlameWars
 			// To whether or not we've initialized the button texture as of this moment. 
 
 			int[] objectsToDraw = new int[] { placeholderMoney,
-				placeholderUsers, placeholderMemes,
-				placeholderBandwidthAmount, placeholderMalice,
-				placeholderCharity, placeholderRollButtonTexture }; // Place all drawn elements here.
+											  placeholderUsers,
+											  placeholderMemes,
+											  placeholderBonds,
+											  placeholderBandwidthAmount,
+											  placeholderRollButtonTexture }; // Place all drawn elements here.
 
 			DrawYPositions = new int[objectsToDraw.Length]; // The draw y position will correlate to the UI elements in the hierarchy below the Icon element.
 
@@ -786,6 +753,8 @@ namespace FlameWars
 			for (int index = 0; index < objectsToDraw.Length; index++)
 			{
 				drawY = iy + Icon.Height + baseIncrement + (amountToIncrement * index);
+				// Add extra space for a button
+				if (index == 5) drawY += amountToIncrement;
 				DrawYPositions[index] = drawY;
 			}
 		}
@@ -808,13 +777,6 @@ namespace FlameWars
 					Bandwidth += c.Amount;
 					break;
 			}
-		}
-
-		// This method applies morality to a user
-		public void ApplyMorality(Card c)
-		{
-			if (c.Malice  != 0) malice  -= c.Malice;
-			if (c.Charity != 0) charity += c.Charity;
 		}
 
 		public bool CheckWinStatus(int turnCount)
