@@ -117,7 +117,7 @@ namespace FlameWars
 			ArtManager.Initialize(Content, debug);
 			
 			// Create Game Objects
-			world      = new World(4);
+			world      = new World();
 			startState = new Start();
 			menuState  = new Menu();
 			howToState = new HowTo();
@@ -144,9 +144,6 @@ namespace FlameWars
 			// Load artwork into the manager.
 			ArtManager.Load();
 
-			// Load World Content
-			world.LoadContent();
-
 			// Load Start Content
 			startState.LoadContent();
 
@@ -158,9 +155,6 @@ namespace FlameWars
 
 			// Load Pause Content
 			pauseState.LoadContent();
-			
-			// Initialize world. (Must take place after content is loaded.)
-			world.Initialize();
 		}
 
         /// <summary>
@@ -247,6 +241,9 @@ namespace FlameWars
 					if (Released())
 					{
 						startState.Released();
+
+						// NOW we set the amount of players
+						world.Initialize(GameManager.NumberOfPlayers);
 					}
 
 					// Call the hover method to determine if mouse is hovering
@@ -372,7 +369,7 @@ namespace FlameWars
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.White);
+            GraphicsDevice.Clear(new Color(215, 212, 203));
 
             // TODO: Add your drawing code here
             spriteBatch.Begin();

@@ -439,6 +439,7 @@ namespace FlameWars
 								}
 								else
 								{
+									cancel = false;
 									CreateMessage("INSUFFICIENT FUNDS.");
 								}
 								GameManager.EndTurn = true;
@@ -454,7 +455,8 @@ namespace FlameWars
 								}
 								else
 								{
-									Message.CreateMessage("INSUFFICIENT FUNDS.");
+									cancel = false;
+									CreateMessage("INSUFFICIENT FUNDS.");
 								}
 							}
 							// Check to see if there is a card and it targets others

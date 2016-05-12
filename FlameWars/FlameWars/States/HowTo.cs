@@ -17,7 +17,7 @@ namespace FlameWars
 		#region Variables
 
 		// Constants
-		const int NUMBER_OF_SLIDES = 10;  // TO DO: UPDATE ONCE WE HAVE THE REAL NUMBER OF SLIDES
+		const int NUMBER_OF_SLIDES  = 10;  // TO DO: UPDATE ONCE WE HAVE THE REAL NUMBER OF SLIDES
 		const int NUMBER_OF_BUTTONS = 4;
 		const int RETURN_INDEX      = 0;
 		const int EXIT_INDEX        = 1;
@@ -183,10 +183,12 @@ namespace FlameWars
 							StateManager.gameState = StateManager.GameState.Exit;
 							break;
 						case BACK_INDEX:
-							slide--;
+							if ((slide-=1) == slideTextures.Length)
+								slide = 0;
 							break;
 						case NEXT_INDEX:
-							slide++;
+							if ((slide+=1) == slideTextures.Length)
+								slide = 0;
 							break;
 					}
 				}
