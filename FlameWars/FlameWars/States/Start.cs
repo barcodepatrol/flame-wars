@@ -173,7 +173,7 @@ namespace FlameWars
 					}
 
 					// Set to game state
-					StateManager.gameState = StateManager.GameState.Game;
+					StateManager.gameState = StateManager.GameState.Role;
 				}
 				// Otherwise, reset the color
 				else

@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace FlameWars.States
+namespace FlameWars
 {
 	class RoleSelector
 	{
@@ -23,6 +23,7 @@ namespace FlameWars.States
 		const int PLASTIC		  = 1;
 		const int NARCISSIST	  = 2;
 		const int DANKEST		  = 3;
+		const int PADDING		  = 40;
 
 		// Role Data
 		Texture2D tophatImage;
@@ -35,7 +36,7 @@ namespace FlameWars.States
 
 		// Player amount
 		int playerAmount;
-		int player = 0;
+		int player = 1;
 
 		// Folder data
 		Texture2D folderImageClosed;
@@ -43,6 +44,20 @@ namespace FlameWars.States
 		Rectangle folderBounds;
 		Color folderColor;
 		bool folderClosed = true;
+
+		// Width and Height for each image
+		int folderClosedWidth;
+		int folderClosedHeight;
+		int folderOpenWidth;
+		int folderOpenHeight;
+		int tophatWidth;
+		int tophatHeight;
+		int plasticWidth;
+		int plasticHeight;
+		int narcissisitWidth;
+		int narcissisitHeight;
+		int dankestWidth;
+		int dankestHeight;
 
 		int mX;	// mouse x
 		int mY;	// mouse y
@@ -60,9 +75,24 @@ namespace FlameWars.States
 			folderBounds = new Rectangle();
 			folderColor  = new Color();
 			roleBounds   = new Rectangle();
-			roleColor    = new Color();
+			roleColor	 = Color.White;
 
+			// Init amount of players
 			playerAmount = GameManager.NumberOfPlayers;
+
+			// Init image height and width
+			folderClosedWidth  = 1020;
+			folderClosedHeight = 853;
+			folderOpenWidth    = 1124;
+			folderOpenHeight   = 853;
+			tophatWidth        = 497;
+			tophatHeight       = 497;
+			plasticWidth       = 364;
+			plasticHeight      = 471;
+			narcissisitWidth   = 510;
+			narcissisitHeight  = 529;
+			dankestWidth       = 390;
+			dankestHeight      = 390;
 		}
 
 		// This initializes the folder image
@@ -72,8 +102,8 @@ namespace FlameWars.States
 			if (folderClosed)
 			{
 				// Set width and height
-				int fw = (int)(folderImageClosed.Bounds.Width * GameManager.ScreenScale);
-				int fh = (int)(folderImageClosed.Bounds.Height * GameManager.ScreenScale);
+				int fw = (int)(folderClosedWidth * GameManager.ScreenScale);
+				int fh = (int)(folderClosedHeight * GameManager.ScreenScale);
 
 				// Set the x and y position of the folder
 				int fx = (int)(GameManager.Center.X - fw/2);
@@ -86,11 +116,11 @@ namespace FlameWars.States
 			else
 			{
 				// Set width and height
-				int fw = (int)(folderImageOpen.Bounds.Width * GameManager.ScreenScale);
-				int fh = (int)(folderImageOpen.Bounds.Height * GameManager.ScreenScale);
+				int fw = (int)(folderOpenWidth * GameManager.ScreenScale);
+				int fh = (int)(folderOpenHeight * GameManager.ScreenScale);
 
 				// Set the x and y position of the folder
-				int fx = (int)(GameManager.Center.X - fw/2);
+				int fx = (int)(GameManager.Center.X - fw/1.5 - PADDING);
 				int fy = (int)(GameManager.Center.Y - fh/2);
 
 				// Set new bounds for image
@@ -103,23 +133,23 @@ namespace FlameWars.States
 				{
 					case TOP_HAT:
 						// Set width and height
-						rw = (int)(tophatImage.Bounds.Width * GameManager.ScreenScale);
-						rh = (int)(tophatImage.Bounds.Height * GameManager.ScreenScale);
+						rw = (int)(tophatWidth * GameManager.ScreenScale);
+						rh = (int)(tophatHeight * GameManager.ScreenScale);
 						break;
 					case PLASTIC:
 						// Set width and height
-						rw = (int)(plasticImage.Bounds.Width * GameManager.ScreenScale);
-						rh = (int)(plasticImage.Bounds.Height * GameManager.ScreenScale);
+						rw = (int)(plasticWidth * GameManager.ScreenScale);
+						rh = (int)(plasticHeight * GameManager.ScreenScale);
 						break;
 					case NARCISSIST:
 						// Set width and height
-						rw = (int)(narcissistImage.Bounds.Width * GameManager.ScreenScale);
-						rh = (int)(narcissistImage.Bounds.Height * GameManager.ScreenScale);
+						rw = (int)(narcissisitWidth * GameManager.ScreenScale);
+						rh = (int)(narcissisitHeight * GameManager.ScreenScale);
 						break;
 					case DANKEST:
 						// Set width and height
-						rw = (int)(dankestImage.Bounds.Width * GameManager.ScreenScale);
-						rh = (int)(dankestImage.Bounds.Height * GameManager.ScreenScale);
+						rw = (int)(dankestWidth * GameManager.ScreenScale);
+						rh = (int)(dankestHeight * GameManager.ScreenScale);
 						break;
 				}
 
@@ -142,6 +172,8 @@ namespace FlameWars.States
 			plasticImage    = ArtManager.Plastic;
 			narcissistImage = ArtManager.Narcissist;
 			dankestImage    = ArtManager.Dankest;
+
+			Initialize();
 		}
 
 		// Passes in a few variables to save for update functions
@@ -159,11 +191,13 @@ namespace FlameWars.States
 				folderBounds.Y <= mY && mY <= folderBounds.Y+folderBounds.Height)
 			{
 				folderColor = Color.DarkGray;
+				roleColor = Color.DarkGray;
 			}
 			// Otherwise, reset the color
 			else
 			{
 				folderColor = Color.White;
+				roleColor = Color.White;
 			}
 		}
 
@@ -175,11 +209,13 @@ namespace FlameWars.States
 				folderBounds.Y <= mY && mY <= folderBounds.Y+folderBounds.Height)
 			{
 				folderColor = Color.Gray;
+				roleColor = Color.Gray;
 			}
 			// Otherwise, reset the color
 			else
 			{
 				folderColor = Color.White;
+				roleColor = Color.White;
 			}
 		}
 
@@ -202,9 +238,10 @@ namespace FlameWars.States
 				{
 					// Increase current role
 					currentRole++;
+					player++;
 
 					// Check if we are done
-					if (currentRole > NUMBER_OF_ROLES)
+					if (currentRole >= NUMBER_OF_ROLES)
 						StateManager.gameState = StateManager.GameState.Game;
 					else
 					{
@@ -217,6 +254,7 @@ namespace FlameWars.States
 			else
 			{
 				folderColor = Color.White;
+				roleColor = Color.White;
 			}
 		}
 
@@ -224,9 +262,9 @@ namespace FlameWars.States
 		public void Draw(SpriteBatch sb)
 		{
 			// Draw the folder image
-			if (folderClosed)
+			if (folderClosed == false)
 			{
-				sb.Draw(folderImageClosed, folderBounds, folderColor);
+				sb.Draw(folderImageOpen, folderBounds, folderColor);
 				
 				// Draw the current role
 				switch (currentRole)
@@ -246,9 +284,13 @@ namespace FlameWars.States
 				}
 			}
 			else
-				sb.Draw(folderImageOpen, folderBounds, folderColor);
-
-
+			{
+				sb.DrawString(ArtManager.DisplayFont, 
+							  "Player " + player + " click to reveal your role!\nEveryone else look away!!!", 
+							  new Vector2(GameManager.Center.X/2, 50), 
+							  Color.Black);
+				sb.Draw(folderImageClosed, folderBounds, folderColor);
+			}
 			
 		}
 	}

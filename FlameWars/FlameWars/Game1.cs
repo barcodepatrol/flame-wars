@@ -35,6 +35,7 @@ namespace FlameWars
 		// Game and State Classes
 		private World world;
 		private Start startState;
+		private RoleSelector roleState;
 		private Menu menuState;
 		private HowTo howToState;
 		private Pause pauseState;
@@ -68,7 +69,7 @@ namespace FlameWars
 			graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
-			graphics.IsFullScreen              = debug; // Make this true for the real game, false for testing
+			//graphics.IsFullScreen              = debug; // Make this true for the real game, false for testing
 			
 			if (!graphics.IsFullScreen)
 			{
@@ -119,6 +120,7 @@ namespace FlameWars
 			// Create Game Objects
 			world      = new World();
 			startState = new Start();
+			roleState  = new RoleSelector();
 			menuState  = new Menu();
 			howToState = new HowTo();
 			pauseState = new Pause();
@@ -146,6 +148,9 @@ namespace FlameWars
 
 			// Load Start Content
 			startState.LoadContent();
+
+			// Load Role content
+			roleState.LoadContent();
 
 			// Load Menu Content
 			menuState.LoadContent();
@@ -253,6 +258,27 @@ namespace FlameWars
 					if (Pressed())
 					{
 						startState.Pressed();
+					}
+
+					break;
+
+				case StateManager.GameState.Role:
+					// Update the start object
+					roleState.Update(currentMouseState.X, currentMouseState.Y);
+
+					// If the lmb was just released, call startState.released
+					if (Released())
+					{
+						roleState.Released();
+					}
+
+					// Call the hover method to determine if mouse is hovering
+					roleState.Hover();
+
+					// If the lmb is being pressed, call startState.pressed
+					if (Pressed())
+					{
+						roleState.Pressed();
 					}
 
 					break;
@@ -388,6 +414,11 @@ namespace FlameWars
 				case StateManager.GameState.Start:
 
 					startState.Draw(spriteBatch);
+					break;
+
+				case StateManager.GameState.Role:
+
+					roleState.Draw(spriteBatch);
 					break;
 
 				case StateManager.GameState.Menu:
