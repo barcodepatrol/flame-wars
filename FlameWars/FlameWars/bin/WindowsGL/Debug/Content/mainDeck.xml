@@ -6,7 +6,7 @@
 		<target>Target Others</target>
 		<attribute>Users</attribute>
 		<amount>-100</amount>
-		<cost>100</cost>
+		<cost>10</cost>
 	</card>
 	<card>
 		<name>Capitalism: Money</name>
@@ -14,7 +14,7 @@
 		<target>Target Others</target>
 		<attribute>Money</attribute>
 		<amount>-500</amount>
-		<cost>100</cost>
+		<cost>10</cost>
 	</card>
 	<card>
 		<name>Capitalism: Bandwidth</name>
@@ -22,7 +22,7 @@
 		<target>Target Others</target>
 		<attribute>Bandwidth</attribute>
 		<amount>-5</amount>
-		<cost>100</cost>
+		<cost>10</cost>
 	</card>
 	<card>
 		<name>Capitalism: Memes</name>
@@ -30,7 +30,7 @@
 		<target>Target Others</target>
 		<attribute>Memes</attribute>
 		<amount>-2</amount>
-		<cost>100</cost>
+		<cost>10</cost>
 	</card>
 	
 	
@@ -41,7 +41,7 @@
 		<target>Self Target</target>
 		<attribute>Users</attribute>
 		<amount>100</amount>
-		<cost>100</cost>
+		<cost>10</cost>
 	</card>
 	<card>
 		<name>Good Investment: Money</name>
@@ -49,7 +49,7 @@
 		<target>Self Target</target>
 		<attribute>Money</attribute>
 		<amount>500</amount>
-		<cost>100</cost>
+		<cost>10</cost>
 	</card>
 	<card>
 		<name>Good Investment: Bandwidth</name>
@@ -57,7 +57,7 @@
 		<target>Self Target</target>
 		<attribute>Bandwidth</attribute>
 		<amount>5</amount>
-		<cost>100</cost>
+		<cost>10</cost>
 	</card>
 	<card>
 		<name>Good Investment: Memes</name>
@@ -65,7 +65,7 @@
 		<target>Self Target</target>
 		<attribute>Memes</attribute>
 		<amount>2</amount>
-		<cost>100</cost>
+		<cost>10</cost>
 	</card>
 
 
@@ -75,7 +75,7 @@
 		<target>Self Target</target>
 		<attribute>Users</attribute>
 		<amount>-100</amount>
-		<cost>100</cost>
+		<cost>10</cost>
 	</card>
 	<card>
 		<name>Bad Investment: Money</name>
@@ -83,7 +83,7 @@
 		<target>Self Target</target>
 		<attribute>Money</attribute>
 		<amount>-500</amount>
-		<cost>100</cost>
+		<cost>10</cost>
 	</card>
 	<card>
 		<name>Bad Investment: Bandwidth</name>
@@ -91,7 +91,7 @@
 		<target>Self Target</target>
 		<attribute>Bandwidth</attribute>
 		<amount>-5</amount>
-		<cost>100</cost>
+		<cost>10</cost>
 	</card>
 	<card>
 		<name>Bad Investment: Memes</name>
@@ -99,7 +99,7 @@
 		<target>Self Target</target>
 		<attribute>Memes</attribute>
 		<amount>-2</amount>
-		<cost>100</cost>
+		<cost>10</cost>
 	</card>
 
 	
@@ -110,7 +110,7 @@
 		<target>Target Others</target>
 		<attribute>Users</attribute>
 		<amount>-1000</amount>
-		<cost>1000</cost>
+		<cost>100</cost>
 	</card>
 	<card>
 		<name>Capitalism: Money</name>
@@ -118,7 +118,7 @@
 		<target>Target Others</target>
 		<attribute>Money</attribute>
 		<amount>-5000</amount>
-		<cost>1000</cost>
+		<cost>100</cost>
 	</card>
 	<card>
 		<name>Capitalism: Bandwidth</name>
@@ -126,7 +126,7 @@
 		<target>Target Others</target>
 		<attribute>Bandwidth</attribute>
 		<amount>-20</amount>
-		<cost>1000</cost>
+		<cost>100</cost>
 	</card>
 	<card>
 		<name>Capitalism: Memes</name>
@@ -134,7 +134,7 @@
 		<target>Target Others</target>
 		<attribute>Memes</attribute>
 		<amount>-10</amount>
-		<cost>1000</cost>
+		<cost>100</cost>
 	</card>
 
 
@@ -145,7 +145,7 @@
 		<target>Self Target</target>
 		<attribute>Users</attribute>
 		<amount>1000</amount>
-		<cost>1000</cost>
+		<cost>100</cost>
 	</card>
 	<card>
 		<name>Good Investment: Money</name>
@@ -153,7 +153,7 @@
 		<target>Self Target</target>
 		<attribute>Money</attribute>
 		<amount>5000</amount>
-		<cost>1000</cost>
+		<cost>100</cost>
 	</card>
 	<card>
 		<name>Good Investment: Bandwidth</name>
@@ -161,7 +161,7 @@
 		<target>Self Target</target>
 		<attribute>Bandwidth</attribute>
 		<amount>20</amount>
-		<cost>1000</cost>
+		<cost>100</cost>
 	</card>
 	<card>
 		<name>Good Investment: Memes</name>
@@ -169,7 +169,7 @@
 		<target>Self Target</target>
 		<attribute>Memes</attribute>
 		<amount>10</amount>
-		<cost>1000</cost>
+		<cost>100</cost>
 	</card>
 
 
@@ -179,7 +179,7 @@
 		<target>Self Target</target>
 		<attribute>Users</attribute>
 		<amount>-1000</amount>
-		<cost>1000</cost>
+		<cost>100</cost>
 	</card>
 	<card>
 		<name>Bad Investment: Money</name>
@@ -187,7 +187,7 @@
 		<target>Self Target</target>
 		<attribute>Money</attribute>
 		<amount>-5000</amount>
-		<cost>1000</cost>
+		<cost>100</cost>
 	</card>
 	<card>
 		<name>Bad Investment: Bandwidth</name>
@@ -195,7 +195,7 @@
 		<target>Self Target</target>
 		<attribute>Bandwidth</attribute>
 		<amount>-20</amount>
-		<cost>1000</cost>
+		<cost>100</cost>
 	</card>
 	<card>
 		<name>Bad Investment: Memes</name>
@@ -203,7 +203,7 @@
 		<target>Self Target</target>
 		<attribute>Memes</attribute>
 		<amount>-10</amount>
-		<cost>1000</cost>
+		<cost>100</cost>
 	</card>
 
 
@@ -214,7 +214,7 @@
 		<target>Target Others</target>
 		<attribute>Users</attribute>
 		<amount>-10000</amount>
-		<cost>10000</cost>
+		<cost>1000</cost>
 	</card>
 	<card>
 		<name>Capitalism: Money</name>
@@ -222,7 +222,7 @@
 		<target>Target Others</target>
 		<attribute>Money</attribute>
 		<amount>-50000</amount>
-		<cost>10000</cost>
+		<cost>1000</cost>
 	</card>
 	<card>
 		<name>Capitalism: Bandwidth</name>
@@ -230,7 +230,7 @@
 		<target>Target Others</target>
 		<attribute>Bandwidth</attribute>
 		<amount>-50</amount>
-		<cost>10000</cost>
+		<cost>1000</cost>
 	</card>
 	<card>
 		<name>Capitalism: Memes</name>
@@ -238,7 +238,7 @@
 		<target>Target Others</target>
 		<attribute>Memes</attribute>
 		<amount>-20</amount>
-		<cost>10000</cost>
+		<cost>1000</cost>
 	</card>
 
 
@@ -249,7 +249,7 @@
 		<target>Self Target</target>
 		<attribute>Users</attribute>
 		<amount>10000</amount>
-		<cost>10000</cost>
+		<cost>1000</cost>
 	</card>
 	<card>
 		<name>Good Investment: Money</name>
@@ -257,7 +257,7 @@
 		<target>Self Target</target>
 		<attribute>Money</attribute>
 		<amount>50000</amount>
-		<cost>10000</cost>
+		<cost>1000</cost>
 	</card>
 	<card>
 		<name>Good Investment: Bandwidth</name>
@@ -265,7 +265,7 @@
 		<target>Self Target</target>
 		<attribute>Bandwidth</attribute>
 		<amount>50</amount>
-		<cost>10000</cost>
+		<cost>1000</cost>
 	</card>
 	<card>
 		<name>Good Investment: Memes</name>
@@ -273,7 +273,7 @@
 		<target>Self Target</target>
 		<attribute>Memes</attribute>
 		<amount>20</amount>
-		<cost>10000</cost>
+		<cost>1000</cost>
 	</card>
 
 
@@ -283,7 +283,7 @@
 		<target>Self Target</target>
 		<attribute>Users</attribute>
 		<amount>-10000</amount>
-		<cost>10000</cost>
+		<cost>1000</cost>
 	</card>
 	<card>
 		<name>Bad Investment: Money</name>
@@ -291,7 +291,7 @@
 		<target>Self Target</target>
 		<attribute>Money</attribute>
 		<amount>-50000</amount>
-		<cost>10000</cost>
+		<cost>1000</cost>
 	</card>
 	<card>
 		<name>Bad Investment: Bandwidth</name>
@@ -299,7 +299,7 @@
 		<target>Self Target</target>
 		<attribute>Bandwidth</attribute>
 		<amount>-50</amount>
-		<cost>10000</cost>
+		<cost>1000</cost>
 	</card>
 	<card>
 		<name>Bad Investment: Memes</name>
@@ -307,6 +307,6 @@
 		<target>Self Target</target>
 		<attribute>Memes</attribute>
 		<amount>-20</amount>
-		<cost>10000</cost>
+		<cost>1000</cost>
 	</card>
 </deck>
