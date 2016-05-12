@@ -309,10 +309,17 @@ namespace FlameWars
 			users += baseRate + (int)(memeAddicts + bandwidthPercentage * ((userCap - users)));
 		}
 
-		// determines how much money players get
+		// Determines how much money players get
 		public void GenerateMoney()
 		{
 			money += 10 * users;
+		}
+
+		// Updates the turn count for bonds
+		public void UpdateBonds()
+		{
+			foreach (Bond b in bonds)
+				b.Turn += 1;
 		}
 
 		// Update function.

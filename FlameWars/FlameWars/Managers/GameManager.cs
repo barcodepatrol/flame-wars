@@ -119,6 +119,13 @@ namespace FlameWars
 
 			// Set up Premium cards
 			premiumDeck.SetPremium();
+
+			// ============================================
+			// DISABLED FOR TESTING NECESSARY FOR REAL GAME
+
+			// Shuffle decks
+			//mainDeck.Shuffle();
+			//premiumDeck.Shuffle();
 		}
 
 		// Service method.

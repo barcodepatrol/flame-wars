@@ -28,18 +28,18 @@ namespace FlameWars
 		static private Color tint; // DrawColor. Not everything will be drawn in white.
 
 		// Used for message box
-		static private int BOX_WIDTH  = 100; // This one cannot be constant since we don't know message length
-		static private int BOX_HEIGHT = 200; // This one cannot be constant since we don't know message length
+		static private int BOX_WIDTH  = 100;
+		static private int BOX_HEIGHT = 200; 
 		const int PADDING = 20;
 
 		// Used for buttons
-		const int NUMBER_OF_BUTTONS = 4;
-		const int PLAYER1_INDEX     = 0;
-		const int PLAYER2_INDEX     = 1;
-		const int PLAYER3_INDEX     = 2;
-		const int PLAYER4_INDEX     = 3;
-		const int BUTTON_WIDTH      = 100;
-		const int BUTTON_HEIGHT     = 50;
+		static int NUMBER_OF_BUTTONS = 4;
+		const int PLAYER1_INDEX		 = 0;
+		const int PLAYER2_INDEX		 = 1;
+		const int PLAYER3_INDEX		 = 2;
+		const int PLAYER4_INDEX		 = 3;
+		const int BUTTON_WIDTH		 = 100;
+		const int BUTTON_HEIGHT		 = 50;
 
 		// Stores button info
 		static Color[] buttonColors;
@@ -80,6 +80,7 @@ namespace FlameWars
 		static public void Activate()
 		{
 			active = true;
+			NUMBER_OF_BUTTONS = GameManager.NumberOfPlayers;
 		}
 
 		// This method deactivates the messagebox
@@ -117,8 +118,13 @@ namespace FlameWars
 		{
 			buttonTextures[0] = ArtManager.Player1Button;
 			buttonTextures[1] = ArtManager.Player2Button;
-			buttonTextures[2] = ArtManager.Player3Button;
-			buttonTextures[3] = ArtManager.Player4Button;
+			
+			// Only load 3rd and 4th players if they exist
+			if (GameManager.NumberOfPlayers >= 3)
+				buttonTextures[2] = ArtManager.Player3Button;
+			if (GameManager.NumberOfPlayers >= 4)
+				buttonTextures[3] = ArtManager.Player4Button;
+
 			image             = ArtManager.TargetBox;
 		}
 
@@ -131,7 +137,7 @@ namespace FlameWars
 			// Calculate button placement
 			int bx = 0, by = 0;
 
-			bx = (int)center.X - (BUTTON_WIDTH/2);
+			bx = (int)position.X + PADDING;
 			by = (int)position.Y + PADDING;
 
 			// Create the buttons
@@ -142,9 +148,11 @@ namespace FlameWars
 		static public void MakeBox()
 		{
 			// Create box placement data
-			position = new Vector2(GameManager.Center.X - (BOX_WIDTH / 2) - PADDING, GameManager.Center.Y - (BOX_HEIGHT / 2));
+			BOX_HEIGHT = (GameManager.NumberOfPlayers*BUTTON_HEIGHT) + ((GameManager.NumberOfPlayers+1)*PADDING);
+			BOX_WIDTH = BUTTON_WIDTH + (2*PADDING);
+			position = new Vector2(GameManager.Center.X - (BOX_WIDTH/2) - PADDING, GameManager.Center.Y - (BOX_HEIGHT/2));
 			center = GameManager.Center;
-			boundaries = new Rectangle((int)position.X, (int)position.Y, BOX_WIDTH+(2*PADDING), BOX_HEIGHT+(5*PADDING));
+			boundaries = new Rectangle((int)position.X, (int)position.Y, BOX_WIDTH, BOX_HEIGHT);
 		}
 
 		// This method constructs the buttons
