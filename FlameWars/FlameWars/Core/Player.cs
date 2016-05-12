@@ -252,8 +252,8 @@ namespace FlameWars
 		// Endgame conditions.
 		private const int TURN_LIMIT = 37;
 		private const int WEALTH_LIMIT = 100000;
-		private const int USER_LIMIT = 10000;
-		private const int MEME_LIMIT = 40;
+		private const int USER_LIMIT = 5000;
+		private const int MEME_LIMIT = 20;
 
 		#endregion
 
@@ -430,6 +430,7 @@ namespace FlameWars
 			// East
 			if (NextPosition > 0 && NextPosition < 12)
 			{
+				PassGo(CurrentDirection);
 				CurrentDirection = Direction.East;
 			}
 			// North
@@ -446,6 +447,15 @@ namespace FlameWars
 			else if ((NextPosition >= 29 && NextPosition <= 33) || NextPosition == 0)
 			{
 				CurrentDirection = Direction.South;
+			}
+		}
+
+		private void PassGo(Direction current)
+		{
+			if(current == Direction.South)
+			{
+				bandwidth += 1;
+				memes += 5;
 			}
 		}
 

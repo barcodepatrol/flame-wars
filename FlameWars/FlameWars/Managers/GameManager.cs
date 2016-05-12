@@ -124,8 +124,8 @@ namespace FlameWars
 			// DISABLED FOR TESTING NECESSARY FOR REAL GAME
 
 			// Shuffle decks
-			//mainDeck.Shuffle();
-			//premiumDeck.Shuffle();
+			mainDeck.Shuffle();
+			premiumDeck.Shuffle();
 		}
 
 		// Service method.
