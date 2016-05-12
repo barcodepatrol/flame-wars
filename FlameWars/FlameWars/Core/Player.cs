@@ -56,7 +56,7 @@ namespace FlameWars
 		private int users               = 0;   // The number of users the player has.
 		private int memes               = 1;   // The number of memes the player can use.
 		private int bandwidth           = 5;   // The bandwidth amount the player owns.
-		private int bandwidthPercentage = 0;   // The percentage of bandwidth the player can utilize.
+		private double bandwidthPercentage = 0;   // The percentage of bandwidth the player can utilize.
 		private int baseRate            = 1;   // base rate at which users are accrued
 		private bool buttonActive   = false;   // Is the roll button currently interactable?
 		private bool buttonPressed  = false;
@@ -194,7 +194,7 @@ namespace FlameWars
 		}
 
 		// Stores the int value for the player's bandwidth percentage
-		public int BandwidthPercentage
+		public double BandwidthPercentage
 		{
 			get { return this.bandwidthPercentage; }
 			set { this.bandwidthPercentage = value; }
@@ -252,7 +252,7 @@ namespace FlameWars
 		// Endgame conditions.
 		private const int TURN_LIMIT = 37;
 		private const int WEALTH_LIMIT = 100000;
-		private const int USER_LIMIT = 1000;
+		private const int USER_LIMIT = 10000;
 		private const int MEME_LIMIT = 40;
 
 		#endregion
@@ -300,13 +300,13 @@ namespace FlameWars
 		{
 			// Memes increase the amount of users you get each round
 			// Bandwidth determines the upper and lower bounds of how many users you gain/lose
-			bandwidthPercentage = (int)(bandwidth / (GameManager.TotalBandwidth + .01));
+			bandwidthPercentage = (bandwidth / (GameManager.TotalBandwidth + .01));// check this
 			int userCap = bandwidth * 100;
 
 			// Memes increase your users by an exponential addition
 			int memeAddicts = (memes / 20) ^ 2;
 
-			users += baseRate + (memeAddicts + bandwidthPercentage * ((userCap - users)));
+			users += baseRate + (int)(memeAddicts + bandwidthPercentage * ((userCap - users)));
 		}
 
 		// determines how much money players get
@@ -378,26 +378,26 @@ namespace FlameWars
 			{
 				case Direction.North:
 					TokenPosition = new Rectangle(TokenPosition.X, 
-												  (int)(TokenPosition.Y-MOVEMENT_AMOUNT), 
+												  (int)(TokenPosition.Y-MOVEMENT_AMOUNT),
 												  TokenPosition.Width, 
 												  TokenPosition.Height);
 					break;
 				case Direction.South:
-					TokenPosition = new Rectangle(TokenPosition.X, 
-												  (int)(TokenPosition.Y+MOVEMENT_AMOUNT), 
-												  TokenPosition.Width, 
+					TokenPosition = new Rectangle(TokenPosition.X,
+												  (int)(TokenPosition.Y + MOVEMENT_AMOUNT),
+												  TokenPosition.Width,
 												  TokenPosition.Height);
 					break;
 				case Direction.East:
-					TokenPosition = new Rectangle((int)(TokenPosition.X+MOVEMENT_AMOUNT), 
-												  TokenPosition.Y, 
-												  TokenPosition.Width, 
+					TokenPosition = new Rectangle((int)(TokenPosition.X+MOVEMENT_AMOUNT),
+												  TokenPosition.Y,
+												  TokenPosition.Width,
 												  TokenPosition.Height);
 					break;
 				case Direction.West:
-					TokenPosition = new Rectangle((int)(TokenPosition.X-MOVEMENT_AMOUNT), 
-												  TokenPosition.Y, 
-												  TokenPosition.Width, 
+					TokenPosition = new Rectangle((int)(TokenPosition.X - MOVEMENT_AMOUNT),
+												  TokenPosition.Y,
+												  TokenPosition.Width,
 												  TokenPosition.Height);
 					break;
 			}
@@ -406,7 +406,7 @@ namespace FlameWars
 			movedAmount += MOVEMENT_AMOUNT;
 
 			// Update movedAmount and check if our position has changed
-			if (movedAmount >= 100) // width of path object.
+			if (movedAmount >= 100*GameManager.ScreenScale) // width of path object.
 			{
 				movedAmount = 0;
 				BoardPosition = NextPosition;
@@ -473,6 +473,18 @@ namespace FlameWars
 			animationState = AnimationState.Idle;
 			IsButtonActive = false;
 			IsCurrentPlayer = false;
+			if(users<0)
+			{
+				users = 0;
+			}
+			if(bandwidth < 0)
+			{
+				bandwidth = 0;
+			}
+			if(memes < 0)
+			{
+				memes = 0;
+			}
 		}
 
 		// Check to see if the player is currently Idle.
@@ -780,12 +792,24 @@ namespace FlameWars
 					break;
 				case "Users":
 					Users += c.Amount;
+					if(Users < 0)
+					{
+						Users = 0;
+					}
 					break;
 				case "Memes":
 					Memes += c.Amount;
+					if (Memes < 0)
+					{
+						Memes = 0;
+					}
 					break;
 				case "Bandwidth":
 					Bandwidth += c.Amount;
+					if (Bandwidth < 0)
+					{
+						Bandwidth = 0;
+					}
 					break;
 			}
 		}

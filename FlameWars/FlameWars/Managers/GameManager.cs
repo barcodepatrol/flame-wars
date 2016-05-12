@@ -21,6 +21,7 @@ namespace FlameWars
 		private static int windowWidth, windowHeight;
 		private static Vector2 windowCenter;
 		private static GraphicsDeviceManager graphicsManager;
+		private static double screenScale;
 
 		// Saves the deck info
 		private static Deck mainDeck;
@@ -93,6 +94,11 @@ namespace FlameWars
 		{
 			get { return random; }
 		}
+
+		public static double ScreenScale
+		{
+			get { return screenScale; }
+		}
 		#endregion Properties
 
 		// ============================================================================
@@ -106,6 +112,7 @@ namespace FlameWars
 			windowWidth     = w;
 			windowHeight    = h;
 			windowCenter    = GetElementCenter(w, h);
+			screenScale		= h/1080.0f;
 			mainDeck        = new Deck("Content\\MainDeck.xml");
 			premiumDeck     = new Deck("Content\\PremiumDeck.xml");
 			random			= new Random();

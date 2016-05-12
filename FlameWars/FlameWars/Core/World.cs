@@ -234,10 +234,10 @@ namespace FlameWars
 				}
 
 				// Set each player's token's position
-				this.players[index].TokenPosition = new Rectangle((int)playerPosition.X, 
-																  (int)playerPosition.Y, 
-																       playerWidth, 
-																	   playerHeight);
+				this.players[index].TokenPosition = new Rectangle((int)(playerPosition.X), 
+																  (int)(playerPosition.Y), 
+																       (int)(GameManager.ScreenScale*playerWidth), 
+																	   (int)(GameManager.ScreenScale*playerHeight));
 			}
 		}
 
@@ -344,7 +344,8 @@ namespace FlameWars
 					{
 						Message.Activate();
 						Message.CreateMessage("You win!\nReturn to menu.");
-						StateManager.gameState = StateManager.GameState.Menu;
+						StateManager.gameState = StateManager.GameState.Menu;// test return to menu upon completion
+						// implement reset here
 						// EndGame(currentPlayer);
 					}
 				}

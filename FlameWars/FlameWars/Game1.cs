@@ -68,7 +68,7 @@ namespace FlameWars
 			graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
-			//graphics.IsFullScreen              = debug; // Make this true for the real game, false for testing
+			graphics.IsFullScreen              = debug; // Make this true for the real game, false for testing
 			
 			if (!graphics.IsFullScreen)
 			{
