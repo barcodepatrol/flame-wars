@@ -241,7 +241,7 @@ namespace FlameWars
 					player++;
 
 					// Check if we are done
-					if (currentRole >= NUMBER_OF_ROLES)
+					if (player > playerAmount)
 						StateManager.gameState = StateManager.GameState.Game;
 					else
 					{

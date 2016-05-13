@@ -1,5 +1,5 @@
 ﻿#define DEBUG
-// #undef DEBUG
+#undef DEBUG
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
