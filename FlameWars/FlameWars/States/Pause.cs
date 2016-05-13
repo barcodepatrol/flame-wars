@@ -160,6 +160,8 @@ namespace FlameWars
 					switch (i)
 					{
 						case RESUME_INDEX:
+							// If a message existed before the pause
+							if (MessageExists) Message.isActive = true;
 							StateManager.gameState = StateManager.GameState.Game;
 							break;
 						case HOW_TO_INDEX:
@@ -173,9 +175,6 @@ namespace FlameWars
 							StateManager.gameState = StateManager.GameState.Exit;
 							break;
 					}
-
-					// If a message existed before the pause
-					if (MessageExists) Message.Activate();
 				}
 				// Otherwise, reset the color
 				else
