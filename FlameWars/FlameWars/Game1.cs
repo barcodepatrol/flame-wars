@@ -245,10 +245,12 @@ namespace FlameWars
 					// If the lmb was just released, call startState.released
 					if (Released())
 					{
+
 						startState.Released();
 
 						// NOW we set the amount of players
 						world.Initialize(GameManager.NumberOfPlayers);
+						roleState.Initialize();
 					}
 
 					// Call the hover method to determine if mouse is hovering

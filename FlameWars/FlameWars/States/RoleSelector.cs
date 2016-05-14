@@ -98,6 +98,9 @@ namespace FlameWars
 		// This initializes the folder image
 		public void Initialize()
 		{
+			// Init amount of players
+			playerAmount = GameManager.NumberOfPlayers;
+
 			// Folder closed
 			if (folderClosed)
 			{

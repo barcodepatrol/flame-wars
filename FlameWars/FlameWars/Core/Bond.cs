@@ -40,7 +40,7 @@ namespace FlameWars
 		// This method determines how much money the user makes
 		public int GenerateRevenue()
 		{
-			return (cost + (cost/20));
+			return (cost + (cost/20)*turn);
 		}
 	}
 }
