@@ -230,7 +230,6 @@ namespace FlameWars
 
 				// Clear bonds
 				GameManager.CurrentPlayer.Bonds.Clear();
-				GameManager.EndTurn = true;
 			}
 			else
 			{
