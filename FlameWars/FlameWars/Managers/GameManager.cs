@@ -284,5 +284,10 @@ namespace FlameWars
 				array[i]  = temp;
 			}
 		}
+
+		public static void Reset()
+		{
+
+		}
     }
 }

@@ -302,69 +302,71 @@ namespace FlameWars
 
 		public void Update(GameTime gameTime)
 		{
-            // Iterate through all players
-			for (int index = 0; index < players.Count; index++)
+			// checks if player has won
+			if (GameManager.EndGame == true && !Message.isActive)
 			{
-				// Update currentPlayer
-				currentPlayer.Update(gameTime);
-
-				// If the player has just rolled, start animating
-				if (currentPlayer.IsRolling())
-					AnimatePlayer();
-
-				// If the player is animating, update their animation
-				if (currentPlayer.IsAnimated())
-					UpdateAnimation();
-
-				// If the player has ended their turn, switch players
-				if (GameManager.EndTurn)
+				// resets game when player presses button
+				StateManager.gameState = StateManager.GameState.Reset;
+			}
+			else
+			{
+				// Iterate through all players
+				for (int index = 0; index < players.Count; index++)
 				{
-					// Check to see if we just targeted a player
-					if (Target.isActive)
-					{
-						// If so, turn off target and change player's stats
-						Target.Deactivate();
-						int playerTarget = Target.PlayerTarget;
-						players[playerTarget].CardEffect(Message.CurrentCard);
+					// Update currentPlayer
+					currentPlayer.Update(gameTime);
 
-						// Subtract cost of card
-						currentPlayer.Money -= Message.CurrentCard.Cost;
-					}
-					// Check to see if we bought a card
-					else if (Message.CurrentCard != null && Message.Bought)
-					{
-						// Change the current player's values
-						currentPlayer.CardEffect(Message.CurrentCard);
-					}
-					// Check to see if we just bought a bond
-					else if (Message.CurrentBond != null && Message.Bought)
-					{
-						// Change the current player's values
-						currentPlayer.BuyBond(Message.CurrentBond);
-					}
+					// If the player has just rolled, start animating
+					if (currentPlayer.IsRolling())
+						AnimatePlayer();
 
-					// Player ends their turn
-					GameManager.EndTurn = false;
-					currentPlayer.End();
-					currentPlayer.GenerateUsers();
-					currentPlayer.GenerateMoney();
-					currentPlayer.UpdateBonds();
+					// If the player is animating, update their animation
+					if (currentPlayer.IsAnimated())
+						UpdateAnimation();
 
-					// Check to see if a player just won
-					if (!currentPlayer.CheckWinStatus(turnCount))
-						SwitchPlayers(gameTime);
-					else
+					// If the player has ended their turn, switch players
+					if (GameManager.EndTurn)
 					{
-						Message.Activate();
-						Message.CreateMessage("Player " + ((int)playerState+1) + " you win!\nReturn to menu.");
-						// implement end game here
-						// implement reset here
-						/*
-						if(GameManager.ResetGame)
+						// Check to see if we just targeted a player
+						if (Target.isActive)
 						{
-							Statemanager.GameState = StateManager.GameState.Start;
+							// If so, turn off target and change player's stats
+							Target.Deactivate();
+							int playerTarget = Target.PlayerTarget;
+							players[playerTarget].CardEffect(Message.CurrentCard);
+
+							// Subtract cost of card
+							currentPlayer.Money -= Message.CurrentCard.Cost;
 						}
-						*/
+						// Check to see if we bought a card
+						else if (Message.CurrentCard != null && Message.Bought)
+						{
+							// Change the current player's values
+							currentPlayer.CardEffect(Message.CurrentCard);
+						}
+						// Check to see if we just bought a bond
+						else if (Message.CurrentBond != null && Message.Bought)
+						{
+							// Change the current player's values
+							currentPlayer.BuyBond(Message.CurrentBond);
+						}
+
+						// Player ends their turn
+						GameManager.EndTurn = false;
+						currentPlayer.End();
+						currentPlayer.GenerateUsers();
+						currentPlayer.GenerateMoney();
+						currentPlayer.UpdateBonds();
+
+						// Check to see if a player just won
+						if (!currentPlayer.CheckWinStatus(turnCount))
+							SwitchPlayers(gameTime);
+						else
+						{
+							Message.Activate();
+							Message.CreateMessage("Player " + ((int)playerState + 1) + " you win!\nReturn to menu.");
+							GameManager.EndGame = true;// lets manager know game is over
+						}
 					}
 				}
 			}
@@ -453,6 +455,11 @@ namespace FlameWars
 				currentPlayer.EndAnimation();
 				board.GetPath(currentPlayer.FinalPosition).Trigger();
 			}
+		}
+
+		public static void Reset()
+		{
+
 		}
     }
 }

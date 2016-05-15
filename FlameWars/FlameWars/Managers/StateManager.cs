@@ -15,7 +15,8 @@
 			Pause,
 			Game,
 			GameOver,
-			Exit
+			Exit,
+			Reset
 		}
 		public static GameState gameState = GameState.Menu;
 		public static GameState lastState;
