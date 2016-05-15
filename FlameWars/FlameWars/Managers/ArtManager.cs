@@ -74,6 +74,9 @@ namespace FlameWars
 
 		// How to instructions filename
 		public const string HOW_TO_INSTRUCTIONS = "Default how to instructions"; // For placeholder how to image
+		public const string SLIDE_TEST_01 = "slide_test01";
+		public const string SLIDE_TEST_02 = "slide_test02";
+		public const string SLIDE_TEST_03 = "slide_test03";
 
 		// MessageBox texture
 		public const string MESSAGE_BOX = "MessageBox"; // For messageBox
@@ -141,6 +144,10 @@ namespace FlameWars
 
 		// How-to textures
 		private static Texture2D howToInstructions; // How to texture
+		private static Texture2D test01; // test slides
+		private static Texture2D test02;
+		private static Texture2D test03;
+		private static Texture2D[] slides; // all slides in an array
 
 		// Message Box texture
 		private static Texture2D messageBox; // Message box texture
@@ -212,6 +219,10 @@ namespace FlameWars
 
 		// How-to textures.
 		public static Texture2D HowToInstructions { get { return howToInstructions; } set { howToInstructions = value; } }
+		public static Texture2D Test01 { get { return test01; } set { test01 = value; } }
+		public static Texture2D Test02 { get { return test02; } set { test02 = value; } }
+		public static Texture2D Test03 { get { return test03; } set { test03 = value; } }
+		public static Texture2D[] Slides { get { return slides; } set { slides = value; } }
 
 		// Message box textures.
 		public static Texture2D MessageBox { get { return messageBox; } set { messageBox = value; } }
@@ -302,6 +313,11 @@ namespace FlameWars
 
 				// how-to texture
 				HowToInstructions = Content.Load<Texture2D>(HOW_TO_INSTRUCTIONS);
+				Test01 = Content.Load<Texture2D>(SLIDE_TEST_01);
+				Test02 = Content.Load<Texture2D>(SLIDE_TEST_02);
+				Test03 = Content.Load<Texture2D>(SLIDE_TEST_03);
+				slides = new Texture2D[] { Test01, Test02, Test03 };
+
 
 				// Message Box texture
 				MessageBox = Content.Load<Texture2D>(MESSAGE_BOX);
@@ -373,6 +389,10 @@ namespace FlameWars
 
 			// How-to texture
 			HowToInstructions = Content.Load<Texture2D>(HOW_TO_INSTRUCTIONS);
+			Test01 = Content.Load<Texture2D>(SLIDE_TEST_01);
+			Test02 = Content.Load<Texture2D>(SLIDE_TEST_02);
+			Test03 = Content.Load<Texture2D>(SLIDE_TEST_03);
+			slides = new Texture2D[] { Test01, Test02, Test03 };
 
 			// Message Box texture
 			MessageBox = Content.Load<Texture2D>(MESSAGE_BOX);

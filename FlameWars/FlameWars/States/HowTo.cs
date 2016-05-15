@@ -27,9 +27,9 @@ namespace FlameWars
 		const int BUTTON_HEIGHT     = 100;
 		const int BUTTON_WIDTH      = 150;
 		      int SLIDE_X			= GameManager.Width/4;
-		const int SLIDE_Y			= 100;
-		const int SLIDE_HEIGHT		= 150;
-			  int SLIDE_WIDTH		= GameManager.Width/2;
+		      int SLIDE_Y			= 100;
+		      int SLIDE_HEIGHT		= 150;
+		      int SLIDE_WIDTH		= GameManager.Width/2;
 		
 		// Button data
 		Color[] buttonColors;
@@ -106,12 +106,17 @@ namespace FlameWars
 			buttonTextures[1] = ArtManager.ExitButton;
 
 			// THESE NEED TO BE CHANGED TO THE REAL TEXTURES
-			buttonTextures[2] = ArtManager.ExitButton;
-			buttonTextures[3] = ArtManager.PlayButton;
+			buttonTextures[2] = ArtManager.ExitButton; // PREV
+			buttonTextures[3] = ArtManager.PlayButton; // NEXT
 
 			// TO DO:
 			// LOAD THE SLIDE CONTENT HERE
-			slideTextures[0] = ArtManager.HowToInstructions;
+			slideTextures = ArtManager.Slides;
+
+			SLIDE_HEIGHT = slideTextures[0].Height;
+			SLIDE_WIDTH = slideTextures[0].Width;
+			SLIDE_X = 0;
+			SLIDE_Y = 0;
 		}
 
 		// Passes in a few variables to save for update functions
@@ -183,8 +188,8 @@ namespace FlameWars
 							StateManager.gameState = StateManager.GameState.Exit;
 							break;
 						case BACK_INDEX:
-							if ((slide-=1) == slideTextures.Length)
-								slide = 0;
+							if ((slide-=1) < 0)
+								slide = (slideTextures.Length - 1);
 							break;
 						case NEXT_INDEX:
 							if ((slide+=1) == slideTextures.Length)
