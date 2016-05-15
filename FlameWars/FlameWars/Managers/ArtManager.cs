@@ -218,16 +218,16 @@ namespace FlameWars
 
 				// Core textures.
 				Board   = Content.Load<Texture2D>(BOARD_TEXTURE);
-				Player1 = Content.Load<Texture2D>(PLAYER_TEXTURE_01);
-				Player2 = Content.Load<Texture2D>(PLAYER_TEXTURE_02);
-				Player3 = Content.Load<Texture2D>(PLAYER_TEXTURE_03);
-				Player4 = Content.Load<Texture2D>(PLAYER_TEXTURE_04);
+				Player1 = Content.Load<Texture2D>(PLAYER_TEXTURE_PLACEHOLDER);
+				Player2 = Content.Load<Texture2D>(PLAYER_TEXTURE_PLACEHOLDER);
+				Player3 = Content.Load<Texture2D>(PLAYER_TEXTURE_PLACEHOLDER);
+				Player4 = Content.Load<Texture2D>(PLAYER_TEXTURE_PLACEHOLDER);
 
 				// UI textures.
-				PlayerIcon1 = Content.Load<Texture2D>(PLAYER_ICON_01);
-				PlayerIcon2 = Content.Load<Texture2D>(PLAYER_ICON_02);
-				PlayerIcon3 = Content.Load<Texture2D>(PLAYER_ICON_03);
-				PlayerIcon4 = Content.Load<Texture2D>(PLAYER_ICON_04);
+				PlayerIcon1 = Content.Load<Texture2D>(PLAYER_ICON_PLACEHOLDER);
+				PlayerIcon2 = Content.Load<Texture2D>(PLAYER_ICON_PLACEHOLDER);
+				PlayerIcon3 = Content.Load<Texture2D>(PLAYER_ICON_PLACEHOLDER);
+				PlayerIcon4 = Content.Load<Texture2D>(PLAYER_ICON_PLACEHOLDER);
 
 				// Button textures.
 				OkButton        = Content.Load<Texture2D>(BUTTON_OK);
