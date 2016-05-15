@@ -204,7 +204,7 @@ namespace FlameWars
 				win_info += " Money: $" + WinningPlayerResources[0] + "   ";
 				win_info += " |   " + WinningPlayerResources[1] + "users.  ";
 				win_info += " |   " + WinningPlayerResources[2] + "% bandwidth controlled.  ";
-				win_info += " |   " + WinningPlayerResources[1] + "memes that went viral.  ";
+				win_info += " |   " + WinningPlayerResources[3] + "memes that went viral.  ";
 
 				return win_info;
 			}
