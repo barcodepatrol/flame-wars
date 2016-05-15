@@ -22,8 +22,10 @@ namespace FlameWars
 		const int _4PLAYERS_INDEX   = 2;
 		const int BUTTON_HEIGHT     = 100;
 		const int BUTTON_WIDTH      = 150;
-		const int ICON_HEIGHT		= 100;
+		const int ICON_HEIGHT       = 256;
+		const int ICON_WIDTH        = 512;
 		const int PADDING			= 20;
+		const float SCALE			= 0.75f;
 		
 		// Button Data
 		Color[] buttonColors;
@@ -36,7 +38,10 @@ namespace FlameWars
 		Rectangle[] iconBounds;
 
 		int mX;		 // mouse x
-		int mY;		 // mouse y
+		int mY;      // mouse y
+
+		int scaledIconHeight;
+		int scaledIconWidth;
 
 		#endregion Variables
 
@@ -55,14 +60,21 @@ namespace FlameWars
 			iconColors   = new Color[NUMBER_OF_BUTTONS];
 			iconTextures = new Texture2D[NUMBER_OF_BUTTONS];
 			iconBounds   = new Rectangle[NUMBER_OF_BUTTONS];
+
+			scaledIconHeight  = (int)(ICON_HEIGHT * SCALE);
+			scaledIconWidth   = (int)(ICON_WIDTH * SCALE);
 		}
 
 		// This method constructs the buttons
 		public void MakeButtons()
 		{
-			// Create the Origin Coordinates for the buttons
-			int xOrigin = GameManager.Width/2 - BUTTON_WIDTH/2 - BUTTON_WIDTH - PADDING;
-			int yOrigin = GameManager.Height/2 - BUTTON_HEIGHT/2 - BUTTON_HEIGHT - PADDING;
+			// Create the Origin Coordinates for the Buttons.
+			int xOrigin = GameManager.Width / 2 - BUTTON_WIDTH / 2 - BUTTON_WIDTH - PADDING;
+
+			// Create the Origin Coordinates for the Icons.
+			int xIconOrigin = GameManager.Width / 2 - scaledIconWidth / 2 - scaledIconWidth - PADDING;
+			int yOrigin = GameManager.Height / 2 - BUTTON_HEIGHT / 2 - BUTTON_HEIGHT - PADDING;
+			
 
 			// Create all of the buttons
 			for (int i = 0; i < NUMBER_OF_BUTTONS; i++)
@@ -73,10 +85,11 @@ namespace FlameWars
 
 				// Set color and rectangle
 				iconColors[i] = Color.White;
-				iconBounds[i] = new Rectangle(xOrigin, yOrigin+BUTTON_HEIGHT, BUTTON_WIDTH, BUTTON_HEIGHT);	
+				iconBounds[i] = new Rectangle(xIconOrigin, yOrigin + BUTTON_HEIGHT, scaledIconWidth, scaledIconHeight);	
 
 				// Increment y position
 				xOrigin += BUTTON_WIDTH + PADDING;
+				xIconOrigin += scaledIconWidth + PADDING;
 			}
 		}
 
@@ -97,9 +110,9 @@ namespace FlameWars
 			buttonTextures[0] = ArtManager.PlayButton;
 			buttonTextures[1] = ArtManager.HowToButton;
 			buttonTextures[2] = ArtManager.ExitButton;
-			iconTextures[0] = ArtManager.PlayButton;
-			iconTextures[1] = ArtManager.HowToButton;
-			iconTextures[2] = ArtManager.ExitButton;
+			iconTextures[0] = ArtManager.Choose2PlayersButton;
+			iconTextures[1] = ArtManager.Choose3PlayersButton;
+			iconTextures[2] = ArtManager.Choose4PlayersButton;
 
 			// Create the button data for our game
 			MakeButtons();
@@ -130,6 +143,22 @@ namespace FlameWars
 					buttonColors[i] = Color.White;
 				}
 			}
+
+			// Iterate through every icon
+			for (int i = 0; i < NUMBER_OF_BUTTONS; i++)
+			{
+				// If the mouse x and mouse y values are within the rectangle
+				if (iconBounds[i].X <= mX && mX <= iconBounds[i].X + scaledIconWidth &&
+					iconBounds[i].Y <= mY && mY <= iconBounds[i].Y + scaledIconHeight)
+				{
+					iconColors[i] = Color.DarkGray;
+				}
+				// Otherwise, reset the color
+				else
+				{
+					iconColors[i] = Color.White;
+				}
+			}
 		}
 
 		// This method determines if a button is being pressed
@@ -148,6 +177,22 @@ namespace FlameWars
 				else
 				{
 					buttonColors[i] = Color.White;
+				}
+			}
+
+			// Iterate through every icon
+			for (int i = 0; i < NUMBER_OF_BUTTONS; i++)
+			{
+				// If the mouse x and mouse y values are within the rectangle
+				if (iconBounds[i].X <= mX && mX <= iconBounds[i].X + scaledIconWidth &&
+					iconBounds[i].Y <= mY && mY <= iconBounds[i].Y + scaledIconHeight)
+				{
+					iconColors[i] = Color.Gray;
+				}
+				// Otherwise, reset the color
+				else
+				{
+					iconColors[i] = Color.White;
 				}
 			}
 		}
@@ -181,6 +226,33 @@ namespace FlameWars
 					buttonColors[i] = Color.White;
 				}
 			}
+
+			// Iterate through every icon
+			for (int i = 0; i < NUMBER_OF_BUTTONS; i++)
+			{
+				// If the mouse x and mouse y values are within the rectangle
+				// If the button has already been pressed
+				if (iconBounds[i].X <= mX && mX <= iconBounds[i].X + scaledIconWidth &&
+					iconBounds[i].Y <= mY && mY <= iconBounds[i].Y + scaledIconHeight &&
+					iconColors[i] == Color.Gray)
+				{
+					// Check each case to determine which button is being pressed to change state
+					switch (i)
+					{
+						case _2PLAYERS_INDEX: GameManager.NumberOfPlayers = 2; break;
+						case _3PLAYERS_INDEX: GameManager.NumberOfPlayers = 3; break;
+						case _4PLAYERS_INDEX: GameManager.NumberOfPlayers = 4; break;
+					}
+
+					// Set to game state
+					StateManager.gameState = StateManager.GameState.Role;
+				}
+				// Otherwise, reset the color
+				else
+				{
+					iconColors[i] = Color.White;
+				}
+			}
 		}
 
 		// This draws all of the buttons and icons
@@ -189,7 +261,7 @@ namespace FlameWars
 			// Iterate through all buttons and icons
 			for (int i = 0; i < NUMBER_OF_BUTTONS; i++)
 			{
-				spriteBatch.Draw(buttonTextures[i], buttonBounds[i], buttonColors[i]);
+				// spriteBatch.Draw(buttonTextures[i], buttonBounds[i], buttonColors[i]);
 				spriteBatch.Draw(iconTextures[i], iconBounds[i], iconColors[i]);
 			}
 		}

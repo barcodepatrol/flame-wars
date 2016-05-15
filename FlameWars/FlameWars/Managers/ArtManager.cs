@@ -52,6 +52,10 @@ namespace FlameWars
 		public const string BUTTON_PLAYER2 = "Player2Button"; // For player2Button
 		public const string BUTTON_PLAYER3 = "Player3Button"; // For player3Button
 		public const string BUTTON_PLAYER4 = "Player4Button"; // For player4Button
+		public const string BUTTON_CHOOSE2 = "choice_twoplayers"; // For chooseTwoPlayersButton
+		public const string BUTTON_CHOOSE3 = "choice_threeplayers"; // For chooseThreePlayersButton
+		public const string BUTTON_CHOOSE4 = "choice_fourplayers"; // For chooseFourPlayersButton
+
 
 		// Path texture filenames
 		public const string PATH_TEXTURE_01 = "path_texture_01"; // For pathTexture1
@@ -116,6 +120,9 @@ namespace FlameWars
 		private static Texture2D player2Button; // Player2 button texture
 		private static Texture2D player3Button; // Player3 button texture
 		private static Texture2D player4Button; // Player4 button texture
+		private static Texture2D chooseTwoPlayersButton; // Choose two players button texture.
+		private static Texture2D chooseThreePlayersButton; // Choose three players button texture.
+		private static Texture2D chooseFourPlayersButton; // Choose four players button texture.
 
 		// Path textures
 		private static Texture2D pathTexture1; // Path Texture type 1
@@ -184,6 +191,9 @@ namespace FlameWars
 		public static Texture2D Player2Button { get { return player2Button; } set { player2Button = value; } }
 		public static Texture2D Player3Button { get { return player3Button; } set { player3Button = value; } }
 		public static Texture2D Player4Button { get { return player4Button; } set { player4Button = value; } }
+		public static Texture2D Choose2PlayersButton { get { return chooseTwoPlayersButton; } set { chooseTwoPlayersButton = value; } }
+		public static Texture2D Choose3PlayersButton { get { return chooseThreePlayersButton; } set { chooseThreePlayersButton = value; } }
+		public static Texture2D Choose4PlayersButton { get { return chooseFourPlayersButton; } set { chooseFourPlayersButton = value; } }
 
 		// Path textures.
 		public static Texture2D PathTexture1 { get { return pathTexture1; } set { pathTexture1 = value; } }
@@ -279,6 +289,9 @@ namespace FlameWars
 				Player2Button   = Content.Load<Texture2D>(BUTTON_PLAYER2);
 				Player3Button   = Content.Load<Texture2D>(BUTTON_PLAYER3);
 				Player4Button   = Content.Load<Texture2D>(BUTTON_PLAYER4);
+				Choose2PlayersButton = Content.Load<Texture2D>(BUTTON_CHOOSE2);
+				Choose3PlayersButton = Content.Load<Texture2D>(BUTTON_CHOOSE3);
+				Choose4PlayersButton = Content.Load<Texture2D>(BUTTON_CHOOSE4);
 
 				// Path textures.
 				PathTexture1 = Content.Load<Texture2D>(PATH_TEXTURE_01);
@@ -347,6 +360,9 @@ namespace FlameWars
 			Player2Button   = Content.Load<Texture2D>(BUTTON_PLAYER2);
 			Player3Button   = Content.Load<Texture2D>(BUTTON_PLAYER3);
 			Player4Button   = Content.Load<Texture2D>(BUTTON_PLAYER4);
+			Choose2PlayersButton = Content.Load<Texture2D>(BUTTON_CHOOSE2);
+			Choose3PlayersButton = Content.Load<Texture2D>(BUTTON_CHOOSE3);
+			Choose4PlayersButton = Content.Load<Texture2D>(BUTTON_CHOOSE4);
 
 			// Path textures.
 			PathTexture1 = Content.Load<Texture2D>(PATH_TEXTURE_PLACEHOLDER);
