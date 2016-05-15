@@ -398,6 +398,8 @@ namespace FlameWars
 					Initialize();
 					// game is no longer at end
 					GameManager.EndGame = false;
+					// turn is no longer ending
+					GameManager.EndTurn = false;
 					// bring game back to menu
 					StateManager.gameState = StateManager.GameState.Menu;
 					break;
