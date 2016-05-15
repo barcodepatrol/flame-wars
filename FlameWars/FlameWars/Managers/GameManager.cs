@@ -144,7 +144,17 @@ namespace FlameWars
 		public static bool EndTurn
 		{
 			get { return endTurn; }
-			set { endTurn = value; }
+			set
+			{
+				if (!EndGame)
+				{
+					endTurn = value;
+				}
+				else
+				{
+					endTurn = false;
+				}
+			}
 		}
 
 		// Stores whether or not a player has ended the game.
@@ -178,6 +188,12 @@ namespace FlameWars
 		public static double ScreenScale
 		{
 			get { return screenScale; }
+		}
+
+		// Winning Information.
+		public static string WinInformation
+		{
+			get { return "Placeholder Text."; }
 		}
 		#endregion Properties
 
@@ -238,7 +254,10 @@ namespace FlameWars
 			resetGame = false;
 
 			totalBandwidth = 100;
-	}
+
+			Game1.CURRENT_GAME.Reset();
+			StateManager.gameState = StateManager.GameState.Start;
+		}
 
 		// Service method.
 		// Call these for quick calculations in other methods.

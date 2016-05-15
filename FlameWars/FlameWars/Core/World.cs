@@ -12,6 +12,8 @@ namespace FlameWars
 		// ============================================================================
 
 		#region Variables
+		public static bool DISPLAY_WIN_STATUS = false;
+
 		enum PlayerState { PlayerOne, PlayerTwo, PlayerThree, PlayerFour };
 		private int numberOfPlayers = 0;
 		//private int totalBandwidth = 100;
@@ -93,7 +95,7 @@ namespace FlameWars
 		public int TurnCount
 		{
 			get { return this.turnCount; }
-		}
+		}		
 		#endregion Properties
 
 		// ============================================================================
@@ -113,6 +115,7 @@ namespace FlameWars
 		// Passes texture to board object
 		public void Initialize(int players)
 		{
+			World.DISPLAY_WIN_STATUS = false;
 			Texture2D[] pathImages = ArtManager.Paths;
 			Texture2D boardImage   = ArtManager.Board;
 
@@ -302,71 +305,76 @@ namespace FlameWars
 
 		public void Update(GameTime gameTime)
 		{
-            // Iterate through all players
-			for (int index = 0; index < players.Count; index++)
+
+			if (!DISPLAY_WIN_STATUS)
 			{
-				// Update currentPlayer
-				currentPlayer.Update(gameTime);
-
-				// If the player has just rolled, start animating
-				if (currentPlayer.IsRolling())
-					AnimatePlayer();
-
-				// If the player is animating, update their animation
-				if (currentPlayer.IsAnimated())
-					UpdateAnimation();
-
-				// If the player has ended their turn, switch players
-				if (GameManager.EndTurn)
+				// Iterate through all players
+				for (int index = 0; index < players.Count; index++)
 				{
-					// Check to see if we just targeted a player
-					if (Target.isActive)
-					{
-						// If so, turn off target and change player's stats
-						Target.Deactivate();
-						int playerTarget = Target.PlayerTarget;
-						players[playerTarget].CardEffect(Message.CurrentCard);
+					// Update currentPlayer
+					currentPlayer.Update(gameTime);
 
-						// Subtract cost of card
-						currentPlayer.Money -= Message.CurrentCard.Cost;
-					}
-					// Check to see if we bought a card
-					else if (Message.CurrentCard != null && Message.Bought)
-					{
-						// Change the current player's values
-						currentPlayer.CardEffect(Message.CurrentCard);
-					}
-					// Check to see if we just bought a bond
-					else if (Message.CurrentBond != null && Message.Bought)
-					{
-						// Change the current player's values
-						currentPlayer.BuyBond(Message.CurrentBond);
-					}
+					// If the player has just rolled, start animating
+					if (currentPlayer.IsRolling())
+						AnimatePlayer();
 
-					// Player ends their turn
-					GameManager.EndTurn = false;
-					currentPlayer.End();
-					currentPlayer.GenerateUsers();
-					currentPlayer.GenerateMoney();
-					currentPlayer.UpdateBonds();
+					// If the player is animating, update their animation
+					if (currentPlayer.IsAnimated())
+						UpdateAnimation();
 
-					// Check to see if a player just won
-					if (!currentPlayer.CheckWinStatus(turnCount))
-						SwitchPlayers(gameTime);
-					else
+					// If the player has ended their turn, switch players
+					if (GameManager.EndTurn)
 					{
-						Message.Activate();
-						Message.CreateMessage("Player " + ((int)playerState+1) + " you win!\nReturn to menu.");
-						// implement end game here
-						// implement reset here
-						/*
-						if(GameManager.ResetGame)
+						// Check to see if we just targeted a player
+						if (Target.isActive)
 						{
-							Statemanager.GameState = StateManager.GameState.Start;
+							// If so, turn off target and change player's stats
+							Target.Deactivate();
+							int playerTarget = Target.PlayerTarget;
+							players[playerTarget].CardEffect(Message.CurrentCard);
+
+							// Subtract cost of card
+							currentPlayer.Money -= Message.CurrentCard.Cost;
 						}
-						*/
+						// Check to see if we bought a card
+						else if (Message.CurrentCard != null && Message.Bought)
+						{
+							// Change the current player's values
+							currentPlayer.CardEffect(Message.CurrentCard);
+						}
+						// Check to see if we just bought a bond
+						else if (Message.CurrentBond != null && Message.Bought)
+						{
+							// Change the current player's values
+							currentPlayer.BuyBond(Message.CurrentBond);
+						}
+
+						// Player ends their turn
+						GameManager.EndTurn = false;
+						currentPlayer.End();
+						currentPlayer.GenerateUsers();
+						currentPlayer.GenerateMoney();
+						currentPlayer.UpdateBonds();
+
+						// Check to see if a player just won
+						if (!currentPlayer.CheckWinStatus(turnCount))
+							SwitchPlayers(gameTime);
+						else
+						{
+							// Give information to GameManager for EndGame state.
+							GameManager.EndGame = true;
+
+							// Activate the message box.
+							Message.Activate();
+							Message.CreateMessage("Player " + ((int)playerState + 1) + " you win!\nReturn to menu.");
+						}
 					}
 				}
+			}
+			else
+			{
+				Message.Activate();
+				Message.CreateMessage(GameManager.WinInformation); // Game reset is handled from inside the Message class.
 			}
 		}
 
@@ -379,31 +387,39 @@ namespace FlameWars
 
 		public void Draw(SpriteBatch spriteBatch)
 		{
-			// Draw the board
-			board.Draw(spriteBatch);
 
-			// Draw the player UI and Token
-			foreach (Player p in players)
+			if (!DISPLAY_WIN_STATUS)
 			{
-				// Draw the player token
-				p.DrawToken(spriteBatch);
+				// Draw the board (if not displaying win status).
+				board.Draw(spriteBatch);
 
-				// Draw the player UI.
-				p.DrawUI(spriteBatch);
+				// Draw the player UI and Token
+				foreach (Player p in players)
+				{
+					// Draw the player token
+					p.DrawToken(spriteBatch);
 
-				//* DEVELOPERS NOTE *//
-				/*
-					Originally, p.DrawUI() was in a switch structure
-					that desiginated each call to a draw depending on its corner.
-				
-					By passing the Vector2 on construction to each player,
-					we gain quicker access to the position values, 
-					and can draw buttons for each player.				
-				*/
+					// Draw the player UI.
+					p.DrawUI(spriteBatch);
+
+					//* DEVELOPERS NOTE *//
+					/*
+						Originally, p.DrawUI() was in a switch structure
+						that desiginated each call to a draw depending on its corner.
+
+						By passing the Vector2 on construction to each player,
+						we gain quicker access to the position values, 
+						and can draw buttons for each player.				
+					*/
+				}
+
+				// draw turn counter
+				spriteBatch.DrawString(ArtManager.MainFont, "Current Turn: " + turnCount, new Vector2(GameManager.Width / 2 - 70, 50), Color.Black);
 			}
-
-			// draw turn counter
-			spriteBatch.DrawString(ArtManager.MainFont, "Current Turn: " + turnCount, new Vector2(GameManager.Width / 2 - 70, 50), Color.Black);
+			else
+			{
+				// Should not draw anything during win status from the World class.
+			}
 		}
 
 		public void SwitchPlayers(GameTime gameTime)

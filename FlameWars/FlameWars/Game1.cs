@@ -21,6 +21,9 @@ namespace FlameWars
 		#endregion
 
 		#region Variables
+		// Game1 class for global reference.
+		public static Game1 CURRENT_GAME;
+
 		// Graphics variables.
 		private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
@@ -92,7 +95,14 @@ namespace FlameWars
 			graphics.PreferredBackBufferHeight = SCREEN_HEIGHT;
 
 			graphics.ApplyChanges();
+
+			CURRENT_GAME = this;
         }
+
+		public void Reset()
+		{
+			this.Initialize();
+		}
 
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.

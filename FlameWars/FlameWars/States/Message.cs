@@ -363,7 +363,7 @@ namespace FlameWars
 			// Sets the texture equal to the color data
 			image.SetData(data);
 		}
-
+		
 		// This method updates the string to include card data
 		static public void CardString()
 		{
@@ -425,10 +425,10 @@ namespace FlameWars
 					buttonBounds[i].Y <= mY && mY <= buttonBounds[i].Y+BUTTON_HEIGHT &&
 					buttonColors[i] == Color.Gray)
 				{
-					// Check each case to determine which button is being pressed to change state
-					switch (i)
-					{
-						case OK_INDEX:
+						// Check each case to determine which button is being pressed to change state
+						switch (i)
+						{
+							case OK_INDEX:
 							// We just bought a bond
 							if (bond != null && buying)
 							{
@@ -466,8 +466,19 @@ namespace FlameWars
 								Target.Activate();
 								Target.CreateTarget();
 							}
+							else if (GameManager.EndGame)
+							{
+								if (World.DISPLAY_WIN_STATUS)
+								{
+									active = false;
+									GameManager.Reset();
+								}
+
+								active = false;
+								World.DISPLAY_WIN_STATUS = true;
+							}
 							else
-							{ 
+							{
 								// Return to previous state - perform action if necessary
 								active = false;
 								GameManager.EndTurn = true;
@@ -478,7 +489,7 @@ namespace FlameWars
 							active = false;
 							GameManager.EndTurn = true;
 							break;
-					}
+						}
 				}
 				// Otherwise, reset the color
 				else
