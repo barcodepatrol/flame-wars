@@ -33,8 +33,15 @@ namespace FlameWars
 		private static Player cPlayer = null;
 		private static int numberOfPlayers = 2;
 
+		// Saves the winning player info.
+		private static Player wPlayer = null;
+		private static string wPlayerRole = null;
+		private static int[] wPlayerResources = null;
+		private static int endGameTurnNumber = 0;
+
 		// A boolean to determine if a player ended their turn
 		private static bool endTurn = false;
+		private static bool endGame = false;
 
 		public static Random random;
 
@@ -82,6 +89,13 @@ namespace FlameWars
 		{
 			get { return endTurn; }
 			set { endTurn = value; }
+		}
+
+		// Stores whether or not a player has ended the game.
+		public static bool EndGame
+		{
+			get { return endGame; }
+			set { endGame = value; }
 		}
 
 		public static int TotalBandwidth
