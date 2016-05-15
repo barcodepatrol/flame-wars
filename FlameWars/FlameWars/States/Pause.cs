@@ -158,7 +158,8 @@ namespace FlameWars
 							StateManager.gameState = StateManager.GameState.HowTo;
 							break;
 						case MENU_INDEX:
-							StateManager.gameState = StateManager.GameState.Menu;
+							// Set to the reset state first then it will go to the menu
+							StateManager.gameState = StateManager.GameState.Reset;
 							break;
 						case EXIT_INDEX:
 							StateManager.gameState = StateManager.GameState.Exit;

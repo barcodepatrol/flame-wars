@@ -401,6 +401,19 @@ namespace FlameWars
 				case StateManager.GameState.Exit:
 					Exit();
 					break;
+
+				// Resets the game
+				case StateManager.GameState.Reset:
+
+					// Reinitializes game1 and creates new version of world and managers which initialize remaining classes
+					Initialize();
+
+					// Game is no longer at end
+					GameManager.EndGame = false;
+
+					// Bring game back to menu
+					StateManager.gameState = StateManager.GameState.Menu;
+					break;
 			}
 
             base.Update(gameTime);
