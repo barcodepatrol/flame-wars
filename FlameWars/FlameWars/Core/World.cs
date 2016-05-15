@@ -308,8 +308,8 @@ namespace FlameWars
 
 			if (!DISPLAY_WIN_STATUS)
 			{
-				// Iterate through all players
-				for (int index = 0; index < players.Count; index++)
+					// Iterate through all players
+					for (int index = 0; index < players.Count; index++)
 				{
 					// Update currentPlayer
 					currentPlayer.Update(gameTime);
@@ -373,8 +373,8 @@ namespace FlameWars
 			}
 			else
 			{
-				Message.Activate();
-				Message.CreateMessage(GameManager.WinInformation); // Game reset is handled from inside the Message class.
+					Message.Activate();
+					Message.CreateMessage(GameManager.WinInformation); // Game reset is handled from inside the Message class.
 			}
 		}
 
