@@ -199,6 +199,37 @@ namespace FlameWars
 			premiumDeck.Shuffle();
 		}
 
+		// Reset the values for GameManager in event of a restart.
+		public static void Reset()
+		{
+			Init(graphicsManager, windowWidth, windowHeight);
+
+			mainDeckIndex = 0;
+			premiumDeckIndex = 0;
+
+			// Saves the current player info
+			cPlayer = null;
+			numberOfPlayers = 2;
+			cTurnNumber = 0;
+
+			// Saves the winning player info.
+			wPlayer = null;
+			wPlayerRole = null;
+			wPlayerResources = null;
+			endGameTurnNumber = 0;
+
+			// A boolean to determine if a player ended their turn
+			endTurn = false;
+
+			// A boolean to determine if the game has ended.
+			endGame = false;
+
+			// A boolean to determine whether or not to reset the game.
+			resetGame = false;
+
+			totalBandwidth = 100;
+	}
+
 		// Service method.
 		// Call these for quick calculations in other methods.
 

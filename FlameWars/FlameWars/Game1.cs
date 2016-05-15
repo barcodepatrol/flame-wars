@@ -254,7 +254,7 @@ namespace FlameWars
 
 						// NOW we set the amount of players
 						world.Initialize(GameManager.NumberOfPlayers);
-						roleState.Initialize();
+						roleState.Initialize(world);
 					}
 
 					// Call the hover method to determine if mouse is hovering

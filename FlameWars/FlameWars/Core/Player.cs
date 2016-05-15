@@ -24,8 +24,7 @@ namespace FlameWars
 			Narcissist,
 			Dankest
 		}
-		public static List<Role> roles = new List<Role>();
-
+		
 		// Enumerator.
 		public enum AnimationState { Idle, Roll, Animate };
 		public enum Direction { North, South, East, West };
@@ -251,7 +250,7 @@ namespace FlameWars
 
 		// Endgame conditions.
 		private const int TURN_LIMIT = 37;
-		private const int WEALTH_LIMIT = 100000;
+		private const int WEALTH_LIMIT = 101;
 		private const int USER_LIMIT = 3000;
 		private const int MEME_LIMIT = 25;
 
@@ -290,9 +289,6 @@ namespace FlameWars
 			ActiveColor   = Color.White;
 			InactiveColor = Color.DarkGray;
 			PressedColor  = Color.Gray;
-
-			role = roles[GameManager.random.Next(roles.Count)];
-			roles.Remove(role);
 		}
 		
 		// Determines how many users the player gets
@@ -842,13 +838,17 @@ namespace FlameWars
 		{
 			switch (role)
 			{
-				case Role.Dankest: if(memes >= MEME_LIMIT) { return true; }
+				case Role.Dankest:
+					if (memes >= MEME_LIMIT) { return true; }
 					break;
-				case Role.Narcissist: if(turnCount >= TURN_LIMIT) { return true; }
+				case Role.Narcissist:
+					if (turnCount >= TURN_LIMIT) { return true; }
 					break;
-				case Role.Plastic: if(users >= USER_LIMIT) { return true; }
+				case Role.Plastic:
+					if (users >= USER_LIMIT) { return true; }
 					break;
-				case Role.TopHat: if(money >= WEALTH_LIMIT) { return true; }
+				case Role.TopHat:
+					if (money >= WEALTH_LIMIT) { return true; }
 					break;
 			}
 			return false;

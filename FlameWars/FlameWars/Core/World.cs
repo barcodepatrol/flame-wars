@@ -49,6 +49,9 @@ namespace FlameWars
 		int mX, mY; // Mouse state variables.
 		int windowWidth, windowHeight; // Height and width of screen.
 
+		// player roles.
+		List<int> roles = new List<int>();
+
 		#endregion Variables
 
 		#region Properties
@@ -137,16 +140,28 @@ namespace FlameWars
 		{
 			#region CreatePlayers
 			// populate player role list
-			Player.roles.Add(Player.Role.Dankest);
-			Player.roles.Add(Player.Role.Narcissist);
-			Player.roles.Add(Player.Role.Plastic);
-			Player.roles.Add(Player.Role.TopHat);
+			int rolesLeft = 4;
+			int temp;
 
+			while (rolesLeft > 0)
+			{
+				temp = GameManager.RandomGen.Next(0, 4);
+				if (!roles.Contains(temp))
+				{
+					rolesLeft--;
+					roles.Add(temp);
+				}
+			}
+			
 			// Initialize the players
 			// There will always be at least two players
 			this.players = new List<Player>();
 			player1      = new Player(TOP_LEFT_POSITION);
+			player1.PlayerRole = (Player.Role)roles[0];
+
 			player2      = new Player(TOP_RIGHT_POSITION);
+			player2.PlayerRole = (Player.Role)roles[1];
+
 			this.players.Add(player1); 
 			this.players.Add(player2);
 
@@ -154,7 +169,11 @@ namespace FlameWars
 			if (players > 3)
 			{
 				player3 = new Player(BOTTOM_LEFT_POSITION);
+				player3.PlayerRole = (Player.Role)roles[2];
+
 				player4 = new Player(BOTTOM_RIGHT_POSIITION);
+				player4.PlayerRole = (Player.Role)roles[3];
+
 				this.players.Add(player3); 
 				this.players.Add(player4);
 			}
@@ -162,6 +181,8 @@ namespace FlameWars
 			else if (players > 2)
 			{
 				player3 = new Player(BOTTOM_LEFT_POSITION);
+				player3.PlayerRole = (Player.Role)roles[2];
+
 				this.players.Add(player3);
 			}
 			#endregion CreatePlayers
@@ -285,71 +306,108 @@ namespace FlameWars
 
 		public void Update(GameTime gameTime)
 		{
-            // Iterate through all players
-			for (int index = 0; index < players.Count; index++)
+			if (!GameManager.EndGame)
 			{
-				// Update currentPlayer
-				currentPlayer.Update(gameTime);
-
-				// If the player has just rolled, start animating
-				if (currentPlayer.IsRolling())
-					AnimatePlayer();
-
-				// If the player is animating, update their animation
-				if (currentPlayer.IsAnimated())
-					UpdateAnimation();
-
-				// If the player has ended their turn, switch players
-				if (GameManager.EndTurn)
+				// Iterate through all players
+				for (int index = 0; index < players.Count; index++)
 				{
-					// Check to see if we just targeted a player
-					if (Target.isActive)
-					{
-						// If so, turn off target and change player's stats
-						Target.Deactivate();
-						int playerTarget = Target.PlayerTarget;
-						players[playerTarget].CardEffect(Message.CurrentCard);
+					// Update currentPlayer
+					currentPlayer.Update(gameTime);
 
-						// Subtract cost of card
-						currentPlayer.Money -= Message.CurrentCard.Cost;
-					}
-					// Check to see if we bought a card
-					else if (Message.CurrentCard != null && Message.Bought)
-					{
-						// Change the current player's values
-						currentPlayer.CardEffect(Message.CurrentCard);
-					}
-					// Check to see if we just bought a bond
-					else if (Message.CurrentBond != null && Message.Bought)
-					{
-						// Change the current player's values
-						currentPlayer.BuyBond(Message.CurrentBond);
-					}
+					// If the player has just rolled, start animating
+					if (currentPlayer.IsRolling())
+						AnimatePlayer();
 
-					// Player ends their turn
-					GameManager.EndTurn = false;
-					currentPlayer.End();
-					currentPlayer.GenerateUsers();
-					currentPlayer.GenerateMoney();
-					currentPlayer.UpdateBonds();
+					// If the player is animating, update their animation
+					if (currentPlayer.IsAnimated())
+						UpdateAnimation();
 
-					// Check to see if a player just won
-					if (!currentPlayer.CheckWinStatus(turnCount))
-						SwitchPlayers(gameTime);
-					else
+					// If the player has ended their turn, switch players
+					if (GameManager.EndTurn)
 					{
-						Message.Activate();
-						Message.CreateMessage("Player " + ((int)playerState+1) + " you win!\nReturn to menu.");
-						// implement end game here
-						// implement reset here
-						/*
-						if(GameManager.ResetGame)
+						// Check to see if we just targeted a player
+						if (Target.isActive)
 						{
-							Statemanager.GameState = StateManager.GameState.Start;
+							// If so, turn off target and change player's stats
+							Target.Deactivate();
+							int playerTarget = Target.PlayerTarget;
+							players[playerTarget].CardEffect(Message.CurrentCard);
+
+							// Subtract cost of card
+							currentPlayer.Money -= Message.CurrentCard.Cost;
 						}
-						*/
+						// Check to see if we bought a card
+						else if (Message.CurrentCard != null && Message.Bought)
+						{
+							// Change the current player's values
+							currentPlayer.CardEffect(Message.CurrentCard);
+						}
+						// Check to see if we just bought a bond
+						else if (Message.CurrentBond != null && Message.Bought)
+						{
+							// Change the current player's values
+							currentPlayer.BuyBond(Message.CurrentBond);
+						}
+
+						// Player ends their turn
+						GameManager.EndTurn = false;
+						currentPlayer.End();
+						currentPlayer.GenerateUsers();
+						currentPlayer.GenerateMoney();
+						currentPlayer.UpdateBonds();
+
+						// Check to see if a player just won
+						if (!currentPlayer.CheckWinStatus(turnCount))
+						{
+							SwitchPlayers(gameTime);
+						}
+						else
+						{
+							// Change the state.
+							GameManager.EndGame = true;
+
+							Message.Activate();
+							Message.CreateMessage("Player " + ((int)playerState + 1) + " you win!\nReturn to menu.");
+						}
 					}
 				}
+			}
+			else
+			{
+
+				// TODO
+				//////////////////////////////////////////////////////////////////////////
+				// TODO // TODO // TODO // TODO // TODO // TODO // TODO // TODO // TODO //
+				//////////////////////////////////////////////////////////////////////////
+				// TODO // TODO // TODO // TODO // TODO // TODO // TODO // TODO // TODO //
+				//////////////////////////////////////////////////////////////////////////
+				// TODO // TODO // TODO // TODO // TODO // TODO // TODO // TODO // TODO //
+				//////////////////////////////////////////////////////////////////////////
+				// TODO // TODO // TODO // TODO // TODO // TODO // TODO // TODO // TODO //
+				//////////////////////////////////////////////////////////////////////////
+
+				// Get information to display.
+				// Player wPlayer;
+				// string wPlayerResources;
+				// string wPlayerRole;
+				// int winTurn;
+
+				// Display that information.
+				// GameManager.WinningPlayer = ;
+				// GameManager.WinningPlayerResources = "resources to win";
+				// GameManager.WinningPlayerRole = ;
+				// GameManager.WinTurn = ;
+				// Message.Activate();
+				// Message.CreateMessage("Player Info goes here.");
+
+				// Set ResetState to true.
+				GameManager.ResetGame = true;
+			}
+
+			if (GameManager.ResetGame) 
+			{
+				// Reset the game if necessary!
+				Reset();
 			}
 		}
 
@@ -358,6 +416,16 @@ namespace FlameWars
 		{
 			this.mX = mx;
 			this.mY = my;
+		}
+
+		// Resets the game!
+		public void Reset()
+		{
+			// Reset GameManager values.
+			GameManager.Reset();
+
+			// Set the state back to start.
+			StateManager.gameState = StateManager.GameState.Start;
 		}
 
 		public void Draw(SpriteBatch spriteBatch)
@@ -387,6 +455,16 @@ namespace FlameWars
 
 			// draw turn counter
 			spriteBatch.DrawString(ArtManager.MainFont, "Current Turn: " + turnCount, new Vector2(GameManager.Width / 2 - 70, 50), Color.Black);
+		}
+
+		public Player GetPlayer(int playerIndex)
+		{
+			return players[playerIndex];
+		}
+
+		public List<Player> GetPlayers()
+		{
+			return players;
 		}
 
 		public void SwitchPlayers(GameTime gameTime)
