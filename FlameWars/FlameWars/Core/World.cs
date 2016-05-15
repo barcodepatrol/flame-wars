@@ -398,6 +398,7 @@ namespace FlameWars
 			{
 				pState = 0;
 				turnCount++;
+				GameManager.CurrentTurnNumber = turnCount;
 			}
 
 			// Reset and recast playerState
