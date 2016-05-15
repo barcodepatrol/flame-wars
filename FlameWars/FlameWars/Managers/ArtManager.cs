@@ -25,17 +25,17 @@ namespace FlameWars
 		// Core texture filenames
 		public const string BOARD_TEXTURE              = "board_final"; // For boardTexture
 		public const string BOARD_TEXTURE_PLACEHOLDER  = "board_placeholder"; // For boardTexture
-		public const string PLAYER_TEXTURE_01          = "player_texture_01"; // For playerTexture1
-		public const string PLAYER_TEXTURE_02          = "player_texture_02"; // For playerTexture2
-		public const string PLAYER_TEXTURE_03          = "player_texture_03"; // For playerTexture3
-		public const string PLAYER_TEXTURE_04          = "player_texture_04"; // For playerTexture4
+		public const string PLAYER_TOKEN_01 = "token_player1"; // For playerToken1
+		public const string PLAYER_TOKEN_02 = "token_player2"; // For playerToken2
+		public const string PLAYER_TOKEN_03 = "token_player3"; // For playerToken3
+		public const string PLAYER_TOKEN_04 = "token_player4"; // For playerToken3
 		public const string PLAYER_TEXTURE_PLACEHOLDER = "token_placeholder"; // For playerTexture1, playerTexture2, playerTexture3, playerTexture4
 
 		// UI texture filenames
-		public const string PLAYER_ICON_01 = "player_icon_01"; // For playerIcon1
-		public const string PLAYER_ICON_02 = "player_icon_02"; // For playerIcon2
-		public const string PLAYER_ICON_03 = "player_icon_03"; // For playerIcon3
-		public const string PLAYER_ICON_04 = "player_icon_04"; // For playerIcon4
+		public const string PLAYER_ICON_01 = "ui_player1"; // For playerIcon1
+		public const string PLAYER_ICON_02 = "ui_player2"; // For playerIcon2
+		public const string PLAYER_ICON_03 = "ui_player3"; // For playerIcon3
+		public const string PLAYER_ICON_04 = "ui_player4"; // For playerIcon4
 		public const string PLAYER_ICON_PLACEHOLDER = "token"; // For playerIcon1, playerIcon2, playerIcon3, playerIcon4
 
 		// Button texture filenames
@@ -95,9 +95,9 @@ namespace FlameWars
 
 		// Core textures
 		private static Texture2D boardTexture; // The actual board's texture
-		private static Texture2D playerTexture1; // Player 1's token texture
-		private static Texture2D playerTexture2; // Player 2's token texture
-		private static Texture2D playerTexture3; // Player 3's token texture
+		private static Texture2D playerToken1; // Player 1's token texture
+		private static Texture2D playerToken2; // Player 2's token texture
+		private static Texture2D playerToken3; // Player 3's token texture
 		private static Texture2D playerTexture4; // Player 4's token texture
 
 		// UI textures
@@ -166,9 +166,9 @@ namespace FlameWars
 
 		// Core textures.
 		public static Texture2D Board { get { return boardTexture; } set { boardTexture = value; } }
-		public static Texture2D Player1 { get { return playerTexture1; } set { playerTexture1 = value; } }
-		public static Texture2D Player2 { get { return playerTexture2; } set { playerTexture2 = value; } }
-		public static Texture2D Player3 { get { return playerTexture3; } set { playerTexture3 = value; } }
+		public static Texture2D Player1 { get { return playerToken1; } set { playerToken1 = value; } }
+		public static Texture2D Player2 { get { return playerToken2; } set { playerToken2 = value; } }
+		public static Texture2D Player3 { get { return playerToken3; } set { playerToken3 = value; } }
 		public static Texture2D Player4 { get { return playerTexture4; } set { playerTexture4 = value; } }
 
 		// UI textures.
@@ -256,24 +256,16 @@ namespace FlameWars
 
 				// Core textures.
 				Board   = Content.Load<Texture2D>(BOARD_TEXTURE);
-				//Player1 = Content.Load<Texture2D>(PLAYER_TEXTURE_01);
-				//Player2 = Content.Load<Texture2D>(PLAYER_TEXTURE_02);
-				//Player3 = Content.Load<Texture2D>(PLAYER_TEXTURE_03);
-				//Player4 = Content.Load<Texture2D>(PLAYER_TEXTURE_04);
-				Player1 = Content.Load<Texture2D>(PLAYER_TEXTURE_PLACEHOLDER);
-				Player2 = Content.Load<Texture2D>(PLAYER_TEXTURE_PLACEHOLDER);
-				Player3 = Content.Load<Texture2D>(PLAYER_TEXTURE_PLACEHOLDER);
-				Player4 = Content.Load<Texture2D>(PLAYER_TEXTURE_PLACEHOLDER);
+				Player1 = Content.Load<Texture2D>(PLAYER_TOKEN_01);
+				Player2 = Content.Load<Texture2D>(PLAYER_TOKEN_02);
+				Player3 = Content.Load<Texture2D>(PLAYER_TOKEN_03);
+				Player4 = Content.Load<Texture2D>(PLAYER_TOKEN_04);
 
 				// UI textures.
-				//PlayerIcon1 = Content.Load<Texture2D>(PLAYER_ICON_01);
-				//PlayerIcon2 = Content.Load<Texture2D>(PLAYER_ICON_02);
-				//PlayerIcon3 = Content.Load<Texture2D>(PLAYER_ICON_03);
-				//PlayerIcon4 = Content.Load<Texture2D>(PLAYER_ICON_04);
-				PlayerIcon1 = Content.Load<Texture2D>(PLAYER_ICON_PLACEHOLDER);
-				PlayerIcon2 = Content.Load<Texture2D>(PLAYER_ICON_PLACEHOLDER);
-				PlayerIcon3 = Content.Load<Texture2D>(PLAYER_ICON_PLACEHOLDER);
-				PlayerIcon4 = Content.Load<Texture2D>(PLAYER_ICON_PLACEHOLDER);
+				PlayerIcon1 = Content.Load<Texture2D>(PLAYER_ICON_01);
+				PlayerIcon2 = Content.Load<Texture2D>(PLAYER_ICON_02);
+				PlayerIcon3 = Content.Load<Texture2D>(PLAYER_ICON_03);
+				PlayerIcon4 = Content.Load<Texture2D>(PLAYER_ICON_04);
 
 				// Button textures.
 				OkButton        = Content.Load<Texture2D>(BUTTON_OK);

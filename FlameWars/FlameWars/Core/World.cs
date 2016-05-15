@@ -19,8 +19,8 @@ namespace FlameWars
 		//private int totalBandwidth = 100;
 		private int turnCount = 1;
 
-		const int PLAYER_UI_WIDTH  = 200;
-		const int PLAYER_UI_HEIGHT = 200;
+		const int PLAYER_UI_WIDTH  = 180;
+		const int PLAYER_UI_HEIGHT = 350;
 		const int BUTTON_HEIGHT    = 50;
 		const int BUTTON_WIDTH     = 75;
 		const int PLAYER_X         = 15;
