@@ -250,7 +250,7 @@ namespace FlameWars
 
 		// Endgame conditions.
 		private const int TURN_LIMIT = 37;
-		private const int WEALTH_LIMIT = 101;
+		private const int WEALTH_LIMIT = 40000;
 		private const int USER_LIMIT = 3000;
 		private const int MEME_LIMIT = 25;
 
@@ -862,6 +862,36 @@ namespace FlameWars
 				money -= b.Cost;
 				bonds.Add(b);
 			}
+		}
+
+		// Returns the player's role as a string.
+		public string GetRoleAsString()
+		{
+			string roleAsString = "";
+
+			switch (role)
+			{
+				case Role.Dankest:
+					roleAsString = "Le Dankest";
+					break;
+				case Role.Narcissist:
+					roleAsString = "The Narcissist";
+					break;
+				case Role.Plastic:
+					roleAsString = "The Plastic";
+					break;
+				case Role.TopHat:
+					roleAsString = "The Top-Hat";
+					break;
+			}
+
+			return roleAsString;
+		}
+
+		// Returns the player's role resource, as a string.
+		public int[] GetResources()
+		{
+			return new int[] { money, users, bandwidth, memes };
 		}
 	}
 }

@@ -468,14 +468,9 @@ namespace FlameWars
 							}
 							else if (GameManager.EndGame)
 							{
-								if (World.DISPLAY_WIN_STATUS)
-								{
-									active = false;
-									GameManager.Reset();
-								}
-
 								active = false;
-								World.DISPLAY_WIN_STATUS = true;
+								// GO BACK TO MENU HERE STATE CHANGE.
+								GameManager.Reset();
 							}
 							else
 							{

@@ -193,7 +193,21 @@ namespace FlameWars
 		// Winning Information.
 		public static string WinInformation
 		{
-			get { return "Placeholder Text."; }
+			get {
+				// Build the string to present to players.
+				string win_info = "";
+
+				// Role of winning player.
+				win_info += "The winning player was: \"" + WinningPlayerRole + "\"\n";
+
+				// End game resources.
+				win_info += " Money: $" + WinningPlayerResources[0] + "   ";
+				win_info += " |   " + WinningPlayerResources[1] + "users.  ";
+				win_info += " |   " + WinningPlayerResources[2] + "% bandwidth controlled.  ";
+				win_info += " |   " + WinningPlayerResources[1] + "memes that went viral.  ";
+
+				return win_info;
+			}
 		}
 		#endregion Properties
 
@@ -256,7 +270,7 @@ namespace FlameWars
 			totalBandwidth = 100;
 
 			Game1.CURRENT_GAME.Reset();
-			StateManager.gameState = StateManager.GameState.Start;
+			StateManager.gameState = StateManager.GameState.Reset;
 		}
 
 		// Service method.
