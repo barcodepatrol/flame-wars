@@ -9,6 +9,7 @@
 		public enum GameState
 		{
 			Start,
+			Role,
 			Menu,
 			HowTo,
 			Pause,

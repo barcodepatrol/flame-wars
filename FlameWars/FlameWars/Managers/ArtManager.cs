@@ -13,59 +13,67 @@ namespace FlameWars
 		// ============================================================================
 
 		#region Filepaths
-		// Filenames for the textures.
-		// Necessary texture filenames.
-		public const string BACKGROUND_TEXTURE = ""; // For the backgroundTexture.
-		public const string FOREGROUND_TEXTURE = ""; // For the foregroundTexture.
+		// Filenames for the textures
+		// Necessary texture filenames
+		public const string BACKGROUND_TEXTURE = ""; // For the backgroundTexture
+		public const string FOREGROUND_TEXTURE = ""; // For the foregroundTexture
 
 		// Font filenames
 		public const string MAIN_FONT    = "MainFont";
 		public const string DISPLAY_FONT = "DisplayFont";
 
-		// Core texture filenames.
-		public const string BOARD_TEXTURE              = "board_final"; // For boardTexture.
-		public const string BOARD_TEXTURE_PLACEHOLDER  = "board_placeholder"; // For boardTexture.
-		public const string PLAYER_TEXTURE_01          = "player_texture_01"; // For playerTexture1.
-		public const string PLAYER_TEXTURE_02          = "player_texture_02"; // For playerTexture2.
-		public const string PLAYER_TEXTURE_03          = "player_texture_03"; // For playerTexture3.
-		public const string PLAYER_TEXTURE_04          = "player_texture_04"; // For playerTexture4.
-		public const string PLAYER_TEXTURE_PLACEHOLDER = "token_placeholder"; // For playerTexture1, playerTexture2, playerTexture3, playerTexture4.
+		// Core texture filenames
+		public const string BOARD_TEXTURE              = "board_final"; // For boardTexture
+		public const string BOARD_TEXTURE_PLACEHOLDER  = "board_placeholder"; // For boardTexture
+		public const string PLAYER_TEXTURE_01          = "player_texture_01"; // For playerTexture1
+		public const string PLAYER_TEXTURE_02          = "player_texture_02"; // For playerTexture2
+		public const string PLAYER_TEXTURE_03          = "player_texture_03"; // For playerTexture3
+		public const string PLAYER_TEXTURE_04          = "player_texture_04"; // For playerTexture4
+		public const string PLAYER_TEXTURE_PLACEHOLDER = "token_placeholder"; // For playerTexture1, playerTexture2, playerTexture3, playerTexture4
 
-		// UI texture filenames.
-		public const string PLAYER_ICON_01 = "player_icon_01"; // For playerIcon1.
-		public const string PLAYER_ICON_02 = "player_icon_02"; // For playerIcon2.
-		public const string PLAYER_ICON_03 = "player_icon_03"; // For playerIcon3.
-		public const string PLAYER_ICON_04 = "player_icon_04"; // For playerIcon4.
-		public const string PLAYER_ICON_PLACEHOLDER = "token"; // For playerIcon1, playerIcon2, playerIcon3, playerIcon4.
+		// UI texture filenames
+		public const string PLAYER_ICON_01 = "player_icon_01"; // For playerIcon1
+		public const string PLAYER_ICON_02 = "player_icon_02"; // For playerIcon2
+		public const string PLAYER_ICON_03 = "player_icon_03"; // For playerIcon3
+		public const string PLAYER_ICON_04 = "player_icon_04"; // For playerIcon4
+		public const string PLAYER_ICON_PLACEHOLDER = "token"; // For playerIcon1, playerIcon2, playerIcon3, playerIcon4
 
-		// Button texture filenames.
-		public const string BUTTON_OK      = "OkButton"; // For okButton.
-		public const string BUTTON_EXIT    = "ExitButton"; // For exitButton.
-		public const string BUTTON_HOW_TO  = "HowToButton"; // For howToButton.
-		public const string BUTTON_MENU    = "MenuButton"; // For menuButton.
-		public const string BUTTON_PLAY    = "PlayButton"; // For playButton.
-		public const string BUTTON_RESUME  = "ResumeButton"; // For resumeButton.
-		public const string BUTTON_RETURN  = "ReturnButton"; // For returnButton.
-		public const string BUTTON_CANCEL  = "CancelButton"; // For cancelButton.
-		public const string BUTTON_ROLL    = "RollButton"; // For rollButton.
+		// Button texture filenames
+		public const string BUTTON_OK      = "OkButton";	  // For okButton
+		public const string BUTTON_EXIT    = "ExitButton";    // For exitButton
+		public const string BUTTON_HOW_TO  = "HowToButton";   // For howToButton
+		public const string BUTTON_MENU    = "MenuButton";    // For menuButton
+		public const string BUTTON_PLAY    = "PlayButton";    // For playButton
+		public const string BUTTON_RESUME  = "ResumeButton";  // For resumeButton
+		public const string BUTTON_RETURN  = "ReturnButton";  // For returnButton
+		public const string BUTTON_CANCEL  = "CancelButton";  // For cancelButton
+		public const string BUTTON_ROLL    = "RollButton";	  // For rollButton
 		public const string BUTTON_PLAYER1 = "Player1Button"; // For player1Button
 		public const string BUTTON_PLAYER2 = "Player2Button"; // For player2Button
 		public const string BUTTON_PLAYER3 = "Player3Button"; // For player3Button
 		public const string BUTTON_PLAYER4 = "Player4Button"; // For player4Button
 
-		// Path texture filenames.
-		public const string PATH_TEXTURE_01 = "path_texture_01"; // For pathTexture1;
-		public const string PATH_TEXTURE_02 = "path_texture_02"; // For pathTexture2;
-		public const string PATH_TEXTURE_03 = "path_texture_03"; // For pathTexture3;
-		public const string PATH_TEXTURE_04 = "path_texture_04"; // For pathTexture4;
-		public const string PATH_TEXTURE_PLACEHOLDER = "path_placeholder"; // For pathTexture1, pathTexture2, pathTexture3, pathTexture4;
+		// Path texture filenames
+		public const string PATH_TEXTURE_01 = "path_texture_01"; // For pathTexture1
+		public const string PATH_TEXTURE_02 = "path_texture_02"; // For pathTexture2
+		public const string PATH_TEXTURE_03 = "path_texture_03"; // For pathTexture3
+		public const string PATH_TEXTURE_04 = "path_texture_04"; // For pathTexture4
+		public const string PATH_TEXTURE_PLACEHOLDER = "path_placeholder"; // For pathTexture1, pathTexture2, pathTexture3, pathTexture4
 
-		// How to instructions filename.
-		public const string HOW_TO_INSTRUCTIONS = "Default how to instructions"; // For placeholder how to image.
+		// Role texture filenames
+		public const string FOLDER_CLOSED = "FolderClosed"; // For folderClosed
+		public const string FOLDER_OPEN	  = "FolderOpen";	// For folderOpen
+		public const string TOP_HAT		  = "tophat";		// for topHat
+		public const string PLASTIC		  = "plastic";		// for plastic
+		public const string NARCISSIT	  = "narcissist";	// for narcissist
+		public const string DANKEST		  = "dankest";		// for dankest
 
-		// MessageBox texture.
-		public const string MESSAGE_BOX = "MessageBox"; // For messageBox.
-		public const string TARGET_BOX = "TargetBox"; // for targetBox
+		// How to instructions filename
+		public const string HOW_TO_INSTRUCTIONS = "Default how to instructions"; // For placeholder how to image
+
+		// MessageBox texture
+		public const string MESSAGE_BOX = "MessageBox"; // For messageBox
+		public const string TARGET_BOX  = "TargetBox"; // for targetBox
 		#endregion Filepaths
 
 		// ============================================================================
@@ -73,48 +81,56 @@ namespace FlameWars
 		// ============================================================================
 
 		#region Variables
-		// Necessary textures for the game.
-		private static Texture2D backgroundTexture; // The background texture.
-		private static Texture2D foregroundTexture; // The foreground texture.
+		// Necessary textures for the game
+		private static Texture2D backgroundTexture; // The background texture
+		private static Texture2D foregroundTexture; // The foreground texture
 
 		// Game Fonts
 		private static SpriteFont mainFont;
 		private static SpriteFont displayFont;
 
-		// Core textures.
-		private static Texture2D boardTexture; // The actual board's texture.
-		private static Texture2D playerTexture1; // Player 1's token texture.
-		private static Texture2D playerTexture2; // Player 2's token texture.
-		private static Texture2D playerTexture3; // Player 3's token texture.
-		private static Texture2D playerTexture4; // Player 4's token texture.
+		// Core textures
+		private static Texture2D boardTexture; // The actual board's texture
+		private static Texture2D playerTexture1; // Player 1's token texture
+		private static Texture2D playerTexture2; // Player 2's token texture
+		private static Texture2D playerTexture3; // Player 3's token texture
+		private static Texture2D playerTexture4; // Player 4's token texture
 
-		// UI textures.
-		private static Texture2D playerIcon1; // Player 1's icon texture.
-		private static Texture2D playerIcon2; // Player 2's icon texture.
-		private static Texture2D playerIcon3; // Player 3's icon texture.
-		private static Texture2D playerIcon4; // Player 4's icon texture.
+		// UI textures
+		private static Texture2D playerIcon1; // Player 1's icon texture
+		private static Texture2D playerIcon2; // Player 2's icon texture
+		private static Texture2D playerIcon3; // Player 3's icon texture
+		private static Texture2D playerIcon4; // Player 4's icon texture
 
-		// Button textures.
-		private static Texture2D okButton; // Ok button texture.
-		private static Texture2D exitButton; // Exit button texture.
-		private static Texture2D howToButton; // How-To button texture.
-		private static Texture2D menuButton; // Menu button texture.
-		private static Texture2D playButton; // Play button texture.
-		private static Texture2D resumeButton; // Resume button texture.
-		private static Texture2D returnButton; // Return button texture.
-		private static Texture2D cancelButton; // Cancel button texture.
-		private static Texture2D rollButton; // Roll button texture.
+		// Button textures
+		private static Texture2D okButton; // Ok button texture
+		private static Texture2D exitButton; // Exit button texture
+		private static Texture2D howToButton; // How-To button texture
+		private static Texture2D menuButton; // Menu button texture
+		private static Texture2D playButton; // Play button texture
+		private static Texture2D resumeButton; // Resume button texture
+		private static Texture2D returnButton; // Return button texture
+		private static Texture2D cancelButton; // Cancel button texture
+		private static Texture2D rollButton; // Roll button texture
 		private static Texture2D player1Button; // Player1 button texture
 		private static Texture2D player2Button; // Player2 button texture
 		private static Texture2D player3Button; // Player3 button texture
 		private static Texture2D player4Button; // Player4 button texture
 
-		// Path textures.
-		private static Texture2D pathTexture1; // Path Texture type 1.
-		private static Texture2D pathTexture2; // Path Texture type 2.
-		private static Texture2D pathTexture3; // Path Texture type 3.
-		private static Texture2D pathTexture4; // Path Texture type 4.
+		// Path textures
+		private static Texture2D pathTexture1; // Path Texture type 1
+		private static Texture2D pathTexture2; // Path Texture type 2
+		private static Texture2D pathTexture3; // Path Texture type 3
+		private static Texture2D pathTexture4; // Path Texture type 4
 		private static Texture2D[] paths; // Path array.
+
+		// Role textures
+		private static Texture2D folderClosed; // Folder closed texture
+		private static Texture2D folderOpen;   // Folder open texture
+		private static Texture2D tophat;	   // Top hat texture
+		private static Texture2D plastic;	   // Plastic texture
+		private static Texture2D narcissist;   // Narcissist texture
+		private static Texture2D dankest;	   // Dankest texture
 
 		// how-to texture
 		private static Texture2D howToInstructions; // How to texture
@@ -176,6 +192,14 @@ namespace FlameWars
 		public static Texture2D PathTexture4 { get { return pathTexture4; } set { pathTexture4 = value; } }
 		public static Texture2D[] Paths { get { return paths; } set { paths = value; } }
 
+		// Role textures
+		public static Texture2D FolderClosed { get { return folderClosed; } set { folderClosed = value; } }
+		public static Texture2D FolderOpen { get { return folderOpen; } set { folderOpen = value; } }
+		public static Texture2D TopHat { get { return tophat; } set { tophat = value; } }
+		public static Texture2D Plastic { get { return plastic; } set { plastic = value; } }
+		public static Texture2D Narcissist { get { return narcissist; } set { narcissist = value; } }
+		public static Texture2D Dankest { get { return dankest; } set { dankest = value; } }
+
 		// how-to texture
 		public static Texture2D HowToInstructions { get { return howToInstructions; } set { howToInstructions = value; } }
 
@@ -216,14 +240,26 @@ namespace FlameWars
 				MainFont    = Content.Load<SpriteFont>(MAIN_FONT);
 				DisplayFont = Content.Load<SpriteFont>(DISPLAY_FONT);
 
+				// ===============================================================================================================
+				// ================================================ TEMPORARY ====================================================
+				// ===============================================================================================================
+
 				// Core textures.
 				Board   = Content.Load<Texture2D>(BOARD_TEXTURE);
+				//Player1 = Content.Load<Texture2D>(PLAYER_TEXTURE_01);
+				//Player2 = Content.Load<Texture2D>(PLAYER_TEXTURE_02);
+				//Player3 = Content.Load<Texture2D>(PLAYER_TEXTURE_03);
+				//Player4 = Content.Load<Texture2D>(PLAYER_TEXTURE_04);
 				Player1 = Content.Load<Texture2D>(PLAYER_TEXTURE_PLACEHOLDER);
 				Player2 = Content.Load<Texture2D>(PLAYER_TEXTURE_PLACEHOLDER);
 				Player3 = Content.Load<Texture2D>(PLAYER_TEXTURE_PLACEHOLDER);
 				Player4 = Content.Load<Texture2D>(PLAYER_TEXTURE_PLACEHOLDER);
 
 				// UI textures.
+				//PlayerIcon1 = Content.Load<Texture2D>(PLAYER_ICON_01);
+				//PlayerIcon2 = Content.Load<Texture2D>(PLAYER_ICON_02);
+				//PlayerIcon3 = Content.Load<Texture2D>(PLAYER_ICON_03);
+				//PlayerIcon4 = Content.Load<Texture2D>(PLAYER_ICON_04);
 				PlayerIcon1 = Content.Load<Texture2D>(PLAYER_ICON_PLACEHOLDER);
 				PlayerIcon2 = Content.Load<Texture2D>(PLAYER_ICON_PLACEHOLDER);
 				PlayerIcon3 = Content.Load<Texture2D>(PLAYER_ICON_PLACEHOLDER);
@@ -250,6 +286,14 @@ namespace FlameWars
 				PathTexture3 = Content.Load<Texture2D>(PATH_TEXTURE_03);
 				PathTexture4 = Content.Load<Texture2D>(PATH_TEXTURE_04);
 				Paths = new Texture2D[] { pathTexture1, pathTexture2, pathTexture3, pathTexture4 };
+
+				// Role textures
+				FolderClosed = Content.Load<Texture2D>(FOLDER_CLOSED);
+				FolderOpen   = Content.Load<Texture2D>(FOLDER_OPEN);
+				TopHat       = Content.Load<Texture2D>(TOP_HAT);
+				Plastic      = Content.Load<Texture2D>(PLASTIC);
+				Narcissist   = Content.Load<Texture2D>(NARCISSIT);
+				Dankest      = Content.Load<Texture2D>(DANKEST);
 
 				// how-to texture
 				HowToInstructions = Content.Load<Texture2D>(HOW_TO_INSTRUCTIONS);
@@ -310,6 +354,14 @@ namespace FlameWars
 			PathTexture3 = Content.Load<Texture2D>(PATH_TEXTURE_PLACEHOLDER);
 			PathTexture4 = Content.Load<Texture2D>(PATH_TEXTURE_PLACEHOLDER);
 			Paths = new Texture2D[] { pathTexture1, pathTexture2, pathTexture3, pathTexture4 };
+
+			// Role textures
+			FolderClosed = Content.Load<Texture2D>(FOLDER_CLOSED);
+			FolderOpen   = Content.Load<Texture2D>(FOLDER_OPEN);
+			TopHat       = Content.Load<Texture2D>(TOP_HAT);
+			Plastic      = Content.Load<Texture2D>(PLASTIC);
+			Narcissist   = Content.Load<Texture2D>(NARCISSIT);
+			Dankest      = Content.Load<Texture2D>(DANKEST);
 
 			// How-to texture
 			HowToInstructions = Content.Load<Texture2D>(HOW_TO_INSTRUCTIONS);

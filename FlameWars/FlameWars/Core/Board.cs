@@ -22,10 +22,10 @@ namespace FlameWars
 		// ========================== Constants / Readonly ============================
 		// ============================================================================
 
-		private const int SQUARE_WIDTH  = 100;
-		private const int SQUARE_HEIGHT = 100;
-		private const int BOARD_HEIGHT  = 700;
-		private const int BOARD_WIDTH   = 1200;
+		private int SQUARE_WIDTH  = 100;
+		private int SQUARE_HEIGHT = 100;
+		private int BOARD_HEIGHT  = 700;
+		private int BOARD_WIDTH   = 1200;
 
 		private readonly Color RESOURCE_COLOR = Color.LightGreen;
 		private readonly Color CARD_COLOR     = Color.Green;
@@ -97,6 +97,11 @@ namespace FlameWars
 
 			track          = new Path[34];
 			tints          = new Color[7];
+
+			BOARD_WIDTH = (int)(BOARD_WIDTH * GameManager.ScreenScale);
+			BOARD_HEIGHT = (int)(BOARD_HEIGHT * GameManager.ScreenScale);
+			SQUARE_WIDTH = (int)(SQUARE_WIDTH * GameManager.ScreenScale);
+			SQUARE_HEIGHT = (int)(SQUARE_HEIGHT * GameManager.ScreenScale);
 			// 200, 200 are just starter values, this must be determined some other time
 			boardBounds	   = new Rectangle((GameManager.Width/2)-(BOARD_WIDTH/2), 
 										   (GameManager.Height/2)-(BOARD_HEIGHT/2), 
@@ -126,7 +131,7 @@ namespace FlameWars
 			// Iterate through all path objects
 			for (int i = 0; i < track.Length; i++)
 			{
-				spriteBatch.Draw(GetPathTexture(track[i]), track[i].Bounds, track[i].DrawColor);
+				spriteBatch.Draw(GetPathTexture(track[i]), track[i].Bounds, track[i].DrawColor);// path resizing
 			}
 		}
 

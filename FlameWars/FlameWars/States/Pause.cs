@@ -59,7 +59,6 @@ namespace FlameWars
 		}
 
 		// This method constructs the buttons
-		// Parameters: width and height of the window
 		public void MakeButtons()
 		{
 			// Create the Origin Coordinates for the buttons
@@ -76,16 +75,6 @@ namespace FlameWars
 				// Increment y position
 				yOrigin += BUTTON_HEIGHT + 25;
 			}
-		}
-
-		// This method sets the texture values
-		// Parmaters: the textures to save
-		public void LoadContent(Texture2D tex1, Texture2D tex2, Texture2D tex3, Texture2D tex4)
-		{
-			buttonTextures[0] = tex1;
-			buttonTextures[1] = tex2;
-			buttonTextures[2] = tex3;
-			buttonTextures[3] = tex4;
 		}
 
 		// This method sets the texture values to the default for the state.
@@ -160,6 +149,8 @@ namespace FlameWars
 					switch (i)
 					{
 						case RESUME_INDEX:
+							// If a message existed before the pause
+							if (MessageExists) Message.isActive = true;
 							StateManager.gameState = StateManager.GameState.Game;
 							break;
 						case HOW_TO_INDEX:
@@ -173,9 +164,6 @@ namespace FlameWars
 							StateManager.gameState = StateManager.GameState.Exit;
 							break;
 					}
-
-					// If a message existed before the pause
-					if (MessageExists) Message.Activate();
 				}
 				// Otherwise, reset the color
 				else

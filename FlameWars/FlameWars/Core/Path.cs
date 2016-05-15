@@ -190,19 +190,19 @@ namespace FlameWars
 			{
 				case 0: GameManager.CurrentPlayer.Money += 100;
 					Message.Activate();
-					Message.CreateMessage("You have recieved $100");
+					Message.CreateMessage("You have received $100");
 					break;
 				case 1: GameManager.CurrentPlayer.Users += 20;
 					Message.Activate();
-					Message.CreateMessage("You have recieved 20 users");
+					Message.CreateMessage("You have received 20 users");
 					break;
 				case 2: GameManager.CurrentPlayer.Memes += 5;
 					Message.Activate();
-					Message.CreateMessage("You have recieved 5 memes");
+					Message.CreateMessage("You have received 5 memes");
 					break;
 				case 3: GameManager.CurrentPlayer.Bandwidth += 5;
 					Message.Activate();
-					Message.CreateMessage("You have recieved 5 bandwidth");
+					Message.CreateMessage("You have received 5 bandwidth");
 					break;
 			}
 		}
@@ -230,7 +230,6 @@ namespace FlameWars
 
 				// Clear bonds
 				GameManager.CurrentPlayer.Bonds.Clear();
-				GameManager.EndTurn = true;
 			}
 			else
 			{

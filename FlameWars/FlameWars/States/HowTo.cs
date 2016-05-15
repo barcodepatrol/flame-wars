@@ -16,16 +16,30 @@ namespace FlameWars
 
 		#region Variables
 
-		const int NUMBER_OF_BUTTONS = 2;
+		// Constants
+		const int NUMBER_OF_SLIDES  = 10;  // TO DO: UPDATE ONCE WE HAVE THE REAL NUMBER OF SLIDES
+		const int NUMBER_OF_BUTTONS = 4;
 		const int RETURN_INDEX      = 0;
 		const int EXIT_INDEX        = 1;
+		const int BACK_INDEX        = 2;
+		const int NEXT_INDEX		= 3;
+		const int PADDING			= 20;
 		const int BUTTON_HEIGHT     = 100;
 		const int BUTTON_WIDTH      = 150;
+		      int SLIDE_X			= GameManager.Width/4;
+		const int SLIDE_Y			= 100;
+		const int SLIDE_HEIGHT		= 150;
+			  int SLIDE_WIDTH		= GameManager.Width/2;
 		
+		// Button data
 		Color[] buttonColors;
 		Texture2D[] buttonTextures;
 		Rectangle[] buttonBounds;
-		Texture2D howToTexture;
+
+		// Slide data
+		Texture2D[] slideTextures;
+		Rectangle slideBounds;
+		int slide = 0;
 
 		int mX;		 // mouse x
 		int mY;		 // mouse y
@@ -44,6 +58,7 @@ namespace FlameWars
 			buttonColors   = new Color[NUMBER_OF_BUTTONS];
 			buttonTextures = new Texture2D[NUMBER_OF_BUTTONS];
 			buttonBounds   = new Rectangle[NUMBER_OF_BUTTONS];
+			slideTextures  = new Texture2D[NUMBER_OF_SLIDES];
 
 			// Create the button data for our game
 			MakeButtons();
@@ -57,25 +72,31 @@ namespace FlameWars
 			int xOrigin = GameManager.Width/2 - BUTTON_WIDTH/2;
 			int yOrigin = GameManager.Height/2 - BUTTON_HEIGHT/2 + 200;
 
-			// Create all of the buttons
-			for (int i = 0; i < NUMBER_OF_BUTTONS; i++)
+			// Create the state buttons
+			for (int i = 0; i < NUMBER_OF_BUTTONS-2; i++)
 			{
-				// Set state, color, and rectangle
+				// Set color and rectangle
 				buttonColors[i] = Color.White;
 				buttonBounds[i] = new Rectangle(xOrigin, yOrigin, BUTTON_WIDTH, BUTTON_HEIGHT);
 
 				// Increment y position
 				yOrigin += BUTTON_HEIGHT + 25;
 			}
-		}
 
-		// This method sets the texture values
-		// Parmaters: the textures to save
-		public void LoadContent(Texture2D tex1, Texture2D tex2)
-		{
-			buttonTextures[0] = tex1;
-			buttonTextures[1] = tex2;
-			howToTexture = ArtManager.HowToInstructions;
+			// Create the slide
+			slideBounds = new Rectangle(SLIDE_X, SLIDE_Y, SLIDE_WIDTH, SLIDE_HEIGHT);
+			
+			// Back button
+			buttonColors[BACK_INDEX] = Color.White;
+			buttonBounds[BACK_INDEX] = new Rectangle(SLIDE_X-BUTTON_WIDTH-PADDING, 
+													 SLIDE_Y+SLIDE_HEIGHT/2-BUTTON_HEIGHT/2,
+													 BUTTON_WIDTH, BUTTON_HEIGHT);
+
+			// Next button
+			buttonColors[NEXT_INDEX] = Color.White;
+			buttonBounds[NEXT_INDEX] = new Rectangle(SLIDE_X+SLIDE_WIDTH, 
+													 SLIDE_Y+SLIDE_HEIGHT/2-BUTTON_HEIGHT/2,
+													 BUTTON_WIDTH, BUTTON_HEIGHT);
 		}
 
 		// This method sets the texture values to the default for the state.
@@ -83,7 +104,14 @@ namespace FlameWars
 		{
 			buttonTextures[0] = ArtManager.ReturnButton;
 			buttonTextures[1] = ArtManager.ExitButton;
-			howToTexture = ArtManager.HowToInstructions;
+
+			// THESE NEED TO BE CHANGED TO THE REAL TEXTURES
+			buttonTextures[2] = ArtManager.ExitButton;
+			buttonTextures[3] = ArtManager.PlayButton;
+
+			// TO DO:
+			// LOAD THE SLIDE CONTENT HERE
+			slideTextures[0] = ArtManager.HowToInstructions;
 		}
 
 		// Passes in a few variables to save for update functions
@@ -154,6 +182,14 @@ namespace FlameWars
 						case EXIT_INDEX:
 							StateManager.gameState = StateManager.GameState.Exit;
 							break;
+						case BACK_INDEX:
+							if ((slide-=1) == slideTextures.Length)
+								slide = 0;
+							break;
+						case NEXT_INDEX:
+							if ((slide+=1) == slideTextures.Length)
+								slide = 0;
+							break;
 					}
 				}
 				// Otherwise, reset the color
@@ -168,7 +204,7 @@ namespace FlameWars
 		public void Draw(SpriteBatch sb)
 		{
 			// Draw how to instructions
-			sb.Draw(howToTexture, new Rectangle(GameManager.Width / 4, 100, GameManager.Width / 2, 100), Color.White);
+			sb.Draw(slideTextures[slide], new Rectangle(SLIDE_X, SLIDE_Y, SLIDE_WIDTH, SLIDE_HEIGHT), Color.White);
 
 			// Iterate through all buttons
 			for (int i = 0; i < NUMBER_OF_BUTTONS; i++)

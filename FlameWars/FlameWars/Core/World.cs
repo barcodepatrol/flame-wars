@@ -103,18 +103,15 @@ namespace FlameWars
 		// Constructor
 
         // Constructor
-		public World(int players)
+		public World()
 		{
 			// Initialize the managers
 			sm = new SoundManager(0,0);
 			om = new OptionsManager();
-			
-			// Initialize the players.
-			InitializePlayers(players);
 		}
 
 		// Passes texture to board object
-		public void Initialize()
+		public void Initialize(int players)
 		{
 			Texture2D[] pathImages = ArtManager.Paths;
 			Texture2D boardImage   = ArtManager.Board;
@@ -122,6 +119,8 @@ namespace FlameWars
 			// Initialize the board
 			board = new Board(pathImages, boardImage);
 
+			InitializePlayers(players);
+			LoadContent();
 			InitializePlayerTokens();
 
 			windowWidth  = GameManager.Width;
@@ -234,10 +233,10 @@ namespace FlameWars
 				}
 
 				// Set each player's token's position
-				this.players[index].TokenPosition = new Rectangle((int)playerPosition.X, 
-																  (int)playerPosition.Y, 
-																       playerWidth, 
-																	   playerHeight);
+				this.players[index].TokenPosition = new Rectangle((int)(playerPosition.X), 
+																  (int)(playerPosition.Y), 
+																       (int)(GameManager.ScreenScale*playerWidth), 
+																	   (int)(GameManager.ScreenScale*playerHeight));
 			}
 		}
 
@@ -332,10 +331,7 @@ namespace FlameWars
 					currentPlayer.End();
 					currentPlayer.GenerateUsers();
 					currentPlayer.GenerateMoney();
-
-					// Update player bonds
-					foreach (Bond b in currentPlayer.Bonds)
-						b.Turn++;
+					currentPlayer.UpdateBonds();
 
 					// Check to see if a player just won
 					if (!currentPlayer.CheckWinStatus(turnCount))
@@ -344,7 +340,8 @@ namespace FlameWars
 					{
 						Message.Activate();
 						Message.CreateMessage("You win!\nReturn to menu.");
-						StateManager.gameState = StateManager.GameState.Menu;
+						StateManager.gameState = StateManager.GameState.Menu;// test return to menu upon completion
+						// implement reset here
 						// EndGame(currentPlayer);
 					}
 				}
@@ -394,7 +391,7 @@ namespace FlameWars
 			pState++;
 
 			// Changes player 5 (doesn't exist) back to player 1
-			if (pState == 4)
+			if (pState == GameManager.NumberOfPlayers)
 			{
 				pState = 0;
 				turnCount++;

@@ -67,28 +67,16 @@ namespace FlameWars
 			// Create all of the buttons
 			for (int i = 0; i < NUMBER_OF_BUTTONS; i++)
 			{
-				// Set state, color, and rectangle
+				// Set color and rectangle
 				buttonColors[i] = Color.White;
 				buttonBounds[i] = new Rectangle(xOrigin, yOrigin, BUTTON_WIDTH, BUTTON_HEIGHT);
 
+				// Set color and rectangle
+				iconColors[i] = Color.White;
+				iconBounds[i] = new Rectangle(xOrigin, yOrigin+BUTTON_HEIGHT, BUTTON_WIDTH, BUTTON_HEIGHT);	
+
 				// Increment y position
 				xOrigin += BUTTON_WIDTH + PADDING;
-			}
-		}
-
-		// This method constructs the icons
-		public void MakeIcons()
-		{
-			// Iterate through buttons
-			for (int i = 0; i < NUMBER_OF_BUTTONS; i++)
-			{
-				iconColors[i] = Color.White;
-				// Middle of button - half icon width
-				// Same Y, move down via padding
-				// Width and Height
-				iconBounds[i] = new Rectangle(buttonBounds[i].X + buttonBounds[i].Width/2 - buttonTextures[i].Width/2, 
-											  buttonBounds[i].Y + BUTTON_HEIGHT + 2*PADDING,							  
-											  buttonTextures[i].Width, ICON_HEIGHT);									  
 			}
 		}
 
@@ -115,7 +103,6 @@ namespace FlameWars
 
 			// Create the button data for our game
 			MakeButtons();
-			MakeIcons();
 		}
 
 		// Passes in a few variables to save for update functions
@@ -186,7 +173,7 @@ namespace FlameWars
 					}
 
 					// Set to game state
-					StateManager.gameState = StateManager.GameState.Game;
+					StateManager.gameState = StateManager.GameState.Role;
 				}
 				// Otherwise, reset the color
 				else
