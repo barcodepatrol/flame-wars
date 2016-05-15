@@ -253,7 +253,7 @@ namespace FlameWars
 		private const int TURN_LIMIT = 37;
 		private const int WEALTH_LIMIT = 100000;
 		private const int USER_LIMIT = 5000;
-		private const int MEME_LIMIT = 20;
+		private const int MEME_LIMIT = 25;
 
 		#endregion
 
@@ -304,7 +304,7 @@ namespace FlameWars
 			int userCap = bandwidth * 100;
 
 			// Memes increase your users by an exponential addition
-			int memeAddicts = (memes / 20) ^ 2;
+			int memeAddicts = (memes / 8) ^ 2;
 
 			users += baseRate + (int)(memeAddicts + bandwidthPercentage * ((userCap - users)));
 		}
