@@ -32,13 +32,12 @@ namespace FlameWars
 		Texture2D dankestImage;
 		Rectangle roleBounds;
 		Color roleColor;
-		int currentRole;
-		List<Player> playingPlayers;
-		List<int> availableRoles = new List<int> { TOP_HAT, PLASTIC, NARCISSIST, DANKEST };
+		int currentRole = 0;
+		int roleIndex   = 0;
 
 		// Player amount
 		int playerAmount;
-		int player;
+		int player = 1;
 
 		// Folder data
 		Texture2D folderImageClosed;
@@ -81,7 +80,7 @@ namespace FlameWars
 
 			// Init amount of players
 			playerAmount = GameManager.NumberOfPlayers;
-			
+
 			// Init image height and width
 			folderClosedWidth  = 1020;
 			folderClosedHeight = 853;
@@ -97,17 +96,17 @@ namespace FlameWars
 			dankestHeight      = 390;
 		}
 
-		// This initializes the folder image
-		public void Initialize(World world)
+		// First initialization
+		public void FirstInit()
 		{
-			playingPlayers = world.GetPlayers();
-			Initialize();
+			// Init amount of players and roles
+			playerAmount = GameManager.NumberOfPlayers;
+			currentRole  = GameManager.PlayerRoles[0];
 		}
 
+		// This initializes the folder image
 		public void Initialize()
 		{
-			// Init amount of players
-			playerAmount = GameManager.NumberOfPlayers;
 
 			// Folder closed
 			if (folderClosed)
@@ -117,8 +116,8 @@ namespace FlameWars
 				int fh = (int)(folderClosedHeight * GameManager.ScreenScale);
 
 				// Set the x and y position of the folder
-				int fx = (int)(GameManager.Center.X - fw / 2);
-				int fy = (int)(GameManager.Center.Y - fh / 2);
+				int fx = (int)(GameManager.Center.X - fw/2);
+				int fy = (int)(GameManager.Center.Y - fh/2);
 
 				// Set new bounds for image
 				folderBounds = new Rectangle(fx, fy, fw, fh);
@@ -131,8 +130,8 @@ namespace FlameWars
 				int fh = (int)(folderOpenHeight * GameManager.ScreenScale);
 
 				// Set the x and y position of the folder
-				int fx = (int)(GameManager.Center.X - fw / 1.5 - PADDING);
-				int fy = (int)(GameManager.Center.Y - fh / 2);
+				int fx = (int)(GameManager.Center.X - fw/1.5 - PADDING);
+				int fy = (int)(GameManager.Center.Y - fh/2);
 
 				// Set new bounds for image
 				folderBounds = new Rectangle(fx, fy, fw, fh);
@@ -165,8 +164,8 @@ namespace FlameWars
 				}
 
 				// Set the x and y position of the folder
-				int rx = (int)(GameManager.Center.X - rw / 2);
-				int ry = (int)(GameManager.Center.Y - rh / 2);
+				int rx = (int)(GameManager.Center.X - rw/2);
+				int ry = (int)(GameManager.Center.Y - rh/2);
 
 				// Set new bounds for image
 				roleBounds = new Rectangle(rx, ry, rw, rh);
@@ -247,7 +246,8 @@ namespace FlameWars
 				// Go to the next folder
 				else
 				{
-					// Increase the player
+					// Increment player and role index
+					roleIndex++;
 					player++;
 
 					// Check if we are done
@@ -255,8 +255,9 @@ namespace FlameWars
 						StateManager.gameState = StateManager.GameState.Game;
 					else
 					{
-						currentRole = (int)playingPlayers[(player - 1)].PlayerRole;
+						// Close the folder, select new role
 						folderClosed = true;
+						currentRole = GameManager.PlayerRoles[roleIndex];
 						Initialize();
 					}
 				}
@@ -301,7 +302,8 @@ namespace FlameWars
 							  new Vector2(GameManager.Center.X/2, 50), 
 							  Color.Black);
 				sb.Draw(folderImageClosed, folderBounds, folderColor);
-			}			
-		}		
+			}
+			
+		}
 	}
 }
