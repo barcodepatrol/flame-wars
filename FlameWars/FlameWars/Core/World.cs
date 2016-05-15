@@ -305,7 +305,7 @@ namespace FlameWars
 			// checks if player has won
 			if (GameManager.EndGame == true && !Message.isActive)
 			{
-				// resets game when player presses button
+				// Resets game when player presses button
 				StateManager.gameState = StateManager.GameState.Reset;
 			}
 			else
