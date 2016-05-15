@@ -32,6 +32,7 @@ namespace FlameWars
 		// Saves the current player info
 		private static Player cPlayer = null;
 		private static int numberOfPlayers = 2;
+		private static int cTurnNumber = 0;
 
 		// Saves the winning player info.
 		private static Player wPlayer = null;
@@ -55,35 +56,76 @@ namespace FlameWars
 			get { return windowWidth; }
 			set { windowWidth = value; }
 		}
+
 		// Stores the window height
 		public static int Height
 		{
 			get { return windowHeight; }
 			set { windowHeight = value; }
 		}
+
 		// Stores the current player info
 		public static Player CurrentPlayer
 		{
 			get { return cPlayer; }
 			set { cPlayer = value; }
 		}
+
 		// Stores the amount of players in the game
 		public static int NumberOfPlayers
 		{
 			get { return numberOfPlayers; }
 			set { numberOfPlayers = value; }
 		}
+
+		// Stores the current turn number.
+		public static int CurrentTurnNumber
+		{
+			get { return cTurnNumber; }
+			set { cTurnNumber = value; }
+		}
+
+		// Stores the winning player info.
+		public static Player WinningPlayer
+		{
+			get { return wPlayer; }
+			set { wPlayer = value; }
+		}
+
+		// Stores an integer array of the winning player's resources at win-game time.
+		public static int[] WinningPlayerResources
+		{
+			get { return wPlayerResources; }
+			set { wPlayerResources = value; }
+		}
+
+		// Stores the winning player's role.
+		public static string WinningPlayerRole
+		{
+			get { return wPlayerRole; }
+			set { wPlayerRole = value; }
+		}
+
+		// Stores the turn number for the winning role.
+		public static int WinTurn
+		{
+			get { return endGameTurnNumber; }
+			set { endGameTurnNumber = value; }
+		}
+
 		// Stores the window center position.
 		public static Vector2 Center
 		{
 			get { return windowCenter; }
 			set { windowCenter = value; }
 		}
+
 		// Retrieves the game's graphics device
 		public static GraphicsDevice Graphics
 		{
 			get {return graphicsManager.GraphicsDevice; }
 		}
+
 		// Stores whether or not a player has ended their turn
 		public static bool EndTurn
 		{
