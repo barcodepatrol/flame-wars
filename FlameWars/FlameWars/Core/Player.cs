@@ -750,7 +750,14 @@ namespace FlameWars
 							break;
 					}
 
-					sb.DrawString(ArtManager.DisplayFont, stringToPrint + value, new Vector2(ix, DrawYPositions[index]), Color.Black);
+					if (value > 0)
+					{
+						sb.DrawString(ArtManager.DisplayFont, stringToPrint + value, new Vector2(ix, DrawYPositions[index]), Color.Black);
+					}
+					else
+					{
+						sb.DrawString(ArtManager.DisplayFont, stringToPrint + value, new Vector2(ix, DrawYPositions[index]), Color.DarkRed);
+					}
 				}
 			}
 		}
