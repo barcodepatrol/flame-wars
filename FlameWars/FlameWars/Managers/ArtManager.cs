@@ -132,7 +132,7 @@ namespace FlameWars
 		private static Texture2D narcissist;   // Narcissist texture
 		private static Texture2D dankest;	   // Dankest texture
 
-		// how-to texture
+		// How-to textures
 		private static Texture2D howToInstructions; // How to texture
 
 		// Message Box texture
@@ -200,10 +200,10 @@ namespace FlameWars
 		public static Texture2D Narcissist { get { return narcissist; } set { narcissist = value; } }
 		public static Texture2D Dankest { get { return dankest; } set { dankest = value; } }
 
-		// how-to texture
+		// How-to textures.
 		public static Texture2D HowToInstructions { get { return howToInstructions; } set { howToInstructions = value; } }
 
-		// Message box texture
+		// Message box textures.
 		public static Texture2D MessageBox { get { return messageBox; } set { messageBox = value; } }
 		public static Texture2D TargetBox { get { return targetBox; } set { targetBox = value; } }
 		#endregion Properties

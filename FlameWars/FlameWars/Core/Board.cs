@@ -22,18 +22,74 @@ namespace FlameWars
 		// ========================== Constants / Readonly ============================
 		// ============================================================================
 
-		private int SQUARE_WIDTH  = 100;
+		private int SQUARE_WIDTH = 100;
 		private int SQUARE_HEIGHT = 100;
-		private int BOARD_HEIGHT  = 700;
-		private int BOARD_WIDTH   = 1200;
+		private int BOARD_HEIGHT = 700;
+		private int BOARD_WIDTH = 1200;
 
-		private readonly Color RESOURCE_COLOR = Color.LightGreen;
-		private readonly Color CARD_COLOR     = Color.Green;
-		private readonly Color PREMIUM_COLOR  = Color.DarkGreen;
-		private readonly Color BONUS_COLOR    = Color.DarkOliveGreen;
-		private readonly Color STOCK_COLOR    = Color.LightBlue;
-		private readonly Color RANDOM_COLOR   = Color.Blue;
-		private readonly Color EMPTY_COLOR    = Color.DarkBlue;
+		// Color Palettes.
+		// Palette name: 'I can see the Flickers' - { http://www.color-hex.com/color-palette/18650 }
+		private static readonly Color[] palette_01 = new Color[]
+											{
+												new Color(246,84,106), // Resource Square
+												new Color(70,132,153), // Card Square
+												new Color(127,255,212), // Premium Square
+												new Color(168,230,207), // Bonus Square.
+												new Color(255,228,225), // Stock Square.
+												new Color(215, 212, 203), // Random Square.
+												new Color(215, 212, 203) // Empty.
+											};
+
+		// Palette name: 'Everything I Do Is Bittersweet' - { http://www.color-hex.com/color-palette/18647 }
+		private static readonly Color[] palette_02 = new Color[]
+											{
+												new Color(255,148,230),
+												new Color(255,118,160),
+												new Color(214,255,126),
+												new Color(195,251,0),
+												new Color(157,251,0),
+												new Color(215, 212, 203),
+												new Color(215, 212, 203)
+											};
+
+		// Palette name: 'Pixel Pastel' - { http://www.color-hex.com/color-palette/18646 } 
+		private static readonly Color[] palette_03 = new Color[]
+											{
+												new Color(240,173,204),
+												new Color(231,148,177),
+												new Color(214,128,128),
+												new Color(227,99,99),
+												new Color(227,46,46),
+												new Color(215, 212, 203),
+												new Color(215, 212, 203)
+											};
+
+		// Palette name: 'Are You Dead Or Are You Sleeping' - { http://www.color-hex.com/color-palette/18681 }
+		private static readonly Color[] palette_04 = new Color[]
+											{
+												new Color(51,65,56),
+												new Color(81,121,132),
+												new Color(85,158,150),
+												new Color(179,98,77),
+												new Color(249,159,136),
+												new Color(215, 212, 203),
+												new Color(215, 212, 203)
+											};
+
+		// List of palletes.
+		private static readonly Color[][] PALETTES = new Color[][]
+											{
+												palette_01, palette_02, palette_03, palette_04
+											};
+
+		// Color indexes.
+		private const int RESOURCE_COLOR_INDEX = 0;
+		private const int CARD_COLOR_INDEX = 1;
+		private const int PREMIUM_COLOR_INDEX = 2;
+		private const int BONUS_COLOR_INDEX = 3;
+		private const int STOCK_COLOR_INDEX = 4;
+		private const int RANDOM_COLOR_INDEX = 5;
+		private const int EMPTY_COLOR_INDEX = 6;
 
 		// ============================================================================
 		// ================================ Variables =================================
@@ -73,9 +129,12 @@ namespace FlameWars
 		// Current path object.
 		Path currentPath;
 
+		// Current palette index.
+		int paletteIndex;
+
 		// Number of vertical squares
 		// Number of horizontal squares
-		private const int VERTICAL_LENGTH = 7;	
+		private const int VERTICAL_LENGTH = 7;
 		private const int HORIZONTAL_LENGTH = 12;
 
 		//* Properties *//
@@ -85,6 +144,46 @@ namespace FlameWars
 			set { this.currentPath = value; }
 		}
 
+		public Color[] CurrentPalette
+		{
+			get { return PALETTES[paletteIndex]; }
+		}
+		
+		private Color RESOURCE_COLOR
+		{
+			get { return CurrentPalette[RESOURCE_COLOR_INDEX]; }
+		}
+
+		private Color CARD_COLOR
+		{
+			get { return CurrentPalette[CARD_COLOR_INDEX]; }
+		}
+
+		private Color PREMIUM_COLOR
+		{
+			get { return CurrentPalette[PREMIUM_COLOR_INDEX]; }
+		}
+
+		private Color BONUS_COLOR
+		{
+			get { return CurrentPalette[BONUS_COLOR_INDEX]; }
+		}
+
+		private Color STOCK_COLOR
+		{
+			get { return CurrentPalette[STOCK_COLOR_INDEX]; }
+		}
+
+		private Color RANDOM_COLOR
+		{
+			get { return CurrentPalette[RANDOM_COLOR_INDEX]; }
+		}
+
+		private Color EMPTY_COLOR
+		{
+			get { return CurrentPalette[EMPTY_COLOR_INDEX]; }
+		}
+		
 		#endregion Variables
 
 		// ============================================================================
@@ -243,6 +342,9 @@ namespace FlameWars
 		// Initializes the color tints array
 		public void CreateTints()
 		{
+			// Set up the proper references for the color array.
+			paletteIndex = random.Next(0, PALETTES.Length); // Gets the palette for this game.
+
 			tints[0] = RESOURCE_COLOR;	// resource
 			tints[1] = CARD_COLOR;		// card
 			tints[2] = PREMIUM_COLOR;	// premium card

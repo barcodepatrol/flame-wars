@@ -16,6 +16,10 @@ namespace FlameWars
 		// ======================= Instance Variables =================================
 		// ============================================================================
 
+		#region Constants
+		private readonly Color BACKGROUND_COLOR = new Color(215, 212, 203); // Changes the background color. This is a brownish-ash gray.
+		#endregion
+
 		#region Variables
 		// Graphics variables.
 		private GraphicsDeviceManager graphics;
@@ -69,7 +73,7 @@ namespace FlameWars
 			graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
-			//graphics.IsFullScreen              = debug; // Make this true for the real game, false for testing
+			graphics.IsFullScreen              = !debug; // Make this true for the real game, false for testing
 			
 			if (!graphics.IsFullScreen)
 			{
@@ -397,7 +401,7 @@ namespace FlameWars
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(new Color(215, 212, 203));
+            GraphicsDevice.Clear(BACKGROUND_COLOR);
 
             // TODO: Add your drawing code here
             spriteBatch.Begin();
