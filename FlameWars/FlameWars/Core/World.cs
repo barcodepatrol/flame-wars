@@ -339,7 +339,7 @@ namespace FlameWars
 					else
 					{
 						Message.Activate();
-						Message.CreateMessage("You win!\nReturn to menu.");
+						Message.CreateMessage("Player " + ((int)playerState+1) + " you win!\nReturn to menu.");
 						//StateManager.gameState = StateManager.GameState.Menu;// test return to menu upon completion
 						// implement reset here
 						// EndGame(currentPlayer);
