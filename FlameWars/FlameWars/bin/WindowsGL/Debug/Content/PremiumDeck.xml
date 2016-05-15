@@ -61,7 +61,7 @@
 	</card>
 	<card>
 		<name>Good Investment: Memes</name>
-		<description>This card increases your users by 2.</description>
+		<description>This card increases your memes by 2.</description>
 		<target>Self Target</target>
 		<attribute>Memes</attribute>
 		<amount>2</amount>
@@ -95,7 +95,7 @@
 	</card>
 	<card>
 		<name>Bad Investment: Memes</name>
-		<description>This card decreases your users by 2.</description>
+		<description>This card decreases your memes by 2.</description>
 		<target>Self Target</target>
 		<attribute>Memes</attribute>
 		<amount>-2</amount>
@@ -165,7 +165,7 @@
 	</card>
 	<card>
 		<name>Good Investment: Memes</name>
-		<description>This card increases your users by 10.</description>
+		<description>This card increases your memes by 10.</description>
 		<target>Self Target</target>
 		<attribute>Memes</attribute>
 		<amount>10</amount>
@@ -199,7 +199,7 @@
 	</card>
 	<card>
 		<name>Bad Investment: Memes</name>
-		<description>This card decreases your users by 10.</description>
+		<description>This card decreases your memes by 10.</description>
 		<target>Self Target</target>
 		<attribute>Memes</attribute>
 		<amount>-10</amount>
@@ -269,7 +269,7 @@
 	</card>
 	<card>
 		<name>Good Investment: Memes</name>
-		<description>This card increases your users by 20.</description>
+		<description>This card increases your memes by 20.</description>
 		<target>Self Target</target>
 		<attribute>Memes</attribute>
 		<amount>20</amount>
@@ -303,7 +303,7 @@
 	</card>
 	<card>
 		<name>Bad Investment: Memes</name>
-		<description>This card decreases your users by 20.</description>
+		<description>This card decreases your memes by 20.</description>
 		<target>Self Target</target>
 		<attribute>Memes</attribute>
 		<amount>-20</amount>
