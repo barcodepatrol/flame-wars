@@ -36,6 +36,9 @@ namespace FlameWars
 		// A boolean to determine if a player ended their turn
 		private static bool endTurn = false;
 
+		// boolean to determine whether or not to reset the game;
+		private static bool resetGame = false;
+
 		public static Random random;
 
 		private static int totalBandwidth = 100;
@@ -82,6 +85,13 @@ namespace FlameWars
 		{
 			get { return endTurn; }
 			set { endTurn = value; }
+		}
+
+		// stores whether or not the game board needs to be reset
+		public static bool ResetGame
+		{
+			get { return resetGame; }
+			set { resetGame = value; }
 		}
 
 		public static int TotalBandwidth
