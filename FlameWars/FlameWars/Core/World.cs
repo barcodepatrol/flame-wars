@@ -343,9 +343,11 @@ namespace FlameWars
 						// implement end game here
 						// implement reset here
 						/*
-							if(GameManager.ResetGame)
+						if(GameManager.ResetGame)
+						{
+							Statemanager.GameState = StateManager.GameState.Start;
+						}
 						*/
-						// EndGame(currentPlayer);
 					}
 				}
 			}
