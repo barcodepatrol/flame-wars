@@ -29,9 +29,12 @@ namespace FlameWars
 		private static int mainDeckIndex = 0;
 		private static int premiumDeckIndex = 0;
 
+		// Saves player info
+		private static int[] playerRoles;
+		private static int numberOfPlayers = 2;
+
 		// Saves the current player info
 		private static Player cPlayer = null;
-		private static int numberOfPlayers = 2;
 		private static int cTurnNumber = 0;
 
 		// Saves the winning player info.
@@ -74,6 +77,12 @@ namespace FlameWars
 		{
 			get { return cPlayer; }
 			set { cPlayer = value; }
+		}
+
+		// Stores the roles for each player
+		public static int[] PlayerRoles
+		{
+			get { return playerRoles; }
 		}
 
 		// Stores the amount of players in the game
@@ -188,11 +197,12 @@ namespace FlameWars
 			premiumDeck     = new Deck("Content\\PremiumDeck.xml");
 			random			= new Random();
 
+			// Set up roles - shuffle them
+			playerRoles = new int[4] { 0, 1, 2, 3 };
+			Shuffle(ref playerRoles);
+
 			// Set up Premium cards
 			premiumDeck.SetPremium();
-
-			// ============================================
-			// DISABLED FOR TESTING NECESSARY FOR REAL GAME
 
 			// Shuffle decks
 			mainDeck.Shuffle();
@@ -257,6 +267,22 @@ namespace FlameWars
 			}
 
 			return c;
+		}
+
+		// This method shuffles an array
+		public static void Shuffle(ref int[] array)
+		{
+			// Iterate through the entire list
+			for (int i = 0; i < array.Length; i++)
+			{
+				// Selected a random index
+				int r = i + (int)(RandomGen.NextDouble() * (array.Length- i));
+
+				// Swap current location in deck with random index
+				int temp = array[r];
+				array[r]  = array[i];
+				array[i]  = temp;
+			}
 		}
     }
 }

@@ -120,6 +120,7 @@ namespace FlameWars
 			board = new Board(pathImages, boardImage);
 
 			InitializePlayers(players);
+			InitializeRoles();
 			LoadContent();
 			InitializePlayerTokens();
 
@@ -136,11 +137,6 @@ namespace FlameWars
 		public void InitializePlayers(int players)
 		{
 			#region CreatePlayers
-			// populate player role list
-			Player.roles.Add(Player.Role.Dankest);
-			Player.roles.Add(Player.Role.Narcissist);
-			Player.roles.Add(Player.Role.Plastic);
-			Player.roles.Add(Player.Role.TopHat);
 
 			// Initialize the players
 			// There will always be at least two players
@@ -237,6 +233,27 @@ namespace FlameWars
 																  (int)(playerPosition.Y), 
 																       (int)(GameManager.ScreenScale*playerWidth), 
 																	   (int)(GameManager.ScreenScale*playerHeight));
+			}
+		}
+
+		// This method will initialize and set the roles for each player
+		public void InitializeRoles()
+		{
+			// Iterate through total players
+			for (int i = 0; i < GameManager.NumberOfPlayers; i++)
+			{
+				// Set role based off of int
+				switch (GameManager.PlayerRoles[i])
+				{
+					// Top Hat
+					case 0: players[i].PlayerRole = Player.Role.TopHat; break;
+					// Plastic
+					case 1: players[i].PlayerRole = Player.Role.Plastic; break;
+					// Narcissist
+					case 2: players[i].PlayerRole = Player.Role.Narcissist; break;
+					// Dankest
+					case 3: players[i].PlayerRole = Player.Role.Dankest; break;
+				}
 			}
 		}
 

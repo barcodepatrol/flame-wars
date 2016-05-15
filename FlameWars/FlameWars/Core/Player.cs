@@ -290,9 +290,6 @@ namespace FlameWars
 			ActiveColor   = Color.White;
 			InactiveColor = Color.DarkGray;
 			PressedColor  = Color.Gray;
-
-			role = roles[GameManager.random.Next(roles.Count)];
-			roles.Remove(role);
 		}
 		
 		// Determines how many users the player gets

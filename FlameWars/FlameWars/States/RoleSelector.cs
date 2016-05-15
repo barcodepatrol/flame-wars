@@ -33,6 +33,7 @@ namespace FlameWars
 		Rectangle roleBounds;
 		Color roleColor;
 		int currentRole = 0;
+		int roleIndex   = 0;
 
 		// Player amount
 		int playerAmount;
@@ -95,11 +96,17 @@ namespace FlameWars
 			dankestHeight      = 390;
 		}
 
+		// First initialization
+		public void FirstInit()
+		{
+			// Init amount of players and roles
+			playerAmount = GameManager.NumberOfPlayers;
+			currentRole  = GameManager.PlayerRoles[0];
+		}
+
 		// This initializes the folder image
 		public void Initialize()
 		{
-			// Init amount of players
-			playerAmount = GameManager.NumberOfPlayers;
 
 			// Folder closed
 			if (folderClosed)
@@ -239,8 +246,8 @@ namespace FlameWars
 				// Go to the next folder
 				else
 				{
-					// Increase current role
-					currentRole++;
+					// Increment player and role index
+					roleIndex++;
 					player++;
 
 					// Check if we are done
@@ -248,7 +255,9 @@ namespace FlameWars
 						StateManager.gameState = StateManager.GameState.Game;
 					else
 					{
+						// Close the folder, select new role
 						folderClosed = true;
+						currentRole = GameManager.PlayerRoles[roleIndex];
 						Initialize();
 					}
 				}

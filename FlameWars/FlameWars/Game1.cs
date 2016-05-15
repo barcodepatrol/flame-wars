@@ -73,7 +73,7 @@ namespace FlameWars
 			graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
-			graphics.IsFullScreen              = !debug; // Make this true for the real game, false for testing
+			//graphics.IsFullScreen              = !debug; // Make this true for the real game, false for testing
 			
 			if (!graphics.IsFullScreen)
 			{
@@ -254,6 +254,7 @@ namespace FlameWars
 
 						// NOW we set the amount of players
 						world.Initialize(GameManager.NumberOfPlayers);
+						roleState.FirstInit();
 						roleState.Initialize();
 					}
 
