@@ -114,7 +114,12 @@ namespace FlameWars
 		// Collections.
 		Path[] track; // Array containing the board's path objects.
 		Color[] tints; // Contains the tints for painting the objects.
-		Texture2D[] pathTextures; // Contains the different textures that can be drawn depending on path texture ID.
+		Texture2D[] resourceTextures; // Contains the different textures that can be drawn depending on path texture ID.
+		Texture2D[] cardTextures; // Contains the different textures that can be drawn depending on path texture ID.
+		Texture2D[] bondTextures; // Contains the different textures that can be drawn depending on path texture ID.
+		Texture2D[] bondReturnTextures; // Contains the different textures that can be drawn depending on path texture ID.
+		Texture2D[] emptyPathTextures; // Contains the different textures that can be drawn depending on path texture ID.
+		Texture2D[] randomPathTextures; // Contains the different textures that can be drawn depending on path texture ID.
 
 		// Textures.
 		Texture2D boardTexture; // The board texture.
@@ -191,7 +196,7 @@ namespace FlameWars
 		// ============================================================================
 
 		// Constructor
-		public Board(Texture2D[] pathImage, Texture2D boardImage)
+		public Board(Texture2D[] resources, Texture2D[] cards, Texture2D[] bonds, Texture2D[] bondreclaims, Texture2D[] emptyPaths, Texture2D[] randomPaths, Texture2D boardImage)
 		{
 
 			track          = new Path[34];
@@ -211,7 +216,12 @@ namespace FlameWars
 			random         = new Random();
 
 			// Load the texture for all path objects
-			this.pathTextures = pathImage;
+			this.resourceTextures = resources;
+			this.cardTextures = cards;
+			this.bondTextures = bonds;
+			this.bondReturnTextures = bondreclaims;
+			this.emptyPathTextures = emptyPaths;
+			this.randomPathTextures = randomPaths;
 			this.boardTexture = boardImage;
 
 			// Create the tints
@@ -285,12 +295,12 @@ namespace FlameWars
 										   SQUARE_WIDTH, SQUARE_HEIGHT);
 
 				// Select the path texture randomly
-				int id = random.Next(0, pathTextures.Length);
+				int id = GameManager.RandomGen.Next(0, ArtManager.PATH_VARIATIONS);
 
 				// Select space type
 				// Enums cast to ints
 				Array values   = Enum.GetValues(typeof(SpaceType));
-				SpaceType spaceType = (SpaceType)values.GetValue(random.Next(values.Length));
+				SpaceType spaceType = (SpaceType)values.GetValue(GameManager.RandomGen.Next(values.Length));
 
 				// Select the color tint
 				// Color tint determined by SpaceType of path object
@@ -357,8 +367,26 @@ namespace FlameWars
 		// Gets the texture for a path at a given interval.
 		public Texture2D GetPathTexture(Path path)
 		{
+			switch (path.Space)
+			{
+				case SpaceType.Resource:
+					return resourceTextures[path.TextureID];
+				case SpaceType.Card:
+					return cardTextures[path.TextureID];
+				case SpaceType.PremiumCard:
+					return cardTextures[path.TextureID];
+				case SpaceType.BondReturn:
+					return bondReturnTextures[path.TextureID];
+				case SpaceType.BondBuying:
+					return bondTextures[path.TextureID];
+				case SpaceType.Random:
+					return randomPathTextures[path.TextureID];
+				case SpaceType.Empty:
+					return emptyPathTextures[path.TextureID];
+			}
+
 			// Returns path texture based on the path object's id.
-			return pathTextures[path.TextureID];
+			return resourceTextures[path.TextureID];
 		}
 
 		// Gets the actual path object based on call to index.

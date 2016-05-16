@@ -116,11 +116,17 @@ namespace FlameWars
 		public void Initialize(int players)
 		{
 			World.DISPLAY_WIN_STATUS = false;
-			Texture2D[] pathImages = ArtManager.Paths;
+			Texture2D[] resources = ArtManager.Resources;
+			Texture2D[] cards = ArtManager.Cards;
+			Texture2D[] bonds = ArtManager.Bonds;
+			Texture2D[] bondreturns = ArtManager.BondReclaims;
+			Texture2D[] empty = ArtManager.EmptyPaths;
+			Texture2D[] random = ArtManager.RandomPaths;
+
 			Texture2D boardImage   = ArtManager.Board;
 
 			// Initialize the board
-			board = new Board(pathImages, boardImage);
+			board = new Board(resources, cards, bonds, bondreturns, empty, random, boardImage);
 
 			InitializePlayers(players);
 			InitializeRoles();

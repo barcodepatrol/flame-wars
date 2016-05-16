@@ -63,13 +63,50 @@ namespace FlameWars
 		public const string PATH_TEXTURE_03 = "path_texture_03"; // For pathTexture3
 		public const string PATH_TEXTURE_04 = "path_texture_04"; // For pathTexture4
 		public const string PATH_TEXTURE_PLACEHOLDER = "path_placeholder"; // For pathTexture1, pathTexture2, pathTexture3, pathTexture4
+		public const int PATH_VARIATIONS = 4;
 
+		//// Resource paths.
+		public const string RESOURCE_01 = "path_resources_01"; 
+		public const string RESOURCE_02 = "path_resources_02"; 
+		public const string RESOURCE_03 = "path_resources_03"; 
+		public const string RESOURCE_04 = "path_resources_04";
+
+		//// Card paths.
+		public const string CARD_01 = "path_card_01";
+		public const string CARD_02 = "path_card_02";
+		public const string CARD_03 = "path_card_03";
+		public const string CARD_04 = "path_card_04";
+
+		//// Bond Purchase paths.
+		public const string BOND_01 = "path_buybond_01";
+		public const string BOND_02 = "path_buybond_02";
+		public const string BOND_03 = "path_buybond_03";
+		public const string BOND_04 = "path_buybond_04";
+
+		//// Bond return paths.
+		public const string BOND_RETURN_01 = "path_returnbond_01";
+		public const string BOND_RETURN_02 = "path_returnbond_02";
+		public const string BOND_RETURN_03 = "path_returnbond_03";
+		public const string BOND_RETURN_04 = "path_returnbond_04";
+
+		//// Empty paths.
+		public const string EMPTY_01 = "path_empty_01";
+		public const string EMPTY_02 = "path_empty_02";
+		public const string EMPTY_03 = "path_empty_03";
+		public const string EMPTY_04 = "path_empty_04";
+
+		//// Random paths.
+		public const string RANDOM_01 = "path_random_01";
+		public const string RANDOM_02 = "path_random_02";
+		public const string RANDOM_03 = "path_random_03";
+		public const string RANDOM_04 = "path_random_04";
+		
 		// Role texture filenames
 		public const string FOLDER_CLOSED = "FolderClosed"; // For folderClosed
 		public const string FOLDER_OPEN	  = "FolderOpen";	// For folderOpen
 		public const string TOP_HAT		  = "tophat";		// for topHat
 		public const string PLASTIC		  = "plastic";		// for plastic
-		public const string NARCISSIT	  = "narcissist";	// for narcissist
+		public const string NARCISSIST	  = "narcissist";	// for narcissist
 		public const string DANKEST		  = "dankest";		// for dankest
 
 		// How to instructions filename
@@ -133,6 +170,44 @@ namespace FlameWars
 		private static Texture2D pathTexture3; // Path Texture type 3
 		private static Texture2D pathTexture4; // Path Texture type 4
 		private static Texture2D[] paths; // Path array.
+
+		// Resource path textures.
+		private static Texture2D pathResources1;
+		private static Texture2D pathResources2;
+		private static Texture2D pathResources3;
+		private static Texture2D pathResources4;
+		private static Texture2D[] resourcePaths;
+
+		private static Texture2D pathCards1;
+		private static Texture2D pathCards2;
+		private static Texture2D pathCards3;
+		private static Texture2D pathCards4;
+		private static Texture2D[] cardPaths; // Path array.
+
+		private static Texture2D pathBonds1;
+		private static Texture2D pathBonds2;
+		private static Texture2D pathBonds3;
+		private static Texture2D pathBonds4;
+		private static Texture2D[] bondPaths; // Path array.
+
+
+		private static Texture2D pathBondReturns1;
+		private static Texture2D pathBondReturns2;
+		private static Texture2D pathBondReturns3;
+		private static Texture2D pathBondReturns4;
+		private static Texture2D[] bondReturnPaths; // Path array.
+
+		private static Texture2D pathEmpty1;
+		private static Texture2D pathEmpty2;
+		private static Texture2D pathEmpty3;
+		private static Texture2D pathEmpty4;
+		private static Texture2D[] emptyPaths; // Path array.
+
+		private static Texture2D pathRandom1;
+		private static Texture2D pathRandom2;
+		private static Texture2D pathRandom3;
+		private static Texture2D pathRandom4;
+		private static Texture2D[] randomPaths; // Path array.
 
 		// Role textures
 		private static Texture2D folderClosed; // Folder closed texture
@@ -209,6 +284,49 @@ namespace FlameWars
 		public static Texture2D PathTexture4 { get { return pathTexture4; } set { pathTexture4 = value; } }
 		public static Texture2D[] Paths { get { return paths; } set { paths = value; } }
 
+		// // Resources.
+		public static Texture2D Resource1 { get { return pathResources1; } set { pathResources1 = value; } }
+		public static Texture2D Resource2 { get { return pathResources2; } set { pathResources2 = value; } }
+		public static Texture2D Resource3 { get { return pathResources3; } set { pathResources3 = value; } }
+		public static Texture2D Resource4 { get { return pathResources4; } set { pathResources4 = value; } }
+		public static Texture2D[] Resources { get { return resourcePaths; } set { resourcePaths = value; } }
+		
+		// // Cards.
+		public static Texture2D Cards1 { get { return pathCards1; } set { pathCards1 = value; } }
+		public static Texture2D Cards2 { get { return pathCards2; } set { pathCards2 = value; } }
+		public static Texture2D Cards3 { get { return pathCards3; } set { pathCards3 = value; } }
+		public static Texture2D Cards4 { get { return pathCards4; } set { pathCards4 = value; } }
+		public static Texture2D[] Cards { get { return cardPaths; } set { cardPaths = value; } }
+
+		// // Buy bonds.
+		public static Texture2D Bonds1 { get { return pathBonds1; } set { pathBonds1 = value; } }
+		public static Texture2D Bonds2 { get { return pathBonds2; } set { pathBonds2 = value; } }
+		public static Texture2D Bonds3 { get { return pathBonds3; } set { pathBonds3 = value; } }
+		public static Texture2D Bonds4 { get { return pathBonds4; } set { pathBonds4 = value; } }
+		public static Texture2D[] Bonds { get { return bondPaths; } set { bondPaths = value; } }
+
+
+		// // Reclaim bonds.
+		public static Texture2D BondReclaims1 { get { return pathBondReturns1; } set { pathBondReturns1 = value; } }
+		public static Texture2D BondReclaims2 { get { return pathBondReturns2; } set { pathBondReturns2 = value; } }
+		public static Texture2D BondReclaims3 { get { return pathBondReturns3; } set { pathBondReturns3 = value; } }
+		public static Texture2D BondReclaims4 { get { return pathBondReturns4; } set { pathBondReturns4 = value; } }
+		public static Texture2D[] BondReclaims { get { return bondReturnPaths; } set { bondReturnPaths = value; } }
+
+		// // Empty.
+		public static Texture2D Empty1 { get { return pathEmpty1; } set { pathEmpty1 = value; } }
+		public static Texture2D Empty2 { get { return pathEmpty2; } set { pathEmpty2 = value; } }
+		public static Texture2D Empty3 { get { return pathEmpty3; } set { pathEmpty3 = value; } }
+		public static Texture2D Empty4 { get { return pathEmpty4; } set { pathEmpty4 = value; } }
+		public static Texture2D[] EmptyPaths { get { return emptyPaths; } set { emptyPaths = value; } }
+
+		// // Random.
+		public static Texture2D Random1 { get { return pathRandom1; } set { pathRandom1 = value; } }
+		public static Texture2D Random2 { get { return pathRandom2; } set { pathRandom2 = value; } }
+		public static Texture2D Random3 { get { return pathRandom3; } set { pathRandom3 = value; } }
+		public static Texture2D Random4 { get { return pathRandom4; } set { pathRandom4 = value; } }
+		public static Texture2D[] RandomPaths { get { return randomPaths; } set { randomPaths = value; } }
+		
 		// Role textures
 		public static Texture2D FolderClosed { get { return folderClosed; } set { folderClosed = value; } }
 		public static Texture2D FolderOpen { get { return folderOpen; } set { folderOpen = value; } }
@@ -303,12 +421,55 @@ namespace FlameWars
 				PathTexture4 = Content.Load<Texture2D>(PATH_TEXTURE_04);
 				Paths = new Texture2D[] { pathTexture1, pathTexture2, pathTexture3, pathTexture4 };
 
+				// // Resources
+				Resource1 = Content.Load<Texture2D>(RESOURCE_01);
+				Resource2 = Content.Load<Texture2D>(RESOURCE_02);
+				Resource3 = Content.Load<Texture2D>(RESOURCE_03);
+				Resource4 = Content.Load<Texture2D>(RESOURCE_04);
+				Resources = new Texture2D[] { Resource1, Resource2, Resource3, Resource4 };
+
+				// // Cards
+				Cards1 = Content.Load<Texture2D>(CARD_01);
+				Cards2 = Content.Load<Texture2D>(CARD_01);
+				Cards3 = Content.Load<Texture2D>(CARD_01);
+				Cards4 = Content.Load<Texture2D>(CARD_01);
+				Cards = new Texture2D[] { Cards1, Cards2, Cards3, Cards4 };
+
+				// // Bonds
+				Bonds1 = Content.Load<Texture2D>(BOND_01);
+				Bonds2 = Content.Load<Texture2D>(BOND_02);
+				Bonds3 = Content.Load<Texture2D>(BOND_03);
+				Bonds4 = Content.Load<Texture2D>(BOND_04);
+				Bonds = new Texture2D[] { Bonds1, Bonds2, Bonds3, Bonds4 };
+
+				// // Bond returns
+				BondReclaims1 = Content.Load<Texture2D>(BOND_RETURN_01);
+				BondReclaims2 = Content.Load<Texture2D>(BOND_RETURN_02);
+				BondReclaims3 = Content.Load<Texture2D>(BOND_RETURN_03);
+				BondReclaims4 = Content.Load<Texture2D>(BOND_RETURN_04);
+				BondReclaims = new Texture2D[] { BondReclaims1, BondReclaims2, BondReclaims3, BondReclaims4};
+
+				// // Empty
+				Empty1 = Content.Load<Texture2D>(EMPTY_01);
+				Empty2 = Content.Load<Texture2D>(EMPTY_02);
+				Empty3 = Content.Load<Texture2D>(EMPTY_03);
+				Empty4 = Content.Load<Texture2D>(EMPTY_04);
+				EmptyPaths = new Texture2D[] { Empty1, Empty2, Empty3, Empty4 };
+
+				// // Random
+				Random1 = Content.Load<Texture2D>(RANDOM_04);
+				Random2 = Content.Load<Texture2D>(RANDOM_04);
+				Random3 = Content.Load<Texture2D>(RANDOM_04);
+				Random4 = Content.Load<Texture2D>(RANDOM_04);
+				RandomPaths = new Texture2D[] { Random1, Random2, Random3, Random4 };
+
+
 				// Role textures
 				FolderClosed = Content.Load<Texture2D>(FOLDER_CLOSED);
 				FolderOpen   = Content.Load<Texture2D>(FOLDER_OPEN);
 				TopHat       = Content.Load<Texture2D>(TOP_HAT);
 				Plastic      = Content.Load<Texture2D>(PLASTIC);
-				Narcissist   = Content.Load<Texture2D>(NARCISSIT);
+				Narcissist   = Content.Load<Texture2D>(NARCISSIST);
 				Dankest      = Content.Load<Texture2D>(DANKEST);
 
 				// how-to texture
@@ -379,12 +540,54 @@ namespace FlameWars
 			PathTexture4 = Content.Load<Texture2D>(PATH_TEXTURE_PLACEHOLDER);
 			Paths = new Texture2D[] { pathTexture1, pathTexture2, pathTexture3, pathTexture4 };
 
+			// // Resources
+			Resource1 = Content.Load<Texture2D>(RESOURCE_01);
+			Resource2 = Content.Load<Texture2D>(RESOURCE_02);
+			Resource3 = Content.Load<Texture2D>(RESOURCE_03);
+			Resource4 = Content.Load<Texture2D>(RESOURCE_04);
+			Resources = new Texture2D[] { Resource1, Resource2, Resource3, Resource4 };
+
+			// // Cards
+			Cards1 = Content.Load<Texture2D>(CARD_01);
+			Cards2 = Content.Load<Texture2D>(CARD_01);
+			Cards3 = Content.Load<Texture2D>(CARD_01);
+			Cards4 = Content.Load<Texture2D>(CARD_01);
+			Cards = new Texture2D[] { Cards1, Cards2, Cards3, Cards4 };
+
+			// // Bonds
+			Bonds1 = Content.Load<Texture2D>(BOND_01);
+			Bonds2 = Content.Load<Texture2D>(BOND_02);
+			Bonds3 = Content.Load<Texture2D>(BOND_03);
+			Bonds4 = Content.Load<Texture2D>(BOND_04);
+			Bonds = new Texture2D[] { Bonds1, Bonds2, Bonds3, Bonds4 };
+
+			// // Bond returns
+			BondReclaims1 = Content.Load<Texture2D>(BOND_RETURN_01);
+			BondReclaims2 = Content.Load<Texture2D>(BOND_RETURN_02);
+			BondReclaims3 = Content.Load<Texture2D>(BOND_RETURN_03);
+			BondReclaims4 = Content.Load<Texture2D>(BOND_RETURN_04);
+			BondReclaims = new Texture2D[] { BondReclaims1, BondReclaims2, BondReclaims3, BondReclaims4 };
+
+			// // Empty
+			Empty1 = Content.Load<Texture2D>(EMPTY_01);
+			Empty2 = Content.Load<Texture2D>(EMPTY_02);
+			Empty3 = Content.Load<Texture2D>(EMPTY_03);
+			Empty4 = Content.Load<Texture2D>(EMPTY_04);
+			EmptyPaths = new Texture2D[] { Empty1, Empty2, Empty3, Empty4 };
+
+			// // Random
+			Random1 = Content.Load<Texture2D>(RANDOM_04);
+			Random2 = Content.Load<Texture2D>(RANDOM_04);
+			Random3 = Content.Load<Texture2D>(RANDOM_04);
+			Random4 = Content.Load<Texture2D>(RANDOM_04);
+			RandomPaths = new Texture2D[] { Random1, Random2, Random3, Random4 };
+
 			// Role textures
 			FolderClosed = Content.Load<Texture2D>(FOLDER_CLOSED);
 			FolderOpen   = Content.Load<Texture2D>(FOLDER_OPEN);
 			TopHat       = Content.Load<Texture2D>(TOP_HAT);
 			Plastic      = Content.Load<Texture2D>(PLASTIC);
-			Narcissist   = Content.Load<Texture2D>(NARCISSIT);
+			Narcissist   = Content.Load<Texture2D>(NARCISSIST);
 			Dankest      = Content.Load<Texture2D>(DANKEST);
 
 			// How-to texture
@@ -398,6 +601,48 @@ namespace FlameWars
 			MessageBox = Content.Load<Texture2D>(MESSAGE_BOX);
 			TargetBox  = Content.Load<Texture2D>(TARGET_BOX);
 		}
+
+		// Gets a variation of a resource path.
+		public static Texture2D GetResourcePathTexture()
+		{
+			return Resources[GameManager.RandomGen.Next(0, Resources.Length)];
+		}
+
+		// Gets a variation of a card path.
+		public static Texture2D GetCardPathTexture()
+		{
+			return Cards[GameManager.RandomGen.Next(0, Cards.Length)];
+		}
+
+		// Gets a variation of a bond path.
+		public static Texture2D GetBondPathTexture()
+		{
+			return Bonds[GameManager.RandomGen.Next(0, Bonds.Length)];
+		}
+
+		// Gets a variation of a bond return path.
+		public static Texture2D GetBondReturnPathTexture()
+		{
+			return BondReclaims[GameManager.RandomGen.Next(0, BondReclaims.Length)];
+		}
+
+		// Gets a variation of a empty path.
+		public static Texture2D GetEmptyPathTexture()
+		{
+			return EmptyPaths[GameManager.RandomGen.Next(0, EmptyPaths.Length)];
+		}
+
+		// Gets a variation of a random path.
+		public static Texture2D GetRandomPathTexture()
+		{
+			return RandomPaths[GameManager.RandomGen.Next(0, RandomPaths.Length)];
+		}
+
+
+
+
+
+
 		#endregion Methods
 
 	}

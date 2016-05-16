@@ -115,8 +115,8 @@ namespace FlameWars
 
 			SLIDE_HEIGHT = slideTextures[0].Height;
 			SLIDE_WIDTH = slideTextures[0].Width;
-			SLIDE_X = 0;
-			SLIDE_Y = 0;
+			SLIDE_X = CalculateXOrigin(SLIDE_WIDTH);
+			SLIDE_Y = CalculateYOrigin(SLIDE_HEIGHT);
 		}
 
 		// Passes in a few variables to save for update functions
@@ -216,6 +216,35 @@ namespace FlameWars
 			{
 				sb.Draw(buttonTextures[i], buttonBounds[i], buttonColors[i]);
 			}
+		}
+
+		// Calculate the X and Y for a given slide.
+		public int CalculateXOrigin(int sWidth)
+		{
+			int xOrigin = 0;
+
+			// Find the center.
+			int center = GameManager.Width / 2;
+			int origin = sWidth / 2;
+
+			xOrigin = center - origin;
+
+			return xOrigin;
+		}
+
+		// Calculate the Y for a given slide.
+		public int CalculateYOrigin(int sHeight)
+		{
+			int yOrigin = 0;
+
+			// Find the center.
+			int center = GameManager.Height / 2;
+			int origin = sHeight / 2;
+
+			yOrigin = center - origin;
+
+
+			return yOrigin;
 		}
 	}
 }
