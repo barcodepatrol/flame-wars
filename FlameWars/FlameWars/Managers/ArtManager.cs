@@ -114,6 +114,23 @@ namespace FlameWars
 		public const string SLIDE_TEST_01 = "slide_test01";
 		public const string SLIDE_TEST_02 = "slide_test02";
 		public const string SLIDE_TEST_03 = "slide_test03";
+		public const string SLIDE_01 = "slide_01";
+		public const string SLIDE_02 = "slide_02";
+		public const string SLIDE_03 = "slide_03";
+		public const string SLIDE_04 = "slide_04";
+		public const string SLIDE_05 = "slide_05";
+		public const string SLIDE_06 = "slide_06";
+		public const string SLIDE_07 = "slide_07";
+		public const string SLIDE_08 = "slide_08";
+		public const string SLIDE_09 = "slide_09";
+		public const string SLIDE_10 = "slide_10";
+		public const string SLIDE_11 = "slide_11";
+		public const string SLIDE_12 = "slide_12";
+		public const string SLIDE_13 = "slide_13";
+		public const string SLIDE_14 = "slide_14";
+		public const string SLIDE_15 = "slide_15";
+		public const string SLIDE_16 = "slide_16";
+		public const string SLIDE_17 = "slide_17";
 
 		// MessageBox texture
 		public const string MESSAGE_BOX = "MessageBox"; // For messageBox
@@ -222,6 +239,23 @@ namespace FlameWars
 		private static Texture2D test01; // test slides
 		private static Texture2D test02;
 		private static Texture2D test03;
+		private static Texture2D slide01; // final slides.
+		private static Texture2D slide02;
+		private static Texture2D slide03;
+		private static Texture2D slide04;
+		private static Texture2D slide05;
+		private static Texture2D slide06;
+		private static Texture2D slide07;
+		private static Texture2D slide08;
+		private static Texture2D slide09;
+		private static Texture2D slide10;
+		private static Texture2D slide11;
+		private static Texture2D slide12;
+		private static Texture2D slide13;
+		private static Texture2D slide14;
+		private static Texture2D slide15;
+		private static Texture2D slide16;
+		private static Texture2D slide17;
 		private static Texture2D[] slides; // all slides in an array
 
 		// Message Box texture
@@ -304,8 +338,7 @@ namespace FlameWars
 		public static Texture2D Bonds3 { get { return pathBonds3; } set { pathBonds3 = value; } }
 		public static Texture2D Bonds4 { get { return pathBonds4; } set { pathBonds4 = value; } }
 		public static Texture2D[] Bonds { get { return bondPaths; } set { bondPaths = value; } }
-
-
+		
 		// // Reclaim bonds.
 		public static Texture2D BondReclaims1 { get { return pathBondReturns1; } set { pathBondReturns1 = value; } }
 		public static Texture2D BondReclaims2 { get { return pathBondReturns2; } set { pathBondReturns2 = value; } }
@@ -340,6 +373,23 @@ namespace FlameWars
 		public static Texture2D Test01 { get { return test01; } set { test01 = value; } }
 		public static Texture2D Test02 { get { return test02; } set { test02 = value; } }
 		public static Texture2D Test03 { get { return test03; } set { test03 = value; } }
+		public static Texture2D Slide01 { get { return slide01; } set { slide01 = value; } }
+		public static Texture2D Slide02 { get { return slide02; } set { slide02 = value; } }
+		public static Texture2D Slide03 { get { return slide03; } set { slide03 = value; } }
+		public static Texture2D Slide04 { get { return slide04; } set { slide04 = value; } }
+		public static Texture2D Slide05 { get { return slide05; } set { slide05 = value; } }
+		public static Texture2D Slide06 { get { return slide06; } set { slide06 = value; } }
+		public static Texture2D Slide07 { get { return slide07; } set { slide07 = value; } }
+		public static Texture2D Slide08 { get { return slide08; } set { slide08 = value; } }
+		public static Texture2D Slide09 { get { return slide09; } set { slide09 = value; } }
+		public static Texture2D Slide10 { get { return slide10; } set { slide10 = value; } }
+		public static Texture2D Slide11 { get { return slide11; } set { slide11 = value; } }
+		public static Texture2D Slide12 { get { return slide12; } set { slide12 = value; } }
+		public static Texture2D Slide13 { get { return slide13; } set { slide13 = value; } }
+		public static Texture2D Slide14 { get { return slide14; } set { slide14 = value; } }
+		public static Texture2D Slide15 { get { return slide15; } set { slide15 = value; } }
+		public static Texture2D Slide16 { get { return slide16; } set { slide16 = value; } }
+		public static Texture2D Slide17 { get { return slide17; } set { slide17 = value; } }
 		public static Texture2D[] Slides { get { return slides; } set { slides = value; } }
 
 		// Message box textures.
@@ -462,8 +512,7 @@ namespace FlameWars
 				Random3 = Content.Load<Texture2D>(RANDOM_04);
 				Random4 = Content.Load<Texture2D>(RANDOM_04);
 				RandomPaths = new Texture2D[] { Random1, Random2, Random3, Random4 };
-
-
+				
 				// Role textures
 				FolderClosed = Content.Load<Texture2D>(FOLDER_CLOSED);
 				FolderOpen   = Content.Load<Texture2D>(FOLDER_OPEN);
@@ -477,8 +526,29 @@ namespace FlameWars
 				Test01 = Content.Load<Texture2D>(SLIDE_TEST_01);
 				Test02 = Content.Load<Texture2D>(SLIDE_TEST_02);
 				Test03 = Content.Load<Texture2D>(SLIDE_TEST_03);
-				slides = new Texture2D[] { Test01, Test02, Test03 };
-
+				Slide01 = Content.Load<Texture2D>(SLIDE_01);
+				Slide02 = Content.Load<Texture2D>(SLIDE_02);
+				Slide03 = Content.Load<Texture2D>(SLIDE_03);
+				Slide04 = Content.Load<Texture2D>(SLIDE_04);
+				Slide05 = Content.Load<Texture2D>(SLIDE_05);
+				Slide06 = Content.Load<Texture2D>(SLIDE_06);
+				Slide07 = Content.Load<Texture2D>(SLIDE_07);
+				Slide08 = Content.Load<Texture2D>(SLIDE_08);
+				Slide09 = Content.Load<Texture2D>(SLIDE_09);
+				Slide10 = Content.Load<Texture2D>(SLIDE_10);
+				Slide11 = Content.Load<Texture2D>(SLIDE_11);
+				Slide12 = Content.Load<Texture2D>(SLIDE_12);
+				Slide13 = Content.Load<Texture2D>(SLIDE_13);
+				Slide14 = Content.Load<Texture2D>(SLIDE_14);
+				Slide15 = Content.Load<Texture2D>(SLIDE_15);
+				Slide16 = Content.Load<Texture2D>(SLIDE_16);
+				Slide17 = Content.Load<Texture2D>(SLIDE_17);
+				slides = new Texture2D[] { Slide01, Slide02, Slide03,
+											Slide04, Slide05, Slide06,
+											Slide07, Slide08, Slide09,
+											Slide10, Slide11, Slide12,
+											Slide13, Slide14, Slide15,
+											Slide16, Slide17, };
 
 				// Message Box texture
 				MessageBox = Content.Load<Texture2D>(MESSAGE_BOX);
