@@ -106,8 +106,8 @@ namespace FlameWars
 			buttonTextures[1] = ArtManager.ExitButton;
 
 			// THESE NEED TO BE CHANGED TO THE REAL TEXTURES
-			buttonTextures[2] = ArtManager.ExitButton; // PREV
-			buttonTextures[3] = ArtManager.PlayButton; // NEXT
+			buttonTextures[2] = ArtManager.PreviousButton; // PREV
+			buttonTextures[3] = ArtManager.NextButton; // NEXT
 
 			// TO DO:
 			// LOAD THE SLIDE CONTENT HERE

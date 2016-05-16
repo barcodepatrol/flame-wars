@@ -5,8 +5,8 @@ using Microsoft.Xna.Framework.Input;
 
 namespace FlameWars
 {
-    internal static class ArtManager
-    {
+	internal static class ArtManager
+	{
 
 		// ============================================================================
 		// ================================ Constants =================================
@@ -19,12 +19,12 @@ namespace FlameWars
 		public const string FOREGROUND_TEXTURE = ""; // For the foregroundTexture
 
 		// Font filenames
-		public const string MAIN_FONT    = "MainFont";
+		public const string MAIN_FONT = "MainFont";
 		public const string DISPLAY_FONT = "DisplayFont";
 
 		// Core texture filenames
-		public const string BOARD_TEXTURE              = "board_final"; // For boardTexture
-		public const string BOARD_TEXTURE_PLACEHOLDER  = "board_placeholder"; // For boardTexture
+		public const string BOARD_TEXTURE = "board_final"; // For boardTexture
+		public const string BOARD_TEXTURE_PLACEHOLDER = "board_placeholder"; // For boardTexture
 		public const string PLAYER_TOKEN_01 = "token_player1"; // For playerToken1
 		public const string PLAYER_TOKEN_02 = "token_player2"; // For playerToken2
 		public const string PLAYER_TOKEN_03 = "token_player3"; // For playerToken3
@@ -39,15 +39,17 @@ namespace FlameWars
 		public const string PLAYER_ICON_PLACEHOLDER = "token"; // For playerIcon1, playerIcon2, playerIcon3, playerIcon4
 
 		// Button texture filenames
-		public const string BUTTON_OK      = "OkButton";	  // For okButton
-		public const string BUTTON_EXIT    = "ExitButton";    // For exitButton
-		public const string BUTTON_HOW_TO  = "HowToButton";   // For howToButton
-		public const string BUTTON_MENU    = "MenuButton";    // For menuButton
-		public const string BUTTON_PLAY    = "PlayButton";    // For playButton
-		public const string BUTTON_RESUME  = "ResumeButton";  // For resumeButton
-		public const string BUTTON_RETURN  = "ReturnButton";  // For returnButton
-		public const string BUTTON_CANCEL  = "CancelButton";  // For cancelButton
-		public const string BUTTON_ROLL    = "RollButton";	  // For rollButton
+		public const string BUTTON_OK = "OkButton";   // For okButton
+		public const string BUTTON_EXIT = "ExitButton";    // For exitButton
+		public const string BUTTON_HOW_TO = "HowToButton";   // For howToButton
+		public const string BUTTON_MENU = "MenuButton";    // For menuButton
+		public const string BUTTON_PLAY = "PlayButton";    // For playButton
+		public const string BUTTON_RESUME = "ResumeButton";  // For resumeButton
+		public const string BUTTON_RETURN = "ReturnButton";  // For returnButton
+		public const string BUTTON_CANCEL = "CancelButton";  // For cancelButton
+		public const string BUTTON_ROLL = "RollButton";    // For rollButton
+		public const string BUTTON_NEXT = "NextButton";     // for nextButton
+		public const string BUTTON_PREV = "PreviousButton"; // for previousButton
 		public const string BUTTON_PLAYER1 = "Player1Button"; // For player1Button
 		public const string BUTTON_PLAYER2 = "Player2Button"; // For player2Button
 		public const string BUTTON_PLAYER3 = "Player3Button"; // For player3Button
@@ -66,9 +68,9 @@ namespace FlameWars
 		public const int PATH_VARIATIONS = 4;
 
 		//// Resource paths.
-		public const string RESOURCE_01 = "path_resources_01"; 
-		public const string RESOURCE_02 = "path_resources_02"; 
-		public const string RESOURCE_03 = "path_resources_03"; 
+		public const string RESOURCE_01 = "path_resources_01";
+		public const string RESOURCE_02 = "path_resources_02";
+		public const string RESOURCE_03 = "path_resources_03";
 		public const string RESOURCE_04 = "path_resources_04";
 
 		//// Card paths.
@@ -100,14 +102,14 @@ namespace FlameWars
 		public const string RANDOM_02 = "path_random_02";
 		public const string RANDOM_03 = "path_random_03";
 		public const string RANDOM_04 = "path_random_04";
-		
+
 		// Role texture filenames
 		public const string FOLDER_CLOSED = "FolderClosed"; // For folderClosed
-		public const string FOLDER_OPEN	  = "FolderOpen";	// For folderOpen
-		public const string TOP_HAT		  = "tophat";		// for topHat
-		public const string PLASTIC		  = "plastic";		// for plastic
-		public const string NARCISSIST	  = "narcissist";	// for narcissist
-		public const string DANKEST		  = "dankest";		// for dankest
+		public const string FOLDER_OPEN = "FolderOpen"; // For folderOpen
+		public const string TOP_HAT = "tophat";     // for topHat
+		public const string PLASTIC = "plastic";        // for plastic
+		public const string NARCISSIST = "narcissist";  // for narcissist
+		public const string DANKEST = "dankest";        // for dankest
 
 		// How to instructions filename
 		public const string HOW_TO_INSTRUCTIONS = "Default how to instructions"; // For placeholder how to image
@@ -134,7 +136,7 @@ namespace FlameWars
 
 		// MessageBox texture
 		public const string MESSAGE_BOX = "MessageBox"; // For messageBox
-		public const string TARGET_BOX  = "TargetBox"; // for targetBox
+		public const string TARGET_BOX = "TargetBox"; // for targetBox
 		#endregion Filepaths
 
 		// ============================================================================
@@ -173,6 +175,8 @@ namespace FlameWars
 		private static Texture2D returnButton; // Return button texture
 		private static Texture2D cancelButton; // Cancel button texture
 		private static Texture2D rollButton; // Roll button texture
+		private static Texture2D prevButton; // Previous button texture.
+		private static Texture2D nextButton; // Next button texture.
 		private static Texture2D player1Button; // Player1 button texture
 		private static Texture2D player2Button; // Player2 button texture
 		private static Texture2D player3Button; // Player3 button texture
@@ -229,10 +233,10 @@ namespace FlameWars
 		// Role textures
 		private static Texture2D folderClosed; // Folder closed texture
 		private static Texture2D folderOpen;   // Folder open texture
-		private static Texture2D tophat;	   // Top hat texture
-		private static Texture2D plastic;	   // Plastic texture
+		private static Texture2D tophat;       // Top hat texture
+		private static Texture2D plastic;      // Plastic texture
 		private static Texture2D narcissist;   // Narcissist texture
-		private static Texture2D dankest;	   // Dankest texture
+		private static Texture2D dankest;      // Dankest texture
 
 		// How-to textures
 		private static Texture2D howToInstructions; // How to texture
@@ -277,8 +281,8 @@ namespace FlameWars
 		public static Texture2D Foreground { get { return foregroundTexture; } set { foregroundTexture = value; } }
 
 		// Game Fonts
-		public static SpriteFont MainFont { get {return mainFont; } set {mainFont = value; } }
-		public static SpriteFont DisplayFont { get {return displayFont; } set {displayFont = value; } }
+		public static SpriteFont MainFont { get { return mainFont; } set { mainFont = value; } }
+		public static SpriteFont DisplayFont { get { return displayFont; } set { displayFont = value; } }
 
 		// Core textures.
 		public static Texture2D Board { get { return boardTexture; } set { boardTexture = value; } }
@@ -303,6 +307,8 @@ namespace FlameWars
 		public static Texture2D ReturnButton { get { return returnButton; } set { returnButton = value; } }
 		public static Texture2D CancelButton { get { return cancelButton; } set { cancelButton = value; } }
 		public static Texture2D RollButton { get { return rollButton; } set { rollButton = value; } }
+		public static Texture2D PreviousButton { get { return prevButton; } set { prevButton = value; } }
+		public static Texture2D NextButton { get { return nextButton; } set { nextButton = value; } }
 		public static Texture2D Player1Button { get { return player1Button; } set { player1Button = value; } }
 		public static Texture2D Player2Button { get { return player2Button; } set { player2Button = value; } }
 		public static Texture2D Player3Button { get { return player3Button; } set { player3Button = value; } }
@@ -456,6 +462,8 @@ namespace FlameWars
 				ReturnButton    = Content.Load<Texture2D>(BUTTON_RETURN);
 				CancelButton    = Content.Load<Texture2D>(BUTTON_CANCEL);
 				RollButton      = Content.Load<Texture2D>(BUTTON_ROLL);
+				PreviousButton  = Content.Load<Texture2D>(BUTTON_PREV);
+				NextButton      = Content.Load<Texture2D>(BUTTON_NEXT);
 				Player1Button   = Content.Load<Texture2D>(BUTTON_PLAYER1);
 				Player2Button   = Content.Load<Texture2D>(BUTTON_PLAYER2);
 				Player3Button   = Content.Load<Texture2D>(BUTTON_PLAYER3);
